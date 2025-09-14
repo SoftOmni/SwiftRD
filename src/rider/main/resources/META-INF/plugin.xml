@@ -1,0 +1,13 @@
+<idea-plugin require-restart="true">
+  <id>com.jetbrains.rider.plugins.swift</id>
+  <name>Swift</name>
+  <version>0.0.1</version>
+  <vendor url="https://github.com/SoftOmni/SwiftRD">Jascha MERLE</vendor>
+  <idea-version since-build="2025.2" />
+  <depends>com.intellij.modules.rider</depends>
+
+  <description>
+      An RD Backed plugin that brings full Swift support
+  </description>
+
+</idea-plugin>
