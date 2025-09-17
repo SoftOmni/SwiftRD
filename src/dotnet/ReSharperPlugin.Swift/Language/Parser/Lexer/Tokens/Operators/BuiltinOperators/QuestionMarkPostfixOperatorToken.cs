@@ -1,3 +1,3 @@
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.BuiltinOperators;
 
-public class QuestionMarkPostfixOperatorToken() : BuiltinOperatorToken("?", SwiftTokens.QuestionMarkPostfixOperatorIndex);
+public class QuestionMarkPostfixOperatorToken() : BuiltinOperatorToken(SwiftTokens.QuestionMarkPostfixOperatorId, SwiftTokens.QuestionMarkPostfixOperatorIndex);

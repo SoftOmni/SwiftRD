@@ -3,7 +3,7 @@ using System;
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 
 public class UnmatchedHashtagToken(string value, UnmatchedHashtagToken.ErrorCase errorCase)
-    : ErroneousToken(value, errorCase.ToMessage(), SwiftTokens.UnmatchedHashtagIndex)
+    : ErroneousToken(SwiftTokens.UnmatchedHashtagId, value, errorCase.ToMessage(), SwiftTokens.UnmatchedHashtagIndex)
 {
     public const string UnexpectedHashtagEofError = "The hashtag requires a reserved keyword starting " +
                                                     "with # or a string literal but the end of the file " +

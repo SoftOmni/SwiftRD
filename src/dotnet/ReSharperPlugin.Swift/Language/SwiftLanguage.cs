@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
 
 namespace ReSharperPlugin.Swift.Language;
@@ -7,15 +6,15 @@ namespace ReSharperPlugin.Swift.Language;
 public class SwiftLanguage : KnownLanguage
 {
     public new const string Name = "SWIFT";
-
-    [CanBeNull] public static readonly SwiftLanguage Instance;
     
+    public static SwiftLanguage? Instance { get; set; }
+
     private SwiftLanguage() : base(Name, "Swift")
     { }
-    
-    protected SwiftLanguage([NotNull] string name) : base(name)
+
+    protected SwiftLanguage(string name) : base(name)
     { }
-    
-    protected SwiftLanguage([NotNull] string name, [NotNull] string presentableName) : base(name, presentableName)
+
+    protected SwiftLanguage(string name, string presentableName) : base(name, presentableName)
     { }
 }

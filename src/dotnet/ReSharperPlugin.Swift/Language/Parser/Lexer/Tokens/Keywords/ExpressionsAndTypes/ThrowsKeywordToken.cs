@@ -1,3 +1,3 @@
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.ExpressionsAndTypes;
 
-public class ThrowsKeywordToken() : ExpressionAndTypeUsableKeywordToken("throws", SwiftTokens.ThrowsIndex);
+public class ThrowsKeywordToken() : ExpressionAndTypeUsableKeywordToken("throws", SwiftTokens.ThrowsId, SwiftTokens.ThrowsIndex);

@@ -4,7 +4,7 @@ using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Keywords;
 
-public class SwiftKeywordToken(string value, int index) : SwiftTokenNodeType(value, index)
+public class SwiftKeywordToken(string value, string tokenId, int index) : SwiftTokenNodeType(tokenId, index)
 {
     public override string TokenRepresentation { get; } = value;
 
@@ -22,7 +22,7 @@ public class SwiftKeywordToken(string value, int index) : SwiftTokenNodeType(val
     
     public virtual bool ReservedIdentifier => false;
     
-    [CanBeNull] public virtual Version Availability => null;
+    public virtual Version? Availability => null;
     
-    [CanBeNull] public virtual Version RemovalVersion => null;
+    public virtual Version? RemovalVersion => null;
 }

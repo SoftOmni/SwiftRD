@@ -9,7 +9,7 @@ using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
 
-public partial class SwiftLexer : IIncrementalLexer
+public partial class SwiftLexer: IIncrementalLexer
 {
     public SwiftLexer(IBuffer buffer)
         : this(buffer, buffer.Length)
@@ -58,9 +58,10 @@ public partial class SwiftLexer : IIncrementalLexer
             {
                 AdvanceTokenTape();
             }
+
             return;
         }
-        
+
         if (FourQuotesSettingInEffect is not null)
         {
             bool advanceTokenTape = LexContinuationOfFourQuotesSystem();
@@ -68,9 +69,10 @@ public partial class SwiftLexer : IIncrementalLexer
             {
                 AdvanceTokenTape();
             }
+
             return;
         }
-        
+
         if (FiveQuotesSettingInEffect is not null)
         {
             bool advanceTokenTape = LexContinuationOfFiveQuotesSystem();
@@ -78,6 +80,7 @@ public partial class SwiftLexer : IIncrementalLexer
             {
                 AdvanceTokenTape();
             }
+
             return;
         }
 
@@ -91,8 +94,8 @@ public partial class SwiftLexer : IIncrementalLexer
         }
 
         if (IsInStringLiteral is StringLiteralPosition.InSimpleStringLiteral
-            or StringLiteralPosition.InMultiLineStringLiteral
-           && firstChar == Backslash)
+                or StringLiteralPosition.InMultiLineStringLiteral
+            && firstChar == Backslash)
         {
             LexEscape();
             AdvanceTokenTape();
@@ -188,10 +191,11 @@ public partial class SwiftLexer : IIncrementalLexer
 
     public Stack<(int token, int tokenStart, int tokenEnd)> StringLiteralsTypesStacks { get; private set; } = new();
 
-    public Stack<(int token, int tokenStart, int tokenEnd)> MultilineStringLiteralTypesStacks { get; private set; } = new();
+    public Stack<(int token, int tokenStart, int tokenEnd)> MultilineStringLiteralTypesStacks { get; private set; } =
+        new();
 
     public Stack<int> IsInMultilinePairSearch { get; private set; } = new();
-    
+
     public Stack<int> IsInSimplePairSearch { get; private set; } = new();
 
     public Stack<int> IsInInterpolation { get; private set; } = new();
@@ -213,9 +217,9 @@ public partial class SwiftLexer : IIncrementalLexer
     public int LexemIndent { get; }
 
     private List<(int start, int end, TokenNodeType tokenNodeType)> _tokens = new();
-    
+
     public int TokenCount => _tokens.Count;
-    
+
     public (int start, int end, TokenNodeType tokenNodeType) this[int index]
     {
         get => _tokens[index];

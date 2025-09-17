@@ -1,3 +1,3 @@
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.ContextSensitive;
 
-public class IndirectKeywordToken() : ContextSensitiveKeywordToken("indirect", SwiftTokens.IndirectIndex);
+public class IndirectKeywordToken() : ContextSensitiveKeywordToken("indirect", SwiftTokens.IndirectId, SwiftTokens.IndirectIndex);
