@@ -4,7 +4,7 @@ using String = ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes.String
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 
 public class ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase errorCase, string valueOfContents, string value)
-    : ErroneousSwiftLiteral<String, string>(errorCase.ToMessage(),
+    : ErroneousSwiftLiteral<String, string>(SwiftTokens.ErroneousStringLiteralId, errorCase.ToMessage(),
         String.Instance, valueOfContents, value, SwiftTokens.ErroneousStringLiteralIndex)
 {
     public const string UnclosedStringLiteralEofError =

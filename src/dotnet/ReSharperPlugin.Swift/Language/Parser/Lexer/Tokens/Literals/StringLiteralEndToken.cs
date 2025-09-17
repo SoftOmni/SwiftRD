@@ -2,8 +2,9 @@ namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
 
 public class StringLiteralEndToken(int numberOfHashtags) : StringLiteralBoundaryToken(
     BuildRepresentation(numberOfHashtags),
-    numberOfHashtags > 0 ? SwiftTokens.SurroundedStringLiteralEndIndex : SwiftTokens.StringLiteralEndIndex,
-    numberOfHashtags)
+    numberOfHashtags, 
+    numberOfHashtags > 0 ? SwiftTokens.SurroundedStringLiteralEndId : SwiftTokens.StringLiteralEndId,
+    numberOfHashtags > 0 ? SwiftTokens.SurroundedStringLiteralEndIndex : SwiftTokens.StringLiteralEndIndex)
 {
     private static string BuildRepresentation(int numberOfHashtags)
     {

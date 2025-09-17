@@ -5,6 +5,7 @@
     <IsPackable>True</IsPackable>
     <DefineConstants>$(DefineConstants);RESHARPER</DefineConstants>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,10 @@
     <Content Include="bin\$(AssemblyName)\$(Configuration)\$(AssemblyName).pdb" PackagePath="dotFiles" Pack="true" Visible="false" />
 
     <!-- TODO: add additional assemblies -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Language\Parser\Tree\" />
   </ItemGroup>
 
 </Project>

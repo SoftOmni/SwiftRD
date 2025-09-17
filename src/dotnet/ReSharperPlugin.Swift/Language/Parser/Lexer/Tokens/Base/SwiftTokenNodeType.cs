@@ -1,5 +1,7 @@
 using System;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Parsing;
+using JetBrains.ReSharper.Psi.CSharp.Util.Literals.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
@@ -8,8 +10,8 @@ namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
 
 public abstract class SwiftTokenNodeType : TokenNodeType
 {
-    protected SwiftTokenNodeType(string s, int index)
-        : base(s, index)
+    protected SwiftTokenNodeType(string name, int index)
+        : base(name, index)
     {
         SwiftNodeTypeIndexer.Instance.Add(this, index);
     }

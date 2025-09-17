@@ -51,18 +51,18 @@ public partial class SwiftLexer
         {
             // There's just something behind us and nothing else so 
             // this is a prefix operator
-            TokenType = new PrefixOperatorToken(@operator);
+            TokenType = new PrefixOperatorToken();
             return;
         }
 
         if (Buffer[TokenEnd] == Dot)
         {
-            TokenType = new PrefixOperatorToken(@operator);
+            TokenType = new PrefixOperatorToken();
             NextDotOperatorShouldBePostfix = true;
             return;
         }
 
-        TokenType = new InfixOperatorToken(@operator);
+        TokenType = new InfixOperatorToken();
     }
 
     private void LexStartingPostfixOperator(Func<char, bool> operatorCheck)
@@ -83,7 +83,7 @@ public partial class SwiftLexer
 
         if (Buffer[TokenEnd].IsOperatorFollowerWhitespace())
         {
-            TokenType = new PostfixOperatorToken(@operator);
+            TokenType = new PostfixOperatorToken();
             return;
         }
 
@@ -105,11 +105,11 @@ public partial class SwiftLexer
 
         if (Buffer[TokenEnd].IsOperatorFollowerWhitespace())
         {
-            TokenType = new InfixOperatorToken(@operator);
+            TokenType = new InfixOperatorToken();
             return;
         }
 
-        TokenType = new PostfixOperatorToken(@operator);
+        TokenType = new PostfixOperatorToken();
     }
 
     private void LexDotOperator()
@@ -142,7 +142,7 @@ public partial class SwiftLexer
             return;
         }
 
-        TokenType = new PostfixOperatorToken(@operator);
+        TokenType = new PostfixOperatorToken();
         NextDotOperatorShouldBePostfix = false;
     }
 

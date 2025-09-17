@@ -1,3 +1,3 @@
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Declarations;
 
-public class SubscriptKeywordToken() : DeclarationUsableKeywordToken("subscript", SwiftTokens.SubscriptIndex);
+public class SubscriptKeywordToken() : DeclarationUsableKeywordToken("subscript", SwiftTokens.SubscriptId, SwiftTokens.SubscriptIndex);

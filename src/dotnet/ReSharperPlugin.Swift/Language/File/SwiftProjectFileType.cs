@@ -7,7 +7,8 @@ namespace ReSharperPlugin.Swift.Language.File;
 public class SwiftProjectFileType : KnownProjectFileType
 {
     public new const string Name = "SWIFT";
-    public new static readonly SwiftProjectFileType Instance;
+    
+    public new static SwiftProjectFileType Instance { get; set; }
 
     private SwiftProjectFileType()
         : base(Name, "Swift", [SwiftExtension])

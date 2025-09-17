@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>ReSharperPlugin.Swift</AssemblyName>
+    <AssemblyName>ReSharperPlugin.Swift.Rider</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <IsPackable>false</IsPackable>
     <DefineConstants>$(DefineConstants);RIDER</DefineConstants>

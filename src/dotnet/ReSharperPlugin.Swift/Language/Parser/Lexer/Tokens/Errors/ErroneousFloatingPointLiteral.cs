@@ -11,7 +11,7 @@ public class ErroneousFloatingPointLiteral<TType>(
     BigDecimal valueOfContents,
     string value,
     FloatingPointRepresentation representation = FloatingPointRepresentation.Decimal)
-    : ErroneousSwiftLiteral<TType, BigDecimal>(errorCase.ToMessage(), type, valueOfContents, value,
+    : ErroneousSwiftLiteral<TType, BigDecimal>(SwiftTokens.ErroneousFloatingPointLiteralId, errorCase.ToMessage(), type, valueOfContents, value,
         SwiftTokens.ErroneousFloatingPointLiteralIndex) where TType : Type
 {
     public const string DecimalPartMissingMessageDecimalError = "You put a dot but if a dot is present, " +

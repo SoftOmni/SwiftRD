@@ -2,10 +2,13 @@ namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
 
 public class MultiLineStringLiteralEndToken(int numberOfHashtags) : StringLiteralBoundaryToken(
     BuildRepresentation(numberOfHashtags),
+    numberOfHashtags,
+    numberOfHashtags > 0 
+        ? SwiftTokens.MultiLineSurroundedStringLiteralEndId 
+        : SwiftTokens.MultiLineStringLiteralEndId,
     numberOfHashtags > 0
         ? SwiftTokens.MultiLineSurroundedStringLiteralIndexEnd
-        : SwiftTokens.MultiLineStringLiteralIndexEnd,
-    numberOfHashtags)
+        : SwiftTokens.MultiLineStringLiteralIndexEnd)
 {
     private static string BuildRepresentation(int numberOfHashtags)
     {

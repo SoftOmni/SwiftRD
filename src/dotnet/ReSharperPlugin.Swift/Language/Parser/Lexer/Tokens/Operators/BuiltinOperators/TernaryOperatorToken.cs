@@ -2,4 +2,4 @@ using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.UserDefinedOp
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.BuiltinOperators;
 
-public class TernaryOperatorToken(string op) : OperatorToken(op, SwiftTokens.TernaryOperatorIndex);
+public class TernaryOperatorToken() : OperatorToken(SwiftTokens.TernaryOperatorId, SwiftTokens.TernaryOperatorIndex);

@@ -3,7 +3,7 @@ using System;
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 
 public class UnmatchedOperatorToken(string value, UnmatchedOperatorToken.ErrorCase errorCase)
-    : ErroneousToken(value, errorCase.ToMessage(), SwiftTokens.UnmatchedOperatorIndex)
+    : ErroneousToken(SwiftTokens.UnmatchedOperatorId, value, errorCase.ToMessage(), SwiftTokens.UnmatchedOperatorIndex)
 {
     public const string UnexpectedWhitespaceFollower =
         "Keep in mind that the whitespace character is not what one would typically consider whitespace\n" +
