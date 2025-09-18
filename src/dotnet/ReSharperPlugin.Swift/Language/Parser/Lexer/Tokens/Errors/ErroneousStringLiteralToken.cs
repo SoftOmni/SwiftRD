@@ -3,9 +3,11 @@ using String = ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes.String
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 
-public class ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase errorCase, string valueOfContents, string value)
-    : ErroneousSwiftLiteral<String, string>(SwiftTokens.ErroneousStringLiteralId, errorCase.ToMessage(),
-        String.Instance, valueOfContents, value, SwiftTokens.ErroneousStringLiteralIndex)
+public class ErroneousStringLiteralToken()
+    : ErroneousSwiftLiteral(SwiftTokens.ErroneousStringLiteralId, SwiftTokens.ErroneousStringLiteralIndex);
+
+public class BackingErroneousStringLiteralToken(BackingErroneousStringLiteralToken.ErrorCase errorCase, string valueOfContents, string value)
+    : ErroneousTokenLiteralBacker<String, string>(String.Instance, valueOfContents, value, errorCase.ToMessage(), SwiftTokens.ErroneousStringLiteralIndex)
 {
     public const string UnclosedStringLiteralEofError =
         "The string literal requires a closing quotation mark but the end of the file was reached.";
@@ -34,18 +36,18 @@ public class ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase errorCase, 
 
 public static class ErroneousStringLiteralExtensions
 {
-    public static string ToMessage(this ErroneousStringLiteral.ErrorCase errorCase)
+    public static string ToMessage(this BackingErroneousStringLiteralToken.ErrorCase errorCase)
     {
         return errorCase switch
         {
-            ErroneousStringLiteral.ErrorCase.UnclosedStringLiteralWithHashtagsEof => ErroneousStringLiteral
+            BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteralWithHashtagsEof => BackingErroneousStringLiteralToken
                 .UnclosedStringLiteralWithHashtagsEofError,
-            ErroneousStringLiteral.ErrorCase.UnclosedStringLiteralEof => ErroneousStringLiteral
+            BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteralEof => BackingErroneousStringLiteralToken
                 .UnclosedStringLiteralEofError,
-            ErroneousStringLiteral.ErrorCase.UnclosedStringLiteralWithHashtags => ErroneousStringLiteral
+            BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteralWithHashtags => BackingErroneousStringLiteralToken
                 .UnclosedStringLiteralWithHashtagsError,
-            ErroneousStringLiteral.ErrorCase.UnclosedStringLiteral =>
-                ErroneousStringLiteral.UnclosedStringLiteralError,
+            BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteral =>
+                BackingErroneousStringLiteralToken.UnclosedStringLiteralError,
             _ => throw new ArgumentOutOfRangeException(nameof(errorCase), errorCase, null)
         };
     }

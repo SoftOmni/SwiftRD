@@ -11,6 +11,7 @@ public partial class SwiftLexer
 
     public const char Backslash = '\\';
 
+    // ReSharper disable once CognitiveComplexity
     private void LexStringLiteralStart()
     {
         TokenStart = TokenEnd;
@@ -23,8 +24,12 @@ public partial class SwiftLexer
 
         if (TokenEnd == EOFPos)
         {
-            TokenType = new UnmatchedHashtagToken(GetCurrentText(),
-                UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagEof);
+            TokenType = SwiftTokens.UnmatchedHashtagToken;
+
+            BackingUnmatchedHashtagToken backingUnmatchedHashtagToken = new(GetCurrentText(),
+                BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagEof);
+            BackPutBackingToken(backingUnmatchedHashtagToken);
+
             return;
         }
 
@@ -32,8 +37,11 @@ public partial class SwiftLexer
         {
             if (numberOfHashtags > 1)
             {
-                TokenType = new UnmatchedHashtagToken(GetCurrentText(),
-                    UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagLiteralString);
+                TokenType = SwiftTokens.UnmatchedHashtagToken;
+
+                BackingUnmatchedHashtagToken backingUnmatchedHashtagToken = new(GetCurrentText(),
+                    BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagLiteralString);
+                BackPutBackingToken(backingUnmatchedHashtagToken);
             }
             else
             {
@@ -47,23 +55,30 @@ public partial class SwiftLexer
         TokenEnd++;
         if (TokenEnd == EOFPos)
         {
-            TokenType = numberOfHashtags > 1
-                ? new ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase
+            TokenType = SwiftTokens.ErroneousStringLiteralToken;
+
+            BackingErroneousStringLiteralToken backingErroneousStringLiteralToken = numberOfHashtags > 1
+                ? new BackingErroneousStringLiteralToken(BackingErroneousStringLiteralToken.ErrorCase
                     .UnclosedStringLiteralWithHashtagsEof, string.Empty, GetCurrentText())
-                : new ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase.UnclosedStringLiteralEof,
+                : new BackingErroneousStringLiteralToken(
+                    BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteralEof,
                     string.Empty, GetCurrentText());
+            BackPutBackingToken(backingErroneousStringLiteralToken);
 
             return;
         }
 
         if (Buffer[TokenEnd] != DoubleQuote)
         {
-            TokenType = numberOfHashtags > 1
-                ? new ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase
-                    .UnclosedStringLiteralWithHashtags, string.Empty, GetCurrentText())
-                : new ErroneousStringLiteral(ErroneousStringLiteral.ErrorCase.UnclosedStringLiteral,
-                    string.Empty, GetCurrentText());
+            TokenType = SwiftTokens.ErroneousStringLiteralToken;
 
+            BackingErroneousStringLiteralToken backingErroneousStringLiteralToken = numberOfHashtags > 1
+                ? new BackingErroneousStringLiteralToken(BackingErroneousStringLiteralToken.ErrorCase
+                    .UnclosedStringLiteralWithHashtags, string.Empty, GetCurrentText())
+                : new BackingErroneousStringLiteralToken(
+                    BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteral,
+                    string.Empty, GetCurrentText());
+            BackPutBackingToken(backingErroneousStringLiteralToken);
             return;
         }
 
@@ -75,19 +90,18 @@ public partial class SwiftLexer
             TokenEnd--; // We go back to the first double quote
             TokenEnd--;
 
-            TokenType = new StringLiteralStartToken(numberOfHashtags);
-            IsInStringLiteral = numberOfHashtags > 1
-                ? StringLiteralPosition.InSurroundedSimpleStringLiteral
-                : StringLiteralPosition.InSimpleStringLiteral;
+            TokenType = numberOfHashtags > 1
+                ? SwiftTokens.SurroundedStringLiteralStartToken
+                : SwiftTokens.StringLiteralStartToken;
 
             StringLiteralsTypesStacks.Push((SwiftTokens.StringLiteralStartIndex, TokenStart, TokenEnd));
-
             return;
         }
 
         LexStringLiteralStartThreeHashtags(numberOfHashtags);
     }
 
+    // ReSharper disable once CognitiveComplexity
     private void LexStringLiteralStartThreeHashtags(int numberOfHashtags)
     {
         // We have three double quotes
@@ -96,11 +110,13 @@ public partial class SwiftLexer
         {
             if (SwiftLexerSettings.ThreeQuotesSettings.IsMultiLineStart())
             {
-                TokenType = new MultiLineStringLiteralStartToken(numberOfHashtags);
+                TokenType = numberOfHashtags > 1
+                    ? SwiftTokens.SurroundedMultiLineStringLiteralStartToken
+                    : SwiftTokens.MultiLineStringLiteralStartToken;
 
                 ThreeQuotesSettingInEffect = SwiftLexerSettings.ThreeQuotesSettings;
                 StringLiteralsTypesStacks.Push((numberOfHashtags > 1
-                    ? SwiftTokens.MultiLineSurroundedStringLiteralStartIndex
+                    ? SwiftTokens.SurroundedMultiLineStringLiteralStartIndex
                     : SwiftTokens.MultiLineStringLiteralStartIndex, TokenStart, TokenEnd));
 
                 MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
@@ -112,7 +128,10 @@ public partial class SwiftLexer
 
             TokenEnd -= 2;
 
-            TokenType = new StringLiteralStartToken(numberOfHashtags);
+            TokenType = numberOfHashtags > 1
+                ? SwiftTokens.SurroundedStringLiteralStartToken
+                : SwiftTokens.StringLiteralStartToken;
+
             ThreeQuotesSettingInEffect = SwiftLexerSettings.ThreeQuotesSettings;
             StringLiteralsTypesStacks.Push((numberOfHashtags > 1
                 ? SwiftTokens.SurroundedStringLiteralStartIndex
@@ -131,7 +150,9 @@ public partial class SwiftLexer
             if (SwiftLexerSettings.FourQuotesSettings is SwiftLexerSettings.FourQuotesSetting.DoubleSimpleStringLiteral)
             {
                 TokenEnd -= 3;
-                TokenType = new StringLiteralStartToken(numberOfHashtags);
+                TokenType = numberOfHashtags > 1
+                    ? SwiftTokens.SurroundedStringLiteralStartToken
+                    : SwiftTokens.StringLiteralStartToken;
 
                 StringLiteralsTypesStacks.Push((numberOfHashtags > 1
                     ? SwiftTokens.SurroundedStringLiteralStartIndex
@@ -144,11 +165,13 @@ public partial class SwiftLexer
             }
 
             TokenEnd -= 1;
-            TokenType = new MultiLineStringLiteralStartToken(numberOfHashtags);
+            TokenType = numberOfHashtags > 1
+                ? SwiftTokens.SurroundedMultiLineStringLiteralStartToken
+                : SwiftTokens.MultiLineStringLiteralStartToken;
 
             FourQuotesSettingInEffect = SwiftLexerSettings.FourQuotesSettings;
             StringLiteralsTypesStacks.Push((numberOfHashtags > 1
-                ? SwiftTokens.MultiLineSurroundedStringLiteralStartIndex
+                ? SwiftTokens.SurroundedMultiLineStringLiteralStartIndex
                 : SwiftTokens.MultiLineStringLiteralStartIndex, TokenStart, TokenEnd));
 
             MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
@@ -167,7 +190,9 @@ public partial class SwiftLexer
                 SwiftLexerSettings.FiveQuotesStrings.IsSimpleLiteralStart())
             {
                 TokenEnd -= 4;
-                TokenType = new StringLiteralStartToken(numberOfHashtags);
+                TokenType = numberOfHashtags > 1
+                    ? SwiftTokens.SurroundedStringLiteralStartToken
+                    : SwiftTokens.StringLiteralStartToken;
 
                 FiveQuotesSettingInEffect = SwiftLexerSettings.FiveQuotesStrings;
                 StringLiteralsTypesStacks.Push((numberOfHashtags > 1
@@ -181,11 +206,13 @@ public partial class SwiftLexer
             }
 
             TokenEnd -= 2;
-            TokenType = new MultiLineStringLiteralStartToken(numberOfHashtags);
+            TokenType = numberOfHashtags > 1
+                ? SwiftTokens.SurroundedMultiLineStringLiteralStartToken
+                : SwiftTokens.MultiLineStringLiteralStartToken;
 
             FiveQuotesSettingInEffect = SwiftLexerSettings.FiveQuotesStrings;
             StringLiteralsTypesStacks.Push((numberOfHashtags > 1
-                ? SwiftTokens.MultiLineSurroundedStringLiteralStartIndex
+                ? SwiftTokens.SurroundedMultiLineStringLiteralStartIndex
                 : SwiftTokens.MultiLineStringLiteralStartIndex, TokenStart, TokenEnd));
 
             MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
@@ -197,10 +224,12 @@ public partial class SwiftLexer
 
         TokenEnd -= 3;
 
-        TokenType = new StringLiteralStartToken(numberOfHashtags);
+        TokenType = numberOfHashtags > 1
+            ? SwiftTokens.SurroundedStringLiteralStartToken
+            : SwiftTokens.StringLiteralStartToken;
         ThreeQuotesSettingInEffect = null;
 
-        StringLiteralsTypesStacks.Push((SwiftTokens.MultiLineSurroundedStringLiteralStartIndex, TokenStart, TokenEnd));
+        StringLiteralsTypesStacks.Push((SwiftTokens.SurroundedMultiLineStringLiteralStartIndex, TokenStart, TokenEnd));
         IsInStringLiteral = numberOfHashtags > 1
             ? StringLiteralPosition.InSurroundedMultiLineStringLiteral
             : StringLiteralPosition.InMultiLineStringLiteral;
@@ -254,23 +283,8 @@ public partial class SwiftLexer
         TokenStart = TokenEnd;
         MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
 
-        LexStringLiteralContent();
-        if (TokenType is StringLiteralContent stringLiteralContent)
-        {
-            TokenType = new MultiLineStringLiteralContent(
-                stringLiteralContent.ValueOfContents,
-                stringLiteralContent.TokenRepresentation, 0);
-        }
-        else if (TokenType is not ErroneousStringLiteral) // Should never happen
-        {
-            return true;
-        }
-
-        ErroneousStringLiteral erroneousStringLiteral = (ErroneousStringLiteral)TokenType;
-        TokenType = new MultiLineStringLiteralContent(erroneousStringLiteral.ValueOfContents,
-            erroneousStringLiteral.TokenRepresentation, 0);
-
-        return false;
+        LexStringLiteralContent(true);
+        return true;
     }
 
     private bool LexContinuationOfFourQuotesSystem()
@@ -313,7 +327,7 @@ public partial class SwiftLexer
             }
 
             if (StringLiteralsTypesStacks.Count > 0 && StringLiteralsTypesStacks.Peek().token ==
-                SwiftTokens.MultiLineSurroundedStringLiteralStartIndex)
+                SwiftTokens.SurroundedMultiLineStringLiteralStartIndex)
             {
                 LexSurroundedMultiLineStringLiteralContent();
             }
@@ -331,7 +345,8 @@ public partial class SwiftLexer
         {
             FourQuotesSettingInEffect = null;
 
-            TokenType = new StringLiteralStartToken(0);
+            TokenType = SwiftTokens.StringLiteralStartToken;
+
             StringLiteralsTypesStacks.Push((TokenType.Index, TokenStart, TokenEnd));
             IsInSimplePairSearch.Push(TokenEnd - 1);
 
@@ -350,23 +365,8 @@ public partial class SwiftLexer
         FourQuotesSettingInEffect = null;
         MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
 
-        LexStringLiteralContent();
-        if (TokenType is StringLiteralContent stringLiteralContent)
-        {
-            TokenType = new MultiLineStringLiteralContent(
-                stringLiteralContent.ValueOfContents,
-                stringLiteralContent.TokenRepresentation, 0);
-        }
-        else if (TokenType is not ErroneousStringLiteral) // Should never happen
-        {
-            return true;
-        }
-
-        ErroneousStringLiteral erroneousStringLiteral = (ErroneousStringLiteral)TokenType;
-        TokenType = new MultiLineStringLiteralContent(erroneousStringLiteral.ValueOfContents,
-            erroneousStringLiteral.TokenRepresentation, 0);
-
-        return false;
+        LexStringLiteralContent(true);
+        return true;
     }
 
     private bool LexContinuationOfFiveQuotesSystem()
@@ -374,7 +374,7 @@ public partial class SwiftLexer
         throw new NotImplementedException();
     }
 
-    private void LexStringLiteralContent()
+    private void LexStringLiteralContent(bool isPartOfMultiLineActually = false)
     {
         TokenStart = TokenEnd;
         while (TokenEnd < EOFPos && Buffer[TokenEnd] != Backslash && Buffer[TokenEnd] != DoubleQuote
@@ -384,7 +384,19 @@ public partial class SwiftLexer
         }
 
         string content = GetCurrentText();
-        TokenType = new StringLiteralContent(content, content);
+        BackingStringLiteralContent backingToken;
+        if (!isPartOfMultiLineActually)
+        {
+            TokenType = SwiftTokens.StringLiteralContentToken;
+            backingToken = new BackingStringLiteralContent(content, content);
+        }
+        else
+        {
+            TokenType = SwiftTokens.MultiLineStringLiteralContentToken;
+            backingToken = new MultiLineStringLiteralContentBackingLiteralToken(content, content, 0);
+        }
+
+        BackPutBackingToken(backingToken);
     }
 
     private void LexSurroundedStringLiteralContent()
@@ -396,7 +408,10 @@ public partial class SwiftLexer
         }
 
         string content = GetCurrentText();
-        TokenType = new StringLiteralContent(content, content);
+        TokenType = SwiftTokens.SurroundedStringLiteralContentToken;
+        BackingStringLiteralContent backingStringLiteralContent = new(content, content);
+        
+        BackPutBackingToken(backingStringLiteralContent);
     }
 
     private string LexMultiLineStringLiteralContent()

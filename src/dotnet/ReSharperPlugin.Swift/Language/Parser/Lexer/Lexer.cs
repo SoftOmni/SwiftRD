@@ -5,7 +5,8 @@ using JetBrains.Text;
 using JetBrains.Util;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
+
+// ReSharper disable RedundantDefaultMemberInitializer
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
 
@@ -18,6 +19,12 @@ public partial class SwiftLexer: IIncrementalLexer
     public SwiftLexer(IBuffer buffer, int eofPos)
     {
         Buffer = buffer;
+        BackerTokens = new BackerToken[buffer.Length];
+        for (int i = 0; i < buffer.Length; i++)
+        {
+            BackerTokens[i] = null;
+        }
+        
         CurrentPosition = 0;
 
         TokenType = null;
@@ -30,6 +37,12 @@ public partial class SwiftLexer: IIncrementalLexer
     public void Start()
     {
         Start(0, Buffer.Length, 0);
+    }
+
+    // ReSharper disable once CognitiveComplexity
+    public void Start(int startOffset, int endOffset, uint state)
+    {
+        throw new NotImplementedException();
     }
 
     // ReSharper disable once CognitiveComplexity
@@ -170,10 +183,7 @@ public partial class SwiftLexer: IIncrementalLexer
         LexInvalidToken();
     }
 
-    public void Start(int startOffset, int endOffset, uint state)
-    {
-        throw new NotImplementedException();
-    }
+    public BackerToken?[] BackerTokens { get; }
 
     public object CurrentPosition { get; set; }
 
@@ -212,11 +222,12 @@ public partial class SwiftLexer: IIncrementalLexer
 
     public uint LexerStateEx { get; private set; }
 
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     public int EOFPos { get; private set; }
 
     public int LexemIndent { get; }
 
-    private List<(int start, int end, TokenNodeType tokenNodeType)> _tokens = new();
+    private readonly List<(int start, int end, TokenNodeType tokenNodeType)> _tokens = [];
 
     public int TokenCount => _tokens.Count;
 
@@ -250,7 +261,7 @@ public partial class SwiftLexer: IIncrementalLexer
         }
 
         TokenEnd++;
-        TokenType = new BlockCommentStartToken();
+        TokenType = SwiftTokens.BlockCommentStartToken;
         LexerStateEx = 1;
         CommentLevel++;
     }
@@ -261,12 +272,22 @@ public partial class SwiftLexer: IIncrementalLexer
         TokenStart = TokenEnd;
         TokenEnd++;
 
-        TokenType = new InvalidToken(invalidChar);
+        TokenType = SwiftTokens.InvalidToken;
+        BackerTokens[TokenStart] = new BackerInvalidToken(invalidChar);
     }
 
     private string GetCurrentText()
     {
         return Buffer.GetText(new TextRange(TokenStart, TokenEnd));
+    }
+
+    private void BackPutBackingToken(BackerToken backerToken)
+    {
+        int index = TokenEnd - 1;
+        while (index >= TokenStart)
+        {
+            BackerTokens[index--] = backerToken;
+        }
     }
 
     private void AdvanceTokenTape()

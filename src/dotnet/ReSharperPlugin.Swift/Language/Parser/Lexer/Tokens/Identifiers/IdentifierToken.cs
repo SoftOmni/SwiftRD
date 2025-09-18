@@ -3,9 +3,9 @@ using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
 
 namespace DefaultNamespace;
 
-public class IdentifierToken(string identifier) : SwiftTokenNodeType(SwiftTokens.IdentifierId, SwiftTokens.IdentifierIndex)
+public class IdentifierToken() : SwiftTokenNodeType(SwiftTokens.IdentifierId, SwiftTokens.IdentifierIndex)
 {
-    public override string TokenRepresentation { get; } = identifier;
+    public override string TokenRepresentation { get; } = SwiftTokens.IdentifierId;
 
     public override bool IsIdentifier => true;
 }

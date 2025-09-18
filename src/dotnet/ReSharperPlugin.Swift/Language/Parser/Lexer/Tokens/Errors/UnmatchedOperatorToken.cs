@@ -2,8 +2,10 @@ using System;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 
-public class UnmatchedOperatorToken(string value, UnmatchedOperatorToken.ErrorCase errorCase)
-    : ErroneousToken(SwiftTokens.UnmatchedOperatorId, value, errorCase.ToMessage(), SwiftTokens.UnmatchedOperatorIndex)
+public class UnmatchedOperatorToken() : ErroneousToken(SwiftTokens.UnmatchedOperatorId, SwiftTokens.UnmatchedOperatorIndex);
+
+public class BackingUnmatchedOperatorToken(string value, BackingUnmatchedOperatorToken.ErrorCase errorCase)
+    : BackingErroneousToken(value, errorCase.ToMessage(), SwiftTokens.UnmatchedOperatorIndex)
 {
     public const string UnexpectedWhitespaceFollower =
         "Keep in mind that the whitespace character is not what one would typically consider whitespace\n" +
@@ -64,25 +66,25 @@ public class UnmatchedOperatorToken(string value, UnmatchedOperatorToken.ErrorCa
 
 public static class UnmatchedOperatorTokenExtensions
 {
-    public static string ToMessage(this UnmatchedOperatorToken.ErrorCase errorCase)
+    public static string ToMessage(this BackingUnmatchedOperatorToken.ErrorCase errorCase)
     {
         return errorCase switch
         {
-            UnmatchedOperatorToken.ErrorCase.UnmatchedOperatorOnlyEmpty => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedOperatorOnlyEmpty => BackingUnmatchedOperatorToken
                 .UnmatchedOperatorOnlyEmptyError,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperator => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperator => BackingUnmatchedOperatorToken
                 .UnmatchedStartingPostfixOperatorError,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperatorWhitespaceUnexpected => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperatorWhitespaceUnexpected => BackingUnmatchedOperatorToken
                 .UnmatchedStartingPostfixOperatorErrorWhitespaceUnexpected,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedPostfixOrInfixOperatorEof => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedPostfixOrInfixOperatorEof => BackingUnmatchedOperatorToken
                 .UnmatchedPostfixOrInfixOperatorEofError,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedPostfixOrInfixOperatorEofUnexpectedPrefixWhitespace => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedPostfixOrInfixOperatorEofUnexpectedPrefixWhitespace => BackingUnmatchedOperatorToken
                 .UnmatchedPostfixOrInfixOperatorEofUnexpectedPrefixWhitespaceError,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespace => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespace => BackingUnmatchedOperatorToken
                 .UnmatchedForciblyPostfixDotOperatorWhitespaceError,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespaceUnexpected => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespaceUnexpected => BackingUnmatchedOperatorToken
                 .UnmatchedForciblyPostfixDotOperatorWhitespaceErrorWhitespaceUnexpected,
-            UnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorEof => UnmatchedOperatorToken
+            BackingUnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorEof => BackingUnmatchedOperatorToken
                 .UnmatchedForciblyPostfixDotOperatorEofError,
             _ => throw new ArgumentOutOfRangeException(nameof(errorCase), errorCase, null)
         };
