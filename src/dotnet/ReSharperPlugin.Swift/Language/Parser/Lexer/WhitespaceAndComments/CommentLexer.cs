@@ -1,5 +1,4 @@
-using JetBrains.Util;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
+using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
 
@@ -12,8 +11,7 @@ public partial class SwiftLexer
             TokenEnd++;
         }
 
-        string commentText = Buffer.GetText(new TextRange(TokenStart, TokenEnd));
-        TokenType = new LineCommentToken(commentText);
+        TokenType = SwiftTokens.LineCommentToken;
     }
 
     private void AdvanceMultLineComment()
@@ -37,8 +35,7 @@ public partial class SwiftLexer
         // We have reached the end of the file, but we still have a comment to lex
         // This means that the comment is not closed, therefore, we will lex the content
 
-        string content = GetCurrentText();
-        TokenType = new BlockCommentContentToken(content);
+        TokenType = SwiftTokens.BlockCommentContentToken;
     }
     
     private void DealWithCommentEnd()
@@ -47,8 +44,8 @@ public partial class SwiftLexer
         {
             // We had an immediate ending comment which means the content if there was some was already lexed
             TokenEnd += 2;
-                
-            TokenType = new BlockCommentEndToken();
+
+            TokenType = SwiftTokens.BlockCommentEndToken;
             CommentLevel -= 1;
             LexerStateEx = 0;
             return;
@@ -57,7 +54,6 @@ public partial class SwiftLexer
         // We hit a multiline ending comment, but there is also some content, therefore,
         // we will only lex the content and the end will be lexed by the previous call to Advance
 
-        string content = GetCurrentText();
-        TokenType = new BlockCommentContentToken(content);
+        TokenType = SwiftTokens.BlockCommentContentToken;
     }
 }

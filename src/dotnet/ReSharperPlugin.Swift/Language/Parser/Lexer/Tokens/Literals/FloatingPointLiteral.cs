@@ -3,13 +3,21 @@ using ExtendedNumerics;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
 
-public class FloatingPointLiteral<TType>(TType type, BigDecimal valueOfContents, string value, FloatingPointRepresentation representation = FloatingPointRepresentation.Decimal)
-    : SwiftLiteral<TType, BigDecimal>(type, valueOfContents, value, SwiftTokens.FloatingPointLiteralIndex) where TType : Type
+public class FloatingPointLiteral()
+    : SwiftLiteral(SwiftTokens.FloatingPointLiteralId, SwiftTokens.FloatingPointLiteralIndex)
 {
     public override bool IsConstantLiteral => true;
-    
-    public override string TokenRepresentation { get; } = value;
-    
+
+    public override string TokenRepresentation { get; } = SwiftTokens.FloatingPointLiteralId;
+}
+
+public class FloatingPointLiteralTokenBaker<TType>(
+    TType type,
+    BigDecimal valueOfContents,
+    string value,
+    FloatingPointRepresentation representation = FloatingPointRepresentation.Decimal) :
+    TokenLiteralBacker<TType, BigDecimal>(type, valueOfContents, value, SwiftTokens.FloatingPointLiteralIndex) where TType : Type
+{
     public FloatingPointRepresentation Representation { get; } = representation;
 }
 

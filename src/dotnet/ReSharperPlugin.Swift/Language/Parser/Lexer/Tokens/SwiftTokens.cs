@@ -71,7 +71,7 @@ public static class SwiftTokens
 
     #region Literals
 
-    public static readonly IntegerLiteralToken<> IntegerLiteralToken = new();
+    public static readonly IntegerLiteralToken IntegerLiteralToken = new();
     public const string IntegerLiteralId = "LITERAL_INTEGER";
     public const int IntegerLiteralIndex = 801;
 
@@ -79,65 +79,69 @@ public static class SwiftTokens
     public const string FloatingPointLiteralId = "LITERAL_FLOAT";
     public const int FloatingPointLiteralIndex = 802;
 
-    public static readonly StringInterpolation StringInterpolationToken = new();
-    public const string StringInterpolationId = "LITERAL_STRING_INTERPOLATION";
-    public const int StringInterpolationIndex = 803;
+    public static readonly StringInterpolationStartToken StringInterpolationStartToken = new();
+    public const string StringInterpolationStartId = "LITERAL_STRING_INTERPOLATION";
+    public const int StringInterpolationStartIndex = 803;
+    
+    public static readonly StringInterpolationEndToken StringInterpolationEndToken = new();
+    public const string StringInterpolationEndId = "LITERAL_STRING_INTERPOLATION";
+    public const int StringInterpolationEndIndex = 803;
 
-    public static readonly StringEscapeSequence StringEscapeSequenceToken = new();
+    public static readonly StringEscapeSequenceToken StringEscapeSequenceToken = new();
     public const string StringEscapeSequenceId = "LITERAL_STRING_ESCAPE";
     public const int StringEscapeSequenceIndex = 804;
 
     public static readonly StringLiteralStartToken StringLiteralStartToken = new();
     public const string StringLiteralStartId = "LITERAL_STRING_START";
-    public const int StringLiteralStartIndex = 805;
+    public const int StringLiteralStartIndex = 806;
 
     public static readonly StringLiteralEndToken StringLiteralEndToken = new();
     public const string StringLiteralEndId = "LITERAL_STRING_END";
-    public const int StringLiteralEndIndex = 806;
+    public const int StringLiteralEndIndex = 807;
 
-    public static readonly StringLiteralContent StringLiteralContentToken = new();
+    public static readonly StringLiteralContentToken StringLiteralContentToken = new();
     public const string StringLiteralContentId = "LITERAL_STRING_CONTENT";
-    public const int StringLiteralContentIndex = 807;
+    public const int StringLiteralContentIndex = 808;
 
-    public static readonly SurroundedStringLiteralStart SurroundedStringLiteralStartToken = new();
+    public static readonly SurroundedStringLiteralStartToken SurroundedStringLiteralStartToken = new();
     public const string SurroundedStringLiteralStartId = "LITERAL_STRING_SURROUNDED_START";
-    public const int SurroundedStringLiteralStartIndex = 808;
+    public const int SurroundedStringLiteralStartIndex = 809;
 
     public static readonly SurroundedStringLiteralEndToken SurroundedStringLiteralEndToken = new();
     public const string SurroundedStringLiteralEndId = "LITERAL_STRING_SURROUNDED_END";
-    public const int SurroundedStringLiteralEndIndex = 809;
+    public const int SurroundedStringLiteralEndIndex = 810;
 
     public static readonly SurroundedStringLiteralContentToken SurroundedStringLiteralContentToken = new();
     public const string SurroundedStringLiteralContentId = "LITERAL_STRING_SURROUNDED_CONTENT";
-    public const int SurroundedStringLiteralContentIndex = 810;
+    public const int SurroundedStringLiteralContentIndex = 811;
 
     public static readonly MultiLineStringLiteralStartToken MultiLineStringLiteralStartToken = new();
     public const string MultiLineStringLiteralStartId = "LITERAL_STRING_MULTILINE_START";
-    public const int MultiLineStringLiteralStartIndex = 811;
+    public const int MultiLineStringLiteralStartIndex = 812;
 
     public static readonly MultiLineStringLiteralEndToken MultiLineStringLiteralEndToken = new();
     public const string MultiLineStringLiteralEndId = "LITERAL_STRING_MULTILINE_END";
-    public const int MultiLineStringLiteralIndexEnd = 812;
+    public const int MultiLineStringLiteralEndIndex = 813;
 
     public static readonly MultiLineStringLiteralContentToken MultiLineStringLiteralContentToken = new();
     public const string MultiLineStringLiteralContentId = "LITERAL_STRING_MULTILINE_CONTENT";
-    public const int MultiLineStringLiteralContentIndex = 813;
+    public const int MultiLineStringLiteralContentIndex = 814;
 
-    public static readonly MultiLineSurroundedStringLiteralStartToken MultiLineSurroundedStringLiteralStartToken = new();
-    public const string MultiLineSurroundedStringLiteralStartId = "LITERAL_STRING_MULTILINE_SURROUNDED_START";
-    public const int MultiLineSurroundedStringLiteralStartIndex = 814;
+    public static readonly SurroundedMultiLineStringLiteralStartToken SurroundedMultiLineStringLiteralStartToken = new();
+    public const string SurroundedMultiLineStringLiteralStartId = "LITERAL_STRING_MULTILINE_SURROUNDED_START";
+    public const int SurroundedMultiLineStringLiteralStartIndex = 815;
 
-    public static readonly MultiLineSurroundedStringLiteralEndToken MultiLineSurroundedStringLiteralEndToken = new();
-    public const string MultiLineSurroundedStringLiteralEndId = "LITERAL_STRING_MULTILINE_SURROUNDED_END";
-    public const int MultiLineSurroundedStringLiteralIndexEnd = 815;
+    public static readonly SurroundedMultiLineStringLiteralEndToken SurroundedMultiLineStringLiteralEndToken = new();
+    public const string SurroundedMultiLineStringLiteralEndId = "LITERAL_STRING_MULTILINE_SURROUNDED_END";
+    public const int SurroundedMultiLineStringLiteralEndIndex = 816;
 
-    public static readonly MultiLineSurroundedStringLiteralContentToken MultiLineSurroundedStringLiteralContentToken = new();
+    public static readonly SurroundedMultiLineStringLiteralContentToken SurroundedMultiLineStringLiteralContentToken = new();
     public const string MultiLineSurroundedStringLiteralContentId = "LITERAL_STRING_MULTILINE_SURROUNDED_CONTENT";
-    public const int MultiLineSurroundedStringLiteralContentIndex = 816;
+    public const int MultiLineSurroundedStringLiteralContentIndex = 817;
 
     public static readonly RegularExpressionLiteralToken RegularExpressionLiteralToken = new();
     public const string RegularExpressionLiteralId = "LITERAL_REGEX";
-    public const int RegularExpressionLiteralIndex = 817;
+    public const int RegularExpressionLiteralIndex = 818;
 
     #endregion
     
@@ -750,22 +754,6 @@ public static class SwiftTokens
     public static readonly ErroneousStringLiteralToken ErroneousStringLiteralToken = new();
     public const string ErroneousStringLiteralId = "ERROR_LITERAL_STRING";
     public const int ErroneousStringLiteralIndex = 9006;
-    
-    public static readonly ErroneousMultiLineStringLiteralToken ErroneousMultiLineStringLiteralToken = new();
-    public const string ErroneousMultiLineStringLiteralId = "ERROR_LITERAL_STRING_MULTILINE";
-    public const int ErroneousMultiLineStringLiteralIndex = 9007;
-    
-    public static readonly ErroneousMultiLineSurroundedStringLiteralToken ErroneousMultiLineSurroundedStringLiteralToken = new();
-    public const string ErroneousMultiLineSurroundedStringLiteralId = "ERROR_LITERAL_STRING_MULTILINE_SURROUNDED";
-    public const int ErroneousMultiLineSurroundedStringLiteralIndex = 9008;
-    
-    public static readonly ErroneousRegularExpressionLiteralToken ErroneousRegularExpressionLiteralToken = new();
-    public const string ErroneousRegularExpressionLiteralId = "ERROR_LITERAL_REGEX";
-    public const int ErroneousRegularExpressionLiteralIndex = 9009;
-    
-    public static readonly ErroneousCharacterToken ErroneousCharacterToken = new();
-    public const string ErroneousCharacterId = "ERROR_CHARACTER";
-    public const int ErroneousCharacterIndex = 9010;
 
     #endregion
 }

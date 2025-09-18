@@ -3,10 +3,10 @@ using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
 
-public class LineCommentToken(string lineComment)
+public class LineCommentToken()
     : SwiftTokenNodeType(SwiftTokens.LineCommentId, SwiftTokens.LineCommentIndex)
 {
-    public override string TokenRepresentation { get; } = lineComment;
+    public override string TokenRepresentation { get; } = SwiftTokens.LineCommentId;
 
     public override bool IsComment => true;
     

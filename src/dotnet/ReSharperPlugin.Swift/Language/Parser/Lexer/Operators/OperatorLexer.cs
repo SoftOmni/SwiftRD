@@ -2,6 +2,7 @@ using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using NuGet;
+using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.UserDefinedOperators;
 
@@ -45,24 +46,23 @@ public partial class SwiftLexer
             LexPostfixOrInfixOperator();
             return;
         }
-
-        string @operator = GetCurrentText();
+        
         if (TokenEnd == EOFPos || Buffer[TokenEnd].IsOperatorFollowerWhitespace())
         {
             // There's just something behind us and nothing else so 
             // this is a prefix operator
-            TokenType = new PrefixOperatorToken();
+            TokenType = SwiftTokens.PrefixOperatorToken;
             return;
         }
 
         if (Buffer[TokenEnd] == Dot)
         {
-            TokenType = new PrefixOperatorToken();
+            TokenType = SwiftTokens.PostfixOperatorToken;
             NextDotOperatorShouldBePostfix = true;
             return;
         }
 
-        TokenType = new InfixOperatorToken();
+        TokenType = SwiftTokens.InfixOperatorToken;
     }
 
     private void LexStartingPostfixOperator(Func<char, bool> operatorCheck)
@@ -76,8 +76,10 @@ public partial class SwiftLexer
         string @operator = GetCurrentText();
         if (TokenEnd == EOFPos)
         {
-            TokenType = new UnmatchedOperatorToken(@operator,
-                UnmatchedOperatorToken.ErrorCase.UnmatchedOperatorOnlyEmpty);
+            BackingUnmatchedOperatorToken backingUnmatchedOperatorToken = new(@operator,
+                BackingUnmatchedOperatorToken.ErrorCase.UnmatchedOperatorOnlyEmpty);
+            BackPutBackingToken(backingUnmatchedOperatorToken);
+            TokenType = SwiftTokens.UnmatchedOperatorToken;
             return;
         }
 
@@ -87,9 +89,12 @@ public partial class SwiftLexer
             return;
         }
 
-        TokenType = Buffer[TokenEnd].IsOperatorFollowerUnexpectedWhitespace()
-            ? new UnmatchedOperatorToken(@operator, UnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperator)
-            : new UnmatchedOperatorToken(@operator, UnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperatorWhitespaceUnexpected);
+        TokenType = SwiftTokens.UnmatchedOperatorToken;
+        BackingUnmatchedOperatorToken backerToken = Buffer[TokenEnd].IsOperatorFollowerUnexpectedWhitespace()
+            ? new BackingUnmatchedOperatorToken(@operator, BackingUnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperator)
+            : new BackingUnmatchedOperatorToken(@operator, BackingUnmatchedOperatorToken.ErrorCase.UnmatchedStartingPostfixOperatorWhitespaceUnexpected);
+        
+        BackPutBackingToken(backerToken);
     }
 
     private void LexPostfixOrInfixOperator()
@@ -98,18 +103,21 @@ public partial class SwiftLexer
 
         if (TokenEnd == EOFPos)
         {
-            TokenType = new UnmatchedOperatorToken(@operator,
-                UnmatchedOperatorToken.ErrorCase.UnmatchedPostfixOrInfixOperatorEof);
+            TokenType = SwiftTokens.UnmatchedOperatorToken;
+            BackingUnmatchedOperatorToken backingUnmatchedOperatorToken = new(@operator,
+                BackingUnmatchedOperatorToken.ErrorCase.UnmatchedPostfixOrInfixOperatorEof);
+            
+            BackPutBackingToken(backingUnmatchedOperatorToken);
             return;
         }
 
         if (Buffer[TokenEnd].IsOperatorFollowerWhitespace())
         {
-            TokenType = new InfixOperatorToken();
+            TokenType = SwiftTokens.InfixOperatorToken;
             return;
         }
 
-        TokenType = new PostfixOperatorToken();
+        TokenType = SwiftTokens.PostfixOperatorToken;
     }
 
     private void LexDotOperator()
@@ -129,20 +137,27 @@ public partial class SwiftLexer
         string @operator = GetCurrentText();
         if (TokenEnd == EOFPos)
         {
-            TokenType = new UnmatchedOperatorToken(@operator,
-                UnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorEof);
+            TokenType = SwiftTokens.UnmatchedOperatorToken;
+
+            BackingUnmatchedOperatorToken backingUnmatchedOperatorToken = new(@operator,
+                BackingUnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorEof); 
+            
+            BackPutBackingToken(backingUnmatchedOperatorToken);
             return;
         }
 
         if (Buffer[TokenEnd].IsOperatorFollowerWhitespace())
         {
-            TokenType = Buffer[TokenEnd].IsOperatorFollowerUnexpectedWhitespace()
-                    ? new UnmatchedOperatorToken(@operator, UnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespaceUnexpected)
-                    : new UnmatchedOperatorToken(@operator, UnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespace);
+            TokenType = SwiftTokens.UnmatchedOperatorToken;
+            BackingUnmatchedOperatorToken backingUnmatchedOperatorToken = Buffer[TokenEnd].IsOperatorFollowerUnexpectedWhitespace()
+                    ? new BackingUnmatchedOperatorToken(@operator, BackingUnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespaceUnexpected)
+                    : new BackingUnmatchedOperatorToken(@operator, BackingUnmatchedOperatorToken.ErrorCase.UnmatchedForciblyPostfixDotOperatorWhitespace);
+            
+            BackPutBackingToken(backingUnmatchedOperatorToken);
             return;
         }
 
-        TokenType = new PostfixOperatorToken();
+        TokenType = SwiftTokens.PostfixOperatorToken;
         NextDotOperatorShouldBePostfix = false;
     }
 

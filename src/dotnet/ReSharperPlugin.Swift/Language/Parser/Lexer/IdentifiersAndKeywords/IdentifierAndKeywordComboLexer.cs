@@ -1,7 +1,5 @@
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
-using DefaultNamespace;
 using JetBrains.Util.dataStructures;
 using NuGet;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
@@ -24,20 +22,20 @@ public partial class SwiftLexer
     private void LexIdentifierOrKeyword()
     {
         TokenStart = TokenEnd;
-        
+
         while (TokenEnd < EOFPos && Buffer[TokenEnd].IsIdentifierCharacter())
         {
             TokenEnd++;
         }
 
         string identifier = GetCurrentText();
-        if (Keywords.TryGetValue(identifier, out SwiftTokenNodeType keywordToken))
+        if (Keywords.TryGetValue(identifier, out SwiftTokenNodeType? keywordToken))
         {
             TokenType = keywordToken;
             return;
         }
 
-        TokenType = new IdentifierToken(identifier);
+        TokenType = SwiftTokens.IdentifierToken;
     }
 
     private void LexReservedKeyword()
@@ -54,7 +52,12 @@ public partial class SwiftLexer
             return;
         }
 
-        TokenType = new UnmatchedHashtagToken(value, UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagReservedKeyword);
+        TokenType = SwiftTokens.UnmatchedHashtagToken;
+        BackingUnmatchedHashtagToken backingUnmatchedHashtagToken =
+            new BackingUnmatchedHashtagToken(value,
+                BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagReservedKeyword);
+        
+        BackPutBackingToken(backingUnmatchedHashtagToken);
     }
 
     private static FrozenSet<char> FillIdentifierHeadCharacters()
@@ -115,18 +118,18 @@ public partial class SwiftLexer
     private static FrozenSet<char> FillIdentifierCharacters()
     {
         HashSet<char> identifierCharacters = new(IdentifierHeads);
-        
+
         identifierCharacters.AddRange(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
-        identifierCharacters.AddUnicodeRange('\u0300', '\u036F', inclusive:true);
-        identifierCharacters.AddUnicodeRange('\u1DC0', '\u1DFF', inclusive:true);
-        identifierCharacters.AddUnicodeRange('\u20D0', '\u20FF', inclusive:true);
-        identifierCharacters.AddUnicodeRange('\uFE20', '\uFE2F', inclusive:true);
-        
+        identifierCharacters.AddUnicodeRange('\u0300', '\u036F', inclusive: true);
+        identifierCharacters.AddUnicodeRange('\u1DC0', '\u1DFF', inclusive: true);
+        identifierCharacters.AddUnicodeRange('\u20D0', '\u20FF', inclusive: true);
+        identifierCharacters.AddUnicodeRange('\uFE20', '\uFE2F', inclusive: true);
+
         return identifierCharacters.ToFrozenSet();
     }
 
     private static FrozenDictionary<string, SwiftTokenNodeType> BuildKeywords()
-    { 
+    {
         Dictionary<string, SwiftTokenNodeType> dictionary = new()
         {
             { "associatedtype", SwiftTokens.AssociatedTypeKeywordToken },
@@ -254,7 +257,7 @@ public partial class SwiftLexer
                 dictionary.Add(keyValuePair.Key, keyValuePair.Value);
             }
         }
-        
+
         return dictionary.ToFrozenDictionary();
     }
 }
@@ -265,13 +268,14 @@ internal partial class SwiftLexerExtensions
     {
         return SwiftLexer.IdentifierHeads.Contains(c);
     }
-    
+
     public static bool IsIdentifierCharacter(this char c)
     {
         return SwiftLexer.IdentifierCharacters.Contains(c);
     }
-    
-    public static void Add(this SimpleTrie<char, SwiftKeywordToken> trie, string keyword, SwiftKeywordToken keywordToken)
+
+    public static void Add(this SimpleTrie<char, SwiftKeywordToken> trie, string keyword,
+        SwiftKeywordToken keywordToken)
     {
         trie.SetValue(keyword.ToCharArray(), keywordToken);
     }

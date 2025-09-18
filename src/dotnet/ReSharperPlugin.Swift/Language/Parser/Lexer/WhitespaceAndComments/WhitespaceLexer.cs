@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
+using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
 
@@ -22,8 +22,7 @@ public partial class SwiftLexer
             TokenEnd++;
         }
 
-        string value = GetCurrentText();
-        TokenType = new WhitespaceToken(value);
+        TokenType = SwiftTokens.WhitespaceToken;
     }
 
     private void LexLineBreak()
@@ -33,18 +32,15 @@ public partial class SwiftLexer
 
         if (Buffer[TokenStart] == LineFeed)
         {
-            TokenType = new NewLineToken(LineFeed.ToString());
+            TokenType = SwiftTokens.NewlineToken;
             return;
         }
 
+        TokenType = SwiftTokens.NewlineToken;
         if (TokenEnd < EOFPos && Buffer[TokenEnd] == LineFeed)
         {
             TokenEnd++;
-            TokenType = new NewLineToken(CarriageReturn + LineFeed.ToString());
-            return;
         }
-
-        TokenType = new NewLineToken(CarriageReturn.ToString());
     }
 }
 

@@ -2,8 +2,10 @@ using System;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 
-public class UnmatchedHashtagToken(string value, UnmatchedHashtagToken.ErrorCase errorCase)
-    : ErroneousToken(SwiftTokens.UnmatchedHashtagId, value, errorCase.ToMessage(), SwiftTokens.UnmatchedHashtagIndex)
+public class UnmatchedHashtagToken() : ErroneousToken(SwiftTokens.UnmatchedHashtagId, SwiftTokens.UnmatchedHashtagIndex);
+
+public class BackingUnmatchedHashtagToken(string value, BackingUnmatchedHashtagToken.ErrorCase errorCase)
+    : BackingErroneousToken(value, errorCase.ToMessage(), SwiftTokens.UnmatchedHashtagIndex)
 {
     public const string UnexpectedHashtagEofError = "The hashtag requires a reserved keyword starting " +
                                                     "with # or a string literal but the end of the file " +
@@ -45,22 +47,22 @@ public class UnmatchedHashtagToken(string value, UnmatchedHashtagToken.ErrorCase
 
 public static class UnmatchedHashtagTokenProblemExtensions
 {
-    public static string ToMessage(this UnmatchedHashtagToken.ErrorCase errorCase)
+    public static string ToMessage(this BackingUnmatchedHashtagToken.ErrorCase errorCase)
     {
         return errorCase switch
         {
-            UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagEof => 
-                UnmatchedHashtagToken.UnexpectedHashtagEofError,
-            UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagNonKeywordAndStringLiteral => 
-                UnmatchedHashtagToken.UnmatchedHashtagNonKeywordAndStringLiteralError,
-            UnmatchedHashtagToken.ErrorCase.UnmatchedEndingStringLiteralHashtag =>
-                UnmatchedHashtagToken.UnmatchedEndingStringLiteralHashtagError,
-            UnmatchedHashtagToken.ErrorCase.UnmatchedEndingStringLiteralHashtags =>
-                UnmatchedHashtagToken.UnmatchedEndingStringLiteralHashtagsError,
-            UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagReservedKeyword =>
-                UnmatchedHashtagToken.UnmatchedHashtagReservedKeywordError,
-            UnmatchedHashtagToken.ErrorCase.UnmatchedHashtagLiteralString =>
-                UnmatchedHashtagToken.UnmatchedHashtagLiteralStringError,
+            BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagEof => 
+                BackingUnmatchedHashtagToken.UnexpectedHashtagEofError,
+            BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagNonKeywordAndStringLiteral => 
+                BackingUnmatchedHashtagToken.UnmatchedHashtagNonKeywordAndStringLiteralError,
+            BackingUnmatchedHashtagToken.ErrorCase.UnmatchedEndingStringLiteralHashtag =>
+                BackingUnmatchedHashtagToken.UnmatchedEndingStringLiteralHashtagError,
+            BackingUnmatchedHashtagToken.ErrorCase.UnmatchedEndingStringLiteralHashtags =>
+                BackingUnmatchedHashtagToken.UnmatchedEndingStringLiteralHashtagsError,
+            BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagReservedKeyword =>
+                BackingUnmatchedHashtagToken.UnmatchedHashtagReservedKeywordError,
+            BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagLiteralString =>
+                BackingUnmatchedHashtagToken.UnmatchedHashtagLiteralStringError,
             _ => throw new ArgumentOutOfRangeException(nameof(errorCase), errorCase, null)
         };
     }

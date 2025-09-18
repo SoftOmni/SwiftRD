@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using ExtendedNumerics;
+using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
@@ -31,7 +32,11 @@ public partial class SwiftLexer
         TokenEnd++;
         if (TokenEnd == EOFPos)
         {
-            TokenType = new IntegerLiteral<Int>(Int.Instance, BigInteger.Zero, zeroString);
+            TokenType = SwiftTokens.IntegerLiteralToken;
+
+            IntegerBackingLiteralToken<Int> backingLiteralToken = new(
+                Int.Instance, BigInteger.Zero, zeroString);
+            BackPutBackingToken(backingLiteralToken);
             return;
         }
 
@@ -64,7 +69,11 @@ public partial class SwiftLexer
                 return;
             default:
                 TokenEnd = TokenStart + 1;
-                TokenType = new IntegerLiteral<Int>(Int.Instance, BigInteger.Zero, zeroString);
+                TokenType = SwiftTokens.IntegerLiteralToken;
+
+                IntegerBackingLiteralToken<Int> integerBackingLiteralToken = new(
+                    Int.Instance, BigInteger.Zero, zeroString);
+                BackPutBackingToken(integerBackingLiteralToken);
                 return;
         }
     }
@@ -73,11 +82,11 @@ public partial class SwiftLexer
     {
         LexUndecidedNumberLiteral(new BigInteger(10), c => c.IsDecimalLiteralCharacter(),
             c => c.ConvertDecimalCharToValue(), c => c.IsFloatingPointE(),
-            (value, valueString) => new IntegerLiteral<Int>(Int.Instance, value, valueString),
+            (value, valueString) => new IntegerBackingLiteralToken<Int>(Int.Instance, value, valueString),
             c => c.ConvertDecimalCharToValue(), DecimalExponentiation, new BigInteger(10), new BigDecimal(0.1),
-            FloatingPointRepresentation.Decimal,
-            ErroneousFloatingPointLiteral<Double>.ErrorCase.DecimalPartMissingDecimal,
-            ErroneousFloatingPointLiteral<Double>.ErrorCase.ExponentValueMissingDecimal);
+            SwiftTokens.IntegerLiteralToken, FloatingPointRepresentation.Decimal,
+            BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase.DecimalPartMissingDecimal,
+            BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase.ExponentValueMissingDecimal);
         return;
 
         BigDecimal DecimalExponentiation(BigDecimal value, BigInteger exponentValue, bool isNegative)
@@ -94,12 +103,13 @@ public partial class SwiftLexer
     {
         LexUndecidedNumberLiteral(new BigInteger(16), c => c.IsHexadecimalLiteralCharacter(),
             c => c.ConvertHexadecimalCharToValue(), c => c.IsFloatingPointP(),
-            (value, valueString) => new IntegerLiteral<Int>(Int.Instance, value, valueString,
+            (value, valueString) => new IntegerBackingLiteralToken<Int>(Int.Instance, value, valueString,
                 IntegerRepresentation.Hexadecimal), c => c.ConvertDecimalCharToValue(),
             HexadecimalExponentiation, new BigInteger(10), new BigDecimal(0.0625),
+            SwiftTokens.IntegerLiteralToken,
             FloatingPointRepresentation.Hexadecimal,
-            ErroneousFloatingPointLiteral<Double>.ErrorCase.DecimalPartMissingHexadecimal,
-            ErroneousFloatingPointLiteral<Double>.ErrorCase.ExponentValueMissingHexadecimal);
+            BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase.DecimalPartMissingHexadecimal,
+            BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase.ExponentValueMissingHexadecimal);
         return;
 
         BigDecimal HexadecimalExponentiation(BigDecimal value, BigInteger exponentValue, bool isNegative)
@@ -117,7 +127,7 @@ public partial class SwiftLexer
         LexUndecidedIntegerLiteral(2, c => c.IsBinaryLiteralCharacter(),
             c => c.ConvertBinaryCharToValue(),
             (value, valueAsString) =>
-                new IntegerLiteral<Int>(Int.Instance, value, valueAsString, IntegerRepresentation.Binary));
+                new IntegerBackingLiteralToken<Int>(Int.Instance, value, valueAsString, IntegerRepresentation.Binary));
     }
 
     private void LexOctal()
@@ -125,7 +135,7 @@ public partial class SwiftLexer
         LexUndecidedIntegerLiteral(8, c => c.IsOctalLiteralCharacter(),
             c => c.ConvertOctalCharToValue(),
             (value, valueAsString) =>
-                new IntegerLiteral<Int>(Int.Instance, value, valueAsString, IntegerRepresentation.Binary));
+                new IntegerBackingLiteralToken<Int>(Int.Instance, value, valueAsString, IntegerRepresentation.Binary));
     }
 
     // ReSharper disable once CognitiveComplexity
@@ -135,8 +145,8 @@ public partial class SwiftLexer
         BigInteger exponentRadix,
         BigDecimal fractionalPartMultiplier,
         FloatingPointRepresentation representation,
-        ErroneousFloatingPointLiteral<Double>.ErrorCase decimalPartMissing,
-        ErroneousFloatingPointLiteral<Double>.ErrorCase exponentValueMissing)
+        BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase decimalPartMissing,
+        BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase exponentValueMissing)
     {
         BigDecimal value = new(mainValue);
 
@@ -148,8 +158,11 @@ public partial class SwiftLexer
         if (TokenEnd == EOFPos || !isDigit(Buffer[TokenEnd]))
         {
             string valueAsString = GetCurrentText();
-            TokenType = new ErroneousFloatingPointLiteral<Double>(decimalPartMissing, Double.Instance,
-                value, valueAsString, representation);
+            TokenType = SwiftTokens.ErroneousFloatingPointLiteralToken;
+
+            BackingErroneousFloatingPointLiteralToken<Double> backingErroneousFloatingPointLiteralToken =
+                new(decimalPartMissing, Double.Instance, value, valueAsString, representation);
+            BackPutBackingToken(backingErroneousFloatingPointLiteralToken);
             return;
         }
 
@@ -172,8 +185,12 @@ public partial class SwiftLexer
         if (TokenEnd == EOFPos || !isExponent(Buffer[TokenEnd]))
         {
             string valueAsString = GetCurrentText();
-            TokenType = new FloatingPointLiteral<Double>(Double.Instance,
-                value, valueAsString, representation);
+            TokenType = SwiftTokens.FloatingPointLiteralToken;
+
+            FloatingPointLiteralTokenBaker<Double> floatingPointLiteralTokenBakerDirect =
+                new(Double.Instance, value, valueAsString);
+
+            BackPutBackingToken(floatingPointLiteralTokenBakerDirect);
             return;
         }
 
@@ -181,10 +198,12 @@ public partial class SwiftLexer
         if (TokenEnd == EOFPos)
         {
             string valueAsString = GetCurrentText();
-            TokenType = new ErroneousFloatingPointLiteral<Double>(
-                exponentValueMissing,
-                Double.Instance,
-                value, valueAsString, representation);
+
+            TokenType = SwiftTokens.ErroneousFloatingPointLiteralToken;
+            BackingErroneousFloatingPointLiteralToken<Double> erroneousFloatingPointLiteralToken =
+                new(exponentValueMissing, Double.Instance, value, valueAsString, representation);
+
+            BackPutBackingToken(erroneousFloatingPointLiteralToken);
             return;
         }
 
@@ -197,10 +216,15 @@ public partial class SwiftLexer
         if (TokenEnd == EOFPos || (!isDigit(Buffer[TokenEnd]) && Buffer[TokenEnd] != Underscore))
         {
             string valueAsString = GetCurrentText();
-            TokenType = new ErroneousFloatingPointLiteral<Double>(
-                exponentValueMissing,
-                Double.Instance,
-                value, valueAsString, representation);
+
+            TokenType = SwiftTokens.ErroneousFloatingPointLiteralToken;
+            BackingErroneousFloatingPointLiteralToken<Double> backingErroneousFloatingPointLiteralToken =
+                new(
+                    exponentValueMissing,
+                    Double.Instance,
+                    value, valueAsString, representation);
+
+            BackPutBackingToken(backingErroneousFloatingPointLiteralToken);
             return;
         }
 
@@ -218,12 +242,15 @@ public partial class SwiftLexer
 
         string fullValue = GetCurrentText();
         value = exponentiation(value, exponentValue, isNegative);
-        TokenType = new FloatingPointLiteral<Double>(Double.Instance,
-            value, fullValue, representation);
+        TokenType = SwiftTokens.FloatingPointLiteralToken;
+        
+        FloatingPointLiteralTokenBaker<Double> floatingPointLiteralTokenBaker = new(Double.Instance,
+            value, fullValue);
+        BackPutBackingToken(floatingPointLiteralTokenBaker);
     }
 
     private void LexUndecidedIntegerLiteral(int radix, Func<char, bool> isDigit, Func<char, int> digitValue,
-        Func<BigInteger, string, IntegerLiteral<Int>> tokenTypeFactory)
+        Func<BigInteger, string, IntegerBackingLiteralToken<Int>> backerTypeFactory)
     {
         BigInteger value = BigInteger.Zero;
 
@@ -239,17 +266,22 @@ public partial class SwiftLexer
         }
 
         string valueString = GetCurrentText();
-        TokenType = tokenTypeFactory(value, valueString);
+
+        TokenType = SwiftTokens.IntegerLiteralToken;
+        IntegerBackingLiteralToken<Int> backingLiteralToken = backerTypeFactory(value, valueString);
+        BackPutBackingToken(backingLiteralToken);
     }
 
     private void LexUndecidedNumberLiteral(BigInteger radix, Func<char, bool> isDigit,
         Func<char, int> digitValue, Func<char, bool> isExponent,
-        Func<BigInteger, string, SwiftTokenNodeType> tokenTypeFactory, Func<char, int> digitValueExponent,
+        Func<BigInteger, string, BackerToken> backerTokenFactory, Func<char, int> digitValueExponent,
         Func<BigDecimal, BigInteger, bool, BigDecimal> exponentiation,
         BigInteger exponentRadix,
-        BigDecimal fractionalPartMultiplier, FloatingPointRepresentation representation,
-        ErroneousFloatingPointLiteral<Double>.ErrorCase decimalPartMissing,
-        ErroneousFloatingPointLiteral<Double>.ErrorCase exponentValueMissing)
+        BigDecimal fractionalPartMultiplier,
+        SwiftTokenNodeType integerTokenType,
+        FloatingPointRepresentation representation,
+        BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase decimalPartMissing,
+        BackingErroneousFloatingPointLiteralToken<Double>.ErrorCase exponentValueMissing)
     {
         BigInteger value = BigInteger.Zero;
 
@@ -267,7 +299,10 @@ public partial class SwiftLexer
         string valueString = GetCurrentText();
         if (TokenEnd == EOFPos)
         {
-            TokenType = tokenTypeFactory(value, valueString);
+            TokenType = integerTokenType;
+            BackerToken backerTokenImmediate = backerTokenFactory(value, valueString);
+
+            BackPutBackingToken(backerTokenImmediate);
             return;
         }
 
@@ -277,7 +312,10 @@ public partial class SwiftLexer
                 fractionalPartMultiplier, representation, decimalPartMissing, exponentValueMissing);
         }
 
-        TokenType = tokenTypeFactory(value, valueString);
+        TokenType = integerTokenType;
+        BackerToken backerToken = backerTokenFactory(value, valueString);
+
+        BackPutBackingToken(backerToken);
     }
 }
 
