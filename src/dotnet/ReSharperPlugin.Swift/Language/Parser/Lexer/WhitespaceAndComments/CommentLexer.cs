@@ -27,6 +27,13 @@ public partial class SwiftLexer
                 Buffer[TokenEnd + 1] == multiLineCommentEndEnd) // End of comment
             {
                 DealWithCommentEnd();
+                return;
+            }
+            else if (Buffer[TokenEnd] == multiLineCommentEndEnd && TokenEnd + 1 < EOFPos &&
+                     Buffer[TokenEnd + 1] == multiLineCommentEndStart)
+            {
+                DealWithCommentStart();
+                return;
             }
 
             TokenEnd++;
@@ -34,6 +41,24 @@ public partial class SwiftLexer
         
         // We have reached the end of the file, but we still have a comment to lex
         // This means that the comment is not closed, therefore, we will lex the content
+
+        TokenType = SwiftTokens.BlockCommentContentToken;
+    }
+
+    private void DealWithCommentStart()
+    {
+        if (TokenStart == TokenEnd)
+        {
+            // We had an immediate new comment opening which means the content if there was some was already lexed
+            TokenEnd += 2;
+
+            TokenType = SwiftTokens.BlockCommentStartToken;
+            CommentLevel += 1;
+            return;
+        }
+        
+        // We hit a sub-multiline starting comment, but there is also some content, therefore,
+        // we will only lex the content and the start will be lexed by the previous call to Advance
 
         TokenType = SwiftTokens.BlockCommentContentToken;
     }
@@ -47,7 +72,7 @@ public partial class SwiftLexer
 
             TokenType = SwiftTokens.BlockCommentEndToken;
             CommentLevel -= 1;
-            LexerStateEx = 0;
+            LexerStateEx = CommentLevel > 0 ? 1u : 0u;
             return;
         }
             

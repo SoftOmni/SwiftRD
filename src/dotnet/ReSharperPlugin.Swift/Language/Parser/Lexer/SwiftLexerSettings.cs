@@ -6,7 +6,9 @@ public class SwiftLexerSettings
     
     public static FourQuotesSetting FourQuotesSettings { get; }
 
-    public static FiveQuotesSetting FiveQuotesStrings { get; }
+    public static FiveQuotesSetting FiveQuotesSettings { get; }
+    
+    public static UnicodeSequenceInterruption UnicodeSequenceInterruptionSettings { get; }
     
     public enum ThreeQuotesSetting
     {
@@ -35,6 +37,12 @@ public class SwiftLexerSettings
         SimpleStringMultilineStringLiteralStartToEndIfNoPair,
         DoubleSimpleStringLiteralAndStringLiteralStart
     }
+
+    public enum UnicodeSequenceInterruption
+    {
+        Abort,
+        Continue
+    }
 }
 
 public static class SwiftLexerSettingsExtensions
@@ -51,6 +59,15 @@ public static class SwiftLexerSettingsExtensions
         return fiveQuotesSetting is SwiftLexerSettings.FiveQuotesSetting
                 .SimpleStringMultilineStringLiteralStartImmediateIfNoPair
             or SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartLineIfNoPair
-            or SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartToEndIfNoPair;
+            or SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartToEndIfNoPair
+            or SwiftLexerSettings.FiveQuotesSetting.DoubleSimpleStringLiteralAndStringLiteralStart;
+    }
+
+    public static bool IsMultiLineStart(this SwiftLexerSettings.FiveQuotesSetting fiveQuotesSetting)
+    {
+        return fiveQuotesSetting is SwiftLexerSettings.FiveQuotesSetting
+                .MultilineStringLiteralStartAndSimpleStringImmediateIfNoPair
+            or SwiftLexerSettings.FiveQuotesSetting.MultilineStringLiteralStartLineIfNoPair
+            or SwiftLexerSettings.FiveQuotesSetting.MultilineStringLiteralStartToEndIfNoPair;
     }
 }

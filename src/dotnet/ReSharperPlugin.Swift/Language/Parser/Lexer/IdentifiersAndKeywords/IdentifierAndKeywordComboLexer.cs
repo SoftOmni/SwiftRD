@@ -62,7 +62,7 @@ public partial class SwiftLexer
 
     private static FrozenSet<char> FillIdentifierHeadCharacters()
     {
-        HashSet<char> identifierHeads = new();
+        HashSet<char> identifierHeads = [];
 
         identifierHeads.AddUnicodeRange('A', 'Z', inclusive: true);
         identifierHeads.AddUnicodeRange('a', 'z', inclusive: true);
@@ -178,7 +178,8 @@ public partial class SwiftLexer
             { "throw", SwiftTokens.ThrowKeywordToken },
             { "where", SwiftTokens.WhereKeywordToken },
             { "while", SwiftTokens.WhileKeywordToken },
-            { "Any", SwiftTokens.AnyKeywordToken },
+            { "Any", SwiftTokens.AnyLowercaseKeywordToken },
+            { "any", SwiftTokens.AnyUppercaseKeywordToken },
             { "as", SwiftTokens.AsKeywordToken },
             { "await", SwiftTokens.AwaitKeywordToken },
             { "false", SwiftTokens.FalseLiteralToken },

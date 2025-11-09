@@ -1,0 +1,31 @@
+using System.Collections.Generic;
+using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables;
+
+public class SetterName : SwiftInternalNode
+{
+    public LeftParenthesis? LeftParenthesis { get; private set; }
+    
+    public Identifier? Identifier { get; private set; }
+    
+    public RightParenthesis? RightParenthesis { get; private set; }
+    
+    public SetterName(IEditableBuffer buffer, List<ISwiftNode> children) 
+        : base(buffer, children)
+    { }
+
+    public SetterName(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
+        : base(buffer, children)
+    { }
+
+    public SetterName(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+        : base(parent, buffer, nodes)
+    { }
+
+    public SetterName(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+        : base(parent, buffer, nodes)
+    { }
+}

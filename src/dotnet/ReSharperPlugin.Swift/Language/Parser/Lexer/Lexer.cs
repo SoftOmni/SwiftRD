@@ -54,6 +54,7 @@ public partial class SwiftLexer: IIncrementalLexer
             TokenType = SwiftTokens.EndOfFileToken;
             TokenStart = EOFPos;
             TokenEnd = EOFPos;
+            return;
         }
 
         PreviousTokenType = TokenType;

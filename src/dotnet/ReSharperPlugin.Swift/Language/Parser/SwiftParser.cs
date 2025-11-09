@@ -1,6 +1,8 @@
+using System;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using ReSharperPlugin.Swift.Language.Parser.Lexer;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.TopLevel;
 using ReSharperPlugin.Swift.Language.ProjectModel;
 
 namespace ReSharperPlugin.Swift.Language.Parser;
@@ -20,6 +22,6 @@ public class SwiftParser : IParser
     
     public IFile ParseFile()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -49,10 +49,12 @@ public static class SwiftTokens
 
     public static readonly BlockCommentStartToken BlockCommentStartToken = new();
     public const string BlockCommentStartId = "COMMENT_BLOCK_START";
+    public const string BlockCommentStartRepresentation = "/*";
     public const int BlockCommentStartIndex = 204;
 
     public static readonly BlockCommentEndToken BlockCommentEndToken = new();
     public const string BlockCommentEndId = "COMMENT_BLOCK_END";
+    public const string BlockCommentEndRepresentation = "*/";
     public const int BlockCommentEndIndex = 205;
 
     public static readonly BlockCommentContentToken BlockCommentContentToken = new();
@@ -80,16 +82,16 @@ public static class SwiftTokens
     public const int FloatingPointLiteralIndex = 802;
 
     public static readonly StringInterpolationStartToken StringInterpolationStartToken = new();
-    public const string StringInterpolationStartId = "LITERAL_STRING_INTERPOLATION";
+    public const string StringInterpolationStartId = "LITERAL_STRING_INTERPOLATION_START";
     public const int StringInterpolationStartIndex = 803;
     
     public static readonly StringInterpolationEndToken StringInterpolationEndToken = new();
-    public const string StringInterpolationEndId = "LITERAL_STRING_INTERPOLATION";
-    public const int StringInterpolationEndIndex = 803;
+    public const string StringInterpolationEndId = "LITERAL_STRING_INTERPOLATION_END";
+    public const int StringInterpolationEndIndex = 804;
 
     public static readonly StringEscapeSequenceToken StringEscapeSequenceToken = new();
     public const string StringEscapeSequenceId = "LITERAL_STRING_ESCAPE";
-    public const int StringEscapeSequenceIndex = 804;
+    public const int StringEscapeSequenceIndex = 805;
 
     public static readonly StringLiteralStartToken StringLiteralStartToken = new();
     public const string StringLiteralStartId = "LITERAL_STRING_START";
@@ -171,53 +173,61 @@ public static class SwiftTokens
     public const string RightSquareBracketId = "PUNCTUATOR_RIGHT_SQUARE_BRACKET";
     public const int RightSquareBracketIndex = 906;
 
+    public static readonly LeftAngleBracketToken LeftAngleBracketToken = new();
+    public const string LeftAngleBracketId = "PUNCTUATOR_LEFT_ANGLE_BRACKET";
+    public const int LeftAngleBracketIndex = 907;
+
+    public static readonly RightAngleBracketToken RightAngleBracketToken = new();
+    public const string RightAngleBracketId = "PUNCTUATOR_RIGHT_ANGLE_BRACKET";
+    public const int RightAngleBracketIndex = 908;
+
     public static readonly PeriodToken PeriodToken = new();
     public const string PeriodId = "PUNCTUATOR_PERIOD";
-    public const int PeriodIndex = 907;
+    public const int PeriodIndex = 909;
 
     public static readonly CommaToken CommaToken = new();
     public const string CommaId = "PUNCTUATOR_COMMA";
-    public const int CommaIndex = 908;
+    public const int CommaIndex = 910;
 
     public static readonly ColonToken ColonToken = new();
     public const string ColonId = "PUNCTUATOR_COLON";
-    public const int ColonIndex = 909;
+    public const int ColonIndex = 911;
 
     public static readonly SemicolonToken SemicolonToken = new();
     public const string SemicolonId = "PUNCTUATOR_SEMICOLON";
-    public const int SemicolonIndex = 910;
+    public const int SemicolonIndex = 912;
 
     public static readonly EqualsToken EqualsToken = new();
     public const string EqualsId = "PUNCTUATOR_EQUALS";
-    public const int EqualsIndex = 911;
+    public const int EqualsIndex = 913;
 
     public static readonly AtToken AtToken = new();
     public const string AtId = "PUNCTUATOR_AT";
-    public const int AtIndex = 912;
+    public const int AtIndex = 914;
 
     public static readonly HashToken HashToken = new();
     public const string HashId = "PUNCTUATOR_HASH";
-    public const int HashIndex = 913;
+    public const int HashIndex = 915;
 
     public static readonly AmpersandToken AmpersandToken = new();
     public const string AmpersandId = "PUNCTUATOR_AMPERSAND";
-    public const int AmpersandIndex = 914;
+    public const int AmpersandIndex = 916;
 
     public static readonly ArrowToken ArrowToken = new();
     public const string ArrowId = "PUNCTUATOR_ARROW";
-    public const int ArrowIndex = 915;
+    public const int ArrowIndex = 917;
 
     public static readonly BacktickToken BacktickToken = new();
     public const string BacktickId = "PUNCTUATOR_BACKTICK";
-    public const int BacktickIndex = 916;
+    public const int BacktickIndex = 918;
 
     public static readonly QuestionMarkToken QuestionMarkToken = new();
     public const string QuestionMarkId = "PUNCTUATOR_QUESTION_MARK";
-    public const int QuestionMarkIndex = 917;
+    public const int QuestionMarkIndex = 919;
 
     public static readonly ExclamationMarkToken ExclamationMarkToken = new();
     public const string ExclamationMarkId = "PUNCTUATOR_EXCLAMATION_MARK";
-    public const int ExclamationMarkIndex = 918;
+    public const int ExclamationMarkIndex = 920;
     
     #endregion
     
@@ -228,6 +238,10 @@ public static class SwiftTokens
     public static readonly AssociatedTypeKeywordToken AssociatedTypeKeywordToken = new();
     public const string AssociatedTypeId = "KEYWORD_ASSOCIATED_TYPE";
     public const int AssociatedTypeIndex = 1001;
+    
+    public static readonly ActorKeywordToken ActorKeywordToken = new();
+    public const string ActorId = "KEYWORD_ASSOCIATED_TYPE";
+    public const int ActorIndex = 1001;
 
     public static readonly BorrowingKeywordToken BorrowingKeywordToken = new();
     public const string BorrowingId = "KEYWORD_BORROWING";
@@ -332,6 +346,18 @@ public static class SwiftTokens
     public static readonly VarKeywordToken VarKeywordToken = new();
     public const string VarId = "KEYWORD_VAR";
     public const int VarIndex = 1027;
+    
+    public static readonly SafeKeywordToken SafeKeywordToken = new();
+    public const string SafeId = "KEYWORD_SAFE";
+    public const int SafeIndex = 1028;
+    
+    public static readonly UnsafeKeywordToken UnsafeKeywordToken = new();
+    public const string UnsafeId = "KEYWORD_UNSAFE";
+    public const int UnsafeIndex = 1029;
+    
+    public static readonly MacroKeywordToken MacroKeywordToken = new();
+    public const string MacroId = "KEYWORD_MACRO";
+    public const int MacroIndex = 1029;
 
     #endregion
 
@@ -417,53 +443,57 @@ public static class SwiftTokens
 
     #region UsableInExpressionsAndTypes
 
-    public static readonly AnyKeywordToken AnyKeywordToken = new();
-    public const string AnyId = "KEYWORD_ANY";
-    public const int AnyIndex = 3001;
+    public static readonly AnyLowercaseKeywordToken AnyLowercaseKeywordToken = new();
+    public const string AnyLowercaseId = "KEYWORD_ANY_LOWERCASE";
+    public const int AnyLowercaseIndex = 3001;
+    
+    public static readonly AnyUppercaseKeywordToken AnyUppercaseKeywordToken = new();
+    public const string AnyId = "KEYWORD_ANY_UPPERCASE";
+    public const int AnyIndex = 3002;
 
     public static readonly AsKeywordToken AsKeywordToken = new();
     public const string AsId = "KEYWORD_AS";
-    public const int AsIndex = 3002;
+    public const int AsIndex = 3003;
 
     public static readonly AwaitKeywordToken AwaitKeywordToken = new();
     public const string AwaitId = "KEYWORD_AWAIT";
-    public const int AwaitIndex = 3003;
+    public const int AwaitIndex = 3004;
 
     public static readonly FalseLiteralToken FalseLiteralToken = new();
     public const string FalseId = "KEYWORD_FALSE";
-    public const int FalseIndex = 3004;
+    public const int FalseIndex = 3005;
 
     public static readonly IsKeywordToken IsKeywordToken = new();
     public const string IsId = "KEYWORD_IS";
-    public const int IsIndex = 3005;
+    public const int IsIndex = 3006;
 
     public static readonly NilLiteralToken NilLiteralToken = new();
     public const string NilId = "KEYWORD_NIL";
-    public const int NilIndex = 3006;
+    public const int NilIndex = 3007;
 
     public static readonly SelfLowercaseKeywordToken SelfLowercaseKeywordToken = new();
     public const string SelfLowercaseId = "KEYWORD_SELF_LOWERCASE";
-    public const int SelfLowercaseIndex = 3007;
+    public const int SelfLowercaseIndex = 3008;
 
     public static readonly SelfUppercaseKeywordToken SelfUppercaseKeywordToken = new();
     public const string SelfUppercaseId = "KEYWORD_SELF_UPPERCASE";
-    public const int SelfUppercaseIndex = 3008;
+    public const int SelfUppercaseIndex = 3009;
 
     public static readonly SuperKeywordToken SuperKeywordToken = new();
     public const string SuperId = "KEYWORD_SUPER";
-    public const int SuperIndex = 3009;
+    public const int SuperIndex = 3010;
 
     public static readonly ThrowsKeywordToken ThrowsKeywordToken = new();
     public const string ThrowsId = "KEYWORD_THROWS";
-    public const int ThrowsIndex = 3010;
+    public const int ThrowsIndex = 3011;
 
     public static readonly TrueLiteralToken TrueLiteralToken = new();
     public const string TrueId = "KEYWORD_TRUE";
-    public const int TrueIndex = 3011;
+    public const int TrueIndex = 3012;
 
     public static readonly TryKeywordToken TryKeywordToken = new();
     public const string TryId = "KEYWORD_TRY";
-    public const int TryIndex = 3012;
+    public const int TryIndex = 3013;
     
     #endregion
 
@@ -754,6 +784,10 @@ public static class SwiftTokens
     public static readonly ErroneousStringLiteralToken ErroneousStringLiteralToken = new();
     public const string ErroneousStringLiteralId = "ERROR_LITERAL_STRING";
     public const int ErroneousStringLiteralIndex = 9006;
+
+    public static readonly UnmatchedEscapeSequenceToken UnmatchedEscapeSequenceToken = new();
+    public const string UnmatchedEscapeSequenceId = "ERROR_ESCAPE_UNMATCHED";
+    public const int UnmatchedEscapeSequenceIndex = 9007;
 
     #endregion
 }
