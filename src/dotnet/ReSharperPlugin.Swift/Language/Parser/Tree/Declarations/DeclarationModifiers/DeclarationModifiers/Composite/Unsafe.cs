@@ -1,0 +1,47 @@
+using JetBrains.DocumentModel.Impl;
+using JetBrains.Text;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers.Composite;
+
+public class Unsafe : SwiftLeafNode, ISwiftKeyword
+{
+    public const string Keyword = "unsafe";
+    
+    public UnownedUnsafe? UnownedUnsafe { get; internal set; }
+
+    internal Unsafe(IEditableBuffer buffer) 
+        : base(buffer, NodeTypes.NodeTypes.Unsafe)
+    { }
+
+    internal Unsafe(ISwiftNode parent, IEditableBuffer buffer)
+        : base(parent, buffer, NodeTypes.NodeTypes.Unsafe)
+    {
+        if (parent is UnownedUnsafe unownedUnsafe)
+        {
+            UnownedUnsafe = unownedUnsafe;
+        }
+    }
+
+    internal Unsafe(UnownedUnsafe parent, IEditableBuffer buffer)
+        : base(parent, buffer, NodeTypes.NodeTypes.Unsafe)
+    {
+        UnownedUnsafe = parent;
+    }
+
+    public string KeywordValue => Keyword;
+
+    public static Unsafe Create()
+    {
+        return new Unsafe(new EditableBuffer(Keyword));
+    }
+
+    public static Unsafe Create(UnownedUnsafe unownedUnsafe)
+    {
+        return new Unsafe(unownedUnsafe, new EditableBuffer(Keyword));
+    }
+
+    public static Unsafe CreateUnchecked(ISwiftNode parent)
+    {
+        return new Unsafe(parent, new EditableBuffer(Keyword));
+    }
+}

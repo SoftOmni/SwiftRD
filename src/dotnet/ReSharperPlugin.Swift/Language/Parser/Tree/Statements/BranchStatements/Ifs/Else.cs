@@ -1,0 +1,65 @@
+using JetBrains.DocumentModel.Impl;
+using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Guard;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;
+
+public class Else : StatementLeafNode, ISwiftKeyword
+{
+    public const string Keyword = "else";
+
+    public ElseClause? ElseClause { get; private set; }
+
+    public GuardStatement? GuardStatement { get; internal set; }
+
+    internal Else(IEditableBuffer buffer)
+        : base(buffer, NodeTypes.NodeTypes.Else)
+    { }
+
+    internal Else(ISwiftNode parent, IEditableBuffer buffer)
+        : base(parent, buffer, NodeTypes.NodeTypes.Else)
+    {
+        if (parent is ElseClause elseClause)
+        {
+            ElseClause = elseClause;
+        }
+        else if (parent is GuardStatement guardStatement)
+        {
+            GuardStatement = guardStatement;
+        }
+    }
+
+    internal Else(ElseClause elseClause, IEditableBuffer buffer)
+        : base(elseClause, buffer, NodeTypes.NodeTypes.Else)
+    {
+        ElseClause = elseClause;
+    }
+
+    internal Else(GuardStatement guardStatement, IEditableBuffer buffer)
+        : base(guardStatement, buffer, NodeTypes.NodeTypes.Else)
+    {
+        GuardStatement = guardStatement;
+    }
+
+    public string KeywordValue => Keyword;
+
+    public static Else Create()
+    {
+        return new Else(new EditableBuffer(Keyword));
+    }
+
+    public static Else Create(ElseClause elseClause)
+    {
+        return new Else(elseClause, new EditableBuffer(Keyword));
+    }
+
+    public static Else Create(GuardStatement guardStatement)
+    {
+        return new Else(guardStatement, new EditableBuffer(Keyword));
+    }
+
+    public static Else CreateUnchecked(ISwiftNode parent)
+    {
+        return new Else(parent, new EditableBuffer(Keyword));
+    }
+}

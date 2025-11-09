@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Keywords;

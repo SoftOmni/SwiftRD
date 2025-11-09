@@ -1,0 +1,47 @@
+using JetBrains.DocumentModel.Impl;
+using JetBrains.Text;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.Defers;
+
+public class Defer : StatementLeafNode, ISwiftKeyword
+{
+    public const string Keyword = "defer";
+    
+    public DeferStatement? DeferStatement { get; internal set; }
+    
+    internal Defer(IEditableBuffer buffer)
+        : base(buffer, NodeTypes.NodeTypes.Defer)
+    { }
+
+    internal Defer(ISwiftNode parent, IEditableBuffer buffer)
+        : base(parent, buffer, NodeTypes.NodeTypes.Defer)
+    {
+        if (parent is DeferStatement deferStatement)
+        {
+            DeferStatement = deferStatement;
+        }
+    }
+
+    internal Defer(DeferStatement deferStatement, IEditableBuffer buffer)
+        : base(deferStatement, buffer, NodeTypes.NodeTypes.Defer)
+    {
+        DeferStatement = deferStatement;
+    }
+
+    public string KeywordValue => Keyword;
+
+    public static Defer Create()
+    {
+        return new Defer(new EditableBuffer(Keyword));
+    }
+    
+    public static Defer Create(ISwiftNode parent)
+    {
+        return new Defer(parent, new EditableBuffer(Keyword));
+    }
+    
+    public static Defer CreateUnchecked(DeferStatement parent)
+    {
+        return new Defer(parent, new EditableBuffer(Keyword));
+    }
+}

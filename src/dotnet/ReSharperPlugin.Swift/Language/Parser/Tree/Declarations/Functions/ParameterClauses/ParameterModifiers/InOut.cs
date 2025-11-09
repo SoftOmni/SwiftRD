@@ -1,0 +1,39 @@
+using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.Text;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
+
+public class InOut : ParameterModifier, ISwiftKeyword
+{
+    public const string Keyword = "inout";
+    
+    internal InOut(IEditableBuffer buffer) 
+        : base(buffer, NodeTypes.NodeTypes.Inout)
+    { }
+
+    internal InOut(ISwiftNode parent, IEditableBuffer buffer) :
+        base(parent, buffer, NodeTypes.NodeTypes.Inout)
+    { }
+
+    internal InOut(Parameter parameter, IEditableBuffer buffer) 
+        : base(parameter, buffer, NodeTypes.NodeTypes.Inout)
+    { }
+
+    public string KeywordValue => Keyword;
+
+    public static InOut Create()
+    {
+        return new InOut(new EditableBuffer(Keyword));
+    }
+
+    public static InOut Create(Parameter parameter)
+    {
+        return new InOut(parameter, new EditableBuffer(Keyword));
+    }
+
+    public static InOut CreateUnchecked(ISwiftNode parent)
+    {
+        return new InOut(parent, new EditableBuffer(Keyword));
+    }
+}

@@ -1,0 +1,47 @@
+using JetBrains.DocumentModel.Impl;
+using JetBrains.Text;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.PrecedenceGroups.Relations;
+
+public class HigherThan : SwiftLeafNode, ISwiftKeyword
+{
+    public const string Keyword = "higherThan";
+    
+    public PrecedenceGroupRelation? PrecedenceGroupRelation { get; internal set; }
+
+    internal HigherThan(IEditableBuffer buffer) 
+        : base(buffer, NodeTypes.NodeTypes.HigherThan)
+    { }
+
+    internal HigherThan(ISwiftNode parent, IEditableBuffer buffer)
+        : base(parent, buffer, NodeTypes.NodeTypes.HigherThan)
+    {
+        if (parent is PrecedenceGroupRelation precedenceGroupRelation)
+        {
+            PrecedenceGroupRelation = precedenceGroupRelation;
+        }
+    }
+
+    internal HigherThan(PrecedenceGroupRelation parent, IEditableBuffer buffer)
+        : base(parent, buffer, NodeTypes.NodeTypes.HigherThan)
+    {
+        PrecedenceGroupRelation = parent;
+    }
+
+    public string KeywordValue => Keyword;
+
+    public static HigherThan Create()
+    {
+        return new HigherThan(new EditableBuffer(Keyword));
+    }
+
+    public static HigherThan Create(PrecedenceGroupRelation precedenceGroupRelation)
+    {
+        return new HigherThan(precedenceGroupRelation, new EditableBuffer(Keyword));
+    }
+
+    public static HigherThan CreateUnchecked(ISwiftNode parent)
+    {
+        return new HigherThan(parent, new EditableBuffer(Keyword));
+    }
+}

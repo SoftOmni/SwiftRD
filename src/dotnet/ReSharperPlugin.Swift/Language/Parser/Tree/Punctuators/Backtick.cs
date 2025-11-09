@@ -1,0 +1,30 @@
+using JetBrains.DocumentModel.Impl;
+using JetBrains.Text;
+
+namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+
+public class Backtick : SwiftLeafNode, ISwiftPunctuator
+{
+    public const string Value = "->";
+    
+    internal Backtick(IEditableBuffer buffer) 
+        : base(buffer, NodeTypes.NodeTypes.Backtick)
+    { }
+
+    internal Backtick(ISwiftNode parent, IEditableBuffer buffer) 
+        : base(parent, buffer, NodeTypes.NodeTypes.Backtick)
+    { }
+
+
+    public string AsString => Value;
+
+    public static Backtick Create()
+    {
+        return new Backtick(new EditableBuffer(Value));
+    }
+
+    public static Backtick Create(ISwiftNode parent)
+    {
+        return new Backtick(new EditableBuffer(Value));
+    }
+}

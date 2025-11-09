@@ -205,8 +205,11 @@ public partial class SwiftLexer
 
     private static FrozenSet<char> FillDotOperatorCharacters()
     {
-        HashSet<char> dotOperatorCharacters = new(OperatorCharacters);
-        dotOperatorCharacters.Add(Dot);
+        HashSet<char> dotOperatorCharacters =
+        [
+            ..OperatorCharacters,
+            Dot
+        ];
         return dotOperatorCharacters.ToFrozenSet();
     }
 }

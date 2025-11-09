@@ -21,7 +21,10 @@
 
   <ItemGroup>
     <Compile Remove="test/**/*" />
+    <Compile Include="test\Parser\Lexer\Individual\Comments\MultiLineComment.cs" />
     <Compile Include="test\Parser\Lexer\Individual\Comments\SingleLineComment.cs" />
+    <Compile Include="test\Parser\Lexer\Individual\NewLine\NewLine.cs" />
+    <Compile Include="test\Parser\Lexer\Individual\Whitespace\Whitespace.cs" />
     <Compile Include="test\Parser\Lexer\LexerBaseCase.cs" />
     <Compile Include="test\Registration\SwiftLanguageTests.cs" />
     <Compile Include="test\Registration\SwiftProjectFileTypeTests.cs" />

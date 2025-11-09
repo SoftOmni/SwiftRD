@@ -11,11 +11,17 @@
 
   <ItemGroup>
     <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3001.1.0.233" />
+    <PackageReference Include="IndexRange" Version="1.1.0" />
     <PackageReference Include="JetBrains.Rider.SDK" Version="$(SdkVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="ReSharperPlugin.Swift.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Language\Parser\Tree\Statements\ControlTransferStatements\CompositeStatements\LoopControlTransferStatements\Breaks\" />
+    <Folder Include="Language\Parser\Tree\Statements\LoopStatements\WhileLoops\" />
   </ItemGroup>
 
 </Project>

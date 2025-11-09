@@ -11,6 +11,16 @@ public partial class SwiftLexer
 
     public const char Backslash = '\\';
 
+    public const char SingleQuote = '\'';
+
+    public const char OpenParenthesis = '(';
+
+    public const char ClosingParenthesis = ')';
+
+    public const char OpenCurlyBrace = '{';
+
+    public const char ClosingCurlyBrace = '}';
+
     // ReSharper disable once CognitiveComplexity
     private void LexStringLiteralStart()
     {
@@ -185,16 +195,16 @@ public partial class SwiftLexer
         TokenEnd++;
         if (TokenEnd == EOFPos || Buffer[TokenEnd] == DoubleQuote)
         {
-            if (SwiftLexerSettings.FiveQuotesStrings is SwiftLexerSettings.FiveQuotesSetting
+            if (SwiftLexerSettings.FiveQuotesSettings is SwiftLexerSettings.FiveQuotesSetting
                     .DoubleSimpleStringLiteralAndStringLiteralStart ||
-                SwiftLexerSettings.FiveQuotesStrings.IsSimpleLiteralStart())
+                SwiftLexerSettings.FiveQuotesSettings.IsSimpleLiteralStart())
             {
                 TokenEnd -= 4;
                 TokenType = numberOfHashtags > 1
                     ? SwiftTokens.SurroundedStringLiteralStartToken
                     : SwiftTokens.StringLiteralStartToken;
 
-                FiveQuotesSettingInEffect = SwiftLexerSettings.FiveQuotesStrings;
+                FiveQuotesSettingInEffect = SwiftLexerSettings.FiveQuotesSettings;
                 StringLiteralsTypesStacks.Push((numberOfHashtags > 1
                     ? SwiftTokens.SurroundedStringLiteralStartIndex
                     : SwiftTokens.StringLiteralStartIndex, TokenStart, TokenEnd));
@@ -210,7 +220,7 @@ public partial class SwiftLexer
                 ? SwiftTokens.SurroundedMultiLineStringLiteralStartToken
                 : SwiftTokens.MultiLineStringLiteralStartToken;
 
-            FiveQuotesSettingInEffect = SwiftLexerSettings.FiveQuotesStrings;
+            FiveQuotesSettingInEffect = SwiftLexerSettings.FiveQuotesSettings;
             StringLiteralsTypesStacks.Push((numberOfHashtags > 1
                 ? SwiftTokens.SurroundedMultiLineStringLiteralStartIndex
                 : SwiftTokens.MultiLineStringLiteralStartIndex, TokenStart, TokenEnd));
@@ -287,6 +297,7 @@ public partial class SwiftLexer
         return true;
     }
 
+    // ReSharper disable once CognitiveComplexity
     private bool LexContinuationOfFourQuotesSystem()
     {
         if (FourQuotesSettingInEffect is SwiftLexerSettings.FourQuotesSetting.DoubleSimpleStringLiteral)
@@ -369,9 +380,102 @@ public partial class SwiftLexer
         return true;
     }
 
+    // ReSharper disable once CognitiveComplexity
     private bool LexContinuationOfFiveQuotesSystem()
     {
-        throw new NotImplementedException();
+        if (Buffer[TokenEnd] != DoubleQuote)
+        {
+            if (PreviousTokenType is SurroundedStringLiteralStartToken)
+            {
+                LexSurroundedStringLiteralContent();
+            }
+            else
+            {
+                LexStringLiteralContent();
+            }
+
+            return true;
+        }
+
+        if (!SwiftLexerSettings.FiveQuotesSettings.IsMultiLineStart())
+        {
+            TokenStart = TokenEnd;
+            TokenEnd++;
+
+            TokenType = PreviousTokenType is SurroundedStringLiteralStartToken
+                ? SwiftTokens.SurroundedStringLiteralEndToken
+                : SwiftTokens.StringLiteralEndToken;
+
+            StringLiteralsTypesStacks.Pop();
+            IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
+
+            if (TokenEnd + 2 < Buffer[TokenEnd] || Buffer[TokenEnd] != DoubleQuote)
+            {
+                FiveQuotesSettingInEffect = null;
+                return true;
+            }
+
+            ThreeQuotesSettingInEffect = FiveQuotesSettingInEffect switch
+            {
+                SwiftLexerSettings.FiveQuotesSetting.DoubleSimpleStringLiteralAndStringLiteralStart => null,
+                SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartImmediateIfNoPair
+                    => SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndImmediateIfNoPair,
+                SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartLineIfNoPair
+                    => SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndLineIfNoPair,
+                SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartToEndIfNoPair
+                    => SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStart,
+                _ => throw new ArgumentException("It should be impossible to reach this point")
+            };
+
+            FiveQuotesSettingInEffect = null;
+            return true;
+        }
+
+        TokenEnd++;
+        MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
+        IsInMultilinePairSearch.Push(TokenEnd - 4);
+        if (FiveQuotesSettingInEffect is SwiftLexerSettings.FiveQuotesSetting.MultilineStringLiteralStartToEndIfNoPair)
+        {
+            FiveQuotesSettingInEffect = null;
+            IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
+            Advance();
+            return false;
+        }
+
+        if (FiveQuotesSettingInEffect is SwiftLexerSettings.FiveQuotesSetting
+                .MultilineStringLiteralStartLineIfNoPair)
+        {
+            FiveQuotesSettingInEffect = null;
+            if (PreviousTokenType is SurroundedMultiLineStringLiteralStartToken)
+            {
+                LexSurroundedStringLiteralContent(true);
+                IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
+                return true;
+            }
+
+            LexStringLiteralContent(true);
+            if (TokenEnd < EOFPos && Buffer[TokenEnd] == Backslash)
+            {
+                IsInStringLiteral = StringLiteralPosition.InMultiLineStringLiteral;
+            }
+            else
+            {
+                IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
+            }
+
+            return true;
+        }
+
+        if (PreviousTokenType is SurroundedMultiLineStringLiteralStartToken)
+        {
+            LexSurroundedMultiLineStringLiteralContent();
+        }
+        else
+        {
+            LexMultiLineStringLiteralContent();
+        }
+
+        return true;
     }
 
     private void LexStringLiteralContent(bool isPartOfMultiLineActually = false)
@@ -383,23 +487,12 @@ public partial class SwiftLexer
             TokenEnd++;
         }
 
-        string content = GetCurrentText();
-        BackingStringLiteralContent backingToken;
-        if (!isPartOfMultiLineActually)
-        {
-            TokenType = SwiftTokens.StringLiteralContentToken;
-            backingToken = new BackingStringLiteralContent(content, content);
-        }
-        else
-        {
-            TokenType = SwiftTokens.MultiLineStringLiteralContentToken;
-            backingToken = new MultiLineStringLiteralContentBackingLiteralToken(content, content, 0);
-        }
-
-        BackPutBackingToken(backingToken);
+        TokenType = isPartOfMultiLineActually
+            ? SwiftTokens.MultiLineStringLiteralContentToken
+            : SwiftTokens.StringLiteralContentToken;
     }
 
-    private void LexSurroundedStringLiteralContent()
+    private void LexSurroundedStringLiteralContent(bool isPartOfMultiLineActually = false)
     {
         TokenStart = TokenEnd;
         while (TokenEnd < EOFPos && Buffer[TokenEnd] != DoubleQuote && Buffer[TokenEnd].IsNewLine())
@@ -407,14 +500,12 @@ public partial class SwiftLexer
             TokenEnd++;
         }
 
-        string content = GetCurrentText();
-        TokenType = SwiftTokens.SurroundedStringLiteralContentToken;
-        BackingStringLiteralContent backingStringLiteralContent = new(content, content);
-        
-        BackPutBackingToken(backingStringLiteralContent);
+        TokenType = isPartOfMultiLineActually
+            ? SwiftTokens.SurroundedStringLiteralContentToken
+            : SwiftTokens.SurroundedMultiLineStringLiteralContentToken;
     }
 
-    private string LexMultiLineStringLiteralContent()
+    private void LexMultiLineStringLiteralContent()
     {
         TokenStart = TokenEnd;
         while (TokenEnd + 2 < EOFPos && Buffer[TokenEnd] != Backslash && Buffer[TokenEnd] != DoubleQuote &&
@@ -426,12 +517,9 @@ public partial class SwiftLexer
                 TokenEnd++;
             }
         }
-
-        string content = GetCurrentText();
-        return ProcessMultiStringLiteral(content, TokenEnd == EOFPos || Buffer[TokenEnd] == Backslash);
     }
 
-    private string LexSurroundedMultiLineStringLiteralContent()
+    private void LexSurroundedMultiLineStringLiteralContent()
     {
         TokenStart = TokenEnd;
         while (TokenEnd + 2 < EOFPos && Buffer[TokenEnd] != DoubleQuote && Buffer[TokenEnd + 1] != DoubleQuote
@@ -442,30 +530,210 @@ public partial class SwiftLexer
                 TokenEnd++;
             }
         }
-
-        string content = GetCurrentText();
-        return ProcessMultiStringLiteral(content);
-    }
-
-    private string ProcessMultiStringLiteral(string content, bool isStoppedByEscape = false)
-    {
-        if (!isStoppedByEscape)
-        {
-            return content;
-        }
-
-        return "";
     }
 
     private void LexStringLiteralEnd()
     { }
 
     private void LexEscape()
-    { }
+    {
+        TokenStart = TokenEnd++;
+        while (TokenEnd < EOFPos && Buffer[TokenEnd] == Hashtag)
+        {
+            TokenEnd++;
+        }
+
+        if (TokenEnd == EOFPos)
+        {
+            TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+
+            BackingUnmatchedEscapeSequenceToken backingUnmatchedEscapeSequenceToken =
+                new(string.Empty,
+                    TokenStart == TokenEnd + 1
+                        ? BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceEofImmediate
+                        : BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceEofAfterHashtags);
+            BackPutBackingToken(backingUnmatchedEscapeSequenceToken);
+            return;
+        }
+
+        char followupCharacter = Buffer[TokenEnd];
+        if (followupCharacter is '0' or Backslash or 't' or 'n' or 'r' or DoubleQuote or SingleQuote)
+        {
+            TokenEnd++;
+            TokenType = SwiftTokens.StringEscapeSequenceToken;
+            return;
+        }
+
+        if (followupCharacter.IsWhitespace())
+        {
+            LexEscapedNewLine();
+            return;
+        }
+
+        if (followupCharacter is OpenParenthesis)
+        {
+            LexInterpolationStart();
+            return;
+        }
+
+        if (followupCharacter is 'u')
+        {
+            LexUnicodeEscape();
+            return;
+        }
+
+        TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+        BackingUnmatchedEscapeSequenceToken backingTokenEnd = new(string.Empty,
+            TokenStart + 1 < EOFPos && Buffer[TokenStart] is Hashtag
+                ? BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceBadCharImmediate
+                : BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceBadCharAfterHashtags);
+        BackPutBackingToken(backingTokenEnd);
+    }
+
+    private void LexEscapedNewLine()
+    {
+        int backupTokenEnd = TokenEnd;
+        while (TokenEnd < EOFPos && Buffer[TokenEnd].IsWhitespace())
+        {
+            TokenEnd++;
+        }
+
+        if (TokenEnd != EOFPos && Buffer[TokenEnd].IsNewLine())
+            return;
+
+        TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+
+        BackingUnmatchedEscapeSequenceToken backingToken;
+        if (TokenEnd == EOFPos)
+        {
+            backingToken = new BackingUnmatchedEscapeSequenceToken(string.Empty,
+                BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceWsNoNewLineEof);
+        }
+        else if (Buffer[TokenEnd] is OpenParenthesis)
+        {
+            backingToken = new BackingUnmatchedEscapeSequenceToken(string.Empty,
+                BackingUnmatchedEscapeSequenceToken.ErrorCase
+                    .UnmatchedEscapeSequenceWsNoNewLineInterpolationChar);
+        }
+        else if (Buffer[TokenEnd] is '0' or Backslash or 't' or 'n' or 'r' or '"' or '\'' or 'u')
+        {
+            backingToken = new BackingUnmatchedEscapeSequenceToken(string.Empty,
+                BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceWsNoNewLineEscapeChar);
+        }
+        else
+        {
+            backingToken = new BackingUnmatchedEscapeSequenceToken(string.Empty,
+                BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedEscapeSequenceWsNoNewLineBadChar);
+        }
+
+        BackPutBackingToken(backingToken);
+        TokenEnd = backupTokenEnd;
+    }
+
+    private void LexUnicodeEscape()
+    {
+        TokenEnd++;
+        if (TokenEnd == EOFPos || Buffer[TokenEnd] != OpenCurlyBrace)
+        {
+            TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+
+            BackingUnmatchedEscapeSequenceToken.ErrorCase errorCase;
+            if (TokenEnd == EOFPos)
+            {
+                errorCase = BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedUnicodeEscapeSequenceEofImmediate;
+            }
+            else if (Buffer[TokenEnd] == OpenParenthesis)
+            {
+                errorCase = BackingUnmatchedEscapeSequenceToken.ErrorCase
+                    .UnmatchedUnicodeEscapeSequenceInterpolationCharImmediate;
+            }
+            else
+            {
+                errorCase = BackingUnmatchedEscapeSequenceToken.ErrorCase
+                    .UnmatchedUnicodeEscapeSequenceBadCharImmediate;
+            }
+
+            BackingUnmatchedEscapeSequenceToken backingToken = new(string.Empty, errorCase);
+            BackPutBackingToken(backingToken);
+            return;
+        }
+
+        TokenEnd++;
+        if (TokenEnd == EOFPos || !Buffer[TokenEnd].IsHexadecimalLiteralCharacter())
+        {
+            TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+
+            BackingUnmatchedEscapeSequenceToken backingToken = new(string.Empty, TokenEnd == EOFPos
+                ? BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedUnicodeEscapeSequenceEofAfterOpeningBrace
+                : BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedUnicodeEscapeSequenceBadCharAfterOpeningBrace);
+            BackPutBackingToken(backingToken);
+            return;
+        }
+
+        LexUnicodeEscapeCore();
+    }
+
+    private void LexUnicodeEscapeCore()
+    {
+        while (TokenEnd < EOFPos && Buffer[TokenEnd].IsHexadecimalLiteralCharacter())
+        {
+            TokenEnd++;
+        }
+
+        if (TokenEnd == EOFPos)
+        {
+            TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+            BackingUnmatchedEscapeSequenceToken backingToken = new(string.Empty,
+                BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedUnicodeEscapeSequenceNoClosingBraceEof);
+
+            BackPutBackingToken(backingToken);
+            return;
+        }
+
+        if (Buffer[TokenEnd] == ClosingCurlyBrace)
+        {
+            TokenType = SwiftTokens.StringEscapeSequenceToken;
+            return;
+        }
+
+        if (Buffer[TokenEnd].IsNewLine())
+        {
+            TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+            BackingUnmatchedEscapeSequenceToken backingToken = new(string.Empty,
+                IsInStringLiteral is StringLiteralPosition.InMultiLineStringLiteral
+                    or StringLiteralPosition.InSurroundedMultiLineStringLiteral
+                    ? BackingUnmatchedEscapeSequenceToken.ErrorCase
+                        .UnmatchedUnicodeEscapeSequenceNoClosingBraceNewLineMultiLine
+                    : BackingUnmatchedEscapeSequenceToken.ErrorCase
+                        .UnmatchedUnicodeEscapeSequenceNoClosingBraceNewLine);
+
+            BackPutBackingToken(backingToken);
+            return;
+        }
+
+        if (SwiftLexerSettings.UnicodeSequenceInterruptionSettings is SwiftLexerSettings.UnicodeSequenceInterruption
+                .Continue)
+        {
+            LexUnicodeEscapeCore();
+            if (ReferenceEquals(TokenType, SwiftTokens.UnmatchedEscapeSequenceToken)) return;
+        }
+
+        TokenType = SwiftTokens.UnmatchedEscapeSequenceToken;
+        BackingUnmatchedEscapeSequenceToken backingTokenInString = new
+        (string.Empty,
+            BackingUnmatchedEscapeSequenceToken.ErrorCase.UnmatchedUnicodeEscapeSequenceNoClosingBraceBadChar);
+        BackPutBackingToken(backingTokenInString);
+    }
 
     private void LexInterpolationStart()
-    { }
+    {
+        TokenType = SwiftTokens.StringInterpolationStartToken;
+        IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
+    }
 
     private void LexInterpolationEnd()
-    { }
+    {
+        TokenType = SwiftTokens.StringInterpolationEndToken;
+        
+    }
 }
