@@ -13,7 +13,7 @@ public class NewLineNodeType : SwiftNodeType
 
     public override LeafElementBase Create(IEditableBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
     {
-        return new NewLineNode(buffer, startOffset, endOffset);
+        return new NewLine(buffer);
     }
 
     public override bool IsWhitespace => true;
