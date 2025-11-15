@@ -51,10 +51,10 @@ public class NewLine : SwiftLeafNode
     {
         if (Buffer.Length == 2)
         {
-            Buffer.Remove(1, 1);
+            EditableBuffer.Remove(1, 1);
         }
 
-        Buffer.Replace(0, 1, LineFeed);
+        EditableBuffer.Replace(0, 1, LineFeed);
     }
 
     public void MakeLf()
@@ -66,10 +66,10 @@ public class NewLine : SwiftLeafNode
     {
         if (Buffer.Length == 2)
         {
-            Buffer.Remove(1, 1);
+            EditableBuffer.Remove(1, 1);
         }
 
-        Buffer.Replace(0, 1, CarriageReturn);
+        EditableBuffer.Replace(0, 1, CarriageReturn);
     }
 
     public void MakeCr()
@@ -81,11 +81,11 @@ public class NewLine : SwiftLeafNode
     {
         if (Buffer.Length == 2)
         {
-            Buffer.Replace(0, 2, CarriageReturnLineFeed);
+            EditableBuffer.Replace(0, 2, CarriageReturnLineFeed);
             return;
         }
 
-        Buffer.Replace(0, 1, CarriageReturnLineFeed);
+        EditableBuffer.Replace(0, 1, CarriageReturnLineFeed);
     }
 
     public static NewLine CreateLineFeed()
