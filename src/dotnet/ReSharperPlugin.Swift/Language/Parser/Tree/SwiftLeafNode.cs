@@ -8,34 +8,43 @@ namespace ReSharperPlugin.Swift.Language.Parser.Tree;
 
 public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
 {
-    private ISwiftNode? _parent;
+    internal ISwiftNode? CoreParent;
     
-    protected SwiftLeafNode(IEditableBuffer buffer, NodeType nodeType)
+    protected SwiftLeafNode(IEditableBuffer editableBuffer, NodeType nodeType)
     {
         NodeType = nodeType;
-        Buffer = buffer;
+        EditableBuffer = editableBuffer;
     }
 
-    protected SwiftLeafNode(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    protected SwiftLeafNode(ISwiftNode parent, IEditableBuffer editableBuffer, NodeType nodeType)
     {
-        _parent = parent;
-        Buffer = buffer;
+        CoreParent = parent;
+        EditableBuffer = editableBuffer;
         NodeType = nodeType;
     }
 
     public ISwiftNode? GetParent()
     {
-        return _parent;
+        return CoreParent;
     }
 
     public bool HasParent()
     {
-        return _parent is not null;
+        return CoreParent is not null;
     }
 
-    public ISwiftNode? SetParent(ISwiftNode newParent)
+    public int ParentIndex { get; internal set; }
+
+    public int ParentTextIndex { get; internal set; }
+
+    public override string GetText()
     {
-        throw new NotImplementedException();
+        return Buffer.GetText();
+    }
+
+    public override StringBuilder GetText(StringBuilder to)
+    {
+        return StringBuilderExtensions.Append(Buffer, to);
     }
 
     public override int GetTextLength()
@@ -43,26 +52,23 @@ public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
         return Buffer.Length;
     }
 
-    public override StringBuilder GetText(StringBuilder to)
-    {
-        return StringBuilderExtensions.Append(to, Buffer);
-    }
-
     public override IBuffer GetTextAsBuffer()
     {
         return Buffer;
     }
 
-    public override string GetText()
+    public IBuffer GetBuffer()
     {
-        return Buffer.GetText();
+        return Buffer;
     }
 
     public override NodeType NodeType { get; }
 
     public override PsiLanguageType Language => SwiftLanguage.Instance!;
 
-    public IEditableBuffer Buffer { get; }
+    public IBuffer Buffer => EditableBuffer;
+    
+    internal IEditableBuffer EditableBuffer { get; set; }
     
     public int NumberOfChildren() => 0;
 
@@ -77,8 +83,80 @@ public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
         throw new ArgumentOutOfRangeException(nameof(index), $"This is a leaf node, there are no children (index passed: {index})");
     }
 
-    public ISwiftNode SetChildAt(int index, ISwiftNode newNode)
+    public ISwiftNode? SetChildAt(int index, ISwiftNode newNode)
     {
         throw new ArgumentOutOfRangeException(nameof(index), $"This is a leaf node, there are no children (index passed: {index})");
     }
+
+    protected abstract ISwiftNode Clone();
+    
+    public ISwiftNode CloneAsDetachedShallow()
+    {
+        return Clone();
+    }
+
+    public ISwiftNode CloneAsDetachedDeep()
+    {
+        return Clone();
+    }
+
+    public ISwiftNode CloneAsDetachedDeep(int _)
+    {
+        return Clone();
+    }
+
+    private ISwiftNode CloneAsAttached(int index, ISwiftNode newParent)
+    {
+        ISwiftNode swiftNode = Clone();
+        AttachToParent(index, newParent);
+
+        return swiftNode;
+    }
+
+    public virtual ISwiftNode CloneAsAttachedToShallow(int index, ISwiftNode newParent)
+    {
+        return CloneAsAttached(index, newParent);
+    }
+
+    public virtual ISwiftNode CloneAsAttachedToDeep(int index, ISwiftNode newParent)
+    {
+        return CloneAsAttached(index, newParent);
+    }
+
+    public virtual ISwiftNode CloneAsAttachedToDeep(int index, ISwiftNode newParent, int depth)
+    {
+        return CloneAsAttached(index, newParent);
+    }
+
+    public virtual void AttachToParent(int parentIndex, ISwiftNode newParent)
+    {
+        if (newParent is not SwiftInternalNode internalNode)
+        {
+            throw new NotSupportedException(
+                "You cannot attach to a parent node which isn't internal and thus doesn't support child attachment");
+        }
+
+        CoreParent?.DetachChild(ParentIndex);
+        internalNode.AttachChild(parentIndex, this);
+    }
+
+    public void DetachChild(int childIndexInParent)
+    {
+        throw new NotSupportedException(
+            "You cannot detach a child as this is a leaf node and there are no children");
+    }
 }
+
+public static class StringBuilderExtensions
+{
+    public static StringBuilder Append(IBuffer buffer, StringBuilder stringBuilder)
+    {
+        for (int i = 0; i < buffer.Length; i++)
+        {
+            stringBuilder.Append(buffer[i]);
+        }
+
+        return stringBuilder;
+    }
+}
+
