@@ -9,7 +9,7 @@ public abstract class PostfixExpressionLeafNode : SwiftLeafNode, IPostfixExpress
         : base(buffer, nodeType)
     { }
 
-    protected PostfixExpressionLeafNode(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    protected PostfixExpressionLeafNode(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
         : base(parent, buffer, nodeType)
     { }
 }

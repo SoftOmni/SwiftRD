@@ -15,11 +15,11 @@ public abstract class SuperClassExpression : PrimaryExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public SuperClassExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SuperClassExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SuperClassExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SuperClassExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

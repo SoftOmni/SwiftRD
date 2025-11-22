@@ -13,7 +13,7 @@ public class Guard : StatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Guard)
     { }
 
-    internal Guard(ISwiftNode parent, IEditableBuffer buffer)
+    internal Guard(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Guard)
     {
         if (parent is GuardStatement guardStatement)
@@ -40,7 +40,7 @@ public class Guard : StatementLeafNode, ISwiftKeyword
         return new Guard(guardStatement, new EditableBuffer(Keyword));
     }
 
-    public static Guard CreateUnchecked(ISwiftNode parent)
+    public static Guard CreateUnchecked(SwiftInternalNode parent)
     {
         return new Guard(parent, new EditableBuffer(Keyword));
     }

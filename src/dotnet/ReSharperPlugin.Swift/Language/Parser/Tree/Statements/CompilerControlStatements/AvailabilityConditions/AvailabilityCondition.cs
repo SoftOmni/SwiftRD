@@ -26,11 +26,11 @@ public class AvailabilityCondition : StatementInternalNode, ICondition, IList<Av
         : base(buffer, children)
     { }
 
-    public AvailabilityCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public AvailabilityCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public AvailabilityCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public AvailabilityCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

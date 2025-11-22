@@ -19,11 +19,11 @@ public class TrailingClosures : SwiftInternalNode, IList<LabeledTrailingClosure>
         : base(buffer, children)
     { }
 
-    public TrailingClosures(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public TrailingClosures(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public TrailingClosures(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public TrailingClosures(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

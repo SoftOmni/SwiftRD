@@ -22,11 +22,11 @@ public class SelfSubscriptExpression : SelfExpression
         : base(buffer, children)
     { }
 
-    public SelfSubscriptExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SelfSubscriptExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SelfSubscriptExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SelfSubscriptExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

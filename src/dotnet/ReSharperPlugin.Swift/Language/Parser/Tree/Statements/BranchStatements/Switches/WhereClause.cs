@@ -19,11 +19,11 @@ public class WhereClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public WhereClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public WhereClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public WhereClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public WhereClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

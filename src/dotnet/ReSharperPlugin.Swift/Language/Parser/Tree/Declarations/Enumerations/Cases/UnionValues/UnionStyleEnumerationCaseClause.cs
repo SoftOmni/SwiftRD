@@ -19,11 +19,11 @@ public class UnionStyleEnumerationCaseClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public UnionStyleEnumerationCaseClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public UnionStyleEnumerationCaseClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public UnionStyleEnumerationCaseClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public UnionStyleEnumerationCaseClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

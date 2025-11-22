@@ -16,11 +16,11 @@ public class ElseIfDirectiveClause : DirectiveClause<ElseIfDirective>
         : base(buffer, children)
     { }
 
-    internal ElseIfDirectiveClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    internal ElseIfDirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    internal ElseIfDirectiveClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    internal ElseIfDirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

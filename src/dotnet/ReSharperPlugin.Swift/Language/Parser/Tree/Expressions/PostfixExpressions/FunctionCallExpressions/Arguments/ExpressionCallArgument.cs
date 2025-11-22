@@ -15,11 +15,11 @@ public class ExpressionCallArgument : CallArgument
         : base(buffer, children)
     { }
 
-    public ExpressionCallArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ExpressionCallArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ExpressionCallArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ExpressionCallArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

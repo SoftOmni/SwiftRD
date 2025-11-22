@@ -25,11 +25,11 @@ public class SwiftVersion : SwiftInternalNode, IComparable<SwiftVersion>, IReadO
         : base(buffer, children)
     { }
 
-    internal SwiftVersion(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    internal SwiftVersion(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    internal SwiftVersion(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    internal SwiftVersion(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

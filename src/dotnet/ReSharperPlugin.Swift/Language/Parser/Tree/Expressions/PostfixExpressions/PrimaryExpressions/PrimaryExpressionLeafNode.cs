@@ -9,7 +9,7 @@ public class PrimaryExpressionLeafNode : PostfixExpressionLeafNode, IPrimaryExpr
         : base(buffer, nodeType)
     { }
 
-    public PrimaryExpressionLeafNode(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    public PrimaryExpressionLeafNode(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
         : base(parent, buffer, nodeType)
     { }
 }

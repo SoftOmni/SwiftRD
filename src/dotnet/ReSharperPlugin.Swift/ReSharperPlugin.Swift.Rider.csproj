@@ -12,7 +12,10 @@
   <ItemGroup>
     <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3001.1.0.233" />
     <PackageReference Include="IndexRange" Version="1.1.0" />
-    <PackageReference Include="JetBrains.Rider.SDK" Version="$(SdkVersion)" />
+    <PackageReference Include="JetBrains.Rider.SDK" Version="2025.3.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

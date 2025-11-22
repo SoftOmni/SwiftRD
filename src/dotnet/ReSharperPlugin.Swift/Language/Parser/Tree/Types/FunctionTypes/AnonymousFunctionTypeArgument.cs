@@ -21,11 +21,11 @@ public class AnonymousFunctionTypeArgument : FunctionTypeArgument
         : base(buffer, children)
     { }
 
-    public AnonymousFunctionTypeArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public AnonymousFunctionTypeArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public AnonymousFunctionTypeArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public AnonymousFunctionTypeArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

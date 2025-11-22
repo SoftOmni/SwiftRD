@@ -11,7 +11,7 @@ public class Fallthrough : ControlTransferStatementLeafNode, ISwiftKeyword
         : base(editableBuffer, NodeTypes.NodeTypes.Fallthrough)
     { }
 
-    public Fallthrough(ISwiftNode parent, IEditableBuffer editableBuffer) 
+    public Fallthrough(SwiftInternalNode parent, IEditableBuffer editableBuffer) 
         : base(parent, editableBuffer, NodeTypes.NodeTypes.Fallthrough)
     { }
 
@@ -22,7 +22,7 @@ public class Fallthrough : ControlTransferStatementLeafNode, ISwiftKeyword
         return new Fallthrough(new EditableBuffer(Keyword));
     }
 
-    public static Fallthrough Create(ISwiftNode parent)
+    public static Fallthrough Create(SwiftInternalNode parent)
     {
         return new Fallthrough(parent, new EditableBuffer(Keyword));
     }

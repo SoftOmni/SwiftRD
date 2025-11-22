@@ -16,11 +16,11 @@ public abstract class EnumerationCase : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected EnumerationCase(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected EnumerationCase(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected EnumerationCase(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected EnumerationCase(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

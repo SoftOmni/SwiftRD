@@ -15,11 +15,11 @@ public class AttachedAttribute : DeclarationAttribute<Macro>
         : base(buffer, children)
     { }
 
-    public AttachedAttribute(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public AttachedAttribute(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public AttachedAttribute(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public AttachedAttribute(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

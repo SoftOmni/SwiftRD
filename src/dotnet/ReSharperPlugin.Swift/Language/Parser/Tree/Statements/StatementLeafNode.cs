@@ -12,7 +12,7 @@ public abstract class StatementLeafNode : SwiftLeafNode, IStatement
         : base(buffer, nodeType)
     { }
 
-    protected StatementLeafNode(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    protected StatementLeafNode(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 

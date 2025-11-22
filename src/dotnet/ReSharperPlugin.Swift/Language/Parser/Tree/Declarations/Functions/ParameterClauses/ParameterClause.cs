@@ -16,11 +16,11 @@ public class ParameterClause : SwiftInternalNode, IList<Parameter>
         : base(buffer, children)
     { }
 
-    public ParameterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ParameterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

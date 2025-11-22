@@ -20,11 +20,11 @@ public class ParenthesizedCompilationCondition : CompilationCondition
         : base(buffer, children)
     { }
 
-    public ParenthesizedCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ParenthesizedCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ParenthesizedCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ParenthesizedCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

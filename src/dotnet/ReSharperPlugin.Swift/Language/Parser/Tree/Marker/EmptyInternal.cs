@@ -14,11 +14,11 @@ public abstract class EmptyInternal : SwiftInternalNode, IMarker
         : base(buffer, children)
     { }
 
-    protected EmptyInternal(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected EmptyInternal(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected EmptyInternal(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected EmptyInternal(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

@@ -25,11 +25,11 @@ public class PlatformVersion : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public PlatformVersion(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PlatformVersion(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PlatformVersion(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PlatformVersion(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

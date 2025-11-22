@@ -13,7 +13,7 @@ public class KeyPathKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ReservedKeyPath)
     { }
 
-    internal KeyPathKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal KeyPathKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ReservedKeyPath)
     {
         if (parent is KeyPathStringExpression keyPathStringExpression)
@@ -40,7 +40,7 @@ public class KeyPathKeyword : SwiftLeafNode, ISwiftKeyword
         return new KeyPathKeyword(keyPathStringExpression, new EditableBuffer(Keyword));
     }
 
-    public static KeyPathKeyword CreateUnchecked(ISwiftNode parent)
+    public static KeyPathKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new KeyPathKeyword(parent, new EditableBuffer(Keyword));
     }

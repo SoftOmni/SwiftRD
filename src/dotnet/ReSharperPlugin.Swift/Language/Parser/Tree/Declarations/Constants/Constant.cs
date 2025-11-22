@@ -20,11 +20,11 @@ public class Constant : Declaration
         : base(buffer, children)
     { }
 
-    public Constant(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Constant(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Constant(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Constant(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

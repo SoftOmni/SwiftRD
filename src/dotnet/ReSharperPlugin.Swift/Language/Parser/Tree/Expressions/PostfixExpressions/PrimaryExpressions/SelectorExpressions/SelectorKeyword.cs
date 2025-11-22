@@ -13,7 +13,7 @@ public class SelectorKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ReservedSelector)
     { }
 
-    internal SelectorKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal SelectorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ReservedSelector)
     {
         if (parent is SelectorExpression selectorExpression)
@@ -40,7 +40,7 @@ public class SelectorKeyword : SwiftLeafNode, ISwiftKeyword
         return new SelectorKeyword(selectorExpression, new EditableBuffer(Keyword));
     }
 
-    public static SelectorKeyword CreateUnchecked(ISwiftNode parent)
+    public static SelectorKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new SelectorKeyword(parent, new EditableBuffer(Keyword));
     }

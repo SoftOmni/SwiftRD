@@ -22,10 +22,10 @@ public class ConditionalCompilationBlock : CompilerControlStatement
     public ConditionalCompilationBlock(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
     { }
 
-    public ConditionalCompilationBlock(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    public ConditionalCompilationBlock(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
-    public ConditionalCompilationBlock(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    public ConditionalCompilationBlock(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
     public override NodeType NodeType { get; }

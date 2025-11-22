@@ -26,11 +26,11 @@ public class ConditionalSwitchCase : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public ConditionalSwitchCase(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ConditionalSwitchCase(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ConditionalSwitchCase(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ConditionalSwitchCase(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

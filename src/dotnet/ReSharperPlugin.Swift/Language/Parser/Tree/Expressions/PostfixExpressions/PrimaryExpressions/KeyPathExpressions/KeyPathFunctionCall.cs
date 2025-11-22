@@ -22,11 +22,11 @@ public class KeyPathFunctionCall : SwiftInternalNode, IKeyPathPostfix
         : base(buffer, children)
     { }
 
-    public KeyPathFunctionCall(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public KeyPathFunctionCall(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public KeyPathFunctionCall(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public KeyPathFunctionCall(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -13,7 +13,7 @@ public class Repeat : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Repeat)
     { }
 
-    internal Repeat(ISwiftNode parent, IEditableBuffer buffer)
+    internal Repeat(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Repeat)
     {
         if (parent is RepeatWhileStatement repeatWhileStatement)
@@ -40,7 +40,7 @@ public class Repeat : SwiftLeafNode, ISwiftKeyword
         return new Repeat(repeatWhileStatement, new EditableBuffer(Keyword));
     }
 
-    public static Repeat CreateUnchecked(ISwiftNode parent)
+    public static Repeat CreateUnchecked(SwiftInternalNode parent)
     {
         return new Repeat(parent, new EditableBuffer(Keyword));
     }

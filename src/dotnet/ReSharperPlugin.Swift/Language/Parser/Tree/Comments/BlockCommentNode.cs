@@ -48,13 +48,13 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
     internal BlockCommentNode(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
     { }
 
-    internal BlockCommentNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer,
+    internal BlockCommentNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer,
         nodes)
     {
         SetupCommentNode();
     }
 
-    internal BlockCommentNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent,
+    internal BlockCommentNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent,
         buffer, nodes)
     {
         SetupCommentNode();
@@ -67,9 +67,9 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
             ImmediateParentNode = blockCommentNode;
         }
 
-        for (int i = 0; i < _children.Count; i++)
+        for (int i = 0; i < Children.Count; i++)
         {
-            ISwiftNode child = _children[i];
+            ISwiftNode child = Children[i];
 
             if (child is BlockCommentNode childBlockCommentNode)
             {

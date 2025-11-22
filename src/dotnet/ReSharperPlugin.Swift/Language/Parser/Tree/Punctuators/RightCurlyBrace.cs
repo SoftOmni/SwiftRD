@@ -11,7 +11,7 @@ public class RightCurlyBrace : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.RightCurlyBrace)
     { }
 
-    internal RightCurlyBrace(ISwiftNode parent, IEditableBuffer buffer) 
+    internal RightCurlyBrace(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.RightCurlyBrace)
     { }
 
@@ -23,7 +23,7 @@ public class RightCurlyBrace : SwiftLeafNode, ISwiftPunctuator
         return new RightCurlyBrace(new EditableBuffer(Value));
     }
 
-    public static RightCurlyBrace Create(ISwiftNode parent)
+    public static RightCurlyBrace Create(SwiftInternalNode parent)
     {
         return new RightCurlyBrace(new EditableBuffer(Value));
     }

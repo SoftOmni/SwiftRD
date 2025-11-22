@@ -17,11 +17,11 @@ public abstract class StatementInternalNode : SwiftInternalNode, IStatement
         : base(buffer, children)
     { }
 
-    protected StatementInternalNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected StatementInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected StatementInternalNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected StatementInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

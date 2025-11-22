@@ -24,11 +24,11 @@ public class GuardStatement : BranchStatement
         : base(buffer, children)
     { }
 
-    public GuardStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public GuardStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public GuardStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public GuardStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

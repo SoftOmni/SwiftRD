@@ -16,11 +16,11 @@ public class ExtensionMemberGroup : SwiftInternalNode, IList<IExtensionMember>
         : base(buffer, children)
     { }
 
-    public ExtensionMemberGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ExtensionMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ExtensionMemberGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ExtensionMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

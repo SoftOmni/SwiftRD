@@ -16,10 +16,10 @@ public class NotCompilationCondition : CompilationCondition
     internal NotCompilationCondition(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
     { }
 
-    internal NotCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    internal NotCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
-    internal NotCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    internal NotCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
     public override bool Evaluatable()

@@ -24,11 +24,11 @@ public class FunctionSignature : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public FunctionSignature(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public FunctionSignature(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public FunctionSignature(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public FunctionSignature(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -16,11 +16,11 @@ public class SwitchCaseGroup : SwiftInternalNode, IList<SwitchCase>
         : base(buffer, children)
     { }
 
-    public SwitchCaseGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SwitchCaseGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SwitchCaseGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SwitchCaseGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

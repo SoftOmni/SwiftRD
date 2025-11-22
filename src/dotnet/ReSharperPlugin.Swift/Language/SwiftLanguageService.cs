@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Application.Components;
 using JetBrains.Application.Parts;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CodeStyle;
 using JetBrains.ReSharper.Psi.CSharp.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
 using JetBrains.ReSharper.Psi.Modules;
@@ -74,5 +75,9 @@ public class SwiftLanguageService(SwiftLanguage swiftLanguage, ILazy<IConstantVa
 
     public override bool SupportTypeMemberCache => true;
 
+    public override bool ParticipatesInClrCaches => false;
+    
     public override ITypePresenter TypePresenter { get; } = new SwiftTypePresenter();
+    
+    
 }

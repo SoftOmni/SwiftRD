@@ -17,11 +17,11 @@ public abstract class ProtocolMember : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected ProtocolMember(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected ProtocolMember(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected ProtocolMember(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected ProtocolMember(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

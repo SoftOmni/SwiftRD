@@ -18,11 +18,11 @@ public abstract class PrecedenceGroupAttribute : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected PrecedenceGroupAttribute(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected PrecedenceGroupAttribute(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected PrecedenceGroupAttribute(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected PrecedenceGroupAttribute(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

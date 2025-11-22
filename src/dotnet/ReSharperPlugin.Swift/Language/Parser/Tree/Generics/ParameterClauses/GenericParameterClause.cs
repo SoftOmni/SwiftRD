@@ -20,11 +20,11 @@ public class GenericParameterClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public GenericParameterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public GenericParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public GenericParameterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public GenericParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

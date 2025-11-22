@@ -9,7 +9,7 @@ public class Operator : SwiftLeafNode
         : base(buffer, NodeTypes.NodeTypes.Operator)
     { }
 
-    public Operator(ISwiftNode parent, IEditableBuffer buffer)
+    public Operator(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Operator)
     { }
 }

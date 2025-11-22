@@ -11,7 +11,7 @@ public class Hash : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Hash)
     { }
 
-    internal Hash(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Hash(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Hash)
     { }
 
@@ -23,7 +23,7 @@ public class Hash : SwiftLeafNode, ISwiftPunctuator
         return new Hash(new EditableBuffer(Value));
     }
 
-    public static Hash Create(ISwiftNode parent)
+    public static Hash Create(SwiftInternalNode parent)
     {
         return new Hash(new EditableBuffer(Value));
     }

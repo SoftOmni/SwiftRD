@@ -11,7 +11,7 @@ public class Package : LeafAccessLevelModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Package)
     { }
 
-    internal Package(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Package(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Package)
     { }
 
@@ -23,7 +23,7 @@ public class Package : LeafAccessLevelModifier, ISwiftKeyword
         return new Package(new EditableBuffer(Keyword));
     }
 
-    public static Package Create(ISwiftNode parent)
+    public static Package Create(SwiftInternalNode parent)
     {
         return new Package(new EditableBuffer(Keyword));
     }

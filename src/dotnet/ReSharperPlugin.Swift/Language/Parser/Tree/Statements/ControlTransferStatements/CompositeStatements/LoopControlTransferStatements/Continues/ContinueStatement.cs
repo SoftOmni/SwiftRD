@@ -15,11 +15,11 @@ public class ContinueStatement : LoopControlTransferStatement
         : base(buffer, children)
     { }
 
-    public ContinueStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ContinueStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ContinueStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ContinueStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

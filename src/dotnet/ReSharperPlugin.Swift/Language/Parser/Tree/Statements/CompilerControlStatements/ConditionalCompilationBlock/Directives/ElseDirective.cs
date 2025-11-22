@@ -11,7 +11,7 @@ public class ElseDirective : Directive
     internal ElseDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedElse)
     { }
 
-    internal ElseDirective(ISwiftNode parent, IEditableBuffer buffer) : base(parent, buffer,
+    internal ElseDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
         NodeTypes.NodeTypes.ReservedElse)
     {
         if (parent is ElseDirectiveClause clause)
@@ -37,7 +37,7 @@ public class ElseDirective : Directive
             new EditableBuffer(NodeTypes.NodeTypes.ReservedElse.TokenRepresentation)); // TODO: Fix representations
     }
 
-    internal static ElseDirective CreateUnchecked(ISwiftNode parent)
+    internal static ElseDirective CreateUnchecked(SwiftInternalNode parent)
     {
         return new ElseDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedElse.TokenRepresentation));
     }

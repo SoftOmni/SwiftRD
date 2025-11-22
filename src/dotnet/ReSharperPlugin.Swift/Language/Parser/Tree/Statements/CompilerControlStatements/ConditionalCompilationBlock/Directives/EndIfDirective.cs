@@ -10,7 +10,7 @@ public class EndIfDirective : Directive
     internal EndIfDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedEndIf)
     { }
 
-    internal EndIfDirective(ISwiftNode parent, IEditableBuffer buffer) : base(parent, buffer,
+    internal EndIfDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
         NodeTypes.NodeTypes.ReservedEndIf)
     {
         if (parent is ConditionalCompilationBlock conditionalCompilationBlock)
@@ -29,7 +29,7 @@ public class EndIfDirective : Directive
         return new EndIfDirective(conditionalCompilationBlock, new EditableBuffer(NodeTypes.NodeTypes.ReservedEndIf.TokenRepresentation));
     }
 
-    internal static EndIfDirective CreateUnchecked(ISwiftNode parent)
+    internal static EndIfDirective CreateUnchecked(SwiftInternalNode parent)
     {
         return new EndIfDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedEndIf.TokenRepresentation));
     }

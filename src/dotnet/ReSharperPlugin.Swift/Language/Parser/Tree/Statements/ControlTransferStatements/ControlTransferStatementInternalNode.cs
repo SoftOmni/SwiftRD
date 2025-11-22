@@ -13,11 +13,11 @@ public abstract class ControlTransferStatementInternalNode : StatementInternalNo
         : base(buffer, children)
     { }
     
-    protected ControlTransferStatementInternalNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected ControlTransferStatementInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected ControlTransferStatementInternalNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected ControlTransferStatementInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

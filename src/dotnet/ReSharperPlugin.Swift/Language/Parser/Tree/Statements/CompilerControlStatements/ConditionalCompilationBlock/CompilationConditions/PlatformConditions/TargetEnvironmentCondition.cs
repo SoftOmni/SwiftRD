@@ -23,11 +23,11 @@ public class TargetEnvironmentCondition : PlatformCondition
         : base(buffer, children)
     { }
 
-    internal TargetEnvironmentCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    internal TargetEnvironmentCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    internal TargetEnvironmentCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    internal TargetEnvironmentCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

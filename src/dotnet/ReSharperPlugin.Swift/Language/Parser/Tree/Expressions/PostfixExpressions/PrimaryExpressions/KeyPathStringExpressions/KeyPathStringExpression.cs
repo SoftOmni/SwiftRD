@@ -22,11 +22,11 @@ public class KeyPathStringExpression : PrimaryExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public KeyPathStringExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public KeyPathStringExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public KeyPathStringExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public KeyPathStringExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

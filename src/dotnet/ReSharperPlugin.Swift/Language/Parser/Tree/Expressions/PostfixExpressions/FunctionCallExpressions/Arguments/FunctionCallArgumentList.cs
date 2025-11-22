@@ -19,11 +19,11 @@ public class FunctionCallArgumentList : SwiftInternalNode, IList<CallArgument>
         : base(buffer, children)
     { }
 
-    public FunctionCallArgumentList(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public FunctionCallArgumentList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public FunctionCallArgumentList(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public FunctionCallArgumentList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

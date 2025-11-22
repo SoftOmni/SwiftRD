@@ -16,7 +16,7 @@ public class Else : StatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Else)
     { }
 
-    internal Else(ISwiftNode parent, IEditableBuffer buffer)
+    internal Else(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Else)
     {
         if (parent is ElseClause elseClause)
@@ -58,7 +58,7 @@ public class Else : StatementLeafNode, ISwiftKeyword
         return new Else(guardStatement, new EditableBuffer(Keyword));
     }
 
-    public static Else CreateUnchecked(ISwiftNode parent)
+    public static Else CreateUnchecked(SwiftInternalNode parent)
     {
         return new Else(parent, new EditableBuffer(Keyword));
     }

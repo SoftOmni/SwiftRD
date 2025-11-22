@@ -11,8 +11,8 @@ public class RightSquareBracket : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.RightSquareBracket)
     { }
 
-    internal RightSquareBracket(ISwiftNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.RightSquareBracket)
+    internal RightSquareBracket(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer) 
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.RightSquareBracket)
     { }
 
 
@@ -23,8 +23,16 @@ public class RightSquareBracket : SwiftLeafNode, ISwiftPunctuator
         return new RightSquareBracket(new EditableBuffer(Value));
     }
 
-    public static RightSquareBracket Create(ISwiftNode parent)
+    public static RightSquareBracket Create(SwiftInternalNode parent, int parentIndex)
     {
-        return new RightSquareBracket(new EditableBuffer(Value));
+        RightSquareBracket rightSquareBracket = new(new EditableBuffer(Value));
+        rightSquareBracket.AttachToParent(parent, parentIndex);
+
+        return rightSquareBracket;
+    }
+
+    protected override ISwiftNode Clone()
+    {
+        return Create();
     }
 }

@@ -13,7 +13,7 @@ public class Try : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Try)
     { }
 
-    internal Try(ISwiftNode parent, IEditableBuffer buffer)
+    internal Try(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Try)
     {
         if (parent is TryOperator tryOperator)
@@ -40,7 +40,7 @@ public class Try : SwiftLeafNode, ISwiftKeyword
         return new Try(tryOperator, new EditableBuffer(Keyword));
     }
 
-    public static Try CreateUnchecked(ISwiftNode parent)
+    public static Try CreateUnchecked(SwiftInternalNode parent)
     {
         return new Try(parent, new EditableBuffer(Keyword));
     }

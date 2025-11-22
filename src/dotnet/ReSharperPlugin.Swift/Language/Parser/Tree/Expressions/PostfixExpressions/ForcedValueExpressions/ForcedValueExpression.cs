@@ -18,11 +18,11 @@ public class ForcedValueExpression : PostfixExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public ForcedValueExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ForcedValueExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ForcedValueExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ForcedValueExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -22,11 +22,11 @@ public class ClosureParameter : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public ClosureParameter(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ClosureParameter(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ClosureParameter(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ClosureParameter(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

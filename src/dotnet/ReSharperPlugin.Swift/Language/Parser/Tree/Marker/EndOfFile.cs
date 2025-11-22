@@ -8,7 +8,7 @@ public class EndOfFile : SwiftLeafNode, IMarker
         : base(buffer, NodeTypes.NodeTypes.EndOfFile)
     { }
 
-    public EndOfFile(ISwiftNode parent, IEditableBuffer buffer) 
+    public EndOfFile(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.EndOfFile)
     { }
 }

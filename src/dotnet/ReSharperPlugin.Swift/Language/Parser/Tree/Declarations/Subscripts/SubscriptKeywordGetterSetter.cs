@@ -16,11 +16,11 @@ public class SubscriptKeywordGetterSetter : Subscript
         : base(buffer, children)
     { }
 
-    public SubscriptKeywordGetterSetter(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SubscriptKeywordGetterSetter(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SubscriptKeywordGetterSetter(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SubscriptKeywordGetterSetter(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

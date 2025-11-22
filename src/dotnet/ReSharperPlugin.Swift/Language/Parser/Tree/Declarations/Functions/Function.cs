@@ -35,11 +35,11 @@ public class Function : Declaration
         : base(buffer, children)
     { }
 
-    public Function(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Function(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Function(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Function(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

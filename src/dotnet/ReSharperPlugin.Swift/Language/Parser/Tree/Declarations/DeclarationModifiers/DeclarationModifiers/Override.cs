@@ -11,7 +11,7 @@ public class Override : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Override)
     { }
 
-    internal Override(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Override(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Override)
     { }
 
@@ -23,7 +23,7 @@ public class Override : DeclarationModifierLeaf, ISwiftKeyword
         return new Override(new EditableBuffer(Keyword));
     }
 
-    public static Override Create(ISwiftNode parent)
+    public static Override Create(SwiftInternalNode parent)
     {
         return new Override(new EditableBuffer(Keyword));
     }

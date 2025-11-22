@@ -13,11 +13,11 @@ public abstract class CompilerControlStatement : StatementInternalNode
         : base(buffer, children)
     { }
 
-    protected CompilerControlStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected CompilerControlStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected CompilerControlStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected CompilerControlStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

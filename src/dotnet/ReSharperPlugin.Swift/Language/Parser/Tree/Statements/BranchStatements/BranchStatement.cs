@@ -13,11 +13,11 @@ public abstract class BranchStatement : StatementInternalNode
         : base(buffer, children)
     { }
 
-    protected BranchStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected BranchStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected BranchStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected BranchStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
     

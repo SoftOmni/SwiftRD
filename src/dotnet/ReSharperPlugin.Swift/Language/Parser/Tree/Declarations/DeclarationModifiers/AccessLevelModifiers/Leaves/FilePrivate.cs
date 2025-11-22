@@ -11,7 +11,7 @@ public class FilePrivate : LeafAccessLevelModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.FilePrivate)
     { }
 
-    internal FilePrivate(ISwiftNode parent, IEditableBuffer buffer) 
+    internal FilePrivate(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.FilePrivate)
     { }
 
@@ -23,7 +23,7 @@ public class FilePrivate : LeafAccessLevelModifier, ISwiftKeyword
         return new FilePrivate(new EditableBuffer(Keyword));
     }
 
-    public static FilePrivate Create(ISwiftNode parent)
+    public static FilePrivate Create(SwiftInternalNode parent)
     {
         return new FilePrivate(new EditableBuffer(Keyword));
     }

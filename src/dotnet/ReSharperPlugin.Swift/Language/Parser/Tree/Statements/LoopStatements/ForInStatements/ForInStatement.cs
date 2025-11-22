@@ -30,11 +30,11 @@ public class ForInStatement : LoopStatement
         : base(buffer, children)
     { }
 
-    public ForInStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ForInStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ForInStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ForInStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

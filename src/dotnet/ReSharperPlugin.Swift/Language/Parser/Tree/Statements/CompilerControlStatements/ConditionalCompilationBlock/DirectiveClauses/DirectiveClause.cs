@@ -30,7 +30,7 @@ public abstract class DirectiveClause<TDirective> : SwiftInternalNode where TDir
         SetUpChildren();
     }
 
-    protected DirectiveClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected DirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     {
         if (parent is ConditionalCompilationBlock conditionalCompilationBlock)
@@ -41,7 +41,7 @@ public abstract class DirectiveClause<TDirective> : SwiftInternalNode where TDir
         SetUpChildren();
     }
 
-    protected DirectiveClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected DirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     {
         if (parent is ConditionalCompilationBlock conditionalCompilationBlock)
@@ -70,7 +70,7 @@ public abstract class DirectiveClause<TDirective> : SwiftInternalNode where TDir
 
     private void SetUpChildren()
     {
-        foreach (ISwiftNode? child in _children)
+        foreach (ISwiftNode? child in Children)
         {
             if (child is CompilationCondition compilationCondition)
             {

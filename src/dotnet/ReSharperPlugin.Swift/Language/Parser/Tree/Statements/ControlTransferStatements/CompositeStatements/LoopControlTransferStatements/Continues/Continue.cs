@@ -13,7 +13,7 @@ public class Continue : StatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Continue)
     { }
 
-    internal Continue(ISwiftNode parent, IEditableBuffer buffer)
+    internal Continue(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Continue)
     {
         if (parent is ContinueStatement continueStatement)
@@ -35,7 +35,7 @@ public class Continue : StatementLeafNode, ISwiftKeyword
         return new Continue(new EditableBuffer(Keyword));
     }
     
-    public static Continue Create(ISwiftNode parent)
+    public static Continue Create(SwiftInternalNode parent)
     {
         return new Continue(parent, new EditableBuffer(Keyword));
     }

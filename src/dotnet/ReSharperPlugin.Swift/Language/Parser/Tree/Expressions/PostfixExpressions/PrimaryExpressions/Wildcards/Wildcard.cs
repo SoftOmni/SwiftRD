@@ -11,7 +11,7 @@ public class Wildcard : PrimaryExpressionLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Underscore)
     { }
 
-    internal Wildcard(ISwiftNode parent, IEditableBuffer buffer)
+    internal Wildcard(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Underscore)
     { }
 
@@ -23,7 +23,7 @@ public class Wildcard : PrimaryExpressionLeafNode, ISwiftKeyword
         return new Wildcard(new EditableBuffer(Keyword));
     }
 
-    public static Wildcard Create(ISwiftNode parent)
+    public static Wildcard Create(SwiftInternalNode parent)
     {
         return new Wildcard(parent, new EditableBuffer(Keyword));
     }

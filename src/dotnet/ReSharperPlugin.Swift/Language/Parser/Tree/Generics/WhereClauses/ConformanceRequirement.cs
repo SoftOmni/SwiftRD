@@ -21,11 +21,11 @@ public class ConformanceRequirement : Requirement
         : base(buffer, children)
     { }
 
-    public ConformanceRequirement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ConformanceRequirement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ConformanceRequirement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ConformanceRequirement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

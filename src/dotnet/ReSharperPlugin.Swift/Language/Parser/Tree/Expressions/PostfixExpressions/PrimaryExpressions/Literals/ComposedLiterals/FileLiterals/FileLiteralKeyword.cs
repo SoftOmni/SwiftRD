@@ -13,7 +13,7 @@ public class FileLiteralKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ReservedFileLiteral)
     { }
 
-    internal FileLiteralKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal FileLiteralKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ReservedFileLiteral)
     {
         if (parent is FileLiteral fileLiteral)
@@ -40,7 +40,7 @@ public class FileLiteralKeyword : SwiftLeafNode, ISwiftKeyword
         return new FileLiteralKeyword(fileLiteral, new EditableBuffer(Keyword));
     }
 
-    public static FileLiteralKeyword CreateUnchecked(ISwiftNode parent)
+    public static FileLiteralKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new FileLiteralKeyword(parent, new EditableBuffer(Keyword));
     }

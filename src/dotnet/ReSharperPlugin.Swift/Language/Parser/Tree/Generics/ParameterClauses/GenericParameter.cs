@@ -23,11 +23,11 @@ public class GenericParameter : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public GenericParameter(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public GenericParameter(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public GenericParameter(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public GenericParameter(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

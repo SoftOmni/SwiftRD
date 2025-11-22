@@ -13,11 +13,11 @@ public abstract class LiteralExpressionInternalNode : PrimaryExpressionInternalN
         : base(buffer, children)
     { }
 
-    protected LiteralExpressionInternalNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected LiteralExpressionInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected LiteralExpressionInternalNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected LiteralExpressionInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

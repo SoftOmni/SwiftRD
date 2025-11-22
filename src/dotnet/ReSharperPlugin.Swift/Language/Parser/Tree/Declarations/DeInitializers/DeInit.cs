@@ -13,7 +13,7 @@ public class DeInit : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Deinit)
     { }
 
-    internal DeInit(ISwiftNode parent, IEditableBuffer buffer)
+    internal DeInit(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Deinit)
     {
         if (parent is DeInitializer deInitializer)
@@ -40,7 +40,7 @@ public class DeInit : SwiftLeafNode, ISwiftKeyword
         return new DeInit(deInitializer, new EditableBuffer(Keyword));
     }
 
-    public static DeInit CreateUnchecked(ISwiftNode parent)
+    public static DeInit CreateUnchecked(SwiftInternalNode parent)
     {
         return new DeInit(parent, new EditableBuffer(Keyword));
     }

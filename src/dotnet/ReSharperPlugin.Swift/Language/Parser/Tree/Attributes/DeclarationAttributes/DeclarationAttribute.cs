@@ -16,11 +16,11 @@ public abstract class DeclarationAttribute<TDeclaration> : Attribute where TDecl
         : base(buffer, children)
     { }
 
-    protected DeclarationAttribute(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected DeclarationAttribute(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected DeclarationAttribute(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected DeclarationAttribute(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

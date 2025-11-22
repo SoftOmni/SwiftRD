@@ -13,7 +13,7 @@ public class DidSet : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.DidSet)
     { }
 
-    internal DidSet(ISwiftNode parent, IEditableBuffer buffer)
+    internal DidSet(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.DidSet)
     {
         if (parent is DidSetClause didSetClause)
@@ -40,7 +40,7 @@ public class DidSet : SwiftLeafNode, ISwiftKeyword
         return new DidSet(didSetClause, new EditableBuffer(Keyword));
     }
 
-    public static DidSet CreateUnchecked(ISwiftNode parent)
+    public static DidSet CreateUnchecked(SwiftInternalNode parent)
     {
         return new DidSet(parent, new EditableBuffer(Keyword));
     }

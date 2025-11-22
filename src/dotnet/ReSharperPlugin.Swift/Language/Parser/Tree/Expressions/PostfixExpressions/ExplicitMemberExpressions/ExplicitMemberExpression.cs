@@ -18,11 +18,11 @@ public abstract class ExplicitMemberExpression : PostfixExpressionInternalNode
         : base(buffer, children)
     { }
 
-    protected ExplicitMemberExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected ExplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected ExplicitMemberExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected ExplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

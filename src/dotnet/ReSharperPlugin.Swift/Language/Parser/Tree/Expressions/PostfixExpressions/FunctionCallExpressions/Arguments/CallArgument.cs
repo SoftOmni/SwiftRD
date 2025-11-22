@@ -19,11 +19,11 @@ public abstract class CallArgument : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected CallArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected CallArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected CallArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected CallArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

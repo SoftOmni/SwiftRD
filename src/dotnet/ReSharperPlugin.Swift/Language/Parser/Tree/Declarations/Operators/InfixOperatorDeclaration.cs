@@ -22,11 +22,11 @@ public class InfixOperatorDeclaration : OperatorDeclaration
         : base(buffer, children)
     { }
 
-    public InfixOperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public InfixOperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public InfixOperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public InfixOperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

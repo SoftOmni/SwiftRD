@@ -23,11 +23,11 @@ public class ClosureParameterListClause : ClosureParameterClause, IList<ClosureP
         : base(buffer, children)
     { }
 
-    public ClosureParameterListClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ClosureParameterListClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ClosureParameterListClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ClosureParameterListClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

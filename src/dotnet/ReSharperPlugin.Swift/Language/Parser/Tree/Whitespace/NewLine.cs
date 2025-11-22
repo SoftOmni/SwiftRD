@@ -6,7 +6,7 @@ using JetBrains.Text;
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
 
 [DebuggerDisplay("NEW_LINE_LEAF_NODE ({Type})")]
-public class NewLine : SwiftLeafNode
+public class NewLine : SwiftLeafNode, IWhitespaceNode
 {
     private const string LineFeed = "\n";
 
@@ -14,7 +14,8 @@ public class NewLine : SwiftLeafNode
 
     private const string CarriageReturnLineFeed = "\r\n";
 
-    internal NewLine(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.NewLine)
+    internal NewLine(IEditableBuffer buffer)
+        : base(buffer, NodeTypes.NodeTypes.NewLine)
     {
         if (buffer.Length == 2)
         {
@@ -27,13 +28,38 @@ public class NewLine : SwiftLeafNode
             : Kind.CarriageReturn;
     }
 
+    internal NewLine(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.NewLine)
+    {
+        SetupInternals(buffer);
+    }
+
     private NewLine(IEditableBuffer buffer, Kind type)
         : base(buffer, NodeTypes.NodeTypes.NewLine)
     {
         Type = type;
     }
 
-    public Kind Type { get; }
+    internal NewLine(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, Kind type)
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.NewLine)
+    {
+        Type = type;
+    }
+
+    private void SetupInternals(IEditableBuffer buffer)
+    {
+        if (buffer.Length == 2)
+        {
+            Type = Kind.CarriageReturnLineFeed;
+            return;
+        }
+
+        Type = buffer[0] == '\n'
+            ? Kind.LineFeed
+            : Kind.CarriageReturn;
+    }
+
+    public Kind Type { get; private set; }
 
     public bool IsLineFeed => Type is Kind.LineFeed;
 
@@ -93,19 +119,45 @@ public class NewLine : SwiftLeafNode
         return new NewLine(new EditableBuffer(LineFeed), Kind.LineFeed);
     }
 
+    public static NewLine CreateLineFeed(SwiftInternalNode parent, int parentIndex)
+    {
+        NewLine node = CreateLineFeed();
+        node.AttachToParent(parent, parentIndex);
+        
+        return node;
+    }
+
     public static NewLine CreateLf()
     {
         return CreateLineFeed();
+    }
+
+    public static NewLine CreateLf(SwiftInternalNode parent, int parentIndex)
+    {
+        return CreateLineFeed(parent, parentIndex);
     }
 
     public static NewLine CreateCarriageReturn()
     {
         return new NewLine(new EditableBuffer(CarriageReturn), Kind.CarriageReturn);
     }
+    
+    public static NewLine CreateCarriageReturn(SwiftInternalNode parent, int parentIndex)
+    {
+        NewLine node = CreateCarriageReturn();
+        node.AttachToParent(parent, parentIndex);
+        
+        return node;
+    }
 
     public static NewLine CreateCr()
     {
         return CreateCarriageReturn();
+    }
+    
+    public static NewLine CreateCr(SwiftInternalNode parent, int parentIndex)
+    {
+        return CreateCarriageReturn(parent, parentIndex);
     }
 
     public static NewLine CreateCarriageReturnLineFeed()
@@ -113,11 +165,24 @@ public class NewLine : SwiftLeafNode
         return new NewLine(new EditableBuffer(CarriageReturnLineFeed), Kind.CarriageReturnLineFeed);
     }
 
+    public static NewLine CreateCarriageReturnLineFeed(SwiftInternalNode parent, int parentIndex)
+    {
+        NewLine node = CreateCarriageReturnLineFeed();
+        node.AttachToParent(parent, parentIndex);
+        
+        return node;
+    }
+
     public static NewLine CreateCrLf()
     {
         return CreateCarriageReturnLineFeed();
     }
     
+    public static NewLine CreateCrLf(SwiftInternalNode parent, int parentIndex)
+    {
+        return CreateCarriageReturnLineFeed(parent, parentIndex);
+    }
+
     public enum Kind
     {
         LineFeed,
@@ -148,65 +213,67 @@ public class NewLine : SwiftLeafNode
 
 public static class NewLineNodeKindExtensions
 {
-    public static bool IsLineFeed(this NewLine.Kind kind) => kind is NewLine.Kind.LineFeed;
-
-    public static bool IsCarriageReturn(this NewLine.Kind kind) => kind is NewLine.Kind.CarriageReturn;
-
-    public static bool IsCarriageReturnLineFeed(this NewLine.Kind kind) =>
-        kind is NewLine.Kind.CarriageReturnLineFeed;
-
-    public static int Length(this NewLine.Kind kind)
+    extension(NewLine.Kind kind)
     {
-        return kind switch
-        {
-            NewLine.Kind.LineFeed => 1,
-            NewLine.Kind.CarriageReturn => 1,
-            NewLine.Kind.CarriageReturnLineFeed => 2,
-            _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
-        };
-    }
+        public bool IsLineFeed() => kind is NewLine.Kind.LineFeed;
+        public bool IsCarriageReturn() => kind is NewLine.Kind.CarriageReturn;
 
-    public static string EscapeRepresentation(this NewLine.Kind kind)
-    {
-        return kind switch
-        {
-            NewLine.Kind.LineFeed => "\\n",
-            NewLine.Kind.CarriageReturn => "\\r",
-            NewLine.Kind.CarriageReturnLineFeed => "\\r\\n",
-            _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
-        };
-    }
+        public bool IsCarriageReturnLineFeed() =>
+            kind is NewLine.Kind.CarriageReturnLineFeed;
 
-    public static string ToString(this NewLine.Kind kind)
-    {
-        return kind switch
+        public int Length()
         {
-            NewLine.Kind.LineFeed => "\n",
-            NewLine.Kind.CarriageReturn => "\r",
-            NewLine.Kind.CarriageReturnLineFeed => "\r\n",
-            _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
-        };
-    }
+            return kind switch
+            {
+                NewLine.Kind.LineFeed => 1,
+                NewLine.Kind.CarriageReturn => 1,
+                NewLine.Kind.CarriageReturnLineFeed => 2,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
 
-    public static string DebuggerRepresentation(this NewLine.Kind kind)
-    {
-        return kind switch
+        public string EscapeRepresentation()
         {
-            NewLine.Kind.LineFeed => "LINE_FEED",
-            NewLine.Kind.CarriageReturn => "CARRIAGE_RETURN",
-            NewLine.Kind.CarriageReturnLineFeed => "CARRIAGE_RETURN_LINE_FEED",
-            _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
-        };
-    }
+            return kind switch
+            {
+                NewLine.Kind.LineFeed => @"\n",
+                NewLine.Kind.CarriageReturn => @"\r",
+                NewLine.Kind.CarriageReturnLineFeed => @"\r\n",
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
 
-    public static string AbbreviatedForm(this NewLine.Kind kind)
-    {
-        return kind switch
+        public string ToString()
         {
-            NewLine.Kind.LineFeed => "LF",
-            NewLine.Kind.CarriageReturn => "CR",
-            NewLine.Kind.CarriageReturnLineFeed => "CRLF",
-            _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
-        };
+            return kind switch
+            {
+                NewLine.Kind.LineFeed => "\n",
+                NewLine.Kind.CarriageReturn => "\r",
+                NewLine.Kind.CarriageReturnLineFeed => "\r\n",
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
+
+        public string DebuggerRepresentation()
+        {
+            return kind switch
+            {
+                NewLine.Kind.LineFeed => "LINE_FEED",
+                NewLine.Kind.CarriageReturn => "CARRIAGE_RETURN",
+                NewLine.Kind.CarriageReturnLineFeed => "CARRIAGE_RETURN_LINE_FEED",
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
+
+        public string AbbreviatedForm()
+        {
+            return kind switch
+            {
+                NewLine.Kind.LineFeed => "LF",
+                NewLine.Kind.CarriageReturn => "CR",
+                NewLine.Kind.CarriageReturnLineFeed => "CRLF",
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
     }
 }

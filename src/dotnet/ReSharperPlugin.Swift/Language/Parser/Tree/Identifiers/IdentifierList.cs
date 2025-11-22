@@ -19,11 +19,11 @@ public class IdentifierList : SwiftInternalNode, IList<Identifier>
         : base(buffer, children)
     { }
 
-    public IdentifierList(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public IdentifierList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public IdentifierList(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public IdentifierList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

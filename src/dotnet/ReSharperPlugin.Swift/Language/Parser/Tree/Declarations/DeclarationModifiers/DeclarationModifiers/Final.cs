@@ -11,7 +11,7 @@ public class Final : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Final)
     { }
 
-    internal Final(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Final(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Final)
     { }
 
@@ -23,7 +23,7 @@ public class Final : DeclarationModifierLeaf, ISwiftKeyword
         return new Final(new EditableBuffer(Keyword));
     }
 
-    public static Final Create(ISwiftNode parent)
+    public static Final Create(SwiftInternalNode parent)
     {
         return new Final(new EditableBuffer(Keyword));
     }

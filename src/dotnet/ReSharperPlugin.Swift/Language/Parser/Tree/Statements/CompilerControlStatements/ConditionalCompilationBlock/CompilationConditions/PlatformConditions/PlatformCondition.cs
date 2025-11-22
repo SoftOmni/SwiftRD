@@ -13,11 +13,11 @@ public abstract class PlatformCondition : CompilationCondition
         : base(buffer, children)
     { }
 
-    protected PlatformCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected PlatformCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected PlatformCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected PlatformCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

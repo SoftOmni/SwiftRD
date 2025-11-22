@@ -17,11 +17,11 @@ public class PrecedenceGroupNameGroup : SwiftInternalNode, IList<Identifier>
         : base(buffer, children)
     { }
 
-    public PrecedenceGroupNameGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrecedenceGroupNameGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrecedenceGroupNameGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrecedenceGroupNameGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

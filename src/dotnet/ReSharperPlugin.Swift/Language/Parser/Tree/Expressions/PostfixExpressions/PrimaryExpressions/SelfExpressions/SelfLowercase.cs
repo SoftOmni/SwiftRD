@@ -14,7 +14,7 @@ public class SelfLowercase : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.SelfLowercase)
     { }
 
-    internal SelfLowercase(ISwiftNode parent, IEditableBuffer buffer)
+    internal SelfLowercase(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.SelfLowercase)
     {
         if (parent is ISelfExpression iSelfExpression)
@@ -41,7 +41,7 @@ public class SelfLowercase : SwiftLeafNode, ISwiftKeyword
         return new SelfLowercase(iSelfExpression, new EditableBuffer(Keyword));
     }
 
-    public static SelfLowercase CreateUnchecked(ISwiftNode parent)
+    public static SelfLowercase CreateUnchecked(SwiftInternalNode parent)
     {
         return new SelfLowercase(parent, new EditableBuffer(Keyword));
     }

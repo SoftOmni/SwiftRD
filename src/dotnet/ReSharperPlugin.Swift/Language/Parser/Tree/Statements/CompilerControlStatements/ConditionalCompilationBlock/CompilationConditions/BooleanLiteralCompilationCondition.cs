@@ -16,11 +16,11 @@ public class BooleanLiteralCompilationCondition : CompilationCondition
         : base(buffer, children)
     { }
 
-    public BooleanLiteralCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public BooleanLiteralCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public BooleanLiteralCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public BooleanLiteralCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

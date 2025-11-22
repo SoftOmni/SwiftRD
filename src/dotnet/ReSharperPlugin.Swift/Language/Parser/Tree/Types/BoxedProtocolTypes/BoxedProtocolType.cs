@@ -17,11 +17,11 @@ public class BoxedProtocolType : TypeInternalNode
         : base(buffer, children)
     { }
 
-    public BoxedProtocolType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public BoxedProtocolType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public BoxedProtocolType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public BoxedProtocolType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

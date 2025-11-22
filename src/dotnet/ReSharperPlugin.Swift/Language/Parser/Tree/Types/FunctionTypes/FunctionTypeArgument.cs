@@ -17,11 +17,11 @@ public abstract class FunctionTypeArgument : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected FunctionTypeArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected FunctionTypeArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected FunctionTypeArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected FunctionTypeArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

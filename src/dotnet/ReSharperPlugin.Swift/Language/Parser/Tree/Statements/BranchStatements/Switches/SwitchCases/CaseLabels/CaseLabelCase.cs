@@ -25,11 +25,11 @@ public class CaseLabelCase : SwitchCase, IList<CaseItem>
         : base(buffer, children)
     { }
 
-    public CaseLabelCase(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CaseLabelCase(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CaseLabelCase(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CaseLabelCase(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

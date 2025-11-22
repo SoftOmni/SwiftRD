@@ -12,7 +12,7 @@ public class InOut : ParameterModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Inout)
     { }
 
-    internal InOut(ISwiftNode parent, IEditableBuffer buffer) :
+    internal InOut(SwiftInternalNode parent, IEditableBuffer buffer) :
         base(parent, buffer, NodeTypes.NodeTypes.Inout)
     { }
 
@@ -32,7 +32,7 @@ public class InOut : ParameterModifier, ISwiftKeyword
         return new InOut(parameter, new EditableBuffer(Keyword));
     }
 
-    public static InOut CreateUnchecked(ISwiftNode parent)
+    public static InOut CreateUnchecked(SwiftInternalNode parent)
     {
         return new InOut(parent, new EditableBuffer(Keyword));
     }

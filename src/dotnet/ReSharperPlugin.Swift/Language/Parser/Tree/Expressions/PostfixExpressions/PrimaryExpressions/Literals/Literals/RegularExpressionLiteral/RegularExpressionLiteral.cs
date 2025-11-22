@@ -13,7 +13,7 @@ public class RegularExpressionLiteral : Literal<Regex, RegexCs>
         : base(buffer, NodeTypes.NodeTypes.RegularExpressionLiteral)
     { }
 
-    public RegularExpressionLiteral(ISwiftNode parent, IEditableBuffer buffer)
+    public RegularExpressionLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.RegularExpressionLiteral)
     { }
 

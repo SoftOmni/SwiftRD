@@ -29,11 +29,11 @@ public class ClosureSignature : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public ClosureSignature(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ClosureSignature(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ClosureSignature(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ClosureSignature(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

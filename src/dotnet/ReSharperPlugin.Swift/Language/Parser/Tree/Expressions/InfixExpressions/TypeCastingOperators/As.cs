@@ -13,7 +13,7 @@ public class As : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.As)
     { }
 
-    internal As(ISwiftNode parent, IEditableBuffer buffer)
+    internal As(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.As)
     {
         if (parent is AsTypeCastingOperator asTypeCastingOperator)
@@ -40,7 +40,7 @@ public class As : SwiftLeafNode, ISwiftKeyword
         return new As(asTypeCastingOperator, new EditableBuffer(Keyword));
     }
 
-    public static As CreateUnchecked(ISwiftNode parent)
+    public static As CreateUnchecked(SwiftInternalNode parent)
     {
         return new As(parent, new EditableBuffer(Keyword));
     }

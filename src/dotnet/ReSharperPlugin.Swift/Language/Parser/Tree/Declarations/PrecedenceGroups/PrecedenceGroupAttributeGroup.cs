@@ -16,11 +16,11 @@ public class PrecedenceGroupAttributeGroup : SwiftInternalNode, IList<Precedence
         : base(buffer, children)
     { }
 
-    public PrecedenceGroupAttributeGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrecedenceGroupAttributeGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrecedenceGroupAttributeGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrecedenceGroupAttributeGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

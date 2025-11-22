@@ -10,7 +10,7 @@ public class StringLiteral : Literal<String, string>
         : base(buffer, nodeType)
     { }
 
-    public StringLiteral(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    public StringLiteral(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
         : base(parent, buffer, nodeType)
     { }
 

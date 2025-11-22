@@ -13,11 +13,11 @@ public abstract class CompilationCondition : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected CompilationCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected CompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected CompilationCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected CompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

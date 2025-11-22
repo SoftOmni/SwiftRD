@@ -21,11 +21,11 @@ public class TupleType : TypeInternalNode, IList<ITupleTypeElement>
         : base(buffer, children)
     { }
 
-    public TupleType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public TupleType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public TupleType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public TupleType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

@@ -11,7 +11,7 @@ public class NonMutating : MutationModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.NonMutating)
     { }
 
-    internal NonMutating(ISwiftNode parent, IEditableBuffer buffer) 
+    internal NonMutating(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.NonMutating)
     { }
 
@@ -23,7 +23,7 @@ public class NonMutating : MutationModifier, ISwiftKeyword
         return new NonMutating(new EditableBuffer(Keyword));
     }
 
-    public static NonMutating Create(ISwiftNode parent)
+    public static NonMutating Create(SwiftInternalNode parent)
     {
         return new NonMutating(new EditableBuffer(Keyword));
     }

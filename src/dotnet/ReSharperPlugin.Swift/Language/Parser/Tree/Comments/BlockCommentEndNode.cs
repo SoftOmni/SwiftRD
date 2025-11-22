@@ -12,7 +12,7 @@ public class BlockCommentEndNode : SwiftLeafNode
     internal BlockCommentEndNode(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.BlockCommentEnd)
     { }
 
-    internal BlockCommentEndNode(ISwiftNode parent, IEditableBuffer buffer) : base(parent, buffer, NodeTypes.NodeTypes.BlockCommentEnd)
+    internal BlockCommentEndNode(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer, NodeTypes.NodeTypes.BlockCommentEnd)
     { }
     
     public static BlockCommentEndNode Create()
@@ -25,7 +25,7 @@ public class BlockCommentEndNode : SwiftLeafNode
         return new BlockCommentEndNode(parent, new EditableBuffer("*/"));
     }
 
-    public static BlockCommentEndNode CreateUnchecked(ISwiftNode parent)
+    public static BlockCommentEndNode CreateUnchecked(SwiftInternalNode parent)
     {
         return new BlockCommentEndNode(parent, new EditableBuffer("*/"));
     }

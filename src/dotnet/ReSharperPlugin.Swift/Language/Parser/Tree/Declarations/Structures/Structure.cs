@@ -40,11 +40,11 @@ public class Structure : Declaration
         : base(buffer, children)
     { }
 
-    public Structure(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Structure(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Structure(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Structure(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

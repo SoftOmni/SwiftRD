@@ -18,7 +18,7 @@ public abstract class Literal<TSwiftType, TCSharpValueType> : LiteralExpressionL
         : base(buffer, nodeType)
     { }
 
-    protected Literal(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    protected Literal(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
         : base(parent, buffer, nodeType)
     { }
 }

@@ -16,11 +16,11 @@ public class VarOptionalBindingCondition : OptionalBindingCondition
         : base(buffer, children)
     { }
 
-    public VarOptionalBindingCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public VarOptionalBindingCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public VarOptionalBindingCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public VarOptionalBindingCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

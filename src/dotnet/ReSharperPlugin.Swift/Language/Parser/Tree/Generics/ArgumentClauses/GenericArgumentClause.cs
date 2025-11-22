@@ -20,11 +20,11 @@ public class GenericArgumentClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public GenericArgumentClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public GenericArgumentClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public GenericArgumentClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public GenericArgumentClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

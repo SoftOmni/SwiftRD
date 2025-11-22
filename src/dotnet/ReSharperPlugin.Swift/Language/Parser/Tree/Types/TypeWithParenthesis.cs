@@ -20,11 +20,11 @@ public class TypeWithParenthesis : TypeInternalNode
         : base(buffer, children)
     { }
 
-    public TypeWithParenthesis(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public TypeWithParenthesis(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public TypeWithParenthesis(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public TypeWithParenthesis(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

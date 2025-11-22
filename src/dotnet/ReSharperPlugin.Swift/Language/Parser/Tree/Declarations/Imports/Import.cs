@@ -13,7 +13,7 @@ public class Import : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Import)
     { }
 
-    internal Import(ISwiftNode parent, IEditableBuffer buffer)
+    internal Import(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Import)
     {
         if (parent is ImportDeclaration importDeclaration)
@@ -40,7 +40,7 @@ public class Import : SwiftLeafNode, ISwiftKeyword
         return new Import(importDeclaration, new EditableBuffer(Keyword));
     }
     
-    public static Import CreateUnchecked(ISwiftNode parent)
+    public static Import CreateUnchecked(SwiftInternalNode parent)
     {
         return new Import(parent, new EditableBuffer(Keyword));
     }

@@ -27,11 +27,11 @@ public class SwitchStatement : BranchStatement, IList<SwitchCase>
         : base(buffer, children)
     { }
 
-    public SwitchStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SwitchStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SwitchStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SwitchStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

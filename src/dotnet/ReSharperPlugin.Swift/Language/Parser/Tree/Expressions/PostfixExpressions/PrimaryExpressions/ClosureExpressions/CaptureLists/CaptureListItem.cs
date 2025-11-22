@@ -15,11 +15,11 @@ public abstract class CaptureListItem : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected CaptureListItem(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected CaptureListItem(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected CaptureListItem(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected CaptureListItem(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -16,11 +16,11 @@ public class StarAvailabilityArgument : AvailabilityArgument
         : base(buffer, children)
     { }
 
-    public StarAvailabilityArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public StarAvailabilityArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public StarAvailabilityArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public StarAvailabilityArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

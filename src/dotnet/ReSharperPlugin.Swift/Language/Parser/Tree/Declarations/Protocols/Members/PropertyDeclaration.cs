@@ -31,11 +31,11 @@ public class PropertyDeclaration : ProtocolMember
         : base(buffer, children)
     { }
 
-    public PropertyDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public PropertyDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public PropertyDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public PropertyDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

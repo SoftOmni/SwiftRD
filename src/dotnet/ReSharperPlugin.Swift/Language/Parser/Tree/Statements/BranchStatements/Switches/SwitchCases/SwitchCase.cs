@@ -15,11 +15,11 @@ public abstract class SwitchCase : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected SwitchCase(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected SwitchCase(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected SwitchCase(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected SwitchCase(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

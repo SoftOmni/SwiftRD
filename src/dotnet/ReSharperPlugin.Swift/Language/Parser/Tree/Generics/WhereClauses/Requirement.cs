@@ -19,11 +19,11 @@ public abstract class Requirement : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected Requirement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected Requirement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected Requirement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected Requirement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -13,7 +13,7 @@ public class Super : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Super)
     { }
 
-    internal Super(ISwiftNode parent, IEditableBuffer buffer)
+    internal Super(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Super)
     {
         if (parent is SuperClassExpression superExpression)
@@ -40,7 +40,7 @@ public class Super : SwiftLeafNode, ISwiftKeyword
         return new Super(superClassExpression, new EditableBuffer(Keyword));
     }
 
-    public static Super CreateUnchecked(ISwiftNode parent)
+    public static Super CreateUnchecked(SwiftInternalNode parent)
     {
         return new Super(parent, new EditableBuffer(Keyword));
     }

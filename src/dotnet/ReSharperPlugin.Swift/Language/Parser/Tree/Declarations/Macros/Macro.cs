@@ -41,11 +41,11 @@ public class Macro : Declaration
         : base(buffer, children)
     { }
 
-    public Macro(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public Macro(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public Macro(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public Macro(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -21,10 +21,10 @@ public class ArchitectureCondition : PlatformCondition
     internal ArchitectureCondition(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
     { }
 
-    internal ArchitectureCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    internal ArchitectureCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
-    internal ArchitectureCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    internal ArchitectureCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
     public override bool Evaluatable()

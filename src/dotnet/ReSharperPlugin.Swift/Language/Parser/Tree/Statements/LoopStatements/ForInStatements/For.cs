@@ -13,7 +13,7 @@ public class For : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.For)
     { }
 
-    internal For(ISwiftNode parent, IEditableBuffer buffer)
+    internal For(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.For)
     {
         if (parent is ForInStatement forInStatement)
@@ -40,7 +40,7 @@ public class For : SwiftLeafNode, ISwiftKeyword
         return new For(forInStatement, new EditableBuffer(Keyword));
     }
 
-    public static For CreateUnchecked(ISwiftNode parent)
+    public static For CreateUnchecked(SwiftInternalNode parent)
     {
         return new For(parent, new EditableBuffer(Keyword));
     }

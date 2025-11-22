@@ -26,11 +26,11 @@ public abstract class Attribute : SwiftInternalNode, IList<BalancedToken>
         : base(buffer, children)
     { }
 
-    protected Attribute(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected Attribute(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected Attribute(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected Attribute(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

@@ -11,7 +11,7 @@ public class Borrowing : ParameterModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Borrowing)
     { }
 
-    internal Borrowing(ISwiftNode parent, IEditableBuffer buffer) :
+    internal Borrowing(SwiftInternalNode parent, IEditableBuffer buffer) :
         base(parent, buffer, NodeTypes.NodeTypes.Borrowing)
     { }
 
@@ -31,7 +31,7 @@ public class Borrowing : ParameterModifier, ISwiftKeyword
         return new Borrowing(parameter, new EditableBuffer(Keyword));
     }
 
-    public static Borrowing CreateUnchecked(ISwiftNode parent)
+    public static Borrowing CreateUnchecked(SwiftInternalNode parent)
     {
         return new Borrowing(parent, new EditableBuffer(Keyword));
     }

@@ -18,11 +18,11 @@ public class CaseItem : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public CaseItem(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CaseItem(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CaseItem(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CaseItem(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

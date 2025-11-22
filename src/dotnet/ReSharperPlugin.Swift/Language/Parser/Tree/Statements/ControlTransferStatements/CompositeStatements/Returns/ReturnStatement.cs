@@ -20,11 +20,11 @@ public class ReturnStatement : ControlTransferStatementInternalNode
         : base(buffer, children)
     { }
 
-    public ReturnStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ReturnStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ReturnStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ReturnStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

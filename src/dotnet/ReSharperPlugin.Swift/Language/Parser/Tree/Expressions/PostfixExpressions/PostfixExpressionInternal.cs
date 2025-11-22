@@ -13,11 +13,11 @@ public abstract class PostfixExpressionInternalNode : SwiftInternalNode, IPostfi
         : base(buffer, children)
     { }
 
-    protected PostfixExpressionInternalNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected PostfixExpressionInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected PostfixExpressionInternalNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected PostfixExpressionInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

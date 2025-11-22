@@ -11,7 +11,7 @@ public abstract class ParameterModifier : SwiftLeafNode
         : base(buffer, nodeType)
     { }
 
-    internal ParameterModifier(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    internal ParameterModifier(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
         : base(buffer, nodeType)
     {
         if (parent is Parameter parameter)

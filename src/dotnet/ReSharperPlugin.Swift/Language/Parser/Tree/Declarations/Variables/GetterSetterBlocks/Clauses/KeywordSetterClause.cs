@@ -14,11 +14,11 @@ public class KeywordSetterClause : SetterClause
         : base(buffer, children)
     { }
 
-    public KeywordSetterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public KeywordSetterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public KeywordSetterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public KeywordSetterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

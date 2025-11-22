@@ -9,7 +9,7 @@ public abstract class Directive : SwiftLeafNode
         : base(buffer, nodeType)
     { }
 
-    protected Directive(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    protected Directive(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 }

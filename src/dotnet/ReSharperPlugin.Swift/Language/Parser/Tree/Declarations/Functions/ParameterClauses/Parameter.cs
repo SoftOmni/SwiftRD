@@ -35,11 +35,11 @@ public class Parameter : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public Parameter(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Parameter(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Parameter(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Parameter(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -11,7 +11,7 @@ public class Required : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Required)
     { }
 
-    internal Required(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Required(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Required)
     { }
 
@@ -23,7 +23,7 @@ public class Required : DeclarationModifierLeaf, ISwiftKeyword
         return new Required(new EditableBuffer(Keyword));
     }
 
-    public static Required Create(ISwiftNode parent)
+    public static Required Create(SwiftInternalNode parent)
     {
         return new Required(new EditableBuffer(Keyword));
     }

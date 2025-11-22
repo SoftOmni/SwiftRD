@@ -22,11 +22,11 @@ public class UnownedSafe : DeclarationModifierInternal
         : base(buffer, children)
     { }
 
-    public UnownedSafe(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public UnownedSafe(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public UnownedSafe(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public UnownedSafe(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

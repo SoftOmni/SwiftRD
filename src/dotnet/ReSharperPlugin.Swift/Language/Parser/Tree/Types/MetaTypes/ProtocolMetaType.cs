@@ -15,11 +15,11 @@ public class ProtocolMetaType : MetaType
         : base(buffer, children)
     { }
 
-    public ProtocolMetaType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ProtocolMetaType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ProtocolMetaType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ProtocolMetaType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

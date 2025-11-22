@@ -21,11 +21,11 @@ public class SquareBracketBalancedToken : BalancedToken, IList<BalancedToken>
         : base(buffer, children)
     { }
 
-    public SquareBracketBalancedToken(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public SquareBracketBalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public SquareBracketBalancedToken(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public SquareBracketBalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

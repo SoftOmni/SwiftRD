@@ -13,7 +13,7 @@ public class ExtensionKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Extension)
     { }
 
-    internal ExtensionKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal ExtensionKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Extension)
     {
         if (parent is Extension extension)
@@ -40,7 +40,7 @@ public class ExtensionKeyword : SwiftLeafNode, ISwiftKeyword
         return new ExtensionKeyword(extension, new EditableBuffer(Keyword));
     }
 
-    public static ExtensionKeyword CreateUnchecked(ISwiftNode parent)
+    public static ExtensionKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new ExtensionKeyword(parent, new EditableBuffer(Keyword));
     }

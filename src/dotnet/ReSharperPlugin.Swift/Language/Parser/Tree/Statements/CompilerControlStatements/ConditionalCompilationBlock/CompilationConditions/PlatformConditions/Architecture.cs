@@ -24,7 +24,7 @@ public class Architecture
         _buffer = buffer;
     }
 
-    protected Architecture(ISwiftNode parent, IEditableBuffer buffer)
+    protected Architecture(SwiftInternalNode parent, IEditableBuffer buffer)
     {
         _buffer = buffer;
     }
@@ -49,7 +49,7 @@ public class Architecture
         return new Architecture(osPlatformCondition, new EditableBuffer(ArmString));
     }
 
-    internal static Architecture CreateArm(ISwiftNode parent)
+    internal static Architecture CreateArm(SwiftInternalNode parent)
     {
         return new Architecture(parent, new EditableBuffer(ArmString));
     }
@@ -64,7 +64,7 @@ public class Architecture
         return new Architecture(osPlatformCondition, new EditableBuffer(Arm64String));
     }
 
-    internal static Architecture CreateArm64(ISwiftNode parent)
+    internal static Architecture CreateArm64(SwiftInternalNode parent)
     {
         return new Architecture(parent, new EditableBuffer(Arm64String));
     }
@@ -79,7 +79,7 @@ public class Architecture
         return new Architecture(osPlatformCondition, new EditableBuffer(I386String));
     }
 
-    internal static Architecture CreateI386(ISwiftNode parent)
+    internal static Architecture CreateI386(SwiftInternalNode parent)
     {
         return new Architecture(parent, new EditableBuffer(I386String));
     }
@@ -94,7 +94,7 @@ public class Architecture
         return new Architecture(osPlatformCondition, new EditableBuffer(Wasm32String));
     }
 
-    internal static Architecture CreateWasm32(ISwiftNode parent)
+    internal static Architecture CreateWasm32(SwiftInternalNode parent)
     {
         return new Architecture(parent, new EditableBuffer(Wasm32String));
     }
@@ -109,7 +109,7 @@ public class Architecture
         return new Architecture(osPlatformCondition, new EditableBuffer(X8664String));
     }
 
-    internal static Architecture CreateX8664(ISwiftNode parent)
+    internal static Architecture CreateX8664(SwiftInternalNode parent)
     {
         return new Architecture(parent, new EditableBuffer(X8664String));
     }

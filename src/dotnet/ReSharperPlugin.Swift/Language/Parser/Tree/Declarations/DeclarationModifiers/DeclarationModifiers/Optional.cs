@@ -11,7 +11,7 @@ public class Optional : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Optional)
     { }
 
-    internal Optional(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Optional(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Optional)
     { }
 
@@ -23,7 +23,7 @@ public class Optional : DeclarationModifierLeaf, ISwiftKeyword
         return new Optional(new EditableBuffer(Keyword));
     }
 
-    public static Optional Create(ISwiftNode parent)
+    public static Optional Create(SwiftInternalNode parent)
     {
         return new Optional(new EditableBuffer(Keyword));
     }

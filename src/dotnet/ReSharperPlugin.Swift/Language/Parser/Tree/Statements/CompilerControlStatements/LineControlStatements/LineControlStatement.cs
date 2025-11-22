@@ -21,11 +21,11 @@ public class LineControlStatement : CompilerControlStatement
         : base(buffer, children)
     { }
 
-    public LineControlStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public LineControlStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public LineControlStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public LineControlStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

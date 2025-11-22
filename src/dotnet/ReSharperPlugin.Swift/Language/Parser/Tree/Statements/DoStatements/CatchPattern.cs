@@ -19,11 +19,11 @@ public class CatchPattern : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public CatchPattern(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CatchPattern(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CatchPattern(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CatchPattern(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

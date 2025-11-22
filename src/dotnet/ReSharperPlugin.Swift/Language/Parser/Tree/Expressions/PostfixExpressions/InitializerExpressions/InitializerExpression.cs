@@ -28,11 +28,11 @@ public class InitializerExpression : PostfixExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public InitializerExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public InitializerExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public InitializerExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public InitializerExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

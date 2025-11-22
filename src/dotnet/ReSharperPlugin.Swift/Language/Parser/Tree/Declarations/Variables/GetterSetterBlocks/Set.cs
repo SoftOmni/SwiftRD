@@ -11,7 +11,7 @@ public class Set : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Set)
     { }
 
-    internal Set(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Set(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Set)
     { }
 
@@ -23,7 +23,7 @@ public class Set : SwiftLeafNode, ISwiftKeyword
         return new Set(new EditableBuffer(Keyword));
     }
 
-    public static Set Create(ISwiftNode parent)
+    public static Set Create(SwiftInternalNode parent)
     {
         return new Set(new EditableBuffer(Keyword));
     }

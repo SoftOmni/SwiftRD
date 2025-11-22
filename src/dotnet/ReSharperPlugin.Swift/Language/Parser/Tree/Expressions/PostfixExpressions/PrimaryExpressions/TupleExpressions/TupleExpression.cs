@@ -23,11 +23,11 @@ public class TupleExpression : PrimaryExpressionInternalNode, IList<TupleElement
         : base(buffer, children)
     { }
 
-    public TupleExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public TupleExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public TupleExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public TupleExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

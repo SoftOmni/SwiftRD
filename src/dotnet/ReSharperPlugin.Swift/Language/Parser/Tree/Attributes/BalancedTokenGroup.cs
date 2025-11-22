@@ -16,11 +16,11 @@ public class BalancedTokenGroup : SwiftInternalNode, IList<BalancedToken>
         : base(buffer, children)
     { }
 
-    public BalancedTokenGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public BalancedTokenGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public BalancedTokenGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public BalancedTokenGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

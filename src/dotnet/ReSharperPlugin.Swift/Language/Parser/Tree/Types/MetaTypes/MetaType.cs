@@ -18,11 +18,11 @@ public abstract class MetaType : TypeInternalNode
         : base(buffer, children)
     { }
 
-    protected MetaType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected MetaType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected MetaType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected MetaType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

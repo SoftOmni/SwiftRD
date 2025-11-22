@@ -25,11 +25,11 @@ public class DictionaryLiteral : LiteralExpressionInternalNode, IList<Dictionary
         : base(buffer, children)
     { }
 
-    public DictionaryLiteral(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public DictionaryLiteral(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public DictionaryLiteral(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public DictionaryLiteral(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

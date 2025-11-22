@@ -12,7 +12,7 @@ public class ExclamationMark : SwiftLeafNode, ISwiftPunctuator, IKeyPathPostfix
         : base(buffer, NodeTypes.NodeTypes.ExclamationMark)
     { }
 
-    internal ExclamationMark(ISwiftNode parent, IEditableBuffer buffer) 
+    internal ExclamationMark(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.ExclamationMark)
     { }
 
@@ -24,7 +24,7 @@ public class ExclamationMark : SwiftLeafNode, ISwiftPunctuator, IKeyPathPostfix
         return new ExclamationMark(new EditableBuffer(Value));
     }
 
-    public static ExclamationMark Create(ISwiftNode parent)
+    public static ExclamationMark Create(SwiftInternalNode parent)
     {
         return new ExclamationMark(new EditableBuffer(Value));
     }

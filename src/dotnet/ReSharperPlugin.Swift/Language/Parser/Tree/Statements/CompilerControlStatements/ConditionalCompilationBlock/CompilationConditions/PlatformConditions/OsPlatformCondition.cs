@@ -23,11 +23,11 @@ public class OsPlatformCondition : PlatformCondition
         : base(buffer, children)
     { }
 
-    internal OsPlatformCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    internal OsPlatformCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    internal OsPlatformCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    internal OsPlatformCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

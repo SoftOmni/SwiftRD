@@ -11,7 +11,7 @@ public class Lazy : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Lazy)
     { }
 
-    internal Lazy(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Lazy(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Lazy)
     { }
 
@@ -23,7 +23,7 @@ public class Lazy : DeclarationModifierLeaf, ISwiftKeyword
         return new Lazy(new EditableBuffer(Keyword));
     }
 
-    public static Lazy Create(ISwiftNode parent)
+    public static Lazy Create(SwiftInternalNode parent)
     {
         return new Lazy(new EditableBuffer(Keyword));
     }

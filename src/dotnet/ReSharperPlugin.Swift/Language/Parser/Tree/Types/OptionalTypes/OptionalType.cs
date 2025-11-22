@@ -18,11 +18,11 @@ public class OptionalType : TypeInternalNode
         : base(buffer, children)
     { }
 
-    public OptionalType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public OptionalType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public OptionalType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public OptionalType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

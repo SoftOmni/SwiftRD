@@ -34,11 +34,11 @@ public class Class : Declaration
         : base(buffer, children)
     { }
 
-    public Class(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Class(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Class(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Class(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -38,11 +38,11 @@ public abstract class Subscript : Declaration
         : base(buffer, children)
     { }
 
-    protected Subscript(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected Subscript(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected Subscript(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected Subscript(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -14,11 +14,11 @@ public abstract class AvailabilityArgument : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected AvailabilityArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected AvailabilityArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected AvailabilityArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected AvailabilityArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

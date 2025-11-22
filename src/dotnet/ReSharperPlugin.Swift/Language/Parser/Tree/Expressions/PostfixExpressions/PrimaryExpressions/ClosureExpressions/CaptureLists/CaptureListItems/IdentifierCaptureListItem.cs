@@ -16,11 +16,11 @@ public class IdentifierCaptureListItem : CaptureListItem
         : base(buffer, children)
     { }
 
-    public IdentifierCaptureListItem(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public IdentifierCaptureListItem(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public IdentifierCaptureListItem(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public IdentifierCaptureListItem(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -9,7 +9,7 @@ public abstract class DeclarationModifierLeaf : SwiftLeafNode, IDeclarationModif
         : base(buffer, nodeType)
     { }
 
-    public DeclarationModifierLeaf(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    public DeclarationModifierLeaf(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 }

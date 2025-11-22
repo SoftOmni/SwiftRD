@@ -13,7 +13,7 @@ public class FloatingPointLiteral : Literal<Double, BigDecimal>
         : base(buffer, NodeTypes.NodeTypes.FloatingPointLiteral)
     { }
 
-    public FloatingPointLiteral(ISwiftNode parent, IEditableBuffer buffer)
+    public FloatingPointLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.FloatingPointLiteral)
     { }
 

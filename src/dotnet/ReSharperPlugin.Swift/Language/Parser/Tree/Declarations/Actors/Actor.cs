@@ -40,11 +40,11 @@ public class Actor : Declaration
         : base(buffer, children)
     { }
 
-    public Actor(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Actor(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Actor(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Actor(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

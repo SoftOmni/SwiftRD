@@ -29,7 +29,7 @@ public class OperatingSystem
         _buffer = buffer;
     }
 
-    protected OperatingSystem(ISwiftNode parent, IEditableBuffer buffer)
+    protected OperatingSystem(SwiftInternalNode parent, IEditableBuffer buffer)
     {
         _buffer = buffer;
     }
@@ -58,7 +58,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(MacOsString));
     }
 
-    internal static OperatingSystem CreateMacOs(ISwiftNode parent)
+    internal static OperatingSystem CreateMacOs(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(MacOsString));
     }
@@ -73,7 +73,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(IOsString));
     }
 
-    internal static OperatingSystem CreateIOs(ISwiftNode parent)
+    internal static OperatingSystem CreateIOs(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(IOsString));
     }
@@ -88,7 +88,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(WatchOsString));
     }
 
-    internal static OperatingSystem CreateWatchOs(ISwiftNode parent)
+    internal static OperatingSystem CreateWatchOs(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(WatchOsString));
     }
@@ -103,7 +103,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(TvOsString));
     }
 
-    internal static OperatingSystem CreateTvOs(ISwiftNode parent)
+    internal static OperatingSystem CreateTvOs(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(TvOsString));
     }
@@ -118,7 +118,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(VisionOsString));
     }
 
-    internal static OperatingSystem CreateVisionOs(ISwiftNode parent)
+    internal static OperatingSystem CreateVisionOs(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(VisionOsString));
     }
@@ -133,7 +133,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(LinuxString));
     }
 
-    internal static OperatingSystem CreateLinux(ISwiftNode parent)
+    internal static OperatingSystem CreateLinux(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(LinuxString));
     }
@@ -148,7 +148,7 @@ public class OperatingSystem
         return new OperatingSystem(osPlatformCondition, new EditableBuffer(WindowsString));
     }
 
-    internal static OperatingSystem CreateWindows(ISwiftNode parent)
+    internal static OperatingSystem CreateWindows(SwiftInternalNode parent)
     {
         return new OperatingSystem(parent, new EditableBuffer(WindowsString));
     }

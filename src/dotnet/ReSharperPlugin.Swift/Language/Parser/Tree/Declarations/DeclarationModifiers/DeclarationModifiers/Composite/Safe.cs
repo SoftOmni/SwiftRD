@@ -13,7 +13,7 @@ public class Safe : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Safe)
     { }
 
-    internal Safe(ISwiftNode parent, IEditableBuffer buffer)
+    internal Safe(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Safe)
     {
         if (parent is UnownedSafe unownedSafe)
@@ -40,7 +40,7 @@ public class Safe : SwiftLeafNode, ISwiftKeyword
         return new Safe(unownedSafe, new EditableBuffer(Keyword));
     }
 
-    public static Safe CreateUnchecked(ISwiftNode parent)
+    public static Safe CreateUnchecked(SwiftInternalNode parent)
     {
         return new Safe(parent, new EditableBuffer(Keyword));
     }

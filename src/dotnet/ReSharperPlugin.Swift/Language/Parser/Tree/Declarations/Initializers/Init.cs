@@ -13,7 +13,7 @@ public class Init : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Init)
     { }
 
-    internal Init(ISwiftNode parent, IEditableBuffer buffer)
+    internal Init(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Init)
     {
         if (parent is Initializer initializer)
@@ -40,7 +40,7 @@ public class Init : SwiftLeafNode, ISwiftKeyword
         return new Init(initializer, new EditableBuffer(Keyword));
     }
 
-    public static Init CreateUnchecked(ISwiftNode parent)
+    public static Init CreateUnchecked(SwiftInternalNode parent)
     {
         return new Init(parent, new EditableBuffer(Keyword));
     }

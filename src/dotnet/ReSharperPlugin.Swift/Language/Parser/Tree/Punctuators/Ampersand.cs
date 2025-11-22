@@ -11,7 +11,7 @@ public class Ampersand : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Ampersand)
     { }
 
-    internal Ampersand(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Ampersand(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Ampersand)
     { }
 
@@ -23,7 +23,7 @@ public class Ampersand : SwiftLeafNode, ISwiftPunctuator
         return new Ampersand(new EditableBuffer(Value));
     }
 
-    public static Ampersand Create(ISwiftNode parent)
+    public static Ampersand Create(SwiftInternalNode parent)
     {
         return new Ampersand(new EditableBuffer(Value));
     }

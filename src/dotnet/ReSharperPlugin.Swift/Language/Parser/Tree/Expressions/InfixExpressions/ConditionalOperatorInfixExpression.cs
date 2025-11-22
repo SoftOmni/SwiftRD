@@ -23,11 +23,11 @@ public class ConditionalOperatorInfixExpression : InfixExpression
         : base(buffer, children)
     { }
 
-    public ConditionalOperatorInfixExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ConditionalOperatorInfixExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ConditionalOperatorInfixExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ConditionalOperatorInfixExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -18,11 +18,11 @@ public class OptionalChainingExpression : PostfixExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public OptionalChainingExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public OptionalChainingExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public OptionalChainingExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public OptionalChainingExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

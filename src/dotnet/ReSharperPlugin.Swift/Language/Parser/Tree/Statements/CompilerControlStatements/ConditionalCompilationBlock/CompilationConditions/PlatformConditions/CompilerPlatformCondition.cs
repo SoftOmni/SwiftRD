@@ -26,11 +26,11 @@ public class CompilerPlatformCondition : PlatformCondition
         : base(buffer, children)
     { }
 
-    public CompilerPlatformCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CompilerPlatformCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CompilerPlatformCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CompilerPlatformCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

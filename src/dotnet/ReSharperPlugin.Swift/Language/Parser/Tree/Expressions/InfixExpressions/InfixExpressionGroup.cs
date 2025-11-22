@@ -16,11 +16,11 @@ public class InfixExpressionGroup : SwiftInternalNode, IList<InfixExpression>
         : base(buffer, children)
     { }
 
-    public InfixExpressionGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public InfixExpressionGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public InfixExpressionGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public InfixExpressionGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

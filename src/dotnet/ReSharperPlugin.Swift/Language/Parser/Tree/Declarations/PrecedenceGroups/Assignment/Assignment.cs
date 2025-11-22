@@ -13,7 +13,7 @@ public class Assignment : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Assignment)
     { }
 
-    internal Assignment(ISwiftNode parent, IEditableBuffer buffer)
+    internal Assignment(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Assignment)
     {
         if (parent is PrecedenceGroupAssignment precedenceGroupAssignment)
@@ -40,7 +40,7 @@ public class Assignment : SwiftLeafNode, ISwiftKeyword
         return new Assignment(precedenceGroupAssignment, new EditableBuffer(Keyword));
     }
 
-    public static Assignment CreateUnchecked(ISwiftNode parent)
+    public static Assignment CreateUnchecked(SwiftInternalNode parent)
     {
         return new Assignment(parent, new EditableBuffer(Keyword));
     }

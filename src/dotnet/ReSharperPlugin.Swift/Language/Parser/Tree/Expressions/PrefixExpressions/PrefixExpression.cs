@@ -19,11 +19,11 @@ public abstract class PrefixExpression : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected PrefixExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected PrefixExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected PrefixExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected PrefixExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

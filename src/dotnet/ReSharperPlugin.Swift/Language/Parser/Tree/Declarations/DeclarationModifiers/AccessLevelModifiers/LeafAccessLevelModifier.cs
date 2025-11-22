@@ -9,7 +9,7 @@ public class LeafAccessLevelModifier : DeclarationModifierLeaf, IAccessLevelModi
         : base(buffer, nodeType)
     { }
 
-    public LeafAccessLevelModifier(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    public LeafAccessLevelModifier(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 }

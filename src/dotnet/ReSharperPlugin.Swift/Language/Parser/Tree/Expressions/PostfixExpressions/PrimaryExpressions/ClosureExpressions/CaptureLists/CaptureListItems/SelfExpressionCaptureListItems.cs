@@ -17,11 +17,11 @@ public class SelfExpressionCaptureListItems : CaptureListItem
         : base(buffer, children)
     { }
 
-    public SelfExpressionCaptureListItems(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SelfExpressionCaptureListItems(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SelfExpressionCaptureListItems(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SelfExpressionCaptureListItems(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

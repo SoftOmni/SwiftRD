@@ -11,7 +11,7 @@ public class Async: SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Async)
     { }
 
-    internal Async(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Async(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Async)
     { }
 
@@ -23,7 +23,7 @@ public class Async: SwiftLeafNode, ISwiftKeyword
         return new Async(new EditableBuffer(Keyword));
     }
 
-    public static Async Create(ISwiftNode parent)
+    public static Async Create(SwiftInternalNode parent)
     {
         return new Async(new EditableBuffer(Keyword));
     }

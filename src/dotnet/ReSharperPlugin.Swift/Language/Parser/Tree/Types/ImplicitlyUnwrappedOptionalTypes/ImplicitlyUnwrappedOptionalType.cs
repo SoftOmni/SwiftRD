@@ -18,11 +18,11 @@ public class ImplicitlyUnwrappedOptionalType : TypeInternalNode
         : base(buffer, children)
     { }
 
-    public ImplicitlyUnwrappedOptionalType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ImplicitlyUnwrappedOptionalType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ImplicitlyUnwrappedOptionalType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ImplicitlyUnwrappedOptionalType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -13,7 +13,7 @@ public class Protocol : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ProtocolUppercase)
     { }
 
-    internal Protocol(ISwiftNode parent, IEditableBuffer buffer)
+    internal Protocol(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ProtocolUppercase)
     {
         if (parent is ProtocolMetaType protocolMetaType)
@@ -40,7 +40,7 @@ public class Protocol : SwiftLeafNode, ISwiftKeyword
         return new Protocol(protocolMetaType, new EditableBuffer(Keyword));
     }
 
-    public static Protocol CreateUnchecked(ISwiftNode parent)
+    public static Protocol CreateUnchecked(SwiftInternalNode parent)
     {
         return new Protocol(parent, new EditableBuffer(Keyword));
     }

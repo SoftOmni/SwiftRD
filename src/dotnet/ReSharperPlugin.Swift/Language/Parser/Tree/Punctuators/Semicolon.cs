@@ -11,7 +11,7 @@ public class Semicolon : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Semicolon)
     { }
 
-    internal Semicolon(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Semicolon(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Semicolon)
     { }
 
@@ -23,7 +23,7 @@ public class Semicolon : SwiftLeafNode, ISwiftPunctuator
         return new Semicolon(new EditableBuffer(Value));
     }
 
-    public static Semicolon Create(ISwiftNode parent)
+    public static Semicolon Create(SwiftInternalNode parent)
     {
         return new Semicolon(new EditableBuffer(Value));
     }

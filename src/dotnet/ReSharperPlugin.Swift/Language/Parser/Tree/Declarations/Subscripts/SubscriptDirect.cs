@@ -16,11 +16,11 @@ public class SubscriptDirect : Subscript
         : base(buffer, children)
     { }
 
-    public SubscriptDirect(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SubscriptDirect(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SubscriptDirect(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SubscriptDirect(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }
