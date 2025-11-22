@@ -22,11 +22,11 @@ public class PostfixSelfExpression : PostfixExpressionInternalNode, ISelfExpress
         : base(buffer, children)
     { }
 
-    public PostfixSelfExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PostfixSelfExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PostfixSelfExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PostfixSelfExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

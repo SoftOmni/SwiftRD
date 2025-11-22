@@ -14,7 +14,7 @@ public class Return : ControlTransferStatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Return)
     { }
 
-    internal Return(ISwiftNode parent, IEditableBuffer buffer)
+    internal Return(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Return)
     {
         if (parent is ReturnStatement returnStatement)
@@ -41,7 +41,7 @@ public class Return : ControlTransferStatementLeafNode, ISwiftKeyword
         return new Return(returnStatement, new EditableBuffer(Keyword));
     }
 
-    public static Return CreateUnchecked(ISwiftNode parent)
+    public static Return CreateUnchecked(SwiftInternalNode parent)
     {
         return new Return(parent, new EditableBuffer(Keyword));
     }

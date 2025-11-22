@@ -22,11 +22,11 @@ public class SuperClassSubscriptExpression : SuperClassExpression
         : base(buffer, children)
     { }
 
-    public SuperClassSubscriptExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SuperClassSubscriptExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SuperClassSubscriptExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SuperClassSubscriptExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

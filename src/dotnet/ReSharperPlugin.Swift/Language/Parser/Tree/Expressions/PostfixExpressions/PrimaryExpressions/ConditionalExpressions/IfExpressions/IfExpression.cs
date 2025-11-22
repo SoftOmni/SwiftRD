@@ -26,11 +26,11 @@ public class IfExpression : ConditionalExpression
         : base(buffer, children)
     { }
 
-    public IfExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public IfExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public IfExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public IfExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

@@ -28,11 +28,11 @@ public class FileLiteral : LiteralExpressionInternalNode, ILiteral<URL, Uri>, IP
         : base(buffer, children)
     { }
 
-    public FileLiteral(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public FileLiteral(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public FileLiteral(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public FileLiteral(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

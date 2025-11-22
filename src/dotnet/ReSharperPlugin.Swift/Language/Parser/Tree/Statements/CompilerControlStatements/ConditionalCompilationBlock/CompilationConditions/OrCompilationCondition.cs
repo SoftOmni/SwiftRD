@@ -20,11 +20,11 @@ public class OrCompilationCondition : CompilationCondition
         : base(buffer, children)
     { }
 
-    internal OrCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    internal OrCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    internal OrCompilationCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    internal OrCompilationCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

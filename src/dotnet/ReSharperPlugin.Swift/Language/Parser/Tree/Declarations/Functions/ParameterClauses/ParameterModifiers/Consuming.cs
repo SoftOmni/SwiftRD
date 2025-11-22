@@ -11,7 +11,7 @@ public class Consuming : ParameterModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Consuming)
     { }
 
-    internal Consuming(ISwiftNode parent, IEditableBuffer buffer) :
+    internal Consuming(SwiftInternalNode parent, IEditableBuffer buffer) :
         base(parent, buffer, NodeTypes.NodeTypes.Consuming)
     { }
 
@@ -31,7 +31,7 @@ public class Consuming : ParameterModifier, ISwiftKeyword
         return new Consuming(parameter, new EditableBuffer(Keyword));
     }
 
-    public static Consuming CreateUnchecked(ISwiftNode parent)
+    public static Consuming CreateUnchecked(SwiftInternalNode parent)
     {
         return new Consuming(parent, new EditableBuffer(Keyword));
     }

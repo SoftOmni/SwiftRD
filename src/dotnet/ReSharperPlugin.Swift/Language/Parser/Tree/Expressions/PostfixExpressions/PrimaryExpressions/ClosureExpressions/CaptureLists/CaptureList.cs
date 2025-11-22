@@ -21,11 +21,11 @@ public class CaptureList : SwiftInternalNode, IList<CaptureListItem>
         : base(buffer, children)
     { }
 
-    public CaptureList(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CaptureList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CaptureList(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CaptureList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

@@ -11,7 +11,7 @@ public class Get : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Get)
     { }
 
-    internal Get(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Get(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Get)
     { }
 
@@ -23,7 +23,7 @@ public class Get : SwiftLeafNode, ISwiftKeyword
         return new Get(new EditableBuffer(Keyword));
     }
 
-    public static Get Create(ISwiftNode parent)
+    public static Get Create(SwiftInternalNode parent)
     {
         return new Get(new EditableBuffer(Keyword));
     }

@@ -13,7 +13,7 @@ public class ColorLiteral : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ReservedColorLiteral)
     { }
 
-    internal ColorLiteral(ISwiftNode parent, IEditableBuffer buffer)
+    internal ColorLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ReservedColorLiteral)
     {
         if (parent is Color color)
@@ -40,7 +40,7 @@ public class ColorLiteral : SwiftLeafNode, ISwiftKeyword
         return new ColorLiteral(color, new EditableBuffer(Keyword));
     }
 
-    public static ColorLiteral CreateUnchecked(ISwiftNode parent)
+    public static ColorLiteral CreateUnchecked(SwiftInternalNode parent)
     {
         return new ColorLiteral(parent, new EditableBuffer(Keyword));
     }

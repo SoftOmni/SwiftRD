@@ -28,11 +28,11 @@ public abstract class SetterClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected SetterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected SetterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected SetterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected SetterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

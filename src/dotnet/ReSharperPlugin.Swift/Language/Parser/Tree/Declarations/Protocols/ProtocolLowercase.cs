@@ -13,7 +13,7 @@ public class ProtocolLowercase : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ProtocolLowercase)
     { }
 
-    internal ProtocolLowercase(ISwiftNode parent, IEditableBuffer buffer)
+    internal ProtocolLowercase(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ProtocolLowercase)
     {
         if (parent is Protocol protocol)
@@ -40,7 +40,7 @@ public class ProtocolLowercase : SwiftLeafNode, ISwiftKeyword
         return new ProtocolLowercase(protocol, new EditableBuffer(Keyword));
     }
 
-    public static ProtocolLowercase CreateUnchecked(ISwiftNode parent)
+    public static ProtocolLowercase CreateUnchecked(SwiftInternalNode parent)
     {
         return new ProtocolLowercase(parent, new EditableBuffer(Keyword));
     }

@@ -15,11 +15,11 @@ public abstract class InfixExpression : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected InfixExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected InfixExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected InfixExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected InfixExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
     

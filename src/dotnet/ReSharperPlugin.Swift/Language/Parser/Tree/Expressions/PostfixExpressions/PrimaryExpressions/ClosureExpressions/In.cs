@@ -11,7 +11,7 @@ public class In : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.In)
     { }
 
-    internal In(ISwiftNode parent, IEditableBuffer buffer)
+    internal In(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.In)
     { }
 
@@ -22,7 +22,7 @@ public class In : SwiftLeafNode, ISwiftKeyword
         return new In(new EditableBuffer(Keyword));
     }
 
-    public static In Create(ISwiftNode parent)
+    public static In Create(SwiftInternalNode parent)
     {
         return new In(parent, new EditableBuffer(Keyword));
     }

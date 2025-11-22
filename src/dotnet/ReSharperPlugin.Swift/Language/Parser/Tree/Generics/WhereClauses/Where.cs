@@ -17,7 +17,7 @@ public class Where : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Where)
     { }
 
-    internal Where(ISwiftNode parent, IEditableBuffer buffer)
+    internal Where(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Where)
     {
         if (parent is GenericWhereClause genericWhereClause)
@@ -59,7 +59,7 @@ public class Where : SwiftLeafNode, ISwiftKeyword
         return new Where(whereClause, new EditableBuffer(Keyword));
     }
 
-    public static Where CreateUnchecked(ISwiftNode parent)
+    public static Where CreateUnchecked(SwiftInternalNode parent)
     {
         return new Where(parent, new EditableBuffer(Keyword));
     }

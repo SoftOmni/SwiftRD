@@ -11,7 +11,7 @@ public class If : StatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.If)
     { }
 
-    public If(ISwiftNode parent, IEditableBuffer buffer)
+    public If(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.If)
     { }
 

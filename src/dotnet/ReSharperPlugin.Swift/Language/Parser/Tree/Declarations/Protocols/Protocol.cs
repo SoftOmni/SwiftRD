@@ -34,11 +34,11 @@ public class Protocol : Declaration
         : base(buffer, children)
     { }
 
-    public Protocol(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Protocol(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Protocol(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Protocol(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

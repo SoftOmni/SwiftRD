@@ -16,7 +16,7 @@ public class Switch : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Switch)
     { }
 
-    internal Switch(ISwiftNode parent, IEditableBuffer buffer)
+    internal Switch(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Switch)
     {
         if (parent is SwitchStatement switchStatement)
@@ -59,7 +59,7 @@ public class Switch : SwiftLeafNode, ISwiftKeyword
         return new Switch(switchExpression, new EditableBuffer(Keyword));
     }
 
-    public static Switch CreateUnchecked(ISwiftNode parent)
+    public static Switch CreateUnchecked(SwiftInternalNode parent)
     {
         return new Switch(parent, new EditableBuffer(Keyword));
     }

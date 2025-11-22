@@ -13,7 +13,7 @@ public class OperatorKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Operator)
     { }
 
-    internal OperatorKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal OperatorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Operator)
     {
         if (parent is OperatorDeclaration operatorDeclaration)
@@ -40,7 +40,7 @@ public class OperatorKeyword : SwiftLeafNode, ISwiftKeyword
         return new OperatorKeyword(operatorDeclaration, new EditableBuffer(Keyword));
     }
 
-    public static OperatorKeyword CreateUnchecked(ISwiftNode parent)
+    public static OperatorKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new OperatorKeyword(parent, new EditableBuffer(Keyword));
     }

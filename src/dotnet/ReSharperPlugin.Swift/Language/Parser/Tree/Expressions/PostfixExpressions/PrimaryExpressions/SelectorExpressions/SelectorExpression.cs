@@ -29,11 +29,11 @@ public class SelectorExpression : PrimaryExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public SelectorExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SelectorExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SelectorExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SelectorExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

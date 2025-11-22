@@ -11,7 +11,7 @@ public class Dynamic : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Dynamic)
     { }
 
-    internal Dynamic(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Dynamic(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Dynamic)
     { }
 
@@ -23,7 +23,7 @@ public class Dynamic : DeclarationModifierLeaf, ISwiftKeyword
         return new Dynamic(new EditableBuffer(Keyword));
     }
 
-    public static Dynamic Create(ISwiftNode parent)
+    public static Dynamic Create(SwiftInternalNode parent)
     {
         return new Dynamic(new EditableBuffer(Keyword));
     }

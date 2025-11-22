@@ -13,7 +13,7 @@ public class Enum : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Enum)
     { }
 
-    internal Enum(ISwiftNode parent, IEditableBuffer buffer)
+    internal Enum(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Enum)
     {
         if (parent is Enumeration enumeration)
@@ -40,7 +40,7 @@ public class Enum : SwiftLeafNode, ISwiftKeyword
         return new Enum(enumeration, new EditableBuffer(Keyword));
     }
 
-    public static Enum CreateUnchecked(ISwiftNode parent)
+    public static Enum CreateUnchecked(SwiftInternalNode parent)
     {
         return new Enum(parent, new EditableBuffer(Keyword));
     }

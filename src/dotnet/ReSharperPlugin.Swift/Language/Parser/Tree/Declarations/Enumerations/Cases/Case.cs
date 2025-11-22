@@ -11,7 +11,7 @@ public class Case : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Case)
     { }
 
-    internal Case(ISwiftNode parent, IEditableBuffer buffer)
+    internal Case(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Case)
     { }
 
@@ -22,7 +22,7 @@ public class Case : SwiftLeafNode, ISwiftKeyword
         return new Case(new EditableBuffer(Keyword));
     }
 
-    public static Case Create(ISwiftNode parent)
+    public static Case Create(SwiftInternalNode parent)
     {
         return new Case(parent, new EditableBuffer(Keyword));
     }

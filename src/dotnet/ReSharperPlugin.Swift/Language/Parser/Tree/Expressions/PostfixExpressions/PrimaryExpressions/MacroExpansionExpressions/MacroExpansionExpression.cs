@@ -30,11 +30,11 @@ public class MacroExpansionExpression : PrimaryExpressionInternalNode
         : base(buffer, children)
     { }
 
-    public MacroExpansionExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public MacroExpansionExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public MacroExpansionExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public MacroExpansionExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

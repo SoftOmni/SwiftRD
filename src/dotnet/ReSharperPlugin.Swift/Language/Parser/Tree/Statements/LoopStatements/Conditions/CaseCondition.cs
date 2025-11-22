@@ -22,11 +22,11 @@ public class CaseCondition : SwiftInternalNode, ICondition
         : base(buffer, children)
     { }
 
-    public CaseCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CaseCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CaseCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CaseCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

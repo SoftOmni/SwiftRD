@@ -11,7 +11,7 @@ public class Arrow : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Arrow)
     { }
 
-    internal Arrow(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Arrow(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Arrow)
     { }
 
@@ -23,7 +23,7 @@ public class Arrow : SwiftLeafNode, ISwiftPunctuator
         return new Arrow(new EditableBuffer(Value));
     }
 
-    public static Arrow Create(ISwiftNode parent)
+    public static Arrow Create(SwiftInternalNode parent)
     {
         return new Arrow(new EditableBuffer(Value));
     }

@@ -8,7 +8,7 @@ using ReSharperPlugin.Swift.Language.Parser.Lexer;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
 
-public class WhitespaceSequence : SwiftLeafNode
+public class WhitespaceSequence : SwiftLeafNode, IWhitespaceNode
 {
     public const char Space = SwiftLexer.Space;
 
@@ -40,15 +40,16 @@ public class WhitespaceSequence : SwiftLeafNode
         _tabs = new SortedSet<int>(tabs);
     }
 
-    internal WhitespaceSequence(ISwiftNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Whitespace)
+    internal WhitespaceSequence(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.Whitespace)
     {
         CountElements(buffer);
         TabWidth = FormattingConfiguration.TabWidth;
     }
 
-    internal WhitespaceSequence(ISwiftNode parent, IEditableBuffer buffer, int tabWidth)
-        : base(parent, buffer, NodeTypes.NodeTypes.Whitespace)
+    internal WhitespaceSequence(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
+        int tabWidth)
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.Whitespace)
     {
         CountElements(buffer);
         TabWidth = tabWidth;
@@ -243,45 +244,139 @@ public class WhitespaceSequence : SwiftLeafNode
         return new WhitespaceSequence(bufferToSet, tabWidth);
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, IBuffer value)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, IBuffer value)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, IBuffer value, int tabWidth)
+    public static WhitespaceSequence CreateFromValueAtStartOfParent(SwiftInternalNode parent, IBuffer value)
     {
-        CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        return CreateFromValue(parent, 0, value);
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, IBuffer value, int startIndex)
+    public static WhitespaceSequence CreateFromValueAtEndOfParent(SwiftInternalNode parent, IBuffer value)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        return CreateFromValue(parent, parent.NumberOfChildren(), value);
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, IBuffer value, int startIndex,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex, IBuffer value,
         int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()), tabWidth);
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, IBuffer value, int startIndex, int endIndex)
+    public static WhitespaceSequence CreateFromValueAtStartOfParentWithTabWidth(SwiftInternalNode parent, IBuffer value,
+        int tabWidth)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        return CreateFromValueWithTabWidth(parent, 0, value, tabWidth);
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, IBuffer value, int startIndex,
-        int endIndex, int tabWidth)
+    public static WhitespaceSequence CreateFromValueAtEndOfParentWithTabWidth(SwiftInternalNode parent, IBuffer value,
+        int tabWidth)
+    {
+        return CreateFromValueWithTabWidth(parent, parent.NumberOfChildren(), value, tabWidth);
+    }
+
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, IBuffer value, int startIndex)
+    {
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
+    }
+
+    public static WhitespaceSequence CreateFromValueAtStartOfParent(SwiftInternalNode parent, IBuffer value, int startIndex)
+    {
+        return CreateFromValue(parent, 0, value, startIndex);
+    }
+
+    public static WhitespaceSequence CreateFromValueAtEndOfParent(SwiftInternalNode parent, IBuffer value, int startIndex)
+    {
+        return CreateFromValue(parent, parent.NumberOfChildren(), value, startIndex);
+    }
+
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex, IBuffer value,
+        int startIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
+    }
+
+    public static WhitespaceSequence CreateFromValueAtStartOfParentWithTabWidth(SwiftInternalNode parent, IBuffer value,
+        int startIndex, int tabWidth)
+    {
+        return CreateFromValueWithTabWidth(parent, 0, value, startIndex, tabWidth);
+    }
+
+    public static WhitespaceSequence CreateFromValueAtEndOfParentWithTabWidth(SwiftInternalNode parent, IBuffer value,
+        int startIndex, int tabWidth)
+    {
+        return CreateFromValueWithTabWidth(parent, parent.NumberOfChildren(), value, startIndex, tabWidth);
+    }
+
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, IBuffer value, int startIndex,
+        int endIndex)
+    {
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
+    }
+
+    public static WhitespaceSequence CreateFromValueAtStartOfParent(SwiftInternalNode parent, IBuffer value,
+        int startIndex, int endIndex)
+    {
+        return CreateFromValue(parent, 0, value, startIndex, endIndex);
+    }
+
+    public static WhitespaceSequence CreateFromValueAtEndOfParent(SwiftInternalNode parent, IBuffer value,
+        int startIndex, int endIndex)
+    {
+        return CreateFromValue(parent, parent.NumberOfChildren(), value, startIndex, endIndex);
+    }
+    
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex, IBuffer value,
+        int startIndex, int endIndex, int tabWidth)
+    {
+        CheckTabWidth(tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
+    }
+
+    public static WhitespaceSequence CreateFromValueAtStartOfParentWithTabWidth(SwiftInternalNode parent, IBuffer value,
+        int startIndex, int endIndex, int tabWidth)
+    {
+        return CreateFromValueWithTabWidth(parent, 0, value, startIndex, endIndex, tabWidth);
+    }
+
+    public static WhitespaceSequence CreateFromValueAtEndOfParentWithTabWidth(SwiftInternalNode parent, IBuffer value,
+        int startIndex, int endIndex, int tabWidth)
+    {
+        return CreateFromValueWithTabWidth(parent, parent.NumberOfChildren(), value, startIndex, endIndex, tabWidth);
     }
 
     internal static WhitespaceSequence CreateFromValue(IEditableBuffer value, bool setWithoutCopy = false)
@@ -365,85 +460,76 @@ public class WhitespaceSequence : SwiftLeafNode
         return new WhitespaceSequence(bufferToSet, tabWidth);
     }
 
-    internal static WhitespaceSequence CreateFromValue(ISwiftNode parent, IEditableBuffer value,
-        bool setWithoutCopy = false)
+    internal static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, IEditableBuffer value)
     {
-        if (setWithoutCopy)
-        {
-            CheckNewUserValueSimplified(value);
-            return new WhitespaceSequence(parent, value);
-        }
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
 
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet);
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    internal static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, IEditableBuffer value,
-        int tabWidth, bool setWithoutCopy = false)
+    internal static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        IEditableBuffer value,
+        int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        if (setWithoutCopy)
-        {
-            CheckNewUserValueSimplified(value);
-            return new WhitespaceSequence(parent, value, tabWidth);
-        }
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
 
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    internal static WhitespaceSequence CreateFromValue(ISwiftNode parent, IEditableBuffer value, int startIndex,
-        bool setWithoutCopy = false)
+    internal static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, IEditableBuffer value,
+        int startIndex)
     {
-        if (setWithoutCopy)
-        {
-            CheckNewUserValueSimplified(value, startIndex);
-            return new WhitespaceSequence(parent, value);
-        }
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
 
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    internal static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, IEditableBuffer value,
-        int startIndex, int tabWidth, bool setWithoutCopy = false)
+    internal static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        IEditableBuffer value,
+        int startIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        if (setWithoutCopy)
-        {
-            CheckNewUserValueSimplified(value, startIndex);
-            return new WhitespaceSequence(parent, value, tabWidth);
-        }
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
 
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    internal static WhitespaceSequence CreateFromValue(ISwiftNode parent, IEditableBuffer value, int startIndex,
-        int endIndex, bool setWithoutCopy = false)
+    internal static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, IEditableBuffer value,
+        int startIndex,
+        int endIndex)
     {
-        if (setWithoutCopy)
-        {
-            CheckNewUserValueSimplified(value, startIndex, endIndex);
-            return new WhitespaceSequence(parent, value);
-        }
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
 
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    internal static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, IEditableBuffer value,
-        int startIndex, int endIndex, int tabWidth, bool setWithoutCopy = false)
+    internal static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        IEditableBuffer value,
+        int startIndex, int endIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        if (setWithoutCopy)
-        {
-            CheckNewUserValueSimplified(value, startIndex, endIndex);
-            return new WhitespaceSequence(parent, value, tabWidth);
-        }
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
 
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
     public static WhitespaceSequence CreateFromValue(StringBuilder value)
@@ -486,46 +572,75 @@ public class WhitespaceSequence : SwiftLeafNode
         return new WhitespaceSequence(bufferToSet, tabWidth);
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, StringBuilder value)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, StringBuilder value)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, StringBuilder value, int tabWidth)
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        StringBuilder value, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, StringBuilder value, int startIndex)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, StringBuilder value,
+        int startIndex)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, StringBuilder value, int startIndex,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        StringBuilder value, int startIndex,
         int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, StringBuilder value, int startIndex,
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, StringBuilder value,
+        int startIndex,
         int endIndex)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, StringBuilder value, int startIndex,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        StringBuilder value, int startIndex,
         int endIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
     public static WhitespaceSequence CreateFromValue(string value)
@@ -568,45 +683,73 @@ public class WhitespaceSequence : SwiftLeafNode
         return new WhitespaceSequence(bufferToSet, tabWidth);
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, string value)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, string value)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, string value, int tabWidth)
-    {
-        CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
-    }
-
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, string value, int startIndex)
-    {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
-    }
-
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, string value, int startIndex,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex, string value,
         int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, string value, int startIndex, int endIndex)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, string value, int startIndex)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, string value, int startIndex,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex, string value,
+        int startIndex,
+        int tabWidth)
+    {
+        CheckTabWidth(tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
+    }
+
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, string value, int startIndex,
+        int endIndex)
+    {
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
+    }
+
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex, string value,
+        int startIndex,
         int endIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
     public static WhitespaceSequence CreateFromValue(ReadOnlySpan<char> value)
@@ -649,47 +792,76 @@ public class WhitespaceSequence : SwiftLeafNode
         return new WhitespaceSequence(bufferToSet, tabWidth);
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, ReadOnlySpan<char> value)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, ReadOnlySpan<char> value)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, ReadOnlySpan<char> value,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        ReadOnlySpan<char> value,
         int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, ReadOnlySpan<char> value, int startIndex)
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, ReadOnlySpan<char> value,
+        int startIndex)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, ReadOnlySpan<char> value,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        ReadOnlySpan<char> value,
         int startIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValue(ISwiftNode parent, ReadOnlySpan<char> value, int startIndex,
+    public static WhitespaceSequence CreateFromValue(SwiftInternalNode parent, int parentIndex, ReadOnlySpan<char> value,
+        int startIndex,
         int endIndex)
     {
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
-    public static WhitespaceSequence CreateFromValueWithTabWidth(ISwiftNode parent, ReadOnlySpan<char> value,
+    public static WhitespaceSequence CreateFromValueWithTabWidth(SwiftInternalNode parent, int parentIndex,
+        ReadOnlySpan<char> value,
         int startIndex, int endIndex, int tabWidth)
     {
         CheckTabWidth(tabWidth);
-        IEditableBuffer bufferToSet = CheckNewUserValue(value, startIndex, endIndex);
-        return new WhitespaceSequence(parent, bufferToSet, tabWidth);
+        WhitespaceSequence whitespaceSequence = new(new EditableBuffer(Space.ToString()));
+
+        whitespaceSequence.AttachToParent(parent, parentIndex);
+        whitespaceSequence.SetValue(value);
+
+        return whitespaceSequence;
     }
 
     private static IEditableBuffer CheckNewUserValue(IBuffer value)
@@ -1473,7 +1645,7 @@ public class WhitespaceSequence : SwiftLeafNode
     public void RemoveFromValue(int index)
     {
         CheckNewUserValueIndexExclusive(index);
-        
+
 
         if (EditableBuffer[index] == Space)
         {
@@ -1483,18 +1655,18 @@ public class WhitespaceSequence : SwiftLeafNode
         {
             _tabs.Remove(index);
         }
-        
+
         EditableBuffer.Remove(index, 1);
     }
 
     public void RemoveFromValue(int startIndex, int endIndex)
     {
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
-        
-        
+
+
         _spaces.GetViewBetween(startIndex, endIndex).Clear();
         _tabs.GetViewBetween(startIndex, endIndex).Clear();
-        
+
         EditableBuffer.Remove(startIndex, endIndex - startIndex);
     }
 
@@ -1514,7 +1686,7 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return RemoveWhereCore(predicate, startIndex, endIndex);
     }
-    
+
     private List<(int index, char character)> RemoveWhereCore(Func<int, bool> predicate, int startIndex, int endIndex)
     {
         List<(int index, char character)> removedIndexes = [];
@@ -1540,7 +1712,7 @@ public class WhitespaceSequence : SwiftLeafNode
             removedIndexes.Add((index, EditableBuffer[index]));
             EditableBuffer.Remove(index, 1);
         }
-        
+
         return removedIndexes;
     }
 
@@ -1560,7 +1732,7 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return RemoveWhereCore(predicate, startIndex, endIndex);
     }
-    
+
     private List<(int index, char character)> RemoveWhereCore(Func<char, bool> predicate, int startIndex, int endIndex)
     {
         List<(int index, char character)> removedIndexes = [];
@@ -1586,7 +1758,7 @@ public class WhitespaceSequence : SwiftLeafNode
             removedIndexes.Add((index, EditableBuffer[index]));
             EditableBuffer.Remove(index, 1);
         }
-        
+
         return removedIndexes;
     }
 
@@ -1606,8 +1778,9 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return RemoveWhereCore(predicate, startIndex, endIndex);
     }
-    
-    private List<(int index, char character)> RemoveWhereCore(Func<int, char, bool> predicate, int startIndex, int endIndex)
+
+    private List<(int index, char character)> RemoveWhereCore(Func<int, char, bool> predicate, int startIndex,
+        int endIndex)
     {
         List<(int index, char character)> removedIndexes = [];
 
@@ -1632,7 +1805,7 @@ public class WhitespaceSequence : SwiftLeafNode
             removedIndexes.Add((index, EditableBuffer[index]));
             EditableBuffer.Remove(index, 1);
         }
-        
+
         return removedIndexes;
     }
 
@@ -1640,7 +1813,7 @@ public class WhitespaceSequence : SwiftLeafNode
     {
         _spaces.Clear();
         _tabs.Clear();
-        
+
         EditableBuffer.Remove(0, EditableBuffer.Length);
     }
 
@@ -1660,7 +1833,7 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return ContainsCore(character, startIndex, endIndex);
     }
-    
+
     private bool ContainsCore(char character, int startIndex, int endIndex)
     {
         int index = startIndex;
@@ -1670,10 +1843,10 @@ public class WhitespaceSequence : SwiftLeafNode
             {
                 return true;
             }
-            
+
             index++;
         }
-        
+
         return false;
     }
 
@@ -1693,7 +1866,7 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return ContainsCore(predicate, startIndex, endIndex);
     }
-    
+
     private bool ContainsCore(Func<char, bool> predicate, int startIndex, int endIndex)
     {
         int index = startIndex;
@@ -1703,10 +1876,10 @@ public class WhitespaceSequence : SwiftLeafNode
             {
                 return true;
             }
-            
+
             index++;
         }
-        
+
         return false;
     }
 
@@ -1726,7 +1899,7 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return ContainsCore(predicate, startIndex, endIndex);
     }
-    
+
     private static bool ContainsCore(Func<int, bool> predicate, int startIndex, int endIndex)
     {
         int index = startIndex;
@@ -1736,10 +1909,10 @@ public class WhitespaceSequence : SwiftLeafNode
             {
                 return true;
             }
-            
+
             index++;
         }
-        
+
         return false;
     }
 
@@ -1759,7 +1932,7 @@ public class WhitespaceSequence : SwiftLeafNode
         CheckNewUserValueIndexes(EditableBuffer.Length, startIndex, endIndex);
         return ContainsCore(predicate, startIndex, endIndex);
     }
-    
+
     private bool ContainsCore(Func<int, char, bool> predicate, int startIndex, int endIndex)
     {
         int index = startIndex;
@@ -1769,10 +1942,10 @@ public class WhitespaceSequence : SwiftLeafNode
             {
                 return true;
             }
-            
+
             index++;
         }
-        
+
         return false;
     }
 

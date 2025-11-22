@@ -23,11 +23,11 @@ public class ElseClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public ElseClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ElseClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ElseClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ElseClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

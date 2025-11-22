@@ -13,11 +13,11 @@ public abstract class BalancedToken : SwiftInternalNode, IBalancedToken
         : base(buffer, children)
     { }
 
-    protected BalancedToken(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected BalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected BalancedToken(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected BalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

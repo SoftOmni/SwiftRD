@@ -13,7 +13,7 @@ public class Catch : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Catch)
     { }
 
-    internal Catch(ISwiftNode parent, IEditableBuffer buffer)
+    internal Catch(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Catch)
     {
         if (parent is CatchClause catchClause)
@@ -40,7 +40,7 @@ public class Catch : SwiftLeafNode, ISwiftKeyword
         return new Catch(catchClause, new EditableBuffer(Keyword));
     }
 
-    public static Catch CreateUnchecked(ISwiftNode parent)
+    public static Catch CreateUnchecked(SwiftInternalNode parent)
     {
         return new Catch(parent, new EditableBuffer(Keyword));
     }

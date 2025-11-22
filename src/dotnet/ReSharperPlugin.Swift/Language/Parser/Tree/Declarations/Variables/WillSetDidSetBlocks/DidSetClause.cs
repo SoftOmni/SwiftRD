@@ -25,11 +25,11 @@ public class DidSetClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public DidSetClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public DidSetClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public DidSetClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public DidSetClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

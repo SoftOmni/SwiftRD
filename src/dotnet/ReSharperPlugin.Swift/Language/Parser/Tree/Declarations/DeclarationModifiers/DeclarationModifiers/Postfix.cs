@@ -14,7 +14,7 @@ public class Postfix : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Postfix)
     { }
 
-    internal Postfix(ISwiftNode parent, IEditableBuffer buffer)
+    internal Postfix(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Postfix)
     {
         if (parent is PostfixOperatorDeclaration postfixOperatorDeclaration)
@@ -42,7 +42,7 @@ public class Postfix : DeclarationModifierLeaf, ISwiftKeyword
         return new Postfix(parent, new EditableBuffer(Keyword));
     }
 
-    public static Postfix CreateUnchecked(ISwiftNode parent)
+    public static Postfix CreateUnchecked(SwiftInternalNode parent)
     {
         return new Postfix(parent, new EditableBuffer(Keyword));
     }

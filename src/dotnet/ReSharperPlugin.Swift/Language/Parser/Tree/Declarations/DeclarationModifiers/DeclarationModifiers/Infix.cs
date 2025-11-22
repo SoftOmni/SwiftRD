@@ -14,7 +14,7 @@ public class Infix : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Infix)
     { }
 
-    internal Infix(ISwiftNode parent, IEditableBuffer buffer)
+    internal Infix(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Infix)
     {
         if (parent is InfixOperatorDeclaration infixOperatorDeclaration)
@@ -42,7 +42,7 @@ public class Infix : DeclarationModifierLeaf, ISwiftKeyword
         return new Infix(parent, new EditableBuffer(Keyword));
     }
     
-    public static Infix CreateUnchecked(ISwiftNode parent)
+    public static Infix CreateUnchecked(SwiftInternalNode parent)
     {
         return new Infix(parent, new EditableBuffer(Keyword));
     }

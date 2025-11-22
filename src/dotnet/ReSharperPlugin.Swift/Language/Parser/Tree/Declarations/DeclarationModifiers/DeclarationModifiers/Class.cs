@@ -13,7 +13,7 @@ public class Class : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Class)
     { }
 
-    internal Class(ISwiftNode parent, IEditableBuffer buffer)
+    internal Class(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Class)
     {
         if (parent is Classes.Class @class)
@@ -36,7 +36,7 @@ public class Class : DeclarationModifierLeaf, ISwiftKeyword
         return new Class(new EditableBuffer(Keyword));
     }
 
-    public static Class Create(ISwiftNode parent)
+    public static Class Create(SwiftInternalNode parent)
     {
         return new Class(parent, new EditableBuffer(Keyword));
     }

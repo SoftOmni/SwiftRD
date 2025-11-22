@@ -16,11 +16,11 @@ public class OperatorCallArgument : CallArgument
         : base(buffer, children)
     { }
 
-    public OperatorCallArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public OperatorCallArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public OperatorCallArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public OperatorCallArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

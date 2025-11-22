@@ -25,11 +25,11 @@ public class PrecedenceGroup : Declaration
         : base(buffer, children)
     { }
 
-    public PrecedenceGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrecedenceGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrecedenceGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrecedenceGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

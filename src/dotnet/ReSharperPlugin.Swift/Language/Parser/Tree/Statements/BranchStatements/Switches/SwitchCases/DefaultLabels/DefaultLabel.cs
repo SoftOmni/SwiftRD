@@ -21,11 +21,11 @@ public class DefaultLabel : SwitchCase
         : base(buffer, children)
     { }
 
-    public DefaultLabel(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public DefaultLabel(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public DefaultLabel(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public DefaultLabel(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

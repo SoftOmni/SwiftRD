@@ -19,11 +19,11 @@ public class RawValueStyleEnumCase : EnumerationCase
         : base(buffer, children)
     { }
 
-    public RawValueStyleEnumCase(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public RawValueStyleEnumCase(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public RawValueStyleEnumCase(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public RawValueStyleEnumCase(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -13,11 +13,11 @@ public class KeywordGetterClause : GetterClause
         : base(buffer, children)
     { }
 
-    public KeywordGetterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public KeywordGetterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public KeywordGetterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public KeywordGetterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -13,7 +13,7 @@ public class Unsafe : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Unsafe)
     { }
 
-    internal Unsafe(ISwiftNode parent, IEditableBuffer buffer)
+    internal Unsafe(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Unsafe)
     {
         if (parent is UnownedUnsafe unownedUnsafe)
@@ -40,7 +40,7 @@ public class Unsafe : SwiftLeafNode, ISwiftKeyword
         return new Unsafe(unownedUnsafe, new EditableBuffer(Keyword));
     }
 
-    public static Unsafe CreateUnchecked(ISwiftNode parent)
+    public static Unsafe CreateUnchecked(SwiftInternalNode parent)
     {
         return new Unsafe(parent, new EditableBuffer(Keyword));
     }

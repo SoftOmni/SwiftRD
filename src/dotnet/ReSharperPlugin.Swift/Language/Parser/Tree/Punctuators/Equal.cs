@@ -11,7 +11,7 @@ public class Equal : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Equal)
     { }
 
-    internal Equal(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Equal(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Equal)
     { }
 
@@ -23,7 +23,7 @@ public class Equal : SwiftLeafNode, ISwiftPunctuator
         return new Equal(new EditableBuffer(Value));
     }
 
-    public static Equal Create(ISwiftNode parent)
+    public static Equal Create(SwiftInternalNode parent)
     {
         return new Equal(new EditableBuffer(Value));
     }

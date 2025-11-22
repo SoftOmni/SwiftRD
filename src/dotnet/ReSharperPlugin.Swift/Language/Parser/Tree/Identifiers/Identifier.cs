@@ -12,7 +12,7 @@ public class Identifier : SwiftLeafNode
         IsOnlyAscii = IsMadeUpOfAscii();
     }
 
-    public Identifier(ISwiftNode parent, IEditableBuffer buffer)
+    public Identifier(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Identifier)
     {
         IsOnlyAscii = IsMadeUpOfAscii();

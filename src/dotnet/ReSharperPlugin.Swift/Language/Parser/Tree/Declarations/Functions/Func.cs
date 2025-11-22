@@ -13,7 +13,7 @@ public class Func : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Func)
     { }
 
-    internal Func(ISwiftNode parent, IEditableBuffer buffer)
+    internal Func(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Func)
     {
         if (parent is Function functionClause)
@@ -40,7 +40,7 @@ public class Func : SwiftLeafNode, ISwiftKeyword
         return new Func(functionClause, new EditableBuffer(Keyword));
     }
 
-    public static Func CreateUnchecked(ISwiftNode parent)
+    public static Func CreateUnchecked(SwiftInternalNode parent)
     {
         return new Func(parent, new EditableBuffer(Keyword));
     }

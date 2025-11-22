@@ -21,11 +21,11 @@ public class RepeatWhileStatement : LoopStatement
         : base(buffer, children)
     { }
 
-    public RepeatWhileStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public RepeatWhileStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public RepeatWhileStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public RepeatWhileStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

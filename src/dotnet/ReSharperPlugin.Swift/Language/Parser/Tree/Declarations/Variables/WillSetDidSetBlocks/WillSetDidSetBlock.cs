@@ -17,11 +17,11 @@ public class WillSetDidSetBlock : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public WillSetDidSetBlock(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public WillSetDidSetBlock(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public WillSetDidSetBlock(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public WillSetDidSetBlock(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

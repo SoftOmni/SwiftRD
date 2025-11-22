@@ -14,11 +14,11 @@ public class BlockedGetterSetterBlock : GetterSetterBlock<BlockedGetterClause, B
         : base(buffer, children)
     { }
 
-    public BlockedGetterSetterBlock(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public BlockedGetterSetterBlock(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public BlockedGetterSetterBlock(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public BlockedGetterSetterBlock(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

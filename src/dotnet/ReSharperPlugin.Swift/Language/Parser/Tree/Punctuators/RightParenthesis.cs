@@ -11,7 +11,7 @@ public class RightParenthesis : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.RightParenthesis)
     { }
 
-    internal RightParenthesis(ISwiftNode parent, IEditableBuffer buffer) 
+    internal RightParenthesis(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.RightParenthesis)
     { }
 
@@ -23,7 +23,7 @@ public class RightParenthesis : SwiftLeafNode, ISwiftPunctuator
         return new RightParenthesis(new EditableBuffer(Value));
     }
 
-    public static RightParenthesis Create(ISwiftNode parent)
+    public static RightParenthesis Create(SwiftInternalNode parent)
     {
         return new RightParenthesis(new EditableBuffer(Value));
     }

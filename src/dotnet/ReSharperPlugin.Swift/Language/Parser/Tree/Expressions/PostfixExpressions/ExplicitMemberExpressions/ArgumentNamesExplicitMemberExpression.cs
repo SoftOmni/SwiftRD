@@ -23,11 +23,11 @@ public class ArgumentNamesExplicitMemberExpression : ExplicitMemberExpression
         : base(buffer, children)
     { }
 
-    public ArgumentNamesExplicitMemberExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ArgumentNamesExplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ArgumentNamesExplicitMemberExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ArgumentNamesExplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

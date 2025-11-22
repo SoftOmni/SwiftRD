@@ -16,11 +16,11 @@ public class ParameterList : SwiftInternalNode, IList<Parameter>
         : base(buffer, children)
     { }
 
-    public ParameterList(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ParameterList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ParameterList(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ParameterList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

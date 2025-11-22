@@ -8,7 +8,7 @@ public class Empty : SwiftLeafNode, IMarker
         : base(buffer, NodeTypes.NodeTypes.Empty)
     { }
 
-    public Empty(ISwiftNode parent, IEditableBuffer buffer) 
+    public Empty(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Empty)
     { }
 }

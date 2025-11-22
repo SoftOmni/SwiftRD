@@ -13,7 +13,7 @@ public class None : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.None)
     { }
 
-    internal None(ISwiftNode parent, IEditableBuffer buffer)
+    internal None(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.None)
     {
         if (parent is PrecedenceGroupAssociativity precedenceGroupAssociativity)
@@ -40,7 +40,7 @@ public class None : SwiftLeafNode, ISwiftKeyword
         return new None(precedenceGroupAssociativity, new EditableBuffer(Keyword));
     }
 
-    public static None CreateUnchecked(ISwiftNode parent)
+    public static None CreateUnchecked(SwiftInternalNode parent)
     {
         return new None(parent, new EditableBuffer(Keyword));
     }

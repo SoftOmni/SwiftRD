@@ -14,10 +14,10 @@ public class ElseDirectiveClause : DirectiveClause<ElseDirective>
     internal ElseDirectiveClause(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
     { }
 
-    internal ElseDirectiveClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    internal ElseDirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
 
-    internal ElseDirectiveClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
+    internal ElseDirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent, buffer, nodes)
     { }
     
     internal ElseDirectiveClause(ConditionalCompilationBlock parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 

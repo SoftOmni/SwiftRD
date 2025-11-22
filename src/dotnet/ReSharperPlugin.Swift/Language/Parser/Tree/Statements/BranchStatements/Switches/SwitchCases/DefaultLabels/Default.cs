@@ -13,7 +13,7 @@ public class Default : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Default)
     { }
 
-    internal Default(ISwiftNode parent, IEditableBuffer buffer)
+    internal Default(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Default)
     {
         if (parent is DefaultLabel defaultLabel)
@@ -40,7 +40,7 @@ public class Default : SwiftLeafNode, ISwiftKeyword
         return new Default(defaultLabel, new EditableBuffer(Keyword));
     }
 
-    public static Default CreateUnchecked(ISwiftNode parent)
+    public static Default CreateUnchecked(SwiftInternalNode parent)
     {
         return new Default(parent, new EditableBuffer(Keyword));
     }

@@ -13,7 +13,7 @@ public class Await : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Await)
     { }
 
-    internal Await(ISwiftNode parent, IEditableBuffer buffer)
+    internal Await(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Await)
     {
         if (parent is Expression expression)
@@ -40,7 +40,7 @@ public class Await : SwiftLeafNode, ISwiftKeyword
         return new Await(expression, new EditableBuffer(Keyword));
     }
 
-    public static Await CreateUnchecked(ISwiftNode parent)
+    public static Await CreateUnchecked(SwiftInternalNode parent)
     {
         return new Await(parent, new EditableBuffer(Keyword));
     }

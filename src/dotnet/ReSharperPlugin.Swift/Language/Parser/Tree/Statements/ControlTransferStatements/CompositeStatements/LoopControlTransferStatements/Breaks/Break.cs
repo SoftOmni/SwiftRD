@@ -14,7 +14,7 @@ public class Break : StatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Break)
     { }
 
-    internal Break(ISwiftNode parent, IEditableBuffer buffer)
+    internal Break(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Break)
     {
         if (parent is BreakStatement breakStatement)
@@ -36,7 +36,7 @@ public class Break : StatementLeafNode, ISwiftKeyword
         return new Break(new EditableBuffer(Keyword));
     }
     
-    public static Break Create(ISwiftNode parent)
+    public static Break Create(SwiftInternalNode parent)
     {
         return new Break(parent, new EditableBuffer(Keyword));
     }

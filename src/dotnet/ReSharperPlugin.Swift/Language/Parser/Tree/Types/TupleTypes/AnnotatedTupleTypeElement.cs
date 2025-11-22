@@ -18,11 +18,11 @@ public class AnnotatedTupleTypeElement : SwiftInternalNode, ITupleTypeElement
         : base(buffer, children)
     { }
 
-    public AnnotatedTupleTypeElement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public AnnotatedTupleTypeElement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public AnnotatedTupleTypeElement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public AnnotatedTupleTypeElement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -13,11 +13,11 @@ public class PrimaryExpressionInternalNode : PostfixExpressionInternalNode, IPri
         : base(buffer, children)
     { }
 
-    public PrimaryExpressionInternalNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrimaryExpressionInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrimaryExpressionInternalNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrimaryExpressionInternalNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

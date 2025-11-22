@@ -11,7 +11,7 @@ public class Self : TypeLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.SelfUppercase)
     { }
 
-    internal Self(ISwiftNode parent, IEditableBuffer buffer)
+    internal Self(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.SelfUppercase)
     { }
 
@@ -22,7 +22,7 @@ public class Self : TypeLeafNode, ISwiftKeyword
         return new Self(new EditableBuffer(Keyword));
     }
 
-    public static Self Create(ISwiftNode parent)
+    public static Self Create(SwiftInternalNode parent)
     {
         return new Self(parent, new EditableBuffer(Keyword));
     }

@@ -13,7 +13,7 @@ public class Right : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Right)
     { }
 
-    internal Right(ISwiftNode parent, IEditableBuffer buffer)
+    internal Right(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Right)
     {
         if (parent is PrecedenceGroupAssociativity precedenceGroupAssociativity)
@@ -40,7 +40,7 @@ public class Right : SwiftLeafNode, ISwiftKeyword
         return new Right(precedenceGroupAssociativity, new EditableBuffer(Keyword));
     }
 
-    public static Right CreateUnchecked(ISwiftNode parent)
+    public static Right CreateUnchecked(SwiftInternalNode parent)
     {
         return new Right(parent, new EditableBuffer(Keyword));
     }

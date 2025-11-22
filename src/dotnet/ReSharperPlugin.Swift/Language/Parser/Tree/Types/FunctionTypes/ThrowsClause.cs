@@ -24,11 +24,11 @@ public class ThrowsClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public ThrowsClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ThrowsClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ThrowsClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ThrowsClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

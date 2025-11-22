@@ -13,7 +13,7 @@ public class SubscriptKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Subscript)
     { }
 
-    internal SubscriptKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal SubscriptKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Subscript)
     {
         if (parent is Subscript subscript)
@@ -40,7 +40,7 @@ public class SubscriptKeyword : SwiftLeafNode, ISwiftKeyword
         return new SubscriptKeyword(subscript, new EditableBuffer(Keyword));
     }
 
-    public static SubscriptKeyword CreateUnchecked(ISwiftNode parent)
+    public static SubscriptKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new SubscriptKeyword(parent, new EditableBuffer(Keyword));
     }

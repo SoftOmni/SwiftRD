@@ -23,11 +23,11 @@ public class WillSetClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public WillSetClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public WillSetClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public WillSetClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public WillSetClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

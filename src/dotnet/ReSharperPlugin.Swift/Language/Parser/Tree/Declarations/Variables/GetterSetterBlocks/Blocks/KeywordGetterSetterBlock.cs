@@ -14,11 +14,11 @@ public class KeywordGetterSetterBlock : GetterSetterBlock<KeywordGetterClause, K
         : base(buffer, children)
     { }
 
-    public KeywordGetterSetterBlock(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public KeywordGetterSetterBlock(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public KeywordGetterSetterBlock(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public KeywordGetterSetterBlock(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

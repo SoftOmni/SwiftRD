@@ -24,11 +24,11 @@ public class AssignmentInfixOperator : InfixExpression
         : base(buffer, children)
     { }
 
-    public AssignmentInfixOperator(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public AssignmentInfixOperator(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public AssignmentInfixOperator(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public AssignmentInfixOperator(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

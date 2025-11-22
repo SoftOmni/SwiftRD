@@ -13,7 +13,7 @@ public class Do : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Do)
     { }
 
-    internal Do(ISwiftNode parent, IEditableBuffer buffer)
+    internal Do(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Do)
     {
         if (parent is DoStatement doStatement)
@@ -40,7 +40,7 @@ public class Do : SwiftLeafNode, ISwiftKeyword
         return new Do(doStatement, new EditableBuffer(Keyword));
     }
 
-    public static Do CreateUnchecked(ISwiftNode parent)
+    public static Do CreateUnchecked(SwiftInternalNode parent)
     {
         return new Do(parent, new EditableBuffer(Keyword));
     }

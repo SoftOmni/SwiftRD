@@ -19,7 +19,7 @@ public class Environment
         _buffer = buffer;
     }
 
-    protected Environment(ISwiftNode parent, IEditableBuffer buffer)
+    protected Environment(SwiftInternalNode parent, IEditableBuffer buffer)
     {
         _buffer = buffer;
     }
@@ -38,7 +38,7 @@ public class Environment
         return new Environment(osPlatformCondition, new EditableBuffer(SimulatorString));
     }
 
-    internal static Environment CreateSimulator(ISwiftNode parent)
+    internal static Environment CreateSimulator(SwiftInternalNode parent)
     {
         return new Environment(parent, new EditableBuffer(SimulatorString));
     }
@@ -53,7 +53,7 @@ public class Environment
         return new Environment(osPlatformCondition, new EditableBuffer(MacCatalystString));
     }
 
-    internal static Environment CreateMacCatalyst(ISwiftNode parent)
+    internal static Environment CreateMacCatalyst(SwiftInternalNode parent)
     {
         return new Environment(parent, new EditableBuffer(MacCatalystString));
     }

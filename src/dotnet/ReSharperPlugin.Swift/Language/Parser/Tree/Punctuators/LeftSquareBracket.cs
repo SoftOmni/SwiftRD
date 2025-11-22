@@ -11,8 +11,8 @@ public class LeftSquareBracket : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.LeftSquareBracket)
     { }
 
-    internal LeftSquareBracket(ISwiftNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.LeftSquareBracket)
+    internal LeftSquareBracket(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer) 
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.LeftSquareBracket)
     { }
 
 
@@ -23,8 +23,17 @@ public class LeftSquareBracket : SwiftLeafNode, ISwiftPunctuator
         return new LeftSquareBracket(new EditableBuffer(Value));
     }
 
-    public static LeftSquareBracket Create(ISwiftNode parent)
+    public static LeftSquareBracket Create(SwiftInternalNode parent, int parentIndex)
     {
-        return new LeftSquareBracket(new EditableBuffer(Value));
+        // TODO: Develop core SwiftInternalNode and SwiftLeafNode classes to avoid some of this extra work
+        LeftSquareBracket leftSquareBracket = new(new EditableBuffer(Value));
+        leftSquareBracket.AttachToParent(parent, parentIndex);
+
+        return leftSquareBracket;
+    }
+
+    protected override ISwiftNode Clone()
+    {
+        return Create();
     }
 }

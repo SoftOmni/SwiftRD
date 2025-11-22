@@ -18,11 +18,11 @@ public class DeferStatement : StatementInternalNode
         : base(buffer, children)
     { }
 
-    public DeferStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public DeferStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public DeferStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public DeferStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

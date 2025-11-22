@@ -21,11 +21,11 @@ public class SetterName : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public SetterName(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public SetterName(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public SetterName(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public SetterName(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

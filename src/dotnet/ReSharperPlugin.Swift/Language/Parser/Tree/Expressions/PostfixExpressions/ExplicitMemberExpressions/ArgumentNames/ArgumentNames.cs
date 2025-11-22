@@ -20,11 +20,11 @@ public class ArgumentNames : SwiftInternalNode, IList<Identifier>
         : base(buffer, children)
     { }
 
-    public ArgumentNames(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ArgumentNames(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ArgumentNames(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ArgumentNames(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

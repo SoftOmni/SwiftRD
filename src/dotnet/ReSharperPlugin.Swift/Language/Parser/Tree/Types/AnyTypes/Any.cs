@@ -11,7 +11,7 @@ public class Any : TypeLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.AnyUppercase)
     { }
 
-    internal Any(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Any(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.AnyUppercase)
     { }
 
@@ -22,7 +22,7 @@ public class Any : TypeLeafNode, ISwiftKeyword
         return new Any(new EditableBuffer(Keyword));
     }
     
-    public static Any Create(ISwiftNode parent)
+    public static Any Create(SwiftInternalNode parent)
     {
         return new Any(parent, new EditableBuffer(Keyword));
     }

@@ -15,11 +15,11 @@ public class BreakStatement : LoopControlTransferStatement
         : base(buffer, children)
     { }
 
-    public BreakStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public BreakStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public BreakStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public BreakStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

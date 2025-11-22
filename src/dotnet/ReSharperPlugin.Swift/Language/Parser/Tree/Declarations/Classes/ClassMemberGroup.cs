@@ -16,11 +16,11 @@ public class ClassMemberGroup : SwiftInternalNode, IList<IClassMember>
         : base(buffer, children)
     { }
 
-    public ClassMemberGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ClassMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ClassMemberGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ClassMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

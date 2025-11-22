@@ -22,11 +22,11 @@ public class ImportDeclaration : Declaration
         : base(buffer, children)
     { }
 
-    public ImportDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ImportDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ImportDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ImportDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

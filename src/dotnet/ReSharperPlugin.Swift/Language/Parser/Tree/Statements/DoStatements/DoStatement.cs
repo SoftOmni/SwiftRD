@@ -24,11 +24,11 @@ public class DoStatement : StatementInternalNode, IList<CatchClause>
         : base(buffer, children)
     { }
 
-    public DoStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public DoStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public DoStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public DoStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

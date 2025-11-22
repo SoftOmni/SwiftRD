@@ -19,11 +19,11 @@ public class PrecedenceGroupRelation : PrecedenceGroupAttribute
         : base(buffer, children)
     { }
 
-    public PrecedenceGroupRelation(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrecedenceGroupRelation(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrecedenceGroupRelation(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrecedenceGroupRelation(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

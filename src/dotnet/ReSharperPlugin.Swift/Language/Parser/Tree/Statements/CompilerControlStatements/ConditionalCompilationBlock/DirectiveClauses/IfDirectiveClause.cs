@@ -17,11 +17,11 @@ public class IfDirectiveClause : DirectiveClause<IfDirective>
         : base(buffer, children)
     { }
 
-    internal IfDirectiveClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    internal IfDirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    internal IfDirectiveClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    internal IfDirectiveClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

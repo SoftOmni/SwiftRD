@@ -13,7 +13,7 @@ public class MacroKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Macro)
     { }
 
-    internal MacroKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal MacroKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Macro)
     {
         if (parent is Macro macro)
@@ -40,7 +40,7 @@ public class MacroKeyword : SwiftLeafNode, ISwiftKeyword
         return new MacroKeyword(macro, new EditableBuffer(Keyword));
     }
 
-    public static MacroKeyword CreateUnchecked(ISwiftNode parent)
+    public static MacroKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new MacroKeyword(parent, new EditableBuffer(Keyword));
     }

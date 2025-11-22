@@ -23,12 +23,12 @@ public class ThrowStatement : ControlTransferStatementInternalNode
     {
     }
 
-    public ThrowStatement(IEditableBuffer buffer, ISwiftNode parent, List<ISwiftNode> nodes)
+    public ThrowStatement(IEditableBuffer buffer, SwiftInternalNode parent, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     {
     }
 
-    public ThrowStatement(IEditableBuffer buffer, ISwiftNode parent, IEnumerable<ISwiftNode> nodes)
+    public ThrowStatement(IEditableBuffer buffer, SwiftInternalNode parent, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     {
     }

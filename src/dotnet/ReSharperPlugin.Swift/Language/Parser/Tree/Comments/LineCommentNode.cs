@@ -16,7 +16,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
         : base(buffer, NodeTypes.NodeTypes.LineComment)
     { }
 
-    public LineCommentNode(ISwiftNode parent, IEditableBuffer buffer)
+    public LineCommentNode(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.LineComment)
     { }
 
@@ -31,11 +31,11 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
         return new LineCommentNode(value);
     }
 
-    public int CommentValueLength => Buffer.Length - 2;
+    public int CommentValueLength => EditableBuffer.Length - 2;
 
     public string GetCommentValue()
     {
-        return Buffer.ToString();
+        return EditableBuffer.ToString();
     }
 
     public string GetCommentSubstring(int start, int length)
@@ -62,7 +62,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     
     public ReadOnlySpan<char> AsCommentValue()
     {
-        Buffer.TryGetReadOnlySpan(out ReadOnlySpan<char> span);
+        EditableBuffer.TryGetReadOnlySpan(out ReadOnlySpan<char> span);
         return span.Slice(2);
     }
 
@@ -78,7 +78,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
             throw new ArgumentOutOfRangeException(nameof(length));
         }
         
-        Buffer.TryGetReadOnlySpan(out ReadOnlySpan<char> span);
+        EditableBuffer.TryGetReadOnlySpan(out ReadOnlySpan<char> span);
         return span.Slice(2 + start, 2 + start + length);
     }
 
@@ -285,17 +285,17 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < commentTarget; i++)
         {
-            Buffer.Replace(i + 2, 1, value[start + i].ToString());
+            EditableBuffer.Replace(i + 2, 1, value[start + i].ToString());
         }
 
         for (int i = commentTarget; i < count; i++)
         {
-            Buffer.Insert(i + 2, value[start + i].ToString());
+            EditableBuffer.Insert(i + 2, value[start + i].ToString());
         }
 
         if (CommentValueLength > count)
         {
-            Buffer.Remove(Buffer.Length, CommentValueLength - count);
+            EditableBuffer.Remove(EditableBuffer.Length, CommentValueLength - count);
         }
     }
 
@@ -310,17 +310,17 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < commentTarget; i++)
         {
-            Buffer.Replace(i + 2, 1, value[start + i].ToString());
+            EditableBuffer.Replace(i + 2, 1, value[start + i].ToString());
         }
 
         for (int i = commentTarget; i < count; i++)
         {
-            Buffer.Insert(i + 2, value[start + i].ToString());
+            EditableBuffer.Insert(i + 2, value[start + i].ToString());
         }
 
         if (CommentValueLength > count)
         {
-            Buffer.Remove(Buffer.Length, CommentValueLength - count);
+            EditableBuffer.Remove(EditableBuffer.Length, CommentValueLength - count);
         }
     }
 
@@ -335,17 +335,17 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < commentTarget; i++)
         {
-            Buffer.Replace(i + 2, 1, value[start + i].ToString());
+            EditableBuffer.Replace(i + 2, 1, value[start + i].ToString());
         }
 
         for (int i = commentTarget; i < count; i++)
         {
-            Buffer.Insert(i + 2, value[start + i].ToString());
+            EditableBuffer.Insert(i + 2, value[start + i].ToString());
         }
 
         if (CommentValueLength > count)
         {
-            Buffer.Remove(Buffer.Length, CommentValueLength - count);
+            EditableBuffer.Remove(EditableBuffer.Length, CommentValueLength - count);
         }
     }
 
@@ -360,17 +360,17 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < commentTarget; i++)
         {
-            Buffer.Replace(i + 2, 1, value[start + i].ToString());
+            EditableBuffer.Replace(i + 2, 1, value[start + i].ToString());
         }
 
         for (int i = commentTarget; i < count; i++)
         {
-            Buffer.Insert(i + 2, value[start + i].ToString());
+            EditableBuffer.Insert(i + 2, value[start + i].ToString());
         }
 
         if (CommentValueLength > count)
         {
-            Buffer.Remove(Buffer.Length, CommentValueLength - count);
+            EditableBuffer.Remove(EditableBuffer.Length, CommentValueLength - count);
         }
     }
 
@@ -575,7 +575,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(Buffer.Length, value[i].ToString());
+            EditableBuffer.Insert(EditableBuffer.Length, value[i].ToString());
         }
     }
 
@@ -588,7 +588,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(Buffer.Length, value[i].ToString());
+            EditableBuffer.Insert(EditableBuffer.Length, value[i].ToString());
         }
     }
 
@@ -601,7 +601,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(Buffer.Length, buffer[i].ToString());
+            EditableBuffer.Insert(EditableBuffer.Length, buffer[i].ToString());
         }
     }
 
@@ -614,7 +614,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(Buffer.Length, value[i].ToString());
+            EditableBuffer.Insert(EditableBuffer.Length, value[i].ToString());
         }
     }
 
@@ -989,7 +989,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(index + i, insertion[i].ToString());
+            EditableBuffer.Insert(index + i, insertion[i].ToString());
         }
     }
 
@@ -1002,7 +1002,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(index + i, insertion[i].ToString());
+            EditableBuffer.Insert(index + i, insertion[i].ToString());
         }
     }
 
@@ -1015,7 +1015,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(index + i, insertion[i].ToString());
+            EditableBuffer.Insert(index + i, insertion[i].ToString());
         }
     }
 
@@ -1028,7 +1028,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         for (int i = start; i < count; i++)
         {
-            Buffer.Insert(index + i, insertion[i].ToString());
+            EditableBuffer.Insert(index + i, insertion[i].ToString());
         }
     }
 
@@ -1305,7 +1305,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < target; i++)
         {
-            Buffer.Replace(index++, 1, replacement[replacementStart++].ToString());
+            EditableBuffer.Replace(index++, 1, replacement[replacementStart++].ToString());
         }
 
         if (!extend)
@@ -1315,7 +1315,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = target; i < replacementLength; i++)
         {
-            Buffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
+            EditableBuffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
         }
     }
 
@@ -1334,7 +1334,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < target; i++)
         {
-            Buffer.Replace(index++, 1, replacement[replacementStart++].ToString());
+            EditableBuffer.Replace(index++, 1, replacement[replacementStart++].ToString());
         }
 
         if (!extend)
@@ -1344,7 +1344,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = target; i < replacementLength; i++)
         {
-            Buffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
+            EditableBuffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
         }
     }
 
@@ -1363,7 +1363,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < target; i++)
         {
-            Buffer.Replace(index++, 1, replacement[replacementStart++].ToString());
+            EditableBuffer.Replace(index++, 1, replacement[replacementStart++].ToString());
         }
 
         if (!extend)
@@ -1373,7 +1373,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = target; i < replacementLength; i++)
         {
-            Buffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
+            EditableBuffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
         }
     }
 
@@ -1393,7 +1393,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = 0; i < target; i++)
         {
-            Buffer.Replace(index++, 1, replacement[replacementStart++].ToString());
+            EditableBuffer.Replace(index++, 1, replacement[replacementStart++].ToString());
         }
 
         if (!extend)
@@ -1403,7 +1403,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         for (int i = target; i < replacementLength; i++)
         {
-            Buffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
+            EditableBuffer.Insert(CommentValueLength, replacement[replacementStart++].ToString());
         }
     }
 
@@ -1414,12 +1414,12 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
             throw new ArgumentOutOfRangeException(nameof(length));
         }
 
-        if (index < 0 || index + length + 2 >= Buffer.Length)
+        if (index < 0 || index + length + 2 >= EditableBuffer.Length)
         {
             return false;
         }
 
-        Buffer.Remove(index, Buffer.Length - index);
+        EditableBuffer.Remove(index, EditableBuffer.Length - index);
 
         return true;
     }
@@ -1428,7 +1428,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
     {
         List<int> removedLocations = [];
 
-        for (int i = 2; i < Buffer.Length; i++)
+        for (int i = 2; i < EditableBuffer.Length; i++)
         {
             int relativeIndex = i - 2;
             if (!predicate(relativeIndex, Buffer[i]))
@@ -1436,7 +1436,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
                 continue;
             }
 
-            Buffer.Remove(i, 1);
+            EditableBuffer.Remove(i, 1);
             removedLocations.Add(relativeIndex);
         }
 
@@ -1445,7 +1445,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
     public void ClearCommentValue()
     {
-        Buffer.Remove(2, CommentValueLength);
+        EditableBuffer.Remove(2, CommentValueLength);
     }
 
     public bool Contains(char character)
@@ -1455,7 +1455,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
             return false;
         }
 
-        for (int i = 2; i < Buffer.Length; i++)
+        for (int i = 2; i < EditableBuffer.Length; i++)
         {
             if (character == Buffer[i])
             {
@@ -1468,7 +1468,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
     public bool Contains(Func<char, bool> predicate)
     {
-        for (int i = 2; i < Buffer.Length; i++)
+        for (int i = 2; i < EditableBuffer.Length; i++)
         {
             if (predicate(Buffer[i]))
             {
@@ -1481,7 +1481,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
     public bool Contains(Func<int, char, bool> predicate)
     {
-        for (int i = 2; i < Buffer.Length; i++)
+        for (int i = 2; i < EditableBuffer.Length; i++)
         {
             if (predicate(i - 2, Buffer[i]))
             {
@@ -1578,6 +1578,11 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
         return GetEnumerator();
     }
 
+    protected override ISwiftNode Clone()
+    {
+        return new LineCommentNode(EditableBufferExtensions.CloneBuffer(EditableBuffer));
+    }
+
     public sealed class Enumerator : IEnumerator<char>
     {
         private readonly LineCommentNode _lineCommentNode;
@@ -1591,7 +1596,7 @@ public class LineCommentNode : SwiftLeafNode, ICommentNode
 
         public bool MoveNext()
         {
-            if (_index >= _lineCommentNode.Buffer.Length)
+            if (_index >= _lineCommentNode.EditableBuffer.Length)
             {
                 return false;
             }

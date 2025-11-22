@@ -20,11 +20,11 @@ public class IdentifierClosureParameterClause : ClosureParameterClause, IList<Id
         : base(buffer, children)
     { }
 
-    public IdentifierClosureParameterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public IdentifierClosureParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public IdentifierClosureParameterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public IdentifierClosureParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

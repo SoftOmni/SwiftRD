@@ -16,11 +16,11 @@ public class SubscriptBlockedGetterSetter : Subscript
         : base(buffer, children)
     { }
 
-    public SubscriptBlockedGetterSetter(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SubscriptBlockedGetterSetter(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SubscriptBlockedGetterSetter(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SubscriptBlockedGetterSetter(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

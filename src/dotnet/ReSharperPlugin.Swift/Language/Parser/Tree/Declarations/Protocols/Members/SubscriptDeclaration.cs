@@ -28,11 +28,11 @@ public class SubscriptDeclaration : ProtocolMember
         : base(buffer, children)
     { }
 
-    public SubscriptDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SubscriptDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SubscriptDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SubscriptDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

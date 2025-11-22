@@ -18,11 +18,11 @@ public class LabeledFunctionTypeArgument : FunctionTypeArgument
         : base(buffer, children)
     { }
 
-    public LabeledFunctionTypeArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public LabeledFunctionTypeArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public LabeledFunctionTypeArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public LabeledFunctionTypeArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

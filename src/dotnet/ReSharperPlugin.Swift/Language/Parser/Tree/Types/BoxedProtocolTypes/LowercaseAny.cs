@@ -13,7 +13,7 @@ public class LowercaseAny : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.AnyLowercase)
     { }
 
-    internal LowercaseAny(ISwiftNode parent, IEditableBuffer buffer)
+    internal LowercaseAny(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.AnyLowercase)
     {
         if (parent is BoxedProtocolType boxedProtocolType)
@@ -40,7 +40,7 @@ public class LowercaseAny : SwiftLeafNode, ISwiftKeyword
         return new LowercaseAny(boxedProtocolType, new EditableBuffer(Keyword));
     }
 
-    public static LowercaseAny CreateUnchecked(ISwiftNode parent)
+    public static LowercaseAny CreateUnchecked(SwiftInternalNode parent)
     {
         return new LowercaseAny(parent, new EditableBuffer(Keyword));
     }

@@ -16,11 +16,11 @@ public class PrefixOperatorDeclaration : OperatorDeclaration
         : base(buffer, children)
     { }
 
-    public PrefixOperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrefixOperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrefixOperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrefixOperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

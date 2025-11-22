@@ -16,11 +16,11 @@ public class PostfixOperatorDeclaration : OperatorDeclaration
         : base(buffer, children)
     { }
 
-    public PostfixOperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PostfixOperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PostfixOperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PostfixOperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

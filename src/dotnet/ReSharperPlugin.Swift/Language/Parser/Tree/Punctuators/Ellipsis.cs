@@ -22,11 +22,11 @@ public class Ellipsis : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public Ellipsis(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Ellipsis(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Ellipsis(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Ellipsis(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
@@ -36,7 +36,7 @@ public class Ellipsis : SwiftInternalNode
         throw new NotImplementedException();
     }
 
-    public static Ellipsis Create(ISwiftNode parent)
+    public static Ellipsis Create(SwiftInternalNode parent)
     {
         throw new NotImplementedException();
     }

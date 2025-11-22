@@ -21,11 +21,11 @@ public class IdentifierAssignmentCaptureListItem : CaptureListItem
         : base(buffer, children)
     { }
 
-    public IdentifierAssignmentCaptureListItem(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public IdentifierAssignmentCaptureListItem(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public IdentifierAssignmentCaptureListItem(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public IdentifierAssignmentCaptureListItem(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

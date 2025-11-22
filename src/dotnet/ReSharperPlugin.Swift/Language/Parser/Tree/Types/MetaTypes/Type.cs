@@ -13,7 +13,7 @@ public class Type : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Type)
     { }
 
-    internal Type(ISwiftNode parent, IEditableBuffer buffer)
+    internal Type(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Type)
     {
         if (parent is TypeMetaType typeMetaType)
@@ -40,7 +40,7 @@ public class Type : SwiftLeafNode, ISwiftKeyword
         return new Type(typeMetaType, new EditableBuffer(Keyword));
     }
 
-    public static Type CreateUnchecked(ISwiftNode parent)
+    public static Type CreateUnchecked(SwiftInternalNode parent)
     {
         return new Type(parent, new EditableBuffer(Keyword));
     }

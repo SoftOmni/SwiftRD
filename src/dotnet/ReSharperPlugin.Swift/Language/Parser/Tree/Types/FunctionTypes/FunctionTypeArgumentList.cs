@@ -18,11 +18,11 @@ public class FunctionTypeArgumentList : SwiftInternalNode, IList<FunctionTypeArg
         : base(buffer, children)
     { }
 
-    public FunctionTypeArgumentList(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public FunctionTypeArgumentList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public FunctionTypeArgumentList(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public FunctionTypeArgumentList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

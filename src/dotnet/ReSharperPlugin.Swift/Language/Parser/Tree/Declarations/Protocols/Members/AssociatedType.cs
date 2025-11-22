@@ -13,7 +13,7 @@ public class AssociatedType : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.AssociatedType)
     { }
 
-    internal AssociatedType(ISwiftNode parent, IEditableBuffer buffer)
+    internal AssociatedType(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.AssociatedType)
     {
         if (parent is AssociatedTypeDeclaration associatedTypeDeclaration)
@@ -40,7 +40,7 @@ public class AssociatedType : SwiftLeafNode, ISwiftKeyword
         return new AssociatedType(associatedTypeDeclaration, new EditableBuffer(Keyword));
     }
 
-    public static AssociatedType CreateUnchecked(ISwiftNode parent)
+    public static AssociatedType CreateUnchecked(SwiftInternalNode parent)
     {
         return new AssociatedType(parent, new EditableBuffer(Keyword));
     }

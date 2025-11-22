@@ -14,7 +14,7 @@ public class Prefix : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Prefix)
     { }
 
-    internal Prefix(ISwiftNode parent, IEditableBuffer buffer)
+    internal Prefix(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Prefix)
     {
         if (parent is PrefixOperatorDeclaration prefixOperatorDeclaration)
@@ -42,7 +42,7 @@ public class Prefix : DeclarationModifierLeaf, ISwiftKeyword
         return new Prefix(parent, new EditableBuffer(Keyword));
     }
     
-    public static Prefix CreateUnchecked(ISwiftNode parent)
+    public static Prefix CreateUnchecked(SwiftInternalNode parent)
     {
         return new Prefix(parent, new EditableBuffer(Keyword));
     }

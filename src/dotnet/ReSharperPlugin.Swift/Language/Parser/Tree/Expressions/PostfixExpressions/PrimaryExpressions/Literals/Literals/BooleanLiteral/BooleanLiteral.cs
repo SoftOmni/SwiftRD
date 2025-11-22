@@ -11,7 +11,7 @@ public class BooleanLiteral : Literal<Bool, Boolean>
         : base(buffer, nodeType)
     { }
 
-    public BooleanLiteral(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType)
+    public BooleanLiteral(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
         : base(parent, buffer, nodeType)
     { }
 

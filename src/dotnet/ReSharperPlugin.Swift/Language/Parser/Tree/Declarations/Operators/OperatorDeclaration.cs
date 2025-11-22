@@ -17,11 +17,11 @@ public abstract class OperatorDeclaration : Declaration
         : base(buffer, children)
     { }
 
-    protected OperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected OperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected OperatorDeclaration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected OperatorDeclaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -21,11 +21,11 @@ public class ProtocolCompositionType : SwiftInternalNode, IList<TypeIdentifier>,
         : base(buffer, children)
     { }
 
-    public ProtocolCompositionType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ProtocolCompositionType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ProtocolCompositionType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ProtocolCompositionType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

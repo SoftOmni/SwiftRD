@@ -18,11 +18,11 @@ public class WhileStatement : LoopStatement
         : base(buffer, children)
     { }
 
-    public WhileStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public WhileStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public WhileStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public WhileStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

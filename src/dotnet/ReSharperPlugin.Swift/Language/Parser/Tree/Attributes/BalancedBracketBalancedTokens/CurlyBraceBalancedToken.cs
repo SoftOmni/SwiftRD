@@ -21,11 +21,11 @@ public class CurlyBraceBalancedToken : BalancedToken, IList<BalancedToken>
         : base(buffer, children)
     { }
 
-    public CurlyBraceBalancedToken(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public CurlyBraceBalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public CurlyBraceBalancedToken(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public CurlyBraceBalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

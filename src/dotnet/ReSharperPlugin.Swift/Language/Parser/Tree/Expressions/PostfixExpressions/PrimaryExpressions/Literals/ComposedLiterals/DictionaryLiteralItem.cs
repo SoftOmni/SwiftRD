@@ -20,11 +20,11 @@ public class DictionaryLiteralItem : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public DictionaryLiteralItem(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public DictionaryLiteralItem(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public DictionaryLiteralItem(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public DictionaryLiteralItem(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

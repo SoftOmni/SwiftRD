@@ -11,7 +11,7 @@ public class Colon : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Colon)
     { }
 
-    internal Colon(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Colon(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Colon)
     { }
 
@@ -23,7 +23,7 @@ public class Colon : SwiftLeafNode, ISwiftPunctuator
         return new Colon(new EditableBuffer(Value));
     }
 
-    public static Colon Create(ISwiftNode parent)
+    public static Colon Create(SwiftInternalNode parent)
     {
         return new Colon(new EditableBuffer(Value));
     }

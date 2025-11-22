@@ -12,7 +12,7 @@ public class Rethrows : TypeLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Rethrows)
     { }
 
-    internal Rethrows(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Rethrows(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Rethrows)
     { }
 
@@ -23,7 +23,7 @@ public class Rethrows : TypeLeafNode, ISwiftKeyword
         return new Rethrows(new EditableBuffer(Keyword));
     }
     
-    public static Rethrows Create(ISwiftNode parent)
+    public static Rethrows Create(SwiftInternalNode parent)
     {
         return new Rethrows(parent, new EditableBuffer(Keyword));
     }

@@ -13,7 +13,7 @@ public class TypeAliasKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Typealias)
     { }
 
-    internal TypeAliasKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal TypeAliasKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Typealias)
     {
         if (parent is TypeAlias typeAlias)
@@ -40,7 +40,7 @@ public class TypeAliasKeyword : SwiftLeafNode, ISwiftKeyword
         return new TypeAliasKeyword(typeAlias, new EditableBuffer(Keyword));
     }
 
-    public static TypeAliasKeyword CreateUnchecked(ISwiftNode parent)
+    public static TypeAliasKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new TypeAliasKeyword(parent, new EditableBuffer(Keyword));
     }

@@ -19,11 +19,11 @@ public class TypeIdentifierListElement : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public TypeIdentifierListElement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public TypeIdentifierListElement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public TypeIdentifierListElement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public TypeIdentifierListElement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

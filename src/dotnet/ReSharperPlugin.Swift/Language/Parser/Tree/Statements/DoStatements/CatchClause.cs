@@ -18,11 +18,11 @@ public class CatchClause : SwiftInternalNode, IList<CatchPattern>
         : base(buffer, children)
     { }
 
-    public CatchClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public CatchClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public CatchClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public CatchClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

@@ -19,11 +19,11 @@ public class PatternInitializer : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public PatternInitializer(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public PatternInitializer(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public PatternInitializer(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public PatternInitializer(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

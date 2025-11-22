@@ -13,11 +13,11 @@ public abstract class ClosureParameterClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected ClosureParameterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected ClosureParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected ClosureParameterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected ClosureParameterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

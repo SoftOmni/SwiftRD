@@ -11,7 +11,7 @@ public class ElseIfDirective : Directive
     internal ElseIfDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedElseIf)
     { }
 
-    internal ElseIfDirective(ISwiftNode parent, IEditableBuffer buffer) : base(parent, buffer,
+    internal ElseIfDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
         NodeTypes.NodeTypes.ReservedElseIf)
     {
         if (parent is ElseIfDirectiveClause clause)
@@ -37,7 +37,7 @@ public class ElseIfDirective : Directive
             new EditableBuffer(NodeTypes.NodeTypes.ReservedElseIf.TokenRepresentation)); // TODO: Fix representations
     }
 
-    internal static ElseIfDirective CreateUnchecked(ISwiftNode parent)
+    internal static ElseIfDirective CreateUnchecked(SwiftInternalNode parent)
     {
         return new ElseIfDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedElseIf.TokenRepresentation));
     }

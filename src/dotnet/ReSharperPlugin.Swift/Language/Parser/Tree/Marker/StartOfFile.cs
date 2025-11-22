@@ -8,7 +8,7 @@ public class StartOfFile : SwiftLeafNode, IMarker
         : base(buffer, NodeTypes.NodeTypes.StartOfFile)
     { }
 
-    public StartOfFile(ISwiftNode parent, IEditableBuffer buffer) 
+    public StartOfFile(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.StartOfFile)
     { }
 }

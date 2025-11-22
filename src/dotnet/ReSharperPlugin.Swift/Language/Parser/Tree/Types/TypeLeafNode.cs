@@ -9,7 +9,7 @@ public abstract class TypeLeafNode : SwiftLeafNode, IType
         : base(buffer, nodeType)
     { }
 
-    protected TypeLeafNode(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    protected TypeLeafNode(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 }

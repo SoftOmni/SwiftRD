@@ -18,11 +18,11 @@ public class PrefixOperatorExpression : PrefixExpression
         : base(buffer, children)
     { }
 
-    public PrefixOperatorExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrefixOperatorExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrefixOperatorExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrefixOperatorExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

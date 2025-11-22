@@ -19,11 +19,11 @@ public class GenericWhereClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public GenericWhereClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public GenericWhereClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public GenericWhereClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public GenericWhereClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

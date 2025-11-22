@@ -15,11 +15,11 @@ public class IsTypeCastingOperator : TypeCastingOperator
         : base(buffer, children)
     { }
 
-    public IsTypeCastingOperator(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public IsTypeCastingOperator(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public IsTypeCastingOperator(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public IsTypeCastingOperator(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

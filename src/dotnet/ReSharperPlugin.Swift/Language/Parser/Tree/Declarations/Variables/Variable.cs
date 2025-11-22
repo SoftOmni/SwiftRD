@@ -41,11 +41,11 @@ public class Variable : Declaration
         : base(buffer, children)
     { }
 
-    public Variable(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Variable(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Variable(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Variable(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

@@ -16,11 +16,11 @@ public class DeclarationModifierGroup : SwiftInternalNode, IList<IDeclarationMod
         : base(buffer, children)
     { }
 
-    public DeclarationModifierGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public DeclarationModifierGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public DeclarationModifierGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public DeclarationModifierGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

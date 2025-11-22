@@ -27,11 +27,11 @@ public class ClosureExpression : PrimaryExpressionInternalNode, IList<IStatement
         : base(buffer, children)
     { }
 
-    public ClosureExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ClosureExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ClosureExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ClosureExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

@@ -18,11 +18,11 @@ public class PrecedenceGroupAssignment : PrecedenceGroupAttribute
         : base(buffer, children)
     { }
 
-    public PrecedenceGroupAssignment(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PrecedenceGroupAssignment(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PrecedenceGroupAssignment(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PrecedenceGroupAssignment(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

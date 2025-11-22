@@ -13,7 +13,7 @@ public class Defer : StatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Defer)
     { }
 
-    internal Defer(ISwiftNode parent, IEditableBuffer buffer)
+    internal Defer(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Defer)
     {
         if (parent is DeferStatement deferStatement)
@@ -35,7 +35,7 @@ public class Defer : StatementLeafNode, ISwiftKeyword
         return new Defer(new EditableBuffer(Keyword));
     }
     
-    public static Defer Create(ISwiftNode parent)
+    public static Defer Create(SwiftInternalNode parent)
     {
         return new Defer(parent, new EditableBuffer(Keyword));
     }

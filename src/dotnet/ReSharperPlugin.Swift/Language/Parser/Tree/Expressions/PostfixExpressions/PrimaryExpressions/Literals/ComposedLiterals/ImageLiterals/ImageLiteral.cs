@@ -28,11 +28,11 @@ public class ImageLiteral : LiteralExpressionInternalNode, ILiteral<NSImage, Bit
         : base(buffer, children)
     { }
 
-    public ImageLiteral(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ImageLiteral(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ImageLiteral(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ImageLiteral(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

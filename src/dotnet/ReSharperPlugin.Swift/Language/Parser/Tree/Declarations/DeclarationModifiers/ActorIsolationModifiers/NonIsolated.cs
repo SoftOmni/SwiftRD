@@ -11,7 +11,7 @@ public class NonIsolated : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.NonIsolated)
     { }
 
-    internal NonIsolated(ISwiftNode parent, IEditableBuffer buffer) 
+    internal NonIsolated(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.NonIsolated)
     { }
 
@@ -23,7 +23,7 @@ public class NonIsolated : DeclarationModifierLeaf, ISwiftKeyword
         return new NonIsolated(new EditableBuffer(Keyword));
     }
 
-    public static NonIsolated Create(ISwiftNode parent)
+    public static NonIsolated Create(SwiftInternalNode parent)
     {
         return new NonIsolated(new EditableBuffer(Keyword));
     }

@@ -14,7 +14,7 @@ public class Let : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Let)
     { }
 
-    internal Let(ISwiftNode parent, IEditableBuffer buffer)
+    internal Let(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Let)
     {
         if (parent is Constant constant)
@@ -41,7 +41,7 @@ public class Let : SwiftLeafNode, ISwiftKeyword
         return new Let(constant, new EditableBuffer(Keyword));
     }
 
-    public static Let CreateUnchecked(ISwiftNode parent)
+    public static Let CreateUnchecked(SwiftInternalNode parent)
     {
         return new Let(parent, new EditableBuffer(Keyword));
     }

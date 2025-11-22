@@ -13,7 +13,7 @@ public class ImageLiteralKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.ReservedImageLiteral)
     { }
 
-    internal ImageLiteralKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal ImageLiteralKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.ReservedImageLiteral)
     {
         if (parent is ImageLiteral imageLiteral)
@@ -40,7 +40,7 @@ public class ImageLiteralKeyword : SwiftLeafNode, ISwiftKeyword
         return new ImageLiteralKeyword(imageLiteral, new EditableBuffer(Keyword));
     }
 
-    public static ImageLiteralKeyword CreateUnchecked(ISwiftNode parent)
+    public static ImageLiteralKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new ImageLiteralKeyword(parent, new EditableBuffer(Keyword));
     }

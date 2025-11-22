@@ -14,7 +14,7 @@ public class Indirect : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Indirect)
     { }
 
-    internal Indirect(ISwiftNode parent, IEditableBuffer buffer)
+    internal Indirect(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Indirect)
     {
         if (parent is UnionStyleEnumeration unionStyleEnumeration)
@@ -41,7 +41,7 @@ public class Indirect : SwiftLeafNode, ISwiftKeyword
         return new Indirect(indirecteration, new EditableBuffer(Keyword));
     }
 
-    public static Indirect CreateUnchecked(ISwiftNode parent)
+    public static Indirect CreateUnchecked(SwiftInternalNode parent)
     {
         return new Indirect(parent, new EditableBuffer(Keyword));
     }

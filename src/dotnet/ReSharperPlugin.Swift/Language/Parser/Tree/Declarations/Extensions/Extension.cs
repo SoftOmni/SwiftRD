@@ -34,11 +34,11 @@ public class Extension : Declaration
         : base(buffer, children)
     { }
 
-    public Extension(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Extension(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Extension(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Extension(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

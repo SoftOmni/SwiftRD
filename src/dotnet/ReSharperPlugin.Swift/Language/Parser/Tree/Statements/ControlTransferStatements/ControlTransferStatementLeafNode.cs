@@ -9,7 +9,7 @@ public abstract class ControlTransferStatementLeafNode : StatementLeafNode, ICon
         : base(buffer, nodeType)
     { }
 
-    protected ControlTransferStatementLeafNode(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    protected ControlTransferStatementLeafNode(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 }

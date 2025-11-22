@@ -19,11 +19,11 @@ public class ConditionList : StatementInternalNode, IList<ICondition>
         : base(buffer, children)
     { }
 
-    public ConditionList(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ConditionList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ConditionList(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ConditionList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

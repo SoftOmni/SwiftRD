@@ -11,7 +11,7 @@ public class Weak : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Weak)
     { }
 
-    internal Weak(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Weak(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Weak)
     { }
 
@@ -23,7 +23,7 @@ public class Weak : DeclarationModifierLeaf, ISwiftKeyword
         return new Weak(new EditableBuffer(Keyword));
     }
 
-    public static Weak Create(ISwiftNode parent)
+    public static Weak Create(SwiftInternalNode parent)
     {
         return new Weak(new EditableBuffer(Keyword));
     }

@@ -16,11 +16,11 @@ public class RawValueEnumerationMemberGroup : SwiftInternalNode, IList<RawValueE
         : base(buffer, children)
     { }
 
-    public RawValueEnumerationMemberGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public RawValueEnumerationMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public RawValueEnumerationMemberGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public RawValueEnumerationMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

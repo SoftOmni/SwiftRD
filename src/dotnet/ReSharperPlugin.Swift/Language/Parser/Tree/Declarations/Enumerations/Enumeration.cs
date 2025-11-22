@@ -39,11 +39,11 @@ public abstract class Enumeration : Declaration
         : base(buffer, children)
     { }
 
-    public Enumeration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public Enumeration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public Enumeration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public Enumeration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

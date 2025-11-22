@@ -16,11 +16,11 @@ public class ProtocolMemberGroup : SwiftInternalNode, IList<ProtocolMember>
         : base(buffer, children)
     { }
 
-    public ProtocolMemberGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ProtocolMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ProtocolMemberGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ProtocolMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

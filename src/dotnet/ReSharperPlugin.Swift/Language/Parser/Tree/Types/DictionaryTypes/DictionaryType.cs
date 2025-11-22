@@ -24,11 +24,11 @@ public class DictionaryType : TypeInternalNode
         : base(buffer, children)
     { }
 
-    public DictionaryType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public DictionaryType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public DictionaryType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public DictionaryType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

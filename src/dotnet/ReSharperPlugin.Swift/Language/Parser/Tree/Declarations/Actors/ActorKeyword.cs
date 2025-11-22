@@ -14,7 +14,7 @@ public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Actor)
     { }
 
-    internal ActorKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal ActorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Actor)
     {
         if (parent is Actor actor)
@@ -41,7 +41,7 @@ public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
         return new ActorKeyword(actor, new EditableBuffer(Keyword));
     }
 
-    public static ActorKeyword CreateUnchecked(ISwiftNode parent)
+    public static ActorKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new ActorKeyword(parent, new EditableBuffer(Keyword));
     }

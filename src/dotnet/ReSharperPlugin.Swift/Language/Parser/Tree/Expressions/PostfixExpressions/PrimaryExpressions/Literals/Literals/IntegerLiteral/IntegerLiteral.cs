@@ -15,7 +15,7 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>
         DeduceType();
     }
 
-    public IntegerLiteral(ISwiftNode parent, IEditableBuffer buffer)
+    public IntegerLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.IntegerLiteral)
     {
         ParseValue(buffer);
@@ -26,7 +26,7 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>
         : base(new EditableBuffer(value.ToString()), NodeTypes.NodeTypes.IntegerLiteral)
     { }
     
-    public IntegerLiteral(ISwiftNode parent, BigInteger value)
+    public IntegerLiteral(SwiftInternalNode parent, BigInteger value)
         : base(parent, new EditableBuffer(value.ToString()), NodeTypes.NodeTypes.IntegerLiteral)
     { }
 
@@ -37,7 +37,7 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>
         DeduceType();
     }
 
-    internal IntegerLiteral(ISwiftNode parent, IEditableBuffer buffer, BigInteger value)
+    internal IntegerLiteral(SwiftInternalNode parent, IEditableBuffer buffer, BigInteger value)
         : base(parent, buffer, NodeTypes.NodeTypes.IntegerLiteral)
     {
         Value = value;

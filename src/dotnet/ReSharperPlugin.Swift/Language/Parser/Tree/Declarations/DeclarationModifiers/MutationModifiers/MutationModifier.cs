@@ -9,7 +9,7 @@ public abstract class MutationModifier : DeclarationModifierLeaf
         : base(buffer, nodeType)
     { }
 
-    public MutationModifier(ISwiftNode parent, IEditableBuffer buffer, NodeType nodeType) 
+    public MutationModifier(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
         : base(parent, buffer, nodeType)
     { }
 }

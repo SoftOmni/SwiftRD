@@ -20,11 +20,11 @@ public class TernaryOperator : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public TernaryOperator(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public TernaryOperator(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public TernaryOperator(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public TernaryOperator(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

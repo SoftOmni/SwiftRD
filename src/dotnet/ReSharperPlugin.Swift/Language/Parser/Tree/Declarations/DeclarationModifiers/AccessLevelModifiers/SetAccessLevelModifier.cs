@@ -23,11 +23,11 @@ public abstract class SetAccessLevelModifier : DeclarationModifierInternal, IAcc
         : base(buffer, children)
     { }
 
-    protected SetAccessLevelModifier(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected SetAccessLevelModifier(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected SetAccessLevelModifier(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected SetAccessLevelModifier(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

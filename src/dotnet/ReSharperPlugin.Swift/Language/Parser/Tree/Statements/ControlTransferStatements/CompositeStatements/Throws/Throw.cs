@@ -15,7 +15,7 @@ public class Throw : ControlTransferStatementLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Throw)
     { }
 
-    internal Throw(ISwiftNode parent, IEditableBuffer buffer)
+    internal Throw(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Throw)
     {
         if (parent is ThrowStatement throwStatement)
@@ -40,7 +40,7 @@ public class Throw : ControlTransferStatementLeafNode, ISwiftKeyword
         return new Throw(throwStatement, new EditableBuffer(Keyword));
     }
 
-    internal static Throw CreateUnchecked(ISwiftNode parent)
+    internal static Throw CreateUnchecked(SwiftInternalNode parent)
     {
         return new Throw(parent, new EditableBuffer(Keyword));
     }

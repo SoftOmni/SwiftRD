@@ -21,11 +21,11 @@ public class DeInitializer : Declaration
         : base(buffer, children)
     { }
 
-    public DeInitializer(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public DeInitializer(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public DeInitializer(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public DeInitializer(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

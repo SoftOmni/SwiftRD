@@ -11,7 +11,7 @@ public class RightAngleBracket : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.RightAngleBracket)
     { }
 
-    internal RightAngleBracket(ISwiftNode parent, IEditableBuffer buffer) 
+    internal RightAngleBracket(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.RightAngleBracket)
     { }
 
@@ -23,7 +23,7 @@ public class RightAngleBracket : SwiftLeafNode, ISwiftPunctuator
         return new RightAngleBracket(new EditableBuffer(Value));
     }
 
-    public static RightAngleBracket Create(ISwiftNode parent)
+    public static RightAngleBracket Create(SwiftInternalNode parent)
     {
         return new RightAngleBracket(new EditableBuffer(Value));
     }

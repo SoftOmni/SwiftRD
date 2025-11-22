@@ -13,7 +13,7 @@ public class Throws: SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Throws)
     { }
 
-    internal Throws(ISwiftNode parent, IEditableBuffer buffer)
+    internal Throws(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Throws)
     {
         if (parent is ThrowsClause throwsClause)
@@ -41,7 +41,7 @@ public class Throws: SwiftLeafNode, ISwiftKeyword
         return new Throws(new EditableBuffer(Keyword));
     }
     
-    public static Throws CreateUnchecked(ISwiftNode parent)
+    public static Throws CreateUnchecked(SwiftInternalNode parent)
     {
         return new Throws(new EditableBuffer(Keyword));
     }

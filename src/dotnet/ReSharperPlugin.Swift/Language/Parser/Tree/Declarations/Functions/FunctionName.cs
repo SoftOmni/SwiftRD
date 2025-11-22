@@ -23,7 +23,7 @@ public class FunctionName : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public FunctionName(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public FunctionName(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     {
         if (parent is Function function)
@@ -32,7 +32,7 @@ public class FunctionName : SwiftInternalNode
         }
     }
 
-    public FunctionName(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public FunctionName(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     {
         if (parent is Function function)

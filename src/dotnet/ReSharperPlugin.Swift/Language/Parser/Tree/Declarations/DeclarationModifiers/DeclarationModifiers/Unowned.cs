@@ -11,7 +11,7 @@ public class Unowned : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Unowned)
     { }
 
-    internal Unowned(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Unowned(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Unowned)
     { }
 
@@ -23,7 +23,7 @@ public class Unowned : DeclarationModifierLeaf, ISwiftKeyword
         return new Unowned(new EditableBuffer(Keyword));
     }
 
-    public static Unowned Create(ISwiftNode parent)
+    public static Unowned Create(SwiftInternalNode parent)
     {
         return new Unowned(new EditableBuffer(Keyword));
     }

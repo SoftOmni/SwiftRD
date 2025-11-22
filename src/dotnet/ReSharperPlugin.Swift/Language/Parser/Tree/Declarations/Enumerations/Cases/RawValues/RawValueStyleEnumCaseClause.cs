@@ -21,11 +21,11 @@ public class RawValueStyleEnumCaseClause : SwiftInternalNode, IRawValueEnumerati
         : base(buffer, children)
     { }
 
-    public RawValueStyleEnumCaseClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public RawValueStyleEnumCaseClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public RawValueStyleEnumCaseClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public RawValueStyleEnumCaseClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

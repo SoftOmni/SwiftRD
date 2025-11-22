@@ -11,7 +11,7 @@ public class At : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.At)
     { }
 
-    internal At(ISwiftNode parent, IEditableBuffer buffer) 
+    internal At(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.At)
     { }
 
@@ -23,7 +23,7 @@ public class At : SwiftLeafNode, ISwiftPunctuator
         return new At(new EditableBuffer(Value));
     }
 
-    public static At Create(ISwiftNode parent)
+    public static At Create(SwiftInternalNode parent)
     {
         return new At(new EditableBuffer(Value));
     }

@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Technology;
 
@@ -12,7 +15,7 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
 {
     protected readonly List<ISwiftNode> Children;
 
-    public ISwiftNode? CoreParent { get; protected set; }
+    public SwiftInternalNode? CoreParent { get; protected set; }
 
     protected SwiftInternalNode(IEditableBuffer buffer, List<ISwiftNode> children)
     {
@@ -26,18 +29,24 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
         Children = [..children];
     }
 
-    protected SwiftInternalNode(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected SwiftInternalNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex, 
+        IEditableBuffer buffer, List<ISwiftNode> nodes)
     {
         CoreParent = parent;
         Children = nodes;
         EditableBuffer = buffer;
+        ParentIndex = parentIndex;
+        ParentTextIndex = parentTextIndex;
     }
 
-    protected SwiftInternalNode(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected SwiftInternalNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex,
+        IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
     {
         CoreParent = parent;
         EditableBuffer = buffer;
         Children = [..nodes];
+        ParentIndex = parentIndex;
+        ParentTextIndex = parentTextIndex;
     }
 
     protected IEditableBuffer EditableBuffer { get; set; }
@@ -70,7 +79,7 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
 
         ISwiftNode previousChild = Children[index];
         DetachChild(index);
-        newNode.AttachToParent(index, this);
+        newNode.AttachToParent(this, index);
 
         return previousChild;
     }
@@ -161,7 +170,7 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
 
         ISwiftNode previousChild = Children[index];
         DetachChildForcibly(index);
-        newNode.AttachToParent(index, this);
+        newNode.AttachToParent(this, index);
 
         return previousChild;
     }
@@ -1177,7 +1186,7 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
         }
     }
 
-    public ISwiftNode? GetParent()
+    public SwiftInternalNode? GetParent()
     {
         return CoreParent;
     }
@@ -1266,55 +1275,43 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
         return newNode;
     }
 
-    public ISwiftNode CloneAsAttachedToShallow(int index, ISwiftNode newParent)
+    public ISwiftNode CloneAsAttachedToShallow(int index, SwiftInternalNode newParent)
     {
         ISwiftNode cloned = CloneAsDetachedShallow();
-        cloned.AttachToParent(index, newParent);
+        cloned.AttachToParent(newParent, index);
 
         return cloned;
     }
 
-    public ISwiftNode CloneAsAttachedToDeep(int index, ISwiftNode newParent)
+    public ISwiftNode CloneAsAttachedToDeep(int index, SwiftInternalNode newParent)
     {
         ISwiftNode cloned = CloneAsDetachedDeep();
-        cloned.AttachToParent(index, newParent);
+        cloned.AttachToParent(newParent, index);
 
         return cloned;
     }
 
-    public ISwiftNode CloneAsAttachedToDeep(int index, ISwiftNode newParent, int depth,
+    public ISwiftNode CloneAsAttachedToDeep(int index, SwiftInternalNode newParent, int depth,
         ISwiftNode.DepthCloningMode cloningMode)
     {
         ISwiftNode cloned = CloneAsDetachedDeep(depth, cloningMode);
-        cloned.AttachToParent(index, newParent);
+        cloned.AttachToParent(newParent, index);
 
         return cloned;
     }
 
-    public virtual void AttachToParent(int parentIndex, ISwiftNode newParent)
+    public virtual void AttachToParent(SwiftInternalNode newParent, int parentIndex)
     {
-        if (newParent is not SwiftInternalNode internalNode)
-        {
-            throw new NotSupportedException(
-                "You cannot attach to a parent node which isn't internal and thus doesn't support child attachment");
-        }
-
         CoreParent?.DetachChild(ParentIndex);
-        ParentTextIndex = internalNode.AttachChild(parentIndex, this);
+        ParentTextIndex = newParent.AttachChild(parentIndex, this);
         CoreParent = newParent;
         ParentIndex = parentIndex;
     }
 
-    internal virtual void AttachToParentForcibly(int parentIndex, ISwiftNode newParent)
+    internal virtual void AttachToParentForcibly(SwiftInternalNode newParent, int parentIndex)
     {
-        if (newParent is not SwiftInternalNode internalNode)
-        {
-            throw new NotSupportedException(
-                "You cannot attach to a parent node which isn't internal and thus doesn't support child attachment");
-        }
-        
         CoreParent?.DetachChild(ParentIndex);
-        ParentTextIndex = internalNode.AttachChildForcibly(parentIndex, this);
+        ParentTextIndex = newParent.AttachChildForcibly(parentIndex, this);
         CoreParent = newParent;
         ParentIndex = parentIndex;
     }
@@ -1348,8 +1345,100 @@ public abstract class SwiftInternalNode : TreeElement, ISwiftNode
             leafNode.CoreParent = null;
         }
 
-        newChildBuffer.Remove(start, end - start);
+        int length = end - start;
+        newChildBuffer.Remove(start, length);
         Children.RemoveAt(childIndex);
+        
+        for (int i = childIndex; i < Children.Count; i++)
+        {
+            ISwiftNode child = Children[i];
+
+            switch (child)
+            {
+                case SwiftInternalNode internalChild:
+                    internalChild.ParentTextIndex -= length;
+                    break;
+                case SwiftLeafNode leafChild:
+                    leafChild.ParentTextIndex -= length;
+                    break;
+            }
+        }
+    }
+
+    public void DetachFromParent()
+    {
+        CoreParent?.DetachChild(ParentIndex);
+    }
+
+    internal void DetachFromParentForcibly()
+    {
+        CoreParent?.DetachChildForcibly(ParentIndex);
+    }
+
+    public override string GetText()
+    {
+        return EditableBuffer.GetText();
+    }
+
+    public override int GetTextLength()
+    {
+        return EditableBuffer.Length;
+    }
+
+    public override StringBuilder GetText(StringBuilder to)
+    {
+        return StringBuilderExtensions.Append(EditableBuffer, to);
+    }
+
+    public override IBuffer GetTextAsBuffer()
+    {
+        return EditableBuffer;
+    }
+
+    public override ITreeNode? FirstChild => Children.Count > 0 ? Children[0] : null;
+    
+    public override ITreeNode? LastChild => Children.Count > 0 ? Children[Children.Count - 1] : null;
+
+    public override PsiLanguageType Language => SwiftLanguage.Instance!;
+
+    public override ITreeNode FindNodeAt(TreeTextRange treeRange)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void FindNodesAtInternal(TreeTextRange relativeRange, List<ITreeNode> result, bool includeContainingNodes)
+    {
+        throw new NotImplementedException();
+    }
+    
+    protected static void CheckChildren(IEnumerable<ISwiftNode> child, params HashSet<Type> alwaysAllowedTypes)
+    {
+        
+    }
+    
+    protected static void CheckChildren(List<ISwiftNode> child, params HashSet<Type> alwaysAllowedTypes)
+    {
+        
+    }
+    
+    protected static void CheckChildren(IEnumerable<ISwiftNode> child, List<Type> expectedTypesTape)
+    {
+        
+    }
+    
+    protected static void CheckChildren(List<ISwiftNode> child, List<Type> expectedTypesTape)
+    {
+        
+    }
+    
+    protected static void CheckChildren(IEnumerable<ISwiftNode> child, List<Type> allowedTypesTape)
+    {
+        
+    }
+    
+    protected static void CheckChildren(List<ISwiftNode> child, List<Type> allowedTypesTape)
+    {
+        
     }
 }
 
@@ -1385,5 +1474,39 @@ internal static class EditableBufferExtensions
         }
 
         return newBuffer;
+    }
+    
+    internal static IEditableBuffer CombineBuffers(int capacity, params IBuffer[] buffers)
+    {
+        EditableBuffer finalBuffer = new(capacity);
+
+        for (int buffersIndex = 0; buffersIndex < finalBuffer.Length; buffersIndex++)
+        {
+            IBuffer buffer = buffers[buffersIndex];
+
+            for (int bufferIndex = 0; bufferIndex < buffer.Length; bufferIndex++)
+            {
+                finalBuffer.Insert(finalBuffer.Length, buffer[bufferIndex].ToString());
+            }
+        }
+        
+        return finalBuffer;
+    }
+    
+    internal static IEditableBuffer CombineBuffers(params IBuffer[] buffers)
+    {
+        EditableBuffer finalBuffer = new();
+
+        for (int buffersIndex = 0; buffersIndex < finalBuffer.Length; buffersIndex++)
+        {
+            IBuffer buffer = buffers[buffersIndex];
+
+            for (int bufferIndex = 0; bufferIndex < buffer.Length; bufferIndex++)
+            {
+                finalBuffer.Insert(finalBuffer.Length, buffer[bufferIndex].ToString());
+            }
+        }
+        
+        return finalBuffer;
     }
 }

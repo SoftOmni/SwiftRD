@@ -22,11 +22,11 @@ public class ArrayLiteral : LiteralExpressionInternalNode, IList<Expression>, IL
         : base(buffer, children)
     { }
 
-    public ArrayLiteral(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public ArrayLiteral(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public ArrayLiteral(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public ArrayLiteral(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

@@ -16,11 +16,11 @@ public class LetOptionalBindingCondition : OptionalBindingCondition
         : base(buffer, children)
     { }
 
-    public LetOptionalBindingCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public LetOptionalBindingCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public LetOptionalBindingCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public LetOptionalBindingCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

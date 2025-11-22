@@ -20,11 +20,11 @@ public class SameTypeRequirement : Requirement
         : base(buffer, children)
     { }
 
-    public SameTypeRequirement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public SameTypeRequirement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public SameTypeRequirement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public SameTypeRequirement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

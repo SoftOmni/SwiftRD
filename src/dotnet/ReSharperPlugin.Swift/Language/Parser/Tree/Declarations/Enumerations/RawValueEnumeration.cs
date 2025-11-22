@@ -16,11 +16,11 @@ public class RawValueEnumeration : Enumeration
         : base(buffer, children)
     { }
 
-    public RawValueEnumeration(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public RawValueEnumeration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public RawValueEnumeration(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public RawValueEnumeration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

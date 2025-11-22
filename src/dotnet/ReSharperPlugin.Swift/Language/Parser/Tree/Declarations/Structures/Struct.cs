@@ -13,7 +13,7 @@ public class Struct : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Struct)
     { }
 
-    internal Struct(ISwiftNode parent, IEditableBuffer buffer)
+    internal Struct(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Struct)
     {
         if (parent is Structure structure)
@@ -40,7 +40,7 @@ public class Struct : SwiftLeafNode, ISwiftKeyword
         return new Struct(structure, new EditableBuffer(Keyword));
     }
 
-    public static Struct CreateUnchecked(ISwiftNode parent)
+    public static Struct CreateUnchecked(SwiftInternalNode parent)
     {
         return new Struct(parent, new EditableBuffer(Keyword));
     }

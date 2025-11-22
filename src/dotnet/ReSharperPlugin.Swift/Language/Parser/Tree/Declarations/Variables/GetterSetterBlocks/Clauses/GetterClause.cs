@@ -25,11 +25,11 @@ public abstract class GetterClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected GetterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected GetterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected GetterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected GetterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

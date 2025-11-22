@@ -16,11 +16,11 @@ public class AttributeGroup : SwiftInternalNode, IList<Attribute>
         : base(buffer, children)
     { }
 
-    public AttributeGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public AttributeGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public AttributeGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public AttributeGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

@@ -13,7 +13,7 @@ public class Var : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Var)
     { }
 
-    internal Var(ISwiftNode parent, IEditableBuffer buffer)
+    internal Var(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Var)
     {
         if (parent is Variable variable)
@@ -40,7 +40,7 @@ public class Var : SwiftLeafNode, ISwiftKeyword
         return new Var(variable, new EditableBuffer(Keyword));
     }
 
-    public static Var CreateUnchecked(ISwiftNode parent)
+    public static Var CreateUnchecked(SwiftInternalNode parent)
     {
         return new Var(parent, new EditableBuffer(Keyword));
     }

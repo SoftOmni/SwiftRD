@@ -13,7 +13,7 @@ public class WillSet : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.WillSet)
     { }
 
-    internal WillSet(ISwiftNode parent, IEditableBuffer buffer)
+    internal WillSet(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.WillSet)
     {
         if (parent is WillSetClause willSetClause)
@@ -40,7 +40,7 @@ public class WillSet : SwiftLeafNode, ISwiftKeyword
         return new WillSet(willSetClause, new EditableBuffer(Keyword));
     }
 
-    public static WillSet CreateUnchecked(ISwiftNode parent)
+    public static WillSet CreateUnchecked(SwiftInternalNode parent)
     {
         return new WillSet(parent, new EditableBuffer(Keyword));
     }

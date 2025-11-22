@@ -19,11 +19,11 @@ public class GenericIdentifierExplicitMemberExpression : ExplicitMemberExpressio
         : base(buffer, children)
     { }
 
-    public GenericIdentifierExplicitMemberExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public GenericIdentifierExplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public GenericIdentifierExplicitMemberExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public GenericIdentifierExplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

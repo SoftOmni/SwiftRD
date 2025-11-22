@@ -8,22 +8,26 @@ namespace ReSharperPlugin.Swift.Language.Parser.Tree;
 
 public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
 {
-    internal ISwiftNode? CoreParent;
+    internal SwiftInternalNode? CoreParent;
     
     protected SwiftLeafNode(IEditableBuffer editableBuffer, NodeType nodeType)
     {
+        ParentIndex = SwiftNodeBasesCommonConstants.NoParentIndex;
+        ParentTextIndex = SwiftNodeBasesCommonConstants.NoParentIndex;
         NodeType = nodeType;
         EditableBuffer = editableBuffer;
     }
 
-    protected SwiftLeafNode(ISwiftNode parent, IEditableBuffer editableBuffer, NodeType nodeType)
+    protected SwiftLeafNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer editableBuffer, NodeType nodeType)
     {
+        ParentIndex = parentIndex;
+        ParentTextIndex = parentTextIndex;
         CoreParent = parent;
         EditableBuffer = editableBuffer;
         NodeType = nodeType;
     }
 
-    public ISwiftNode? GetParent()
+    public SwiftInternalNode? GetParent()
     {
         return CoreParent;
     }
@@ -83,9 +87,14 @@ public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
         throw new ArgumentOutOfRangeException(nameof(index), $"This is a leaf node, there are no children (index passed: {index})");
     }
 
-    public ISwiftNode? SetChildAt(int index, ISwiftNode newNode)
+    public ISwiftNode SetChildAt(int index, ISwiftNode newNode)
     {
         throw new ArgumentOutOfRangeException(nameof(index), $"This is a leaf node, there are no children (index passed: {index})");
+    }
+
+    protected void ClearBuffer()
+    {
+        EditableBuffer.Remove(0, EditableBuffer.Length);
     }
 
     protected abstract ISwiftNode Clone();
@@ -105,46 +114,51 @@ public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
         return Clone();
     }
 
-    private ISwiftNode CloneAsAttached(int index, ISwiftNode newParent)
+    private ISwiftNode CloneAsAttached(int index, SwiftInternalNode newParent)
     {
         ISwiftNode swiftNode = Clone();
-        AttachToParent(index, newParent);
+        AttachToParent(newParent, index);
 
         return swiftNode;
     }
 
-    public virtual ISwiftNode CloneAsAttachedToShallow(int index, ISwiftNode newParent)
+    public virtual ISwiftNode CloneAsAttachedToShallow(int index, SwiftInternalNode newParent)
     {
         return CloneAsAttached(index, newParent);
     }
 
-    public virtual ISwiftNode CloneAsAttachedToDeep(int index, ISwiftNode newParent)
+    public virtual ISwiftNode CloneAsAttachedToDeep(int index, SwiftInternalNode newParent)
     {
         return CloneAsAttached(index, newParent);
     }
 
-    public virtual ISwiftNode CloneAsAttachedToDeep(int index, ISwiftNode newParent, int depth)
+    public virtual ISwiftNode CloneAsAttachedToDeep(int index, SwiftInternalNode newParent, int depth)
     {
         return CloneAsAttached(index, newParent);
     }
 
-    public virtual void AttachToParent(int parentIndex, ISwiftNode newParent)
+    public virtual void AttachToParent(SwiftInternalNode newParent, int parentIndex)
     {
-        if (newParent is not SwiftInternalNode internalNode)
-        {
-            throw new NotSupportedException(
-                "You cannot attach to a parent node which isn't internal and thus doesn't support child attachment");
-        }
-
         CoreParent?.DetachChild(ParentIndex);
-        internalNode.AttachChild(parentIndex, this);
+        newParent.AttachChild(parentIndex, this);
     }
 
-    public void DetachChild(int childIndexInParent)
+    public void DetachChild(int childIndex)
     {
         throw new NotSupportedException(
             "You cannot detach a child as this is a leaf node and there are no children");
     }
+
+    public void DetachFromParent()
+    {
+        CoreParent?.DetachChild(ParentIndex);
+    }
+    
+    internal void DetachFromParentForcibly()
+    {
+        CoreParent?.DetachChildForcibly(ParentIndex);
+    }
+    
 }
 
 public static class StringBuilderExtensions

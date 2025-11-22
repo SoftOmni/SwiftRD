@@ -15,7 +15,7 @@ public class BlockCommentStartNode : SwiftLeafNode
     internal BlockCommentStartNode(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.BlockCommentStart)
     { }
 
-    internal BlockCommentStartNode(ISwiftNode parent, IEditableBuffer buffer) : base(parent, buffer,
+    internal BlockCommentStartNode(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
         NodeTypes.NodeTypes.BlockCommentStart)
     { }
 
@@ -29,7 +29,7 @@ public class BlockCommentStartNode : SwiftLeafNode
         return new BlockCommentStartNode(parent, new EditableBuffer("/*"));
     }
 
-    public static BlockCommentStartNode CreateUnchecked(ISwiftNode parent)
+    public static BlockCommentStartNode CreateUnchecked(SwiftInternalNode parent)
     {
         return new BlockCommentStartNode(parent, new EditableBuffer("/*"));
     }

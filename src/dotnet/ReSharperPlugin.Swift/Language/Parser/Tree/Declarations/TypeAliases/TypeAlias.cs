@@ -30,11 +30,11 @@ public class TypeAlias : Declaration
         : base(buffer, children)
     { }
 
-    public TypeAlias(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public TypeAlias(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public TypeAlias(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public TypeAlias(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

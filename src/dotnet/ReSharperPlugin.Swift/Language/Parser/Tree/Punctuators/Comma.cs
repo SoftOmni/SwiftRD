@@ -11,7 +11,7 @@ public class Comma : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Comma)
     { }
 
-    internal Comma(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Comma(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Comma)
     { }
 
@@ -23,7 +23,7 @@ public class Comma : SwiftLeafNode, ISwiftPunctuator
         return new Comma(new EditableBuffer(Value));
     }
 
-    public static Comma Create(ISwiftNode parent)
+    public static Comma Create(SwiftInternalNode parent)
     {
         return new Comma(new EditableBuffer(Value));
     }

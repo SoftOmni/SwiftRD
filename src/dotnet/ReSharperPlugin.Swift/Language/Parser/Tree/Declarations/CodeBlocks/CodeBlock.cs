@@ -16,11 +16,11 @@ public class CodeBlock : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public CodeBlock(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public CodeBlock(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public CodeBlock(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public CodeBlock(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

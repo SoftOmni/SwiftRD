@@ -13,7 +13,7 @@ public class Alpha : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Alpha)
     { }
 
-    internal Alpha(ISwiftNode parent, IEditableBuffer buffer)
+    internal Alpha(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Alpha)
     {
         if (parent is Color color)
@@ -40,7 +40,7 @@ public class Alpha : SwiftLeafNode, ISwiftKeyword
         return new Alpha(color, new EditableBuffer(Keyword));
     }
 
-    public static Alpha CreateUnchecked(ISwiftNode parent)
+    public static Alpha CreateUnchecked(SwiftInternalNode parent)
     {
         return new Alpha(parent, new EditableBuffer(Keyword));
     }

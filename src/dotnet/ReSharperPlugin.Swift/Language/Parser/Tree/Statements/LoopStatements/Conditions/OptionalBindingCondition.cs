@@ -19,11 +19,11 @@ public abstract class OptionalBindingCondition : SwiftInternalNode, ICondition
         : base(buffer, children)
     { }
 
-    public OptionalBindingCondition(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public OptionalBindingCondition(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public OptionalBindingCondition(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public OptionalBindingCondition(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

@@ -16,11 +16,11 @@ public class UnionStyleEnumerationMemberGroup : SwiftInternalNode, IList<UnionSt
         : base(buffer, children)
     { }
 
-    public UnionStyleEnumerationMemberGroup(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public UnionStyleEnumerationMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public UnionStyleEnumerationMemberGroup(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public UnionStyleEnumerationMemberGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

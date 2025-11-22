@@ -19,11 +19,11 @@ public abstract class LoopControlTransferStatement : ControlTransferStatementInt
         : base(buffer, children)
     { }
 
-    protected LoopControlTransferStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected LoopControlTransferStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected LoopControlTransferStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected LoopControlTransferStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 

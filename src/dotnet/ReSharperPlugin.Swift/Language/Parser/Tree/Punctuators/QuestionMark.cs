@@ -12,7 +12,7 @@ public class QuestionMark : SwiftLeafNode, ISwiftPunctuator, IKeyPathPostfix
         : base(buffer, NodeTypes.NodeTypes.QuestionMark)
     { }
 
-    internal QuestionMark(ISwiftNode parent, IEditableBuffer buffer) 
+    internal QuestionMark(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.QuestionMark)
     { }
 
@@ -24,7 +24,7 @@ public class QuestionMark : SwiftLeafNode, ISwiftPunctuator, IKeyPathPostfix
         return new QuestionMark(new EditableBuffer(Value));
     }
 
-    public static QuestionMark Create(ISwiftNode parent)
+    public static QuestionMark Create(SwiftInternalNode parent)
     {
         return new QuestionMark(new EditableBuffer(Value));
     }

@@ -11,7 +11,7 @@ public class Static : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Static)
     { }
 
-    internal Static(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Static(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Static)
     { }
 
@@ -23,7 +23,7 @@ public class Static : DeclarationModifierLeaf, ISwiftKeyword
         return new Static(new EditableBuffer(Keyword));
     }
 
-    public static Static Create(ISwiftNode parent)
+    public static Static Create(SwiftInternalNode parent)
     {
         return new Static(new EditableBuffer(Keyword));
     }

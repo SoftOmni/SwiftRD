@@ -11,7 +11,7 @@ public class Open : LeafAccessLevelModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Open)
     { }
 
-    internal Open(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Open(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Open)
     { }
 
@@ -23,7 +23,7 @@ public class Open : LeafAccessLevelModifier, ISwiftKeyword
         return new Open(new EditableBuffer(Keyword));
     }
 
-    public static Open Create(ISwiftNode parent)
+    public static Open Create(SwiftInternalNode parent)
     {
         return new Open(new EditableBuffer(Keyword));
     }

@@ -11,7 +11,7 @@ public class Backtick : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Backtick)
     { }
 
-    internal Backtick(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Backtick(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Backtick)
     { }
 
@@ -23,7 +23,7 @@ public class Backtick : SwiftLeafNode, ISwiftPunctuator
         return new Backtick(new EditableBuffer(Value));
     }
 
-    public static Backtick Create(ISwiftNode parent)
+    public static Backtick Create(SwiftInternalNode parent)
     {
         return new Backtick(new EditableBuffer(Value));
     }

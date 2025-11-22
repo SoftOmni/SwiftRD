@@ -22,11 +22,11 @@ public class LabeledTrailingClosure : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public LabeledTrailingClosure(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public LabeledTrailingClosure(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public LabeledTrailingClosure(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public LabeledTrailingClosure(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

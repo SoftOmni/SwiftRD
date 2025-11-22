@@ -19,11 +19,11 @@ public class InOutExpression : PrefixExpression
         : base(buffer, children)
     { }
 
-    public InOutExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public InOutExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public InOutExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public InOutExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

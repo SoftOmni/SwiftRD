@@ -11,7 +11,7 @@ public class Mutating : MutationModifier, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Mutating)
     { }
 
-    internal Mutating(ISwiftNode parent, IEditableBuffer buffer)
+    internal Mutating(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Mutating)
     { }
 
@@ -23,7 +23,7 @@ public class Mutating : MutationModifier, ISwiftKeyword
         return new Mutating(new EditableBuffer(Keyword));
     }
 
-    public static Mutating Create(ISwiftNode parent)
+    public static Mutating Create(SwiftInternalNode parent)
     {
         return new Mutating(new EditableBuffer(Keyword));
     }

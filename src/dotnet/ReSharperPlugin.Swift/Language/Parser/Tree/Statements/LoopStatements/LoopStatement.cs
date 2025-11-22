@@ -23,11 +23,11 @@ public abstract class LoopStatement : StatementInternalNode
         : base(buffer, children)
     { }
 
-    protected LoopStatement(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected LoopStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected LoopStatement(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected LoopStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

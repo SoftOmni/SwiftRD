@@ -19,11 +19,11 @@ public class TypeInheritanceClause : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    public TypeInheritanceClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public TypeInheritanceClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public TypeInheritanceClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public TypeInheritanceClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

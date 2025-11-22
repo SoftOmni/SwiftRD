@@ -13,11 +13,11 @@ public abstract class ConditionalExpression : PrimaryExpressionInternalNode
         : base(buffer, children)
     { }
 
-    protected ConditionalExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    protected ConditionalExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    protected ConditionalExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    protected ConditionalExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

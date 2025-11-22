@@ -11,7 +11,7 @@ public class IfDirective : Directive
     internal IfDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedIf)
     { }
 
-    internal IfDirective(ISwiftNode parent, IEditableBuffer buffer) : base(parent, buffer,
+    internal IfDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
         NodeTypes.NodeTypes.ReservedIf)
     {
         if (parent is IfDirectiveClause clause)
@@ -37,7 +37,7 @@ public class IfDirective : Directive
             new EditableBuffer(NodeTypes.NodeTypes.ReservedIf.TokenRepresentation)); // TODO: Fix representations
     }
 
-    internal static IfDirective CreateUnchecked(ISwiftNode parent)
+    internal static IfDirective CreateUnchecked(SwiftInternalNode parent)
     {
         return new IfDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedIf.TokenRepresentation));
     }

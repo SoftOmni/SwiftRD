@@ -13,7 +13,7 @@ public class PrecedenceGroupKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.PrecedenceGroup)
     { }
 
-    internal PrecedenceGroupKeyword(ISwiftNode parent, IEditableBuffer buffer)
+    internal PrecedenceGroupKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.PrecedenceGroup)
     {
         if (parent is PrecedenceGroup precedenceGroup)
@@ -40,7 +40,7 @@ public class PrecedenceGroupKeyword : SwiftLeafNode, ISwiftKeyword
         return new PrecedenceGroupKeyword(precedenceGroup, new EditableBuffer(Keyword));
     }
 
-    public static PrecedenceGroupKeyword CreateUnchecked(ISwiftNode parent)
+    public static PrecedenceGroupKeyword CreateUnchecked(SwiftInternalNode parent)
     {
         return new PrecedenceGroupKeyword(parent, new EditableBuffer(Keyword));
     }

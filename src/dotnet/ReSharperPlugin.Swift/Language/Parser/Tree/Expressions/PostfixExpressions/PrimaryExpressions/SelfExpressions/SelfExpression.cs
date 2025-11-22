@@ -16,11 +16,11 @@ public class SelfExpression : PrimaryExpressionInternalNode, ISelfExpression
         : base(buffer, children)
     { }
 
-    public SelfExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public SelfExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public SelfExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public SelfExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

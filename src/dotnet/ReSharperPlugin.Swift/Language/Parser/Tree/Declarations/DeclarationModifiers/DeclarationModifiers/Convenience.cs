@@ -11,7 +11,7 @@ public class Convenience : DeclarationModifierLeaf, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Convenience)
     { }
 
-    internal Convenience(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Convenience(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Convenience)
     { }
 
@@ -23,7 +23,7 @@ public class Convenience : DeclarationModifierLeaf, ISwiftKeyword
         return new Convenience(new EditableBuffer(Keyword));
     }
 
-    public static Convenience Create(ISwiftNode parent)
+    public static Convenience Create(SwiftInternalNode parent)
     {
         return new Convenience(new EditableBuffer(Keyword));
     }

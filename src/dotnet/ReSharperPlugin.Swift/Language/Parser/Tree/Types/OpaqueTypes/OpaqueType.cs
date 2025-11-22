@@ -17,11 +17,11 @@ public class OpaqueType : TypeInternalNode
         : base(buffer, children)
     { }
 
-    public OpaqueType(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public OpaqueType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public OpaqueType(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public OpaqueType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

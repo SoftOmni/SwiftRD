@@ -16,11 +16,11 @@ public abstract class RawValueEnumerationMember : SwiftInternalNode
         : base(buffer, children)
     { }
 
-    protected RawValueEnumerationMember(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    protected RawValueEnumerationMember(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    protected RawValueEnumerationMember(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    protected RawValueEnumerationMember(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

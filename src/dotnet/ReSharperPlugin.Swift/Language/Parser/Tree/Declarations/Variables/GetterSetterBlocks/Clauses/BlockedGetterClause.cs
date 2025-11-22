@@ -16,11 +16,11 @@ public class BlockedGetterClause : GetterClause
         : base(buffer, children)
     { }
 
-    public BlockedGetterClause(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public BlockedGetterClause(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public BlockedGetterClause(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public BlockedGetterClause(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 }

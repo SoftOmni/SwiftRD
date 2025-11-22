@@ -14,7 +14,7 @@ public class Some : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Some)
     { }
 
-    internal Some(ISwiftNode parent, IEditableBuffer buffer)
+    internal Some(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.Some)
     {
         if (parent is OpaqueType opaqueType)
@@ -41,7 +41,7 @@ public class Some : SwiftLeafNode, ISwiftKeyword
         return new Some(opaqueType, new EditableBuffer(Keyword));
     }
 
-    public static Some CreateUnchecked(ISwiftNode parent)
+    public static Some CreateUnchecked(SwiftInternalNode parent)
     {
         return new Some(parent, new EditableBuffer(Keyword));
     }

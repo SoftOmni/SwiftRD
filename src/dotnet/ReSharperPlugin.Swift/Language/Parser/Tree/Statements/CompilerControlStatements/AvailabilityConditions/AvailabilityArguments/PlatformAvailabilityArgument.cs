@@ -18,11 +18,11 @@ public class PlatformAvailabilityArgument : AvailabilityArgument
         : base(buffer, children)
     { }
 
-    public PlatformAvailabilityArgument(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public PlatformAvailabilityArgument(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public PlatformAvailabilityArgument(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public PlatformAvailabilityArgument(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

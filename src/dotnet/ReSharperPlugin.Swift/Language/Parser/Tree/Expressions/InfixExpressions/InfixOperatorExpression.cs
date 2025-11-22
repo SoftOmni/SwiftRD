@@ -18,11 +18,11 @@ public class InfixOperatorExpression : InfixExpression
         : base(buffer, children)
     { }
 
-    public InfixOperatorExpression(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+    public InfixOperatorExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 
-    public InfixOperatorExpression(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+    public InfixOperatorExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
 }

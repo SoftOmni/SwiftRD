@@ -16,7 +16,7 @@ public class While : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.While)
     { }
 
-    internal While(ISwiftNode parent, IEditableBuffer buffer)
+    internal While(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.While)
     {
         if (parent is WhileStatement whileStatement)
@@ -59,7 +59,7 @@ public class While : SwiftLeafNode, ISwiftKeyword
         return new While(repeatWhileStatement, new EditableBuffer(Keyword));
     }
 
-    public static While CreateUnchecked(ISwiftNode parent)
+    public static While CreateUnchecked(SwiftInternalNode parent)
     {
         return new While(parent, new EditableBuffer(Keyword));
     }

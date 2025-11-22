@@ -13,7 +13,7 @@ public class HigherThan : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.HigherThan)
     { }
 
-    internal HigherThan(ISwiftNode parent, IEditableBuffer buffer)
+    internal HigherThan(SwiftInternalNode parent, IEditableBuffer buffer)
         : base(parent, buffer, NodeTypes.NodeTypes.HigherThan)
     {
         if (parent is PrecedenceGroupRelation precedenceGroupRelation)
@@ -40,7 +40,7 @@ public class HigherThan : SwiftLeafNode, ISwiftKeyword
         return new HigherThan(precedenceGroupRelation, new EditableBuffer(Keyword));
     }
 
-    public static HigherThan CreateUnchecked(ISwiftNode parent)
+    public static HigherThan CreateUnchecked(SwiftInternalNode parent)
     {
         return new HigherThan(parent, new EditableBuffer(Keyword));
     }

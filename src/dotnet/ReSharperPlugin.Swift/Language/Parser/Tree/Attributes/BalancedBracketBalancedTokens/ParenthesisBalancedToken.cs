@@ -21,11 +21,11 @@ public class ParenthesisBalancedToken : BalancedToken, IList<BalancedToken>
         : base(buffer, children)
     { }
 
-    public ParenthesisBalancedToken(ISwiftNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
+    public ParenthesisBalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 
-    public ParenthesisBalancedToken(ISwiftNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
+    public ParenthesisBalancedToken(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
         : base(parent, buffer, nodes)
     { }
 

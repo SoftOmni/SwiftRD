@@ -11,7 +11,7 @@ public class Period : SwiftLeafNode, ISwiftPunctuator
         : base(buffer, NodeTypes.NodeTypes.Period)
     { }
 
-    internal Period(ISwiftNode parent, IEditableBuffer buffer) 
+    internal Period(SwiftInternalNode parent, IEditableBuffer buffer) 
         : base(parent, buffer, NodeTypes.NodeTypes.Period)
     { }
 
@@ -23,7 +23,7 @@ public class Period : SwiftLeafNode, ISwiftPunctuator
         return new Period(new EditableBuffer(Value));
     }
 
-    public static Period Create(ISwiftNode parent)
+    public static Period Create(SwiftInternalNode parent)
     {
         return new Period(new EditableBuffer(Value));
     }
