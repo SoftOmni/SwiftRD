@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
 
@@ -213,7 +214,7 @@ public class ArrayType : TypeInternalNode
 
     protected override void CheckChildrenForSetting(List<ISwiftNode> newNodes)
     {
-        
+        CheckChildren(typeof(ArrayType), newNodes, [typeof(LeftSquareBracket), typeof(IType), typeof(RightSquareBracket)], [typeof(IWhitespaceNode), typeof(ICommentNode)]);
     }
 
     protected override List<ISwiftNode> CheckChildrenForSetting(IEnumerable<ISwiftNode> newNodes)

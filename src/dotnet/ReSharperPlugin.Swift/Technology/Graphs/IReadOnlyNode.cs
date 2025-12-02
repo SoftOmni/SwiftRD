@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ReSharperPlugin.Swift.Technology.Graphs;
 
@@ -29,6 +30,14 @@ public interface IReadOnlyNode
 
 public interface IReadOnlyNode<TValue> : IReadOnlyNode
 {
+    public bool ContainsEdgeFrom(TValue value);
+    
+    public bool ContainsEdgeTo(TValue value);
+    
+    public bool TryGetEdgeFrom(TValue value, [NotNullWhen(true)] out IReadOnlyNode<TValue>? edge);
+    
+    public bool TryGetEdgeTo(TValue value, [NotNullWhen(true)] out IReadOnlyNode<TValue>? edge);
+    
     public new IReadOnlyGraph<TValue> Graph { get; }
     
     public TValue Value { get; }
