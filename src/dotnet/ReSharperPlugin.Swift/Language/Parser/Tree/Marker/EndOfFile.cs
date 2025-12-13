@@ -9,6 +9,6 @@ public class EndOfFile : SwiftLeafNode, IMarker
     { }
 
     public EndOfFile(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.EndOfFile)
+        : base(parent, parentbuffer, NodeTypes.NodeTypes.EndOfFile)
     { }
 }

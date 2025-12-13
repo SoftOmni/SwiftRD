@@ -13,8 +13,8 @@ public class TypeAliasKeyword : SwiftLeafNode, ISwiftKeyword
         : base(buffer, NodeTypes.NodeTypes.Typealias)
     { }
 
-    internal TypeAliasKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Typealias)
+    internal TypeAliasKeyword(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.Typealias)
     {
         if (parent is TypeAlias typeAlias)
         {
@@ -22,8 +22,8 @@ public class TypeAliasKeyword : SwiftLeafNode, ISwiftKeyword
         }
     }
 
-    internal TypeAliasKeyword(TypeAlias parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Typealias)
+    internal TypeAliasKeyword(TypeAlias parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.Typealias)
     {
         TypeAlias = parent;
     }
@@ -35,13 +35,13 @@ public class TypeAliasKeyword : SwiftLeafNode, ISwiftKeyword
         return new TypeAliasKeyword(new EditableBuffer(Keyword));
     }
 
-    public static TypeAliasKeyword Create(TypeAlias typeAlias)
+    public static TypeAliasKeyword Create(TypeAlias typeAlias, int parentIndex)
     {
-        return new TypeAliasKeyword(typeAlias, new EditableBuffer(Keyword));
+        return new TypeAliasKeyword(typeAlias, parentIndex, typeAlias.TextIndexOfInsertingAt(parentIndex), new EditableBuffer(Keyword));
     }
 
-    public static TypeAliasKeyword CreateUnchecked(SwiftInternalNode parent)
+    public static TypeAliasKeyword CreateUnchecked(SwiftInternalNode parent, int parentIndex)
     {
-        return new TypeAliasKeyword(parent, new EditableBuffer(Keyword));
+        return new TypeAliasKeyword(parent, parentIndex, parent.TextIndexOfInsertingAt(parentIndex), new EditableBuffer(Keyword));
     }
 }

@@ -143,7 +143,7 @@ public abstract class SwiftLeafNode : LeafElementBase, ISwiftNode
         newParent.AttachChild(parentIndex, this);
     }
 
-    public void DetachChild(int childIndex)
+    public ISwiftNode DetachChild(int childIndex)
     {
         throw new NotSupportedException(
             "You cannot detach a child as this is a leaf node and there are no children");

@@ -34,7 +34,7 @@ public interface ISwiftNode : ITreeNode
 
     public void AttachToParent(SwiftInternalNode newParent, int parentIndex);
 
-    public void DetachChild(int childIndex);
+    public ISwiftNode DetachChild(int childIndex);
     
     public void DetachFromParent();
 

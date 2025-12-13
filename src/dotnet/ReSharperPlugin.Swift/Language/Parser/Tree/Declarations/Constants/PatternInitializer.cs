@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Patterns;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Constants;
 
 public class PatternInitializer : SwiftInternalNode
 {
     public Pattern? Pattern { get; private set; }
+    
+    public Equal? Equal { get; private set; }
     
     public Expression? Expression { get; private set; }
     

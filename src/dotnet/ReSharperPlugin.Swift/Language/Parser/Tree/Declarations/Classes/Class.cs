@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.ReSharper.Psi;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;

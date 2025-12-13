@@ -45,10 +45,20 @@ public class TopLevelDeclaration : SwiftInternalNode, IFile
     {
         throw new System.NotImplementedException();
     }
-
+    
     public CachingLexer CachingLexer { get; }
     
     public int ModificationCounter { get; }
     
     public bool CanContainCaseInsensitiveReferences { get; }
+
+    protected override SwiftInternalNode Duplicate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override SwiftInternalNode DuplicateWithoutChildren()
+    {
+        throw new System.NotImplementedException();
+    }
 }

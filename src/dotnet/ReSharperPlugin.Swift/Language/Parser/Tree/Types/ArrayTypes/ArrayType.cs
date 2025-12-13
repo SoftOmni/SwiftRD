@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
@@ -14,6 +15,12 @@ public class ArrayType : TypeInternalNode
     public IType? Type { get; internal set; }
 
     public RightSquareBracket? RightSquareBracket { get; internal set; }
+
+    private List<LeftSquareBracket> _leftSquareBrackets = [];
+
+    private List<IType> _types = [];
+
+    private List<RightSquareBracket> _rightSquareBrackets = [];
 
     internal ArrayType(IEditableBuffer buffer)
         : base(buffer, [])
@@ -135,6 +142,8 @@ public class ArrayType : TypeInternalNode
         {
             throw new MultipleErroneousSameChildrenException(doubledUpTypes);
         }
+        
+        UpdateTypeSignature();
     }
 
     public override bool IsValid()
@@ -182,7 +191,8 @@ public class ArrayType : TypeInternalNode
         return arrayType;
     }
 
-    public static ArrayType Create(SwiftInternalNode parent, int parentIndex, LeftSquareBracket leftSquareBracket, IType type,
+    public static ArrayType Create(SwiftInternalNode parent, int parentIndex, LeftSquareBracket leftSquareBracket,
+        IType type,
         RightSquareBracket rightSquareBracket)
     {
         ArrayType arrayType = Create(leftSquareBracket, type, rightSquareBracket);
@@ -196,7 +206,8 @@ public class ArrayType : TypeInternalNode
         return Create(parent, parentIndex, type); // TODO: Review this API
     }
 
-    internal static ArrayType CreateUnchecked(SwiftInternalNode parent, int parentIndex, LeftSquareBracket leftSquareBracket,
+    internal static ArrayType CreateUnchecked(SwiftInternalNode parent, int parentIndex,
+        LeftSquareBracket leftSquareBracket,
         IType type,
         RightSquareBracket rightSquareBracket)
     {
@@ -214,51 +225,167 @@ public class ArrayType : TypeInternalNode
 
     protected override void CheckChildrenForSetting(List<ISwiftNode> newNodes)
     {
-        CheckChildren(typeof(ArrayType), newNodes, [typeof(LeftSquareBracket), typeof(IType), typeof(RightSquareBracket)], [typeof(IWhitespaceNode), typeof(ICommentNode)]);
+        CheckChildren(typeof(ArrayType), newNodes,
+            [typeof(LeftSquareBracket), typeof(IType), typeof(RightSquareBracket)],
+            [typeof(IWhitespaceNode), typeof(ICommentNode)]);
+        base.CheckChildrenForSetting(newNodes);
     }
 
     protected override List<ISwiftNode> CheckChildrenForSetting(IEnumerable<ISwiftNode> newNodes)
     {
-        return base.CheckChildrenForSetting(newNodes);
+        List<ISwiftNode> children = newNodes.ToList();
+        CheckChildrenForSetting(children);
+
+        return children;
     }
 
     public override int AttachChild(int index, ISwiftNode child)
     {
+        if (child is Whitespace.IWhitespaceNode or Comments.ICommentNode)
+        {
+            return base.AttachChild(index, child);
+        }
+
+        if (child is not Punctuators.LeftSquareBracket and not IType and not Punctuators.RightSquareBracket)
+        {
+            throw new NotSupportedException(
+                "Only whitespace, comments, a left square bracket, a type or a right square " +
+                "bracket may be attached to an array node");
+        }
+
+        if (child is RightSquareBracket rightSquareBracket)
+        {
+            if (RightSquareBracket is not null)
+            {
+                throw new ArgumentException(
+                    "The right square bracket is already set. No second right square brackets allowed");
+            }
+
+            RightSquareBracket = rightSquareBracket;
+            return base.AttachChild(index, child);
+        }
+
+        if (child is IType type)
+        {
+            if (Type is not null)
+            {
+                throw new ArgumentException("The type is already set. No second type brackets allowed");
+            }
+
+            if (RightSquareBracket is not null && RightSquareBracket.ParentIndex < index)
+            {
+                throw new ArgumentException(
+                    $"The type must be before the right square bracket's index (position {RightSquareBracket.ParentIndex} (you tried to set at {index}))",
+                    nameof(index));
+            }
+
+            Type = type;
+            UpdateTypeSignature();
+            return base.AttachChild(index, child);
+        }
+
+        // child is left square bracket
+        LeftSquareBracket leftSquareBracket = (child as LeftSquareBracket)!;
+        if (LeftSquareBracket is not null)
+        {
+            throw new ArgumentException(
+                "The left square bracket is already set. No second left square brackets allowed");
+        }
+
+        if (Type is not null && Type.ParentIndex < index)
+        {
+            throw new ArgumentException(
+                $"The left square bracket must be before the type's index (position {Type.ParentIndex} (you tried to set at {index}))",
+                nameof(index));
+        }
+
+        if (RightSquareBracket is not null && RightSquareBracket.ParentIndex < index)
+        {
+            throw new ArgumentException(
+                $"The left square bracket must be before the right square bracket's index (position {RightSquareBracket.ParentIndex} (you tried to set at {index}))",
+                nameof(index));
+        }
+
+        LeftSquareBracket = leftSquareBracket;
         return base.AttachChild(index, child);
     }
 
+
     internal override int AttachChildForcibly(int index, ISwiftNode child)
     {
+        switch (child)
+        {
+            case LeftSquareBracket leftSquareBracket:
+            {
+                _leftSquareBrackets.Add(leftSquareBracket);
+                LeftSquareBracket ??= leftSquareBracket;
+                break;
+            }
+            case IType type:
+            {
+                _types.Add(type);
+                Type ??= type;
+                break;
+            }
+            case RightSquareBracket rightSquareBracket:
+            {
+                _rightSquareBrackets.Add(rightSquareBracket);
+                RightSquareBracket ??= rightSquareBracket;
+                break;
+            }
+        }
+
         return base.AttachChildForcibly(index, child);
     }
 
     public override void ClearChildren()
     {
-        base.ClearChildren();
+        throw new NotSupportedException("You cannot clear the children of this composite node " +
+                                        "because doing so would make the code invalid");
     }
 
     internal override void ClearChildrenForcibly()
     {
+        LeftSquareBracket = null;
+        Type = null;
+        RightSquareBracket = null;
+
         base.ClearChildrenForcibly();
-    }
-
-    public override void AttachToParent(SwiftInternalNode newParent, int parentIndex)
-    {
-        base.AttachToParent(newParent, parentIndex);
-    }
-
-    internal override void AttachToParentForcibly(SwiftInternalNode newParent, int parentIndex)
-    {
-        base.AttachToParentForcibly(newParent, parentIndex);
     }
 
     public override void DetachChild(int childIndex)
     {
+        if (childIndex < 0 || childIndex >= Children.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(childIndex));
+        }
+
+        if (LeftSquareBracket is not null && LeftSquareBracket.ParentIndex == childIndex)
+        {
+            LeftSquareBracket = null;
+        }
+
         base.DetachChild(childIndex);
+    }
+
+    private void UpdateTypeSignature()
+    {
+        UpdateTypeSignature(Type);
+    }
+
+    private void UpdateTypeSignature(IType? type)
+    {
+        if (type is null)
+        {
+            TypeSignature = "Array<>";
+            return;
+        }
+        
+        TypeSignature = $"Array<{type}>";
     }
 
     public override bool IsFiltered()
     {
-        return base.IsFiltered();
+        return false;
     }
 }
