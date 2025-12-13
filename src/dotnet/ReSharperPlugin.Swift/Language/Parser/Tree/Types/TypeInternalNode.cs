@@ -55,7 +55,7 @@ public abstract class TypeInternalNode : SwiftInternalNode, IType
 
     public IType? ActualType { get; protected set; } = null;
     
-    public string TypeSignature { get; }
+    public string TypeSignature { get; protected set; }
     
     public IType? SuperType { get; protected set; } = null;
     
