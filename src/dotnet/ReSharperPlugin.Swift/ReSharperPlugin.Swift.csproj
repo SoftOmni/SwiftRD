@@ -24,7 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Ressources\Icons\Language\Raw\" />
+    <Folder Include="Language\Base\Implementations\" />
+    <Folder Include="Language\DooC\" />
+    <Folder Include="Language\ModuleMaps\" />
+    <Folder Include="Language\Swift\" />
+    <Folder Include="Ressources\Icons\Language\Raw\Declarations\Swift\" />
   </ItemGroup>
 
 </Project>

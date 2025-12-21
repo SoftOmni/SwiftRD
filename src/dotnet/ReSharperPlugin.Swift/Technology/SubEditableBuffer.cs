@@ -7,11 +7,9 @@ namespace ReSharperPlugin.Swift.Technology;
 
 public class SubEditableBuffer : IEditableBuffer
 {
-    public SubEditableBuffer(IEditableBuffer parent, int parentIndex, int length)
-    {
-        
-    }
-    
+    public SubEditableBuffer(IEditableBuffer parent, int parentIndex, int length = 0)
+    { }
+
     public string GetText()
     {
         throw new NotImplementedException();
@@ -44,7 +42,8 @@ public class SubEditableBuffer : IEditableBuffer
 
     public char this[int index] => throw new NotImplementedException();
 
-    public int Length { get; }
+    public int Length { get; internal set; }
+
     public void Insert(int offset, string text)
     {
         throw new NotImplementedException();

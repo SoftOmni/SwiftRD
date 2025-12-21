@@ -1,6 +1,50 @@
-namespace ReSharperPlugin.Swift.Ressources.Icons.Language;
+namespace ReSharperPlugin.Swift.Resources.Icons.Language;
 
 public static class SwiftIcons
 {
-    public Icon
+    #region Declarations
+
+    #region TopLevelDeclarations
+
+    #region SwiftDeclarations
+
+    
+
+    #endregion
+
+    #region InteroperabilityDeclarations
+
+    
+
+    #region SwiftCpp
+
+    
+
+    #endregion
+
+    #region SwiftObjectiveC
+
+    
+
+    #endregion
+
+    #region SwiftJava
+
+    
+
+    #endregion
+
+    #region SwiftKotlin
+
+    
+
+    #endregion
+
+    #endregion
+
+    #endregion
+    
+    
+
+    #endregion
 }

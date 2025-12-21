@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="Language\Parser\Tree\Statements\ControlTransferStatements\CompositeStatements\LoopControlTransferStatements\Breaks\" />
     <Folder Include="Language\Parser\Tree\Statements\LoopStatements\WhileLoops\" />
+    <Folder Include="Technology\Ranges\" />
   </ItemGroup>
 
 </Project>

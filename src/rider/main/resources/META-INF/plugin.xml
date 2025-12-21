@@ -1,6 +1,6 @@
 <idea-plugin require-restart="true">
   <id>com.jetbrains.rider.plugins.swift</id>
-  <name>Swift</name>
+  <name>SwiftSwan</name>
   <version>0.0.1</version>
   <vendor url="https://github.com/SoftOmni/SwiftRD">Jascha MERLE</vendor>
   <idea-version since-build="2025.2" />

@@ -2,6 +2,7 @@ import com.jetbrains.plugin.structure.base.utils.isFile
 import groovy.ant.FileNameFinder
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.jetbrains.intellij.platform.gradle.Constants
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.ByteArrayOutputStream
 
 plugins {
@@ -55,7 +56,7 @@ sourceSets {
 }
 
 tasks.compileKotlin {
-    kotlinOptions { jvmTarget = "17" }
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
 }
 
 val setBuildTool by tasks.registering {
@@ -80,7 +81,7 @@ val setBuildTool by tasks.registering {
             }
         }
 
-        args.add("${DotnetSolution}")
+        args.add(DotnetSolution)
         args.add("/p:Configuration=${BuildConfiguration}")
         args.add("/p:HostFullIdentifier=")
         extra["args"] = args
@@ -91,7 +92,7 @@ val compileDotNet by tasks.registering {
     dependsOn(setBuildTool)
     doLast {
         val executable: String by setBuildTool.get().extra
-        val arguments = (setBuildTool.get().extra["args"] as List<String>).toMutableList()
+        val arguments = (setBuildTool.get().extra["args"] as List<*>).toMutableList()
         arguments.add("/t:Restore;Rebuild")
         exec {
             executable(executable)
@@ -105,7 +106,7 @@ val testDotNet by tasks.registering {
     doLast {
         exec {
             executable("dotnet")
-            args("test","${DotnetSolution}","--logger","GitHubActions")
+            args("test", DotnetSolution,"--logger","GitHubActions")
             workingDir(rootDir)
         }
     }
@@ -126,7 +127,7 @@ tasks.buildPlugin {
         }.take(1).joinToString()
 
         val executable: String by setBuildTool.get().extra
-        val arguments = (setBuildTool.get().extra["args"] as List<String>).toMutableList()
+        val arguments = (setBuildTool.get().extra["args"] as List<*>).toMutableList()
         arguments.add("/t:Pack")
         arguments.add("/p:PackageOutputPath=${rootDir}/output")
         arguments.add("/p:PackageReleaseNotes=${changeNotes}")
@@ -192,12 +193,12 @@ tasks.prepareSandbox {
 tasks.publishPlugin {
     dependsOn(testDotNet)
     dependsOn(tasks.buildPlugin)
-    token.set("${PublishToken}")
+    token.set(PublishToken)
 
     doLast {
         exec {
             executable("dotnet")
-            args("nuget","push","output/${DotnetPluginId}.${version}.nupkg","--api-key","${PublishToken}","--source","https://plugins.jetbrains.com")
+            args("nuget","push","output/${DotnetPluginId}.${version}.nupkg","--api-key", PublishToken,"--source","https://plugins.jetbrains.com")
             workingDir(rootDir)
         }
     }
