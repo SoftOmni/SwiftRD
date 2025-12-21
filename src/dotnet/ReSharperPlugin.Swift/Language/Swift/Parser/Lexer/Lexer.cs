@@ -195,6 +195,8 @@ public partial class SwiftLexer: IIncrementalLexer
     public int TokenStart { get; private set; }
 
     public int TokenEnd { get; private set; }
+    
+    public int TokenLength => TokenEnd - TokenStart;
 
     public IBuffer Buffer { get; private set; }
 

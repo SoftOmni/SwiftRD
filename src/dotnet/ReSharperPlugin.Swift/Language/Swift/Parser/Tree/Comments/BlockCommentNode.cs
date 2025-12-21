@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.ReSharper.Feature.Services.CSharp.CompleteStatement;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Lexer;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
 
@@ -471,6 +472,11 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
     }
 
     public bool Contains(Func<int, char, bool> predicate)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static BlockCommentNode ParseWithStart(SwiftLexer lexer, IEditableBuffer parentBuffer, int offset)
     {
         throw new NotImplementedException();
     }

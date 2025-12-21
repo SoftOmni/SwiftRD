@@ -22,6 +22,7 @@ public class SwiftParser : IParser
     
     public IFile ParseFile()
     {
-        throw new NotImplementedException();
+        TopLevelDeclaration topLevelDeclaration = TopLevelDeclaration.Parse(CoreLexer);
+        return topLevelDeclaration;
     }
 }
