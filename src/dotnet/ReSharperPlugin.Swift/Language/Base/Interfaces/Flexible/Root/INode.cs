@@ -212,6 +212,10 @@ public interface INode : ITreeNode
     ///     If the <paramref name="parentIndex"/> is greater or equal to the number of children
     ///     (returned by <see cref="IInternalNode.NumberOfChildren"/> on the <paramref name="newParent"/>).
     /// </exception>
+    /// <exception cref="NotSupportedException">
+    ///     If you use this method in a type that implements <see cref="INode{TIInternalNode, TILeafNode}"/>
+    ///     and <paramref name="newParent"/> is not of the same type as the "TIInternalNode" type that interface was instantiated with //TODO: review XML documentation for this and constrained INode
+    /// </exception>
     public void AttachToParent(IInternalNode newParent, int parentIndex);
     
     /// <summary>
