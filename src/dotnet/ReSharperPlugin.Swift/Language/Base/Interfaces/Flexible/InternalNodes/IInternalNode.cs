@@ -1,8 +1,33 @@
 using System;
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Language.Base;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.InternalNodes;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.LeafNodes;
 
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+
+namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
+
+/// <summary>
+///     <para>
+///         Represents a generic concrete or abstract syntax tree <see cref="INode"/> for an arbitrary language
+///         that happens to be an internal node.
+///     </para>
+///     <para>
+///         An <see cref="IInternalNode"/> can have children.
+///         These children are represented as though being stored in a <see cref="List{T}"/>,
+///         <see cref="List{T}"/>-like (or <see cref="Array"/>-like) way.
+///         Each child has an index, starting at 0.
+///     </para>
+///     <para>
+///         This also doesn't assume that all the <see cref="INode"/>s of the tree
+///         this <see cref="IInternalNode"/> is a part of have a particular language tied to them.
+///         There could be differing languages within the same tree.
+///         Use <see cref="INode{TIInternalNode, TILeafNode}"/> and <see cref="IInternalNode{TBaseNode}"/> and <see cref="ILeafNode{TBaseNode}"/>
+///         to have a set of <see cref="INode"/>s that correspond to a particular language.
+///     </para>
+/// </summary>
 public partial interface IInternalNode : INode
 {
     /// <summary>
@@ -55,23 +80,4 @@ public partial interface IInternalNode : INode
     ///     If the <paramref name="index"/> is greater or equal to the <see cref="NumberOfChildren"/>.
     /// </exception>
     public INode this[int index] { get; internal set; }
-
-
-
-    /// <summary>
-    ///     <para>
-    ///         Make the <see cref="INode"/> child at index <paramref name="childIndex"/> a new <see cref="INode"/> node of its own tree.
-    ///         This will remove the child as a child of this <see cref="INode"/>. That <see cref="INode"/> will no longer have a parent
-    ///         (returned from <see cref="INode.GetParent"/>).
-    ///     </para>
-    /// </summary>
-    /// <param name="childIndex">
-    ///     The index of the child to remove in the <see cref="List{T}"/>-like (or <see cref="Array"/>-like) structure containing the children.
-    /// </param>
-    /// <returns>
-    ///     The <see cref="INode"/> that has been detached and made a root of its own tree.
-    /// </returns>
-    public INode DetachChild(int childIndex);
-    
-    
 }
