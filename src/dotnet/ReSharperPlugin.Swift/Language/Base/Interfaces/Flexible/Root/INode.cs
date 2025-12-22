@@ -4,6 +4,8 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 
 namespace ReSharperPlugin.Swift.Language.Base;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
+namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 
 /// <summary>
 ///     <para>
@@ -14,8 +16,6 @@ namespace ReSharperPlugin.Swift.Language.Base;
 ///         <see cref="IInternalNode"/> and <see cref="ILeafNode"/> are there for respective internal nodes and leaf nodes.
 ///     </para>
 ///     <para>
-///         This also doesn't assume that all the nodes of the tree have a particular language tied to them.
-///         Use <see cref="INode{TIInternalNode, TILeafNode}"/> and <see cref="IInternalNode{TIInternalNode, TILeafNode}"/> and <see cref=""/>
 ///     </para>
 /// </summary>
 public interface INode : ITreeNode
@@ -225,6 +225,3 @@ public interface INode : ITreeNode
     /// </summary>
     public void DetachFromParent();
 }
-
-
-public interface INode<TInternalNode, TLeafNode>
