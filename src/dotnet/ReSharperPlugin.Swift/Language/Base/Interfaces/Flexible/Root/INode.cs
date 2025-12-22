@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Language.Base;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.InternalNodes;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.LeafNodes;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.LeafNodes;
+
 namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 
 /// <summary>
@@ -16,6 +20,10 @@ namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 ///         <see cref="IInternalNode"/> and <see cref="ILeafNode"/> are there for respective internal nodes and leaf nodes.
 ///     </para>
 ///     <para>
+///         This also doesn't assume that all the <see cref="INode"/>s of the tree have a particular language tied to them.
+///         There could be differing languages within the same tree.
+///         Use <see cref="INode{TIInternalNode, TILeafNode}"/> and <see cref="IInternalNode{TBaseNode}"/> and <see cref="ILeafNode{TBaseNode}"/>
+///         to have a set of <see cref="INode"/>s that correspond to a particular language.
 ///     </para>
 /// </summary>
 public interface INode : ITreeNode
