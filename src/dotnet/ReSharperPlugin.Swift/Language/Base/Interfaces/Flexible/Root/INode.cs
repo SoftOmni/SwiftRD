@@ -128,7 +128,7 @@ public interface INode : ITreeNode
     ///     </para>
     /// </summary>
     /// <returns>
-    ///     The cloned node.
+    ///     The cloned <see cref="INode"/>.
     /// </returns>
     public INode CloneAsDetached();
 
