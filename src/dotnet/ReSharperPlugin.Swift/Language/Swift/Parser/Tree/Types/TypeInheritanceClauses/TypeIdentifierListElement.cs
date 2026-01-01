@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Types.TypeIdentifiers;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.TypeInheritanceClauses;

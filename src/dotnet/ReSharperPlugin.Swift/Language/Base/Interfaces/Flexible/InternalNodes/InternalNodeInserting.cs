@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Language.Base;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+
+namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 
 public partial interface IInternalNode
 {
@@ -165,88 +167,8 @@ public partial interface IInternalNode
 
     public int PrependChildrenWithRange<TList, TListElements>(TList children, int startIndexInCollection, int endIndexInCollection,
         Action<INode> onChildAttachment) where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildForcibly(INode child);
-
-    internal int PrependChildForcibly(INode child, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(IEnumerable<INode> children);
-
-    internal int PrependChildrenForcibly(IEnumerable<INode> children, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection);
-
-    internal int PrependChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection, int count);
-
-    internal int PrependChildrenForciblyWithRange(IEnumerable<INode> children, int startIndexInCollection, int endIndexInCollection);
-
-    internal int PrependChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection, int count, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForciblyWithRange(IEnumerable<INode> children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(IList<INode> children);
-
-    internal int PrependChildrenForcibly(IList<INode> children, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(IList<INode> children, int startIndexInCollection);
-
-    internal int PrependChildrenForcibly(IList<INode> children, int startIndexInCollection, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(IList<INode> children, int startIndexInCollection, int count);
-
-    internal int PrependChildrenForciblyWithRange(IList<INode> children, int startIndexInCollection, int endIndexInCollection);
-
-    internal int PrependChildrenForcibly(IList<INode> children, int startIndexInCollection, int count, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForciblyWithRange(IList<INode> children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(List<INode> children);
-
-    internal int PrependChildrenForcibly(List<INode> children, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(List<INode> children, int startIndexInCollection);
-
-    internal int PrependChildrenForcibly(List<INode> children, int startIndexInCollection, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly(List<INode> children, int startIndexInCollection, int count);
-
-    internal int PrependChildrenForciblyWithRange(List<INode> children, int startIndexInCollection, int endIndexInCollection);
-
-    internal int PrependChildrenForcibly(List<INode> children, int startIndexInCollection, int count, Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForciblyWithRange(List<INode> children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment);
-
-    internal int PrependChildrenForcibly<TList, TListElements>(TList children) where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForcibly<TList, TListElements>(TList children, Action<INode> onChildAttachment)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection, Action<INode> onChildAttachment)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection, int count)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForciblyWithRange<TList, TListElements>(TList children, int startIndexInCollection, int endIndexInCollection)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection, int count, Action<INode> onChildAttachment)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int PrependChildrenForciblyWithRange<TList, TListElements>(TList children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment) where TList : IList<TListElements> where TListElements : INode;
-
-    public int AppendChild(INode child);
     
-    public int AppendChild<TNode>(TNode child) where TNode : INode;
+    public int AppendChild(INode child);
 
     internal int AppendChild(INode child, Action<INode> onChildAttachment);
 
@@ -320,83 +242,5 @@ public partial interface IInternalNode
         where TList : IList<TListElements> where TListElements : INode;
 
     public int AppendChildrenWithRange<TList, TListElements>(TList children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment) where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildForcibly(INode child);
-
-    internal int AppendChildForcibly(INode child, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(IEnumerable<INode> children);
-
-    internal int AppendChildrenForcibly(IEnumerable<INode> children, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection);
-
-    internal int AppendChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection, int count);
-
-    internal int AppendChildrenForciblyWithRange(IEnumerable<INode> children, int startIndexInCollection, int endIndexInCollection);
-
-    internal int AppendChildrenForcibly(IEnumerable<INode> children, int startIndexInCollection, int count, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForciblyWithRange(IEnumerable<INode> children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(IList<INode> children);
-
-    internal int AppendChildrenForcibly(IList<INode> children, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(IList<INode> children, int startIndexInCollection);
-
-    internal int AppendChildrenForcibly(IList<INode> children, int startIndexInCollection, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(IList<INode> children, int startIndexInCollection, int count);
-
-    internal int AppendChildrenForciblyWithRange(IList<INode> children, int startIndexInCollection, int endIndexInCollection);
-
-    internal int AppendChildrenForcibly(IList<INode> children, int startIndexInCollection, int count, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForciblyWithRange(IList<INode> children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(List<INode> children);
-
-    internal int AppendChildrenForcibly(List<INode> children, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(List<INode> children, int startIndexInCollection);
-
-    internal int AppendChildrenForcibly(List<INode> children, int startIndexInCollection, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly(List<INode> children, int startIndexInCollection, int count);
-
-    internal int AppendChildrenForciblyWithRange(List<INode> children, int startIndexInCollection, int endIndexInCollection);
-
-    internal int AppendChildrenForcibly(List<INode> children, int startIndexInCollection, int count, Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForciblyWithRange(List<INode> children, int startIndexInCollection, int endIndexInCollection,
-        Action<INode> onChildAttachment);
-
-    internal int AppendChildrenForcibly<TList, TListElements>(TList children) where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForcibly<TList, TListElements>(TList children, Action<INode> onChildAttachment)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection, Action<INode> onChildAttachment)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection, int count)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForciblyWithRange<TList, TListElements>(TList children, int startIndexInCollection, int endIndexInCollection)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForcibly<TList, TListElements>(TList children, int startIndexInCollection, int count, Action<INode> onChildAttachment)
-        where TList : IList<TListElements> where TListElements : INode;
-
-    internal int AppendChildrenForciblyWithRange<TList, TListElements>(TList children, int startIndexInCollection, int endIndexInCollection,
         Action<INode> onChildAttachment) where TList : IList<TListElements> where TListElements : INode;
 }

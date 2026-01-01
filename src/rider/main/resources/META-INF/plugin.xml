@@ -2,7 +2,7 @@
   <id>com.jetbrains.rider.plugins.swift</id>
   <name>SwiftSwan</name>
   <version>0.0.1</version>
-  <vendor url="https://github.com/SoftOmni/SwiftRD">Jascha MERLE</vendor>
+  <vendor url="https://github.com/SoftOmni/SwiftRD">SoftOmni</vendor>
   <idea-version since-build="2025.2" />
   <depends>com.intellij.modules.rider</depends>
 

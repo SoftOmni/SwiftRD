@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.ReSharper.Feature.Services.AI.CodeCompletion.Insertion;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.Conditions;
 

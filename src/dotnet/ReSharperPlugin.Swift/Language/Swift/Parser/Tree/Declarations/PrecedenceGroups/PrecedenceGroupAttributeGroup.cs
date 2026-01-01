@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.PrecedenceGroups;
 

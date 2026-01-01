@@ -26,6 +26,27 @@ public partial class SwiftInternalNode
         return previousChild;
     }
 
+    public ISwiftNode? SetChildAt<TNode>(int index, TNode newNode)
+        where TNode : ISwiftNode
+    {
+        if (index < 0 || index > Children.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+
+        if (index == Children.Count)
+        {
+            AppendChild(newNode);
+            return null;
+        }
+
+        ISwiftNode previousChild = Children[index];
+        DetachChild(index);
+        newNode.AttachToParent(this, index);
+
+        return previousChild;
+    }
+
     public void SetChildAtAndDiscard(int index, ISwiftNode newNode)
     {
         if (index < 0 || index > Children.Count)
@@ -43,7 +64,26 @@ public partial class SwiftInternalNode
         newNode.AttachToParent(this, index);
     }
 
-    internal ISwiftNode? SetChildAt(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    public void SetChildAtAndDiscard<TNode>(int index, TNode newNode)
+        where TNode : ISwiftNode
+    {
+        if (index < 0 || index > Children.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+
+        if (index == Children.Count)
+        {
+            AppendChild(newNode);
+            return;
+        }
+
+        DetachChild(index);
+        newNode.AttachToParent(this, index);
+    }
+
+    internal ISwiftNode? SetChildAt(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         if (index < 0 || index > Children.Count)
         {
@@ -65,7 +105,8 @@ public partial class SwiftInternalNode
         return previousChild;
     }
 
-    internal void SetChildAtAndDiscard(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal void SetChildAtAndDiscard(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         if (index < 0 || index > Children.Count)
         {
@@ -136,14 +177,16 @@ public partial class SwiftInternalNode
         SetChildren(newChildren, startInCollection);
     }
 
-    internal List<ISwiftNode> SetChildren(IEnumerable<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildren(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
         return SetChildren(newChildren, startInCollection, onChildDetachment, onChildAttachment);
     }
 
-    internal void SetChildrenAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
@@ -162,44 +205,52 @@ public partial class SwiftInternalNode
         SetChildren(newChildren, startInCollection, count);
     }
 
-    internal List<ISwiftNode> SetChildren(IEnumerable<ISwiftNode> newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildren(IEnumerable<ISwiftNode> newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
         return SetChildren(newChildren, startInCollection, count, onChildDetachment, onChildAttachment);
     }
 
-    internal void SetChildrenAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
         SetChildren(newChildren, startInCollection, count, onChildDetachment, onChildAttachment);
     }
 
-    public List<ISwiftNode> SetChildrenWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endIndexInCollection)
+    public List<ISwiftNode> SetChildrenWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endIndexInCollection)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
         return SetChildrenWithRange(newChildren, startInCollection, endIndexInCollection);
     }
 
-    public void SetChildrenWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endIndexInCollection)
+    public void SetChildrenWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endIndexInCollection)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
         SetChildrenWithRangeAndDiscard(newChildren, startInCollection, endIndexInCollection);
     }
 
-    internal List<ISwiftNode> SetChildrenWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endIndexInCollection,
+    internal List<ISwiftNode> SetChildrenWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endIndexInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
-        return SetChildrenWithRange(newChildren, startInCollection, endIndexInCollection, onChildDetachment, onChildAttachment);
+        return SetChildrenWithRange(newChildren, startInCollection, endIndexInCollection, onChildDetachment,
+            onChildAttachment);
     }
 
-    internal void SetChildrenWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endIndexInCollection,
+    internal void SetChildrenWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endIndexInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> newChildren = CheckChildrenForSetting(newNodes);
-        SetChildrenWithRangeAndDiscard(newChildren, startInCollection, endIndexInCollection, onChildDetachment, onChildAttachment);
+        SetChildrenWithRangeAndDiscard(newChildren, startInCollection, endIndexInCollection, onChildDetachment,
+            onChildAttachment);
     }
 
     public List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes)
@@ -219,7 +270,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, 0, newNodes.Count, AttachChild);
     }
 
-    internal List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         CheckChildrenForSetting(newNodes);
         List<ISwiftNode> oldChildren = [..Children];
@@ -229,7 +281,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenAndDiscard(IList<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal void SetChildrenAndDiscard(IList<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         CheckChildrenForSetting(newNodes);
         ClearChildren(onChildDetachment);
@@ -263,7 +316,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, newNodes.Count, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    public List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -279,7 +333,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    public void SetChildrenAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    public void SetChildrenAndDiscard(IList<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -341,7 +396,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    public List<ISwiftNode> SetChildren(IList<ISwiftNode> newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -368,7 +424,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    public void SetChildrenAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    public void SetChildrenAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -505,7 +562,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, 0, newNodes.Count, AttachChild);
     }
 
-    internal List<ISwiftNode> SetChildren(List<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal List<ISwiftNode> SetChildren(List<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         CheckChildrenForSetting(newNodes);
         List<ISwiftNode> oldChildren = [..Children];
@@ -515,7 +573,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenAndDiscard(List<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal void SetChildrenAndDiscard(List<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         CheckChildrenForSetting(newNodes);
         ClearChildren(onChildDetachment);
@@ -549,7 +608,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, newNodes.Count, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildren(List<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    public List<ISwiftNode> SetChildren(List<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -565,7 +625,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    public void SetChildrenAndDiscard(List<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    public void SetChildrenAndDiscard(List<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -603,7 +664,7 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
+
     public void SetChildrenAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int count)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -627,7 +688,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildren(List<ISwiftNode> newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    public List<ISwiftNode> SetChildren(List<ISwiftNode> newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -654,7 +716,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    public void SetChildrenAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    public void SetChildrenAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -774,7 +837,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChild, onChildAttachment);
     }
 
-    public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes) where TList : IList<TListElements> where TListElements : ISwiftNode
+    public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes) where TList : IList<TListElements>
+        where TListElements : ISwiftNode
     {
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         List<ISwiftNode> oldChildren = [..Children];
@@ -784,7 +848,7 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    public void SetChildrenAndDiscard<TList, TListElements>(TList newNodes) 
+    public void SetChildrenAndDiscard<TList, TListElements>(TList newNodes)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         CheckChildrenForSetting<TList, TListElements>(newNodes);
@@ -840,7 +904,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment) where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -851,12 +916,14 @@ public partial class SwiftInternalNode
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildren(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChild, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChild,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
-    public void SetChildrenAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+
+    public void SetChildrenAndDiscard<TList, TListElements>(TList newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment) where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -866,7 +933,8 @@ public partial class SwiftInternalNode
 
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         ClearChildren(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChild, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChild,
+            onChildAttachment);
     }
 
     public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes, int startInCollection, int count)
@@ -920,7 +988,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+    public List<ISwiftNode> SetChildren<TList, TListElements>(TList newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment) where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -942,12 +1011,14 @@ public partial class SwiftInternalNode
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildren(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
-    public void SetChildrenAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int count, Action<ISwiftNode> onChildDetachment,
+
+    public void SetChildrenAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int count,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment) where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -968,10 +1039,12 @@ public partial class SwiftInternalNode
 
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         ClearChildren(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild,
+            onChildAttachment);
     }
 
-    public List<ISwiftNode> SetChildrenWithRange<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection)
+    public List<ISwiftNode> SetChildrenWithRange<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -996,8 +1069,9 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
-    public void SetChildrenWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection)
+
+    public void SetChildrenWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -1020,7 +1094,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild);
     }
 
-    public List<ISwiftNode> SetChildrenWithRange<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection,
+    public List<ISwiftNode> SetChildrenWithRange<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -1042,12 +1117,14 @@ public partial class SwiftInternalNode
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildren(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
-    public void SetChildrenWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection,
+
+    public void SetChildrenWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -1068,7 +1145,8 @@ public partial class SwiftInternalNode
 
         CheckChildrenForSetting<TList, TListElements>(newNodes);
         ClearChildren(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChild,
+            onChildAttachment);
     }
 
     internal ISwiftNode? SetChildForciblyAt(int index, ISwiftNode newNode)
@@ -1103,12 +1181,13 @@ public partial class SwiftInternalNode
             AppendChildForcibly(newNode);
             return;
         }
-        
+
         DetachChildForcibly(index);
         newNode.AttachToParent(this, index);
     }
 
-    internal ISwiftNode? SetChildForciblyAt(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal ISwiftNode? SetChildForciblyAt(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         if (index < 0 || index > Children.Count)
         {
@@ -1131,7 +1210,8 @@ public partial class SwiftInternalNode
         return previousChild;
     }
 
-    internal void SetChildForciblyAtAndDiscard(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
+    internal void SetChildForciblyAtAndDiscard(int index, ISwiftNode newNode, Action<ISwiftNode> onChildDetachment,
+        Action<ISwiftNode> onChildAttachment)
     {
         if (index < 0 || index > Children.Count)
         {
@@ -1180,7 +1260,8 @@ public partial class SwiftInternalNode
         enumerator.Dispose();
     }
 
-    internal List<ISwiftNode> SetChildrenForcibly(IEnumerable<ISwiftNode> newNodes, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildrenForcibly(IEnumerable<ISwiftNode> newNodes,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         List<ISwiftNode> oldChildren = [..Children];
@@ -1241,7 +1322,7 @@ public partial class SwiftInternalNode
         enumerator.Dispose();
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection)
     {
         if (startInCollection < 0)
@@ -1272,7 +1353,8 @@ public partial class SwiftInternalNode
         enumerator.Dispose();
     }
 
-    internal List<ISwiftNode> SetChildrenForcibly(IEnumerable<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildrenForcibly(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0)
@@ -1305,7 +1387,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenForciblyAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0)
@@ -1474,7 +1557,7 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int count,
         Action<ISwiftNode> onChildAttachment, Action<ISwiftNode> onChildDetachment)
     {
@@ -1520,7 +1603,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newChildren, 0, newChildren.Count, AttachChildForcibly, onChildAttachment);
     }
 
-    internal List<ISwiftNode> SetChildrenForciblyWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endInCollection)
+    internal List<ISwiftNode> SetChildrenForciblyWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection)
     {
         if (endInCollection < 0)
         {
@@ -1566,7 +1650,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endInCollection)
+    internal void SetChildrenForciblyWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection)
     {
         if (endInCollection < 0)
         {
@@ -1609,7 +1694,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newChildren, 0, newChildren.Count, AttachChildForcibly);
     }
 
-    internal List<ISwiftNode> SetChildrenForciblyWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endInCollection,
+    internal List<ISwiftNode> SetChildrenForciblyWithRange(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildAttachment, Action<ISwiftNode> onChildDetachment)
     {
         if (endInCollection < 0)
@@ -1656,7 +1742,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection, int endInCollection,
+    internal void SetChildrenForciblyWithRangeAndDiscard(IEnumerable<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildAttachment, Action<ISwiftNode> onChildDetachment)
     {
         if (endInCollection < 0)
@@ -1757,7 +1844,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly);
     }
 
-    internal List<ISwiftNode> SetChildrenForcibly(IList<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildrenForcibly(IList<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -1772,7 +1860,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenForciblyAndDiscard(IList<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -1783,7 +1872,7 @@ public partial class SwiftInternalNode
         ClearChildrenForcibly(onChildDetachment);
         AttachChildrenUnchecked(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly, onChildAttachment);
     }
-    
+
     internal List<ISwiftNode> SetChildrenForcibly(IList<ISwiftNode> newNodes, int startInCollection, int count)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -1808,7 +1897,7 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, int count)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -1830,7 +1919,7 @@ public partial class SwiftInternalNode
         ClearChildrenForcibly();
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
     }
-    
+
     internal List<ISwiftNode> SetChildrenForcibly(IList<ISwiftNode> newNodes, int startInCollection, int count,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
@@ -1852,11 +1941,12 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, int count,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
@@ -1877,16 +1967,18 @@ public partial class SwiftInternalNode
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
     }
-    
-    internal List<ISwiftNode> SetChildrenForciblyWithRange(IList<ISwiftNode> newNodes, int startInCollection, int endInCollection)
+
+    internal List<ISwiftNode> SetChildrenForciblyWithRange(IList<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -1898,14 +1990,15 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
-    internal void SetChildrenForciblyWithRangeAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, int endInCollection)
+
+    internal void SetChildrenForciblyWithRangeAndDiscard(IList<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -1914,15 +2007,16 @@ public partial class SwiftInternalNode
         ClearChildrenForcibly();
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
     }
-    
-    internal List<ISwiftNode> SetChildrenForciblyWithRange(IList<ISwiftNode> newNodes, int startInCollection, int endInCollection,
+
+    internal List<ISwiftNode> SetChildrenForciblyWithRange(IList<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -1930,29 +2024,31 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
-    internal void SetChildrenForciblyWithRangeAndDiscard(IList<ISwiftNode> newNodes, int startInCollection, int endInCollection,
+
+    internal void SetChildrenForciblyWithRangeAndDiscard(IList<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
     }
 
-    
 
     internal List<ISwiftNode> SetChildrenForcibly(List<ISwiftNode> newNodes)
     {
@@ -2011,7 +2107,8 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly);
     }
 
-    internal List<ISwiftNode> SetChildrenForcibly(List<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildrenForcibly(List<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -2026,7 +2123,8 @@ public partial class SwiftInternalNode
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyAndDiscard(List<ISwiftNode> newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenForciblyAndDiscard(List<ISwiftNode> newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -2037,7 +2135,7 @@ public partial class SwiftInternalNode
         ClearChildrenForcibly(onChildDetachment);
         AttachChildrenUnchecked(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly, onChildAttachment);
     }
-    
+
     internal List<ISwiftNode> SetChildrenForcibly(List<ISwiftNode> newNodes, int startInCollection, int count)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -2062,7 +2160,7 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int count)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -2084,7 +2182,7 @@ public partial class SwiftInternalNode
         ClearChildrenForcibly();
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
     }
-    
+
     internal List<ISwiftNode> SetChildrenForcibly(List<ISwiftNode> newNodes, int startInCollection, int count,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
@@ -2106,11 +2204,12 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int count,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
@@ -2131,16 +2230,18 @@ public partial class SwiftInternalNode
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
     }
-    
-    internal List<ISwiftNode> SetChildrenForciblyWithRange(List<ISwiftNode> newNodes, int startInCollection, int endInCollection)
+
+    internal List<ISwiftNode> SetChildrenForciblyWithRange(List<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -2152,14 +2253,15 @@ public partial class SwiftInternalNode
 
         return oldChildren;
     }
-    
-    internal void SetChildrenForciblyWithRangeAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int endInCollection)
+
+    internal void SetChildrenForciblyWithRangeAndDiscard(List<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -2168,15 +2270,16 @@ public partial class SwiftInternalNode
         ClearChildrenForcibly();
         AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
     }
-    
-    internal List<ISwiftNode> SetChildrenForciblyWithRange(List<ISwiftNode> newNodes, int startInCollection, int endInCollection,
+
+    internal List<ISwiftNode> SetChildrenForciblyWithRange(List<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -2184,26 +2287,29 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
 
         return oldChildren;
     }
-    
-    internal void SetChildrenForciblyWithRangeAndDiscard(List<ISwiftNode> newNodes, int startInCollection, int endInCollection,
+
+    internal void SetChildrenForciblyWithRangeAndDiscard(List<ISwiftNode> newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked(0, newNodes, startInCollection, endInCollection, AttachChildForcibly,
+            onChildAttachment);
     }
 
     internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes)
@@ -2223,23 +2329,27 @@ public partial class SwiftInternalNode
         AttachChildrenUnchecked<TList, TListElements>(0, newNodes, 0, newNodes.Count, AttachChildForcibly);
     }
 
-    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, 0, newNodes.Count, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, 0, newNodes.Count, AttachChildForcibly,
+            onChildAttachment);
 
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyAndDiscard<TList, TListElements>(TList newNodes, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenForciblyAndDiscard<TList, TListElements>(TList newNodes,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, 0, newNodes.Count, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, 0, newNodes.Count, AttachChildForcibly,
+            onChildAttachment);
     }
 
     internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection)
@@ -2252,7 +2362,8 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly();
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count,
+            AttachChildForcibly);
 
         return oldChildren;
     }
@@ -2266,10 +2377,12 @@ public partial class SwiftInternalNode
         }
 
         ClearChildrenForcibly();
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count,
+            AttachChildForcibly);
     }
 
-    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -2280,12 +2393,14 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count,
+            AttachChildForcibly, onChildAttachment);
 
         return oldChildren;
     }
 
-    internal void SetChildrenForciblyAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, Action<ISwiftNode> onChildDetachment,
+    internal void SetChildrenForciblyAndDiscard<TList, TListElements>(TList newNodes, int startInCollection,
+        Action<ISwiftNode> onChildDetachment,
         Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -2295,10 +2410,12 @@ public partial class SwiftInternalNode
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, newNodes.Count,
+            AttachChildForcibly, onChildAttachment);
     }
-    
-    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection, int count)
+
+    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection,
+        int count)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
@@ -2319,11 +2436,12 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly();
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly);
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int count)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -2344,10 +2462,12 @@ public partial class SwiftInternalNode
         }
 
         ClearChildrenForcibly();
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly);
     }
-    
-    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection, int count,
+
+    internal List<ISwiftNode> SetChildrenForcibly<TList, TListElements>(TList newNodes, int startInCollection,
+        int count,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -2369,11 +2489,12 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly, onChildAttachment);
 
         return oldChildren;
     }
-    
+
     internal void SetChildrenForciblyAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int count,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
@@ -2395,17 +2516,19 @@ public partial class SwiftInternalNode
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly, onChildAttachment);
     }
-    
-    internal List<ISwiftNode> SetChildrenForciblyWithRange<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection)
+
+    internal List<ISwiftNode> SetChildrenForciblyWithRange<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -2413,29 +2536,33 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly();
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly);
 
         return oldChildren;
     }
-    
-    internal void SetChildrenForciblyWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection)
+
+    internal void SetChildrenForciblyWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
         if (startInCollection < 0 || startInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
         }
 
         ClearChildrenForcibly();
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly);
     }
-    
-    internal List<ISwiftNode> SetChildrenForciblyWithRange<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection,
+
+    internal List<ISwiftNode> SetChildrenForciblyWithRange<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -2443,7 +2570,7 @@ public partial class SwiftInternalNode
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
@@ -2451,12 +2578,14 @@ public partial class SwiftInternalNode
 
         List<ISwiftNode> oldChildren = [..Children];
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly, onChildAttachment);
 
         return oldChildren;
     }
-    
-    internal void SetChildrenForciblyWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection, int endInCollection,
+
+    internal void SetChildrenForciblyWithRangeAndDiscard<TList, TListElements>(TList newNodes, int startInCollection,
+        int endInCollection,
         Action<ISwiftNode> onChildDetachment, Action<ISwiftNode> onChildAttachment)
         where TList : IList<TListElements> where TListElements : ISwiftNode
     {
@@ -2464,13 +2593,14 @@ public partial class SwiftInternalNode
         {
             throw new ArgumentOutOfRangeException(nameof(startInCollection));
         }
-        
+
         if (endInCollection < 0 || endInCollection > newNodes.Count)
         {
             throw new ArgumentOutOfRangeException(nameof(endInCollection));
         }
 
         ClearChildrenForcibly(onChildDetachment);
-        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection, AttachChildForcibly, onChildAttachment);
+        AttachChildrenUnchecked<TList, TListElements>(0, newNodes, startInCollection, endInCollection,
+            AttachChildForcibly, onChildAttachment);
     }
 }

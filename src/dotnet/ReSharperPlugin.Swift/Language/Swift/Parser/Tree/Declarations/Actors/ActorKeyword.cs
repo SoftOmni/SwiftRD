@@ -1,6 +1,7 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
 using JetBrains.Threading;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Actors;
 

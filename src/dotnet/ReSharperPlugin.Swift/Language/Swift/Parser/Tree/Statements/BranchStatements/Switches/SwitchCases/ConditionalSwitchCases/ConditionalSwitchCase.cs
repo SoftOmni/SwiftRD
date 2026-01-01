@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.Conditions;

@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Lexer;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
 

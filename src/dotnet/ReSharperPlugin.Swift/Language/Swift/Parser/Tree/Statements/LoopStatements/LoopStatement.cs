@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.CodeBlocks;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements;

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
 
@@ -24,4 +25,8 @@ public abstract class Declaration : StatementInternalNode
     protected Declaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
         : base(parent, buffer, nodes)
     { }
+    
+    public Icon Icon { get; private set; }
+    
+    public HashSet<ISwiftNode> Usages { get; private set; }
 }

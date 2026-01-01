@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using JetBrains.Decompiler.Ast;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
 using ReSharperPlugin.Swift.Language.Semantics.Type;

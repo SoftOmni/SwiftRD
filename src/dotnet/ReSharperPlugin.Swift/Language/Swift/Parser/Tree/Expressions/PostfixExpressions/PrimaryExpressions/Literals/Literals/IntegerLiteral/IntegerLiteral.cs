@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;

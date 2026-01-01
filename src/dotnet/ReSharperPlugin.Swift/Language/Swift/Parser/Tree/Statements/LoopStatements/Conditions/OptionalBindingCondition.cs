@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Initializers;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Patterns;
 

@@ -8,7 +8,6 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Technology;
 using ReSharperPlugin.Swift.Technology.Graphs;
 using ReSharperPlugin.Swift.Technology.Graphs.StateMachines;
 

@@ -1,5 +1,6 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Guard;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;

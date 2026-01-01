@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Language.Base;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+
+namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 
 public partial interface IInternalNode
 {
