@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Blocks;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.SetterSetterBlocks.Clauses;

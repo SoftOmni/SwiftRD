@@ -51,7 +51,7 @@ public interface ILeafNode : INode
     ///     </para>
     /// </summary>
     /// <remarks>
-    ///     A cloned version of an <see cref="INode"/> is not merely known to be an <see cref="INode"/>.
+    ///     A cloned version of an <see cref="ILeafNode"/> is not merely known to be an <see cref="INode"/>.
     ///     It is also an <see cref="ILeafNode"/> so this override of <see cref="INode.CloneAsDetached"/> in this interface
     ///     merely updates this documentation and the returned type to be an <see cref="ILeafNode"/>
     ///     as that is known to be true.
@@ -104,7 +104,7 @@ public interface ILeafNode : INode
     ///     If the <paramref name="index"/> is greater or equal to the number of children (returned by <see cref="IInternalNode.NumberOfChildren"/>).
     /// </exception>
     /// <remarks>
-    ///     A cloned version of an <see cref="INode"/> is not merely known to be an <see cref="INode"/>.
+    ///     A cloned version of an <see cref="ILeafNode"/> is not merely known to be an <see cref="INode"/>.
     ///     It is also an <see cref="ILeafNode"/> so this override of <see cref="INode.CloneAsAttachedTo"/> in this interface
     ///     merely updates this documentation and the returned type to be an <see cref="ILeafNode"/>
     ///     as that is known to be true.

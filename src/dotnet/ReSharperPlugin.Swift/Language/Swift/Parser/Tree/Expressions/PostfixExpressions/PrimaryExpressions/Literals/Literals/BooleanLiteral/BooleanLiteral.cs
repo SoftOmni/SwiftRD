@@ -1,6 +1,7 @@
 using System;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;

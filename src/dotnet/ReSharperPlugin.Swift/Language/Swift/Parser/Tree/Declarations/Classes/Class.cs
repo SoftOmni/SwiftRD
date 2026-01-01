@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using JetBrains.ReSharper.Psi;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;

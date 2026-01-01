@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using JetBrains.Text;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;

@@ -216,7 +216,7 @@ public interface INode : ITreeNode
     ///     If you use this method in a type that implements <see cref="INode{TIInternalNode, TILeafNode}"/>
     ///     (this includes <see cref="IInternalNode{TBaseNode}"/> and <see cref="ILeafNode{TBaseNode}"/>)
     ///     and <paramref name="newParent"/> is not of the same type as
-    ///     the "TIInternalNode" type that interface was instantiated with.
+    ///     the "TIInternalNode" type that interface was instantiated with. // TODO: review and validate this when awake.
     /// </exception>
     public void AttachToParent(IInternalNode newParent, int parentIndex);
     

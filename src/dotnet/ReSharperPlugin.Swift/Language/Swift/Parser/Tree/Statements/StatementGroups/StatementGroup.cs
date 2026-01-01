@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Lexer;
 using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
 using ReSharperPlugin.Swift.Technology;

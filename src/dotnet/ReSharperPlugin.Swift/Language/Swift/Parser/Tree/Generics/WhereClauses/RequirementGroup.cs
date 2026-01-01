@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Tree;
+using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Generics.WhereClauses;
 
 namespace ReSharperPlugin.Swift.Rider.Language.Parser.Tree.Generics.WhereClauses;
