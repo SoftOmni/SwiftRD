@@ -24,36 +24,19 @@ public partial interface IInternalNode
 
     public bool Contains(Func<INode, bool> predicate);
 
-    public bool Contains<TNode>(Func<TNode, bool> predicate) where TNode : INode;
-
     public bool Contains(Func<INode, bool> predicate, int startIndex);
-
-    public bool Contains<TNode>(Func<TNode, bool> predicate, int startIndex) where TNode : INode;
 
     public bool Contains(Func<INode, bool> predicate, int startIndex, int count);
 
-    public bool Contains<TNode>(Func<TNode, bool> predicate, int startIndex, int count) where TNode : INode;
-
     public bool ContainsInRange(Func<INode, bool> predicate, int startIndex, int endIndex);
-
-    public bool ContainsInRange<TNode>(Func<INode, bool> predicate, int startIndex, int endIndex) where TNode : INode;
-
+    
     public bool Contains(Func<INode, int, bool> predicate);
-
-    public bool Contains<TNode>(Func<TNode, int, bool> predicate) where TNode : INode;
 
     public bool Contains(Func<INode, int, bool> predicate, int startIndex);
 
-    public bool Contains<TNode>(Func<TNode, int, bool> predicate, int startIndex) where TNode : INode;
-
     public bool Contains(Func<INode, int, bool> predicate, int startIndex, int count);
 
-    public bool Contains<TNode>(Func<TNode, int, bool> predicate, int startIndex, int count) where TNode : INode;
-
     public bool ContainsInRange(Func<INode, int, bool> predicate, int startIndex, int endIndex);
-
-    public bool ContainsInRange<TNode>(Func<INode, int, bool> predicate, int startIndex, int endIndex)
-        where TNode : INode;
 
     public bool ContainsAll(IEnumerator<INode> children, bool disposeEnumerator = true);
 

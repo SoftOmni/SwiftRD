@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.InternalNodes;
+namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public partial class InternalNode
 {

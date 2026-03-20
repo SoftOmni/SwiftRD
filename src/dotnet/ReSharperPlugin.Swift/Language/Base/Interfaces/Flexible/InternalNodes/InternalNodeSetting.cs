@@ -128,17 +128,17 @@ public partial interface IInternalNode
 
     public void SetChildrenAndDiscard(IEnumerable<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
 
-    public List<INode> SetChildren(IList<INode> newNodes);
+    public List<INode> SetChildren(IReadOnlyList<INode> newNodes);
 
-    public void SetChildrenAndDiscard(IList<INode> newNodes);
+    public void SetChildrenAndDiscard(IReadOnlyList<INode> newNodes);
 
-    public List<INode> SetChildren(IList<INode> newNodes, int startIndexInEnumeration);
+    public List<INode> SetChildren(IReadOnlyList<INode> newNodes, int startIndexInEnumeration);
 
-    public void SetChildrenAndDiscard(IList<INode> newNodes, int startIndexInEnumeration);
+    public void SetChildrenAndDiscard(IReadOnlyList<INode> newNodes, int startIndexInEnumeration);
 
-    public List<INode> SetChildren(IList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
+    public List<INode> SetChildren(IReadOnlyList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
 
-    public void SetChildrenAndDiscard(IList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
+    public void SetChildrenAndDiscard(IReadOnlyList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
 
     public List<INode> SetChildren(List<INode> newNodes);
 
@@ -152,21 +152,21 @@ public partial interface IInternalNode
 
     public void SetChildrenAndDiscard(List<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
 
-    public List<INode> SetChildren<TNode, TNodeElements>(IList<INode> newNodes)
-        where TNode : IList<TNodeElements> where TNodeElements : INode;
+    public List<INode> SetChildren<TList, TNode>(TList newNodes)
+        where TList : IReadOnlyList<TNode> where TNode : INode;
 
-    public void SetChildrenAndDiscard<TNode, TNodeElements>(IList<INode> newNodes)
-        where TNode : IList<TNodeElements> where TNodeElements : INode;
+    public void SetChildrenAndDiscard<TList, TNode>(TList newNodes)
+        where TList : IReadOnlyList<TNode> where TNode : INode;
 
-    public List<INode> SetChildren<TNode, TNodeElements>(IList<INode> newNodes, int startIndexInEnumeration)
-        where TNode : IList<TNodeElements> where TNodeElements : INode;
+    public List<INode> SetChildren<TList, TNode>(TList newNodes, int startIndexInEnumeration)
+        where TList : IReadOnlyList<TNode> where TNode : INode;
 
-    public void SetChildrenAndDiscard<TNode, TNodeElements>(IList<INode> newNodes, int startIndexInEnumeration)
-        where TNode : IList<TNodeElements> where TNodeElements : INode;
+    public void SetChildrenAndDiscard<TList, TNode>(TList newNodes, int startIndexInEnumeration)
+        where TList : IReadOnlyList<TNode> where TNode : INode;
 
-    public List<INode> SetChildren<TNode, TNodeElements>(IList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration)
-        where TNode : IList<TNodeElements> where TNodeElements : INode;
+    public List<INode> SetChildren<TList, TNode>(TList newNodes, int startIndexInEnumeration, int endIndexInEnumeration)
+        where TList : IReadOnlyList<TNode> where TNode : INode;
 
-    public void SetChildrenAndDiscard<TNode, TNodeElements>(IList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration)
-        where TNode : IList<TNodeElements> where TNodeElements : INode;
+    public void SetChildrenAndDiscard<TList, TNode>(TList newNodes, int startIndexInEnumeration, int endIndexInEnumeration)
+        where TList : IReadOnlyList<TNode> where TNode : INode;
 }

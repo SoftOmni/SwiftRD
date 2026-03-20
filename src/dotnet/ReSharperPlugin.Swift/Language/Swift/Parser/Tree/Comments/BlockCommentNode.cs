@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using JetBrains.ReSharper.Feature.Services.CSharp.CompleteStatement;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 using ReSharperPlugin.Swift.Language.Parser.Lexer;
 using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using ReSharperPlugin.Swift.Technology;
 
 namespace ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
 
@@ -44,20 +46,22 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
         BlockComment
     }
 
-    internal BlockCommentNode(IEditableBuffer buffer, List<ISwiftNode> children) : base(buffer, children)
+    internal BlockCommentNode(IEditableBuffer buffer, List<ISwiftNode> children)
+        : base(buffer, children)
     { }
 
-    internal BlockCommentNode(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
+    internal BlockCommentNode(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
+        : base(buffer, children)
     { }
 
-    internal BlockCommentNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) : base(parent, buffer,
-        nodes)
+    internal BlockCommentNode(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
+        : base(parent, buffer, nodes)
     {
         SetupCommentNode();
     }
 
-    internal BlockCommentNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) : base(parent,
-        buffer, nodes)
+    internal BlockCommentNode(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
+        : base(parent, buffer, nodes)
     {
         SetupCommentNode();
     }
@@ -96,7 +100,7 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
         {
             return null;
         }
-        
+
         while (cursor.ImmediateParentNode is not null)
         {
             cursor = cursor.ImmediateParentNode;
@@ -122,7 +126,7 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
     }
 
     public int CommentValueLength { get; }
-    
+
     public string GetCommentValue()
     {
         throw new NotImplementedException();
@@ -393,8 +397,7 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
         throw new NotImplementedException();
     }
 
-    public bool ReplaceInCommentValue(int index, StringBuilder replacement, int replacementStart, int replacementLength,
-        bool extend = false)
+    public bool ReplaceInCommentValue(int index, StringBuilder replacement, int replacementStart, int replacementLength, bool extend = false)
     {
         throw new NotImplementedException();
     }
@@ -409,8 +412,7 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
         throw new NotImplementedException();
     }
 
-    public bool ReplaceInCommentValue(int index, string replacement, int replacementStart, int replacementLength,
-        bool extend = false)
+    public bool ReplaceInCommentValue(int index, string replacement, int replacementStart, int replacementLength, bool extend = false)
     {
         throw new NotImplementedException();
     }
@@ -425,8 +427,7 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
         throw new NotImplementedException();
     }
 
-    public bool ReplaceInCommentValue(int index, IBuffer replacement, int replacementStart, int replacementLength,
-        bool extend = false)
+    public bool ReplaceInCommentValue(int index, IBuffer replacement, int replacementStart, int replacementLength, bool extend = false)
     {
         throw new NotImplementedException();
     }
@@ -441,8 +442,7 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
         throw new NotImplementedException();
     }
 
-    public bool ReplaceInCommentValue(int index, ReadOnlySpan<char> replacement, int replacementStart, int replacementLength,
-        bool extend = false)
+    public bool ReplaceInCommentValue(int index, ReadOnlySpan<char> replacement, int replacementStart, int replacementLength, bool extend = false)
     {
         throw new NotImplementedException();
     }
@@ -479,6 +479,63 @@ public class BlockCommentNode : SwiftInternalNode, ICommentNode
 
     internal static BlockCommentNode ParseWithStart(SwiftLexer lexer, IEditableBuffer parentBuffer, int offset)
     {
-        throw new NotImplementedException();
+        SubEditableBuffer subBuffer = new(parentBuffer, offset);
+        TokenNodeType? lexerTokenType = lexer.TokenType;
+        List<BlockCommentContentNode> blockCommentContentNodes = [];
+        List<BlockCommentNode> childrenCommentNodes = [];
+        List<CommentChildType> commentChildTypes = [];
+        List<ISwiftNode> childNodes = [];
+
+        BlockCommentStartNode firstNode = new(new SubEditableBuffer(subBuffer, offset, lexer.TokenLength));
+        childNodes.Add(firstNode);
+
+        lexer.Advance();
+        int subOffset = lexer.TokenLength;
+        while (lexerTokenType is not null and not Lexer.Tokens.WhitespaceAndComments.BlockCommentEndToken
+               and not Lexer.Tokens.Markers.EndOfFileToken)
+        {
+            if (lexerTokenType is Lexer.Tokens.WhitespaceAndComments.BlockCommentContentToken)
+            {
+                BlockCommentContentNode blockCommentContentNode = new(new SubEditableBuffer(subBuffer, subOffset, lexer.TokenLength));
+                blockCommentContentNodes.Add(blockCommentContentNode);
+                subOffset += lexer.TokenLength;
+                
+                commentChildTypes.Add(CommentChildType.Content);
+                childNodes.Add(blockCommentContentNode);
+                lexer.Advance();
+                lexerTokenType = lexer.TokenType;
+                continue;
+            }
+
+            if (lexerTokenType is not Lexer.Tokens.WhitespaceAndComments.BlockCommentStartToken)
+                // If the lexer is working, this should never happen
+            {
+                childNodes.Add(new IllegalTokenInCommentNode(new SubEditableBuffer(parentBuffer, subOffset, lexer.TokenLength)));
+                subOffset += lexer.TokenLength;
+                continue;
+            }
+
+            BlockCommentNode childCommentNode = ParseWithStart(lexer, subBuffer, subOffset);
+            subOffset += childCommentNode.GetTextLength();
+            
+            childrenCommentNodes.Add(childCommentNode);
+            commentChildTypes.Add(CommentChildType.BlockComment);
+            childNodes.Add(childCommentNode);
+            
+            lexer.Advance();
+            lexerTokenType = lexer.TokenType;
+        }
+
+        if (lexerTokenType is not Lexer.Tokens.WhitespaceAndComments.BlockCommentEndToken)
+        {
+            childNodes.Add(new NotEndedBlockCommentNode(parentBuffer, subOffset)); // TODO: think about this
+        }
+        else
+        {
+            BlockCommentEndNode endNode = new(new SubEditableBuffer(parentBuffer, subOffset, lexer.TokenLength));
+            childNodes.Add(endNode);
+        }
+
+        return new BlockCommentNode(parentBuffer, childNodes, childrenCommentNodes, blockCommentContentNodes, commentChildTypes);
     }
 }

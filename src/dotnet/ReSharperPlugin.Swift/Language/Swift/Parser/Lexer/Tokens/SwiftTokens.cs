@@ -76,7 +76,7 @@ public static class SwiftTokens
     public static readonly IntegerLiteralToken IntegerLiteralToken = new();
     public const string IntegerLiteralId = "LITERAL_INTEGER";
     public const int IntegerLiteralIndex = 801;
-
+    
     public static readonly FloatingPointLiteral FloatingPointLiteralToken = new();
     public const string FloatingPointLiteralId = "LITERAL_FLOAT";
     public const int FloatingPointLiteralIndex = 802;
@@ -720,7 +720,7 @@ public static class SwiftTokens
     #endregion
     
     #region Operators
-
+    
     public static readonly InfixOperatorToken InfixOperatorToken = new();
     public const string InfixOperatorId = "OPERATOR_INFIX";
     public const int InfixOperatorIndex = 8001;

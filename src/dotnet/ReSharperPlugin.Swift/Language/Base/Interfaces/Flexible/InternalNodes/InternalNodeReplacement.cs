@@ -7,7 +7,7 @@ namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 
 public partial interface IInternalNode
 {
-    public void ReplaceChildrenAt(int index, IEnumerable<INode> newNodes, bool extend = false);
+    /*public void ReplaceChildrenAt(int index, IEnumerable<INode> newNodes, bool extend = false);
 
     public void ReplaceChildrenAt(int index, IEnumerable<INode> newNodes, Action<INode> onChildDetachment,
         Action<INode> onChildAttachment, bool extend = false);
@@ -83,5 +83,5 @@ public partial interface IInternalNode
     public void ReplaceChildrenAt<TList, TListElements>(int index, TList newNodes, int startInCollection,
         int endInCollection,
         Action<INode> onChildDetachment, Action<INode> onChildAttachment, bool extend = false)
-        where TList : IList<TListElements> where TListElements : INode;
+        where TList : IList<TListElements> where TListElements : INode;*/
 }

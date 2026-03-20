@@ -1,11 +1,16 @@
+using System.Collections.Generic;
+using System.Text;
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.InternalNodes;
+using ReSharperPlugin.Swift.Extensions;
 using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.LeafNodes;
 using ReSharperPlugin.Swift.Language.Base.Implementations.Constrained.InternalNodes;
 using ReSharperPlugin.Swift.Language.Base.Implementations.Constrained.LeafNodes;
 using ReSharperPlugin.Swift.Language.Base.Implementations.Constrained.Root;
+using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
@@ -37,6 +42,8 @@ namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
 /// </summary>
 public abstract class Node : TreeElement, INode
 {
+    public const int NoParentIndex = -1;
+    
     protected IEditableBuffer UnderlyingBuffer;
 
     protected InternalNode? ParentNode;
@@ -49,8 +56,8 @@ public abstract class Node : TreeElement, INode
     {
         UnderlyingBuffer = underlyingBuffer;
         ParentNode = null;
-        ParentIndex = -1;
-        ParentTextIndex = -1;
+        ParentIndex = NoParentIndex;
+        ParentTextIndex = NoParentIndex;
     }
 
     protected Node(IEditableBuffer underlyingBuffer, InternalNode parentNode, int parentIndex, int parentTextIndex)
@@ -92,8 +99,57 @@ public abstract class Node : TreeElement, INode
         }
 
         ParentNode = null;
-        ParentIndex = -1;
-        ParentTextIndex = -1;
+        ParentIndex = NoParentIndex;
+        ParentTextIndex = NoParentIndex;
         UnderlyingBuffer = newBuffer;
+    }
+
+    public override string GetText()
+    {
+        return UnderlyingBuffer.ToString();
+    }
+
+    public override IBuffer GetTextAsBuffer()
+    {
+        return UnderlyingBuffer;
+    }
+
+    public override int GetTextLength()
+    {
+        return UnderlyingBuffer.Length;
+    }
+
+    public override StringBuilder GetText(StringBuilder to)
+    {
+        return StringBuilderExtensions.Append(to, UnderlyingBuffer);
+    }
+
+    public override ITreeNode? FirstChild => null;
+    
+    public override ITreeNode? LastChild => null;
+
+    public override NodeType NodeType => EmptyNodeType.Instance;
+
+    public override ITreeNode FindNodeAt(TreeTextRange treeRange)
+    {
+        return this;
+    }
+
+    public override void FindNodesAtInternal(TreeTextRange relativeRange, List<ITreeNode> result, bool includeContainingNodes)
+    {
+        result.Add(this);
+    }
+
+    public class EmptyNodeType : NodeType
+    {
+        internal static readonly EmptyNodeType Instance = new();
+
+        public const int ElementIndex = 1_000_000;
+
+        public const string ElementId = "SoftOmniConcreteNodeEmptyNodeType";
+        
+        private EmptyNodeType()
+            : base(ElementId, ElementIndex)
+        { }
     }
 }

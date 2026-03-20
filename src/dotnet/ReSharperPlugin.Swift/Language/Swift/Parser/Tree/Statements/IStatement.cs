@@ -12,7 +12,7 @@ public interface IStatement : ISwiftNode
     {
         internal static IStatement ParseWithStart(SwiftLexer lexer, IEditableBuffer parentBuffer, int offset)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -1,0 +1,291 @@
+using System;
+using System.Collections.Generic;
+using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+
+namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.InternalNodes;
+
+public partial class InternalNode
+{
+    public int AppendChildren(IEnumerable<INode> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildren(IEnumerable<INode> children, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public int AppendChildrenLoose(IEnumerable<INode> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLoose(IEnumerable<INode> children, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public int AppendChildrenConcrete(IEnumerable<Node> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcrete(IEnumerable<INode> children, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenGenericEnumerable<TEnumerable, TNode>(TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenGenericEnumerable<TEnumerable, TNode>(TEnumerable children, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public int AppendChildrenLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public int AppendChildrenConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildren(IEnumerable<INode> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildren(IEnumerable<INode> children, int startIndexInEnumeration, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLoose(IEnumerable<INode> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLoose(IEnumerable<INode> children, int startIndexInEnumeration, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcrete(IEnumerable<Node> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcrete(IEnumerable<Node> children, int startIndexInEnumeration, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildren(IEnumerable<INode> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildren(IEnumerable<INode> children, int startIndexInEnumeration, int count, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLoose(IEnumerable<INode> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLoose(IEnumerable<INode> children, int startIndexInEnumeration, int count, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcrete(IEnumerable<Node> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcrete(IEnumerable<Node> children, int startIndexInEnumeration, int count, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, int count,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, int count,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration, int count,
+        Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRange(IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRange(IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeLoose(IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeLoose(IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeConcrete(IEnumerable<Node> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeConcrete(IEnumerable<Node> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeLooseGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    public int AppendChildrenWithRangeConcreteGenericEnumerable<TEnumerable, TNode>(TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+}

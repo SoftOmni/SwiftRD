@@ -6,18 +6,14 @@ using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 
 public partial interface IInternalNode
-{
+{/*
     public INode RemoveChildAt(int index);
-    
-    public TNode RemoveChildAt<TNode>(int index) where TNode : INode;
 
     public INode RemoveChildAt(int index, Action<INode> onChildDetachment);
-    
-    public TNode RemoveChildAt<TNode>(int index, TNode child) where TNode : INode;
 
     public void RemoveChildAtAndDiscard(int index);
 
-    public INode RemoveChildAtAndDiscard(int index, Action<INode> onChildDetachment);
+    public void RemoveChildAtAndDiscard(int index, Action<INode> onChildDetachment);
 
     public List<INode> RemoveChildrenAt(int index, int count);
 
@@ -237,9 +233,9 @@ public partial interface IInternalNode
 
     public void RemoveChildrenAndDiscard(IEnumerable<INode> indexes, Action<INode> onChildDetachment);
 
-    public List<INode> RemoveChildren(IEnumerable<INode> indexes, int startIndexInEnumeration);
+    public IEnumerable<INode> RemoveChildren(IEnumerable<INode> indexes, int startIndexInEnumeration);
 
-    public List<INode> RemoveChildren(IEnumerable<INode> indexes, int startIndexInEnumeration,
+    public IEnumerable<INode> RemoveChildren(IEnumerable<INode> indexes, int startIndexInEnumeration,
         Action<INode> onChildDetachment);
 
     public void RemoveChildrenAndDiscard(IEnumerable<INode> indexes, int startIndexInEnumeration);
@@ -418,5 +414,5 @@ public partial interface IInternalNode
         where TList : IList<TListElements> where TListElements : INode;
 
     public void RemoveChildrenAtWithRangeAndDiscard<TList, TListElements>(TList indexes, int startIndexInEnumeration, int endIndexInEnumeration,
-        Action<INode> onChildDetachment) where TList : IList<TListElements> where TListElements : INode;
+        Action<INode> onChildDetachment) where TList : IList<TListElements> where TListElements : INode;*/
 }

@@ -7,7 +7,7 @@ namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 
 public partial interface IInternalNode
 {
-    /// <summary>
+    /*/// <summary>
     ///     <para>
     ///         Make the <see cref="INode"/> child at index <paramref name="index"/> a new <see cref="INode"/> node of its own tree.
     ///         This will remove the child as a child of this <see cref="INode"/>. That <see cref="INode"/> will no longer have a parent
@@ -97,49 +97,49 @@ public partial interface IInternalNode
         int endIndexInEnumeration,
         Action<INode> onChildDetachment);
 
-    public List<INode> DetachChildrenAt(IList<int> indexes);
+    public List<INode> DetachChildrenAt(IReadOnlyList<int> indexes);
 
-    public List<INode> DetachChildrenAt(IList<int> indexes, Action<INode> onChildDetachment);
+    public List<INode> DetachChildrenAt(IReadOnlyList<int> indexes, Action<INode> onChildDetachment);
 
-    public void DetachChildrenAtAndDiscard(IList<int> indexes);
+    public void DetachChildrenAtAndDiscard(IReadOnlyList<int> indexes);
 
-    public void DetachChildrenAtAndDiscard(IList<int> indexes, Action<INode> onChildDetachment);
+    public void DetachChildrenAtAndDiscard(IReadOnlyList<int> indexes, Action<INode> onChildDetachment);
 
-    public List<INode> DetachChildrenAt(IList<int> indexes, int startIndexInEnumeration);
+    public List<INode> DetachChildrenAt(IReadOnlyList<int> indexes, int startIndexInEnumeration);
 
-    public List<INode> DetachChildrenAt(IList<int> indexes, int startIndexInEnumeration,
+    public List<INode> DetachChildrenAt(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         Action<INode> onChildDetachment);
 
-    public void DetachChildrenAtAndDiscard(IList<int> indexes, int startIndexInEnumeration);
+    public void DetachChildrenAtAndDiscard(IReadOnlyList<int> indexes, int startIndexInEnumeration);
 
-    public void DetachChildrenAtAndDiscard(IList<int> indexes, int startIndexInEnumeration,
+    public void DetachChildrenAtAndDiscard(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         Action<INode> onChildDetachment);
 
-    public List<INode> DetachChildrenAt(IList<int> indexes, int startIndexInEnumeration,
+    public List<INode> DetachChildrenAt(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart);
 
-    public List<INode> DetachChildrenAt(IList<int> indexes, int startIndexInEnumeration,
+    public List<INode> DetachChildrenAt(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart,
         Action<INode> onChildDetachment);
 
-    public void DetachChildrenAtAndDiscard(IList<int> indexes, int startIndexInEnumeration,
+    public void DetachChildrenAtAndDiscard(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart);
 
-    public void DetachChildrenAtAndDiscard(IList<int> indexes, int startIndexInEnumeration,
+    public void DetachChildrenAtAndDiscard(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart,
         Action<INode> onChildDetachment);
 
-    public List<INode> DetachChildrenAtWithRange(IList<int> indexes, int startIndexInEnumeration,
+    public List<INode> DetachChildrenAtWithRange(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int endIndexInEnumeration);
 
-    public List<INode> DetachChildrenAtWithRange(IList<int> indexes, int startIndexInEnumeration,
+    public List<INode> DetachChildrenAtWithRange(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int endIndexInEnumeration,
         Action<INode> onChildDetachment);
 
-    public void DetachChildrenAtWithRangeAndDiscard(IList<int> indexes, int startIndexInEnumeration,
+    public void DetachChildrenAtWithRangeAndDiscard(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int endIndexInEnumeration);
 
-    public void DetachChildrenAtWithRangeAndDiscard(IList<int> indexes, int startIndexInEnumeration,
+    public void DetachChildrenAtWithRangeAndDiscard(IReadOnlyList<int> indexes, int startIndexInEnumeration,
         int endIndexInEnumeration,
         Action<INode> onChildDetachment);
 
@@ -188,71 +188,71 @@ public partial interface IInternalNode
         int endIndexInEnumeration,
         Action<INode> onChildDetachment);
 
-    public List<INode> DetachChildrenAt<TList>(TList indexes) where TList : IList<int>;
+    public List<INode> DetachChildrenAt<TList>(TList indexes) where TList : IReadOnlyList<int>;
 
-    public List<INode> DetachChildrenAt<TList>(TList indexes, Action<INode> onChildDetachment) where TList : IList<int>;
+    public List<INode> DetachChildrenAt<TList>(TList indexes, Action<INode> onChildDetachment) where TList : IReadOnlyList<int>;
 
-    public void DetachChildrenAtAndDiscard<TList>(TList indexes) where TList : IList<int>;
+    public void DetachChildrenAtAndDiscard<TList>(TList indexes) where TList : IReadOnlyList<int>;
 
     public void DetachChildrenAtAndDiscard<TList>(TList indexes, Action<INode> onChildDetachment)
-        where TList : IList<int>;
+        where TList : IReadOnlyList<int>;
 
-    public List<INode> DetachChildrenAt<TList>(TList indexes, int startIndexInEnumeration) where TList : IList<int>;
+    public List<INode> DetachChildrenAt<TList>(TList indexes, int startIndexInEnumeration) where TList : IReadOnlyList<int>;
 
     public List<INode> DetachChildrenAt<TList>(TList indexes, int startIndexInEnumeration,
         Action<INode> onChildDetachment)
-        where TList : IList<int>;
+        where TList : IReadOnlyList<int>;
 
-    public void DetachChildrenAtAndDiscard<TList>(TList indexes, int startIndexInEnumeration) where TList : IList<int>;
+    public void DetachChildrenAtAndDiscard<TList>(TList indexes, int startIndexInEnumeration) where TList : IReadOnlyList<int>;
 
     public void DetachChildrenAtAndDiscard<TList>(TList indexes, int startIndexInEnumeration,
         Action<INode> onChildDetachment)
-        where TList : IList<int>;
+        where TList : IReadOnlyList<int>;
 
     public List<INode> DetachChildrenAt<TList>(TList indexes, int startIndexInEnumeration,
-        int countInEnumerationFromStart) where TList : IList<int>;
+        int countInEnumerationFromStart) where TList : IReadOnlyList<int>;
 
     public List<INode> DetachChildrenAt<TList>(TList indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart,
-        Action<INode> onChildDetachment) where TList : IList<int>;
+        Action<INode> onChildDetachment) where TList : IReadOnlyList<int>;
 
     public void DetachChildrenAtAndDiscard<TList>(TList indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart)
-        where TList : IList<int>;
+        where TList : IReadOnlyList<int>;
 
     public void DetachChildrenAtAndDiscard<TList>(TList indexes, int startIndexInEnumeration,
         int countInEnumerationFromStart,
-        Action<INode> onChildDetachment) where TList : IList<int>;
+        Action<INode> onChildDetachment) where TList : IReadOnlyList<int>;
 
     public List<INode> DetachChildrenAtWithRange<TList>(TList indexes, int startIndexInEnumeration,
         int endIndexInEnumeration)
-        where TList : IList<int>;
+        where TList : IReadOnlyList<int>;
 
     public List<INode> DetachChildrenAtWithRange<TList>(TList indexes, int startIndexInEnumeration,
         int endIndexInEnumeration,
-        Action<INode> onChildDetachment) where TList : IList<int>;
+        Action<INode> onChildDetachment) where TList : IReadOnlyList<int>;
 
     public void DetachChildrenAtWithRangeAndDiscard<TList>(TList indexes, int startIndexInEnumeration,
         int endIndexInEnumeration)
-        where TList : IList<int>;
+        where TList : IReadOnlyList<int>;
 
     public void DetachChildrenAtWithRangeAndDiscard<TList>(TList indexes, int startIndexInEnumeration,
         int endIndexInEnumeration,
-        Action<INode> onChildDetachment) where TList : IList<int>;
+        Action<INode> onChildDetachment) where TList : IReadOnlyList<int>;
 
     public bool DetachChild(INode child);
 
-    public List<INode> DetachChildren(IEnumerable<INode> indexes);
+    public IEnumerable<INode> DetachChildren(IEnumerable<INode> indexes);
 
-    public List<INode> DetachChildren(IEnumerable<INode> indexes, Action<INode> onChildDetachment);
+    public IEnumerable<INode> DetachChildren(IEnumerable<INode> indexes, Action<INode> onChildDetachment);
 
     public void DetachChildrenAndDiscard(IEnumerable<INode> indexes);
 
     public void DetachChildrenAndDiscard(IEnumerable<INode> indexes, Action<INode> onChildDetachment);
 
-    public List<INode> DetachChildren(IEnumerable<INode> indexes, int startIndexInEnumeration);
+    public IEnumerable<INode> DetachChildren(IEnumerable<INode> indexes, int startIndexInEnumeration);
 
-    public List<INode> DetachChildren(IEnumerable<INode> indexes, int startIndexInEnumeration,
+    public IEnumerable<INode> DetachChildren(IEnumerable<INode> indexes, int startIndexInEnumeration,
         Action<INode> onChildDetachment);
 
     public void DetachChildrenAndDiscard(IEnumerable<INode> indexes, int startIndexInEnumeration);
@@ -435,5 +435,5 @@ public partial interface IInternalNode
 
     public void DetachChildrenAtWithRangeAndDiscard<TList, TListElements>(TList indexes, int startIndexInEnumeration,
         int endIndexInEnumeration,
-        Action<INode> onChildDetachment) where TList : IList<TListElements> where TListElements : INode;
+        Action<INode> onChildDetachment) where TList : IList<TListElements> where TListElements : INode;*/
 }
