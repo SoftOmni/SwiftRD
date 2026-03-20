@@ -1,0 +1,579 @@
+using System;
+using System.Collections.Generic;
+using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
+using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+
+namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+
+public partial class InternalNode
+{
+    internal int AttachChildrenForcibly(int index, IEnumerable<INode> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForciblyAsReversed(int index, IEnumerable<INode> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForcibly(int index, IEnumerable<INode> children, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForciblyAsReversed(int index, IEnumerable<INode> children, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    internal int AttachChildrenLooseForcibly(int index, IEnumerable<INode> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForciblyAsReversed(int index, IEnumerable<INode> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForcibly(int index, IEnumerable<INode> children, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForciblyAsReversed(int index, IEnumerable<INode> children, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    internal int AttachChildrenConcreteForcibly(int index, IEnumerable<Node> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForciblyAsReversed(int index, IEnumerable<Node> children)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForcibly(int index, IEnumerable<INode> children, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForciblyAsReversed(int index, IEnumerable<INode> children, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+
+    internal int AttachChildrenLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+
+    internal int AttachChildrenConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForcibly(int index, IEnumerable<Node> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForciblyAsReversed(int index, IEnumerable<Node> children, int startIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForcibly(int index, IEnumerable<Node> children, int startIndexInEnumeration, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForciblyAsReversed(int index, IEnumerable<Node> children, int startIndexInEnumeration, Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count, Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int count,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForcibly(int index, IEnumerable<Node> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForciblyAsReversed(int index, IEnumerable<Node> children, int startIndexInEnumeration, int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForcibly(int index, IEnumerable<Node> children, int startIndexInEnumeration, int count,
+        Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteForciblyAsReversed(int index, IEnumerable<Node> children, int startIndexInEnumeration, int count,
+        Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration, int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration, int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration, int count,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration, int count,
+        Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int count, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseForcibly(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseForciblyAsReversed(int index, IEnumerable<INode> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<INode> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteForcibly(int index, IEnumerable<Node> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteForciblyAsReversed(int index, IEnumerable<Node> children, int startIndexInEnumeration, int endIndexInEnumeration)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteForcibly(int index, IEnumerable<Node> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteForciblyAsReversed(int index, IEnumerable<Node> children, int startIndexInEnumeration, int endIndexInEnumeration,
+        Action<Node> onChildAddition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeLooseGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children, int startIndexInEnumeration,
+        int endIndexInEnumeration, Action<INode> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : INode
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children,
+        int startIndexInEnumeration, int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children,
+        int startIndexInEnumeration, int endIndexInEnumeration)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteGenericEnumerableForcibly<TEnumerable, TNode>(int index, TEnumerable children,
+        int startIndexInEnumeration, int endIndexInEnumeration, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int AttachChildrenWithRangeConcreteGenericEnumerableForciblyAsReversed<TEnumerable, TNode>(int index, TEnumerable children,
+        int startIndexInEnumeration, int endIndexInEnumeration, Action<Node> onChildAddition)
+        where TEnumerable : IEnumerable<TNode> where TNode : Node
+    {
+        throw new NotImplementedException();
+    }
+}

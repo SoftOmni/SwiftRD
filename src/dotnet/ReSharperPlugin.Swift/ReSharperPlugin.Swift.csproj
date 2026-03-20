@@ -29,18 +29,9 @@
     <Folder Include="Language\Base\Implementations\Constrained\Loose\Leaf\" />
     <Folder Include="Language\Base\Implementations\Constrained\Loose\Root\" />
     <Folder Include="Language\Base\Implementations\Flexible\Concretely\" />
-    <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Appending\" />
-    <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Contains\" />
-    <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Count\" />
-    <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Prepending\" />
-    <Folder Include="Language\Base\Implementations\Flexible\Loose\Leaf\" />
-    <Folder Include="Language\Base\Implementations\Flexible\Loose\Root\" />
     <Folder Include="Language\DooC\" />
-    <Folder Include="Language\ModuleMaps\" />
-    <Folder Include="Language\ObjectiveCPP\" />
-    <Folder Include="Language\ObjectiveC\" />
+    <Folder Include="Language\Leaf\" />
     <Folder Include="Language\Swift\" />
-    <Folder Include="Language\Swift\Parser\Tree\Base\Implementations\LeafNode\" />
     <Folder Include="Language\Swift\Parser\Tree\Base\Implementations\Root\" />
     <Folder Include="Ressources\Icons\Language\Raw\Declarations\Swift\" />
   </ItemGroup>

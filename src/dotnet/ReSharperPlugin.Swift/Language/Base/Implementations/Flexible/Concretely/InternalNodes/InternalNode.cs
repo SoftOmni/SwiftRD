@@ -6,14 +6,13 @@ using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
 using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.InternalNodes;
+namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public abstract partial class InternalNode : TreeElement, IInternalNode
 {
     private readonly List<Node> _children = [];
-    
-    protected InternalNode()
-    { }
+
+    protected IEditableBuffer UnderlyingBuffer;
 
     protected InternalNode(IEnumerator<Node> childEnumerator, bool mustDispose = true)
     {
@@ -79,10 +78,10 @@ public abstract partial class InternalNode : TreeElement, IInternalNode
         int targetIndex = startIndexInEnumerator + numberOfChildrenInEnumeratorToTake;
         while (childEnumerator.MoveNext() && index < targetIndex)
         {
-            _children.Add();
+            // _children.Add();
             index++;
         }
-    }
+    }/*
     
     protected InternalNode(IEditableBuffer buffer)
         : base(buffer)
@@ -90,7 +89,7 @@ public abstract partial class InternalNode : TreeElement, IInternalNode
 
     protected InternalNode(IEditableBuffer buffer, InternalNode parent, int parentIndex, int parentTextIndex)
         : base(buffer, parent, parentIndex, parentTextIndex)
-    { }
+    { }*/
 
     public int NumberOfChildren => _children.Count;
 
@@ -110,9 +109,11 @@ public abstract partial class InternalNode : TreeElement, IInternalNode
         throw new NotImplementedException();
     }
 
-    public int ParentIndex { get; }
-    public int ParentTextIndex { get; }
-    public IBuffer Buffer { get; }
+    public int ParentIndex { get; protected set; }
+    
+    public int ParentTextIndex { get; protected set; }
+    
+    public IBuffer Buffer => UnderlyingBuffer;
 
     public IInternalNode CloneAsDetached()
     {
