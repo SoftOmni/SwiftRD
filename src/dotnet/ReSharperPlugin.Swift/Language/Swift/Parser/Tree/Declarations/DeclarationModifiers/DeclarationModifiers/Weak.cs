@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
 public class Weak : DeclarationModifierLeaf, ISwiftKeyword
 {
     public const string Keyword = "weak";
     
     internal Weak(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Weak)
+        : base(SwiftNodeTypes.Weak, buffer)
     { }
 
     internal Weak(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Weak)
+        : base(parent, buffer, SwiftNodeTypes.Weak)
     { }
 
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.ProjectModel;
 
-namespace ReSharperPlugin.Swift.Language.ObjectiveC.File;
+namespace SoftOmni.SwiftRd.Language.ObjectiveC.File;
 
 [ProjectFileTypeDefinition(Name)]
 public class ObjectiveCFileType : KnownProjectFileType

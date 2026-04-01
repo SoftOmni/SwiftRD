@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types.TupleTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TupleTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations.Cases.UnionValues;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.UnionValues;
 
 public class UnionStyleEnumerationCaseClause : SwiftInternalNode
 {

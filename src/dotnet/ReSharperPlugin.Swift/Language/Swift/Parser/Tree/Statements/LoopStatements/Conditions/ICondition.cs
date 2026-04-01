@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.Conditions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.Conditions;
 
 public interface ICondition : ISwiftNode;

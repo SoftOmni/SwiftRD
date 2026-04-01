@@ -1,6 +1,6 @@
 using System;
 
-namespace ReSharperPlugin.Swift.Technology.RelativePositions;
+namespace SoftOmni.SwiftRd.Technology.RelativePositions;
 
 public class RelativePositioning
 {

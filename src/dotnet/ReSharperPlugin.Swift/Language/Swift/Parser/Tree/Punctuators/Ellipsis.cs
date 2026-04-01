@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using Should.Core.Exceptions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class Ellipsis : SwiftInternalNode
 {

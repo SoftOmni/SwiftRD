@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.Colors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.Colors;
 
 public class Green : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Green : SwiftLeafNode, ISwiftKeyword
     public Color? Color { get; internal set; }
 
     internal Green(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Green)
+        : base(buffer, SwiftNodeTypes.Green)
     { }
 
     internal Green(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Green)
+        : base(parent, buffer, SwiftNodeTypes.Green)
     {
         if (parent is Color color)
         {
@@ -24,7 +24,7 @@ public class Green : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Green(Color parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Green)
+        : base(parent, buffer, SwiftNodeTypes.Green)
     {
         Color = parent;
     }

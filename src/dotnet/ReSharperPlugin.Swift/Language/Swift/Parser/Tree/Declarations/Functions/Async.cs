@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
 
 public class Async: SwiftLeafNode, ISwiftKeyword
 {
     public const string Keyword = "async";
     
     internal Async(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Async)
+        : base(buffer, SwiftNodeTypes.Async)
     { }
 
     internal Async(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Async)
+        : base(parent, buffer, SwiftNodeTypes.Async)
     { }
 
 

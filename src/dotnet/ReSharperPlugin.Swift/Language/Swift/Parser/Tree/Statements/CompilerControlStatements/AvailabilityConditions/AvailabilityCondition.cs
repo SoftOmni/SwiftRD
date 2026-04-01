@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions.AvailabilityArguments;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.Conditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions.AvailabilityArguments;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.Conditions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions;
 
 public class AvailabilityCondition : StatementInternalNode, ICondition, IList<AvailabilityArgument>
 {

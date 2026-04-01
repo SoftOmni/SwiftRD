@@ -1,9 +1,9 @@
 using System;
 using ExtendedNumerics;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
-using Type = ReSharperPlugin.Swift.Language.Semantics.Type.Type;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
+using Type = SoftOmni.SwiftRd.Language.Semantics.Type.Type;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 public class ErroneousFloatingPointLiteralToken()
     : ErroneousSwiftLiteral(SwiftTokens.ErroneousFloatingPointLiteralId, SwiftTokens.ErroneousFloatingPointLiteralIndex)

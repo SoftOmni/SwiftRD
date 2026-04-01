@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ReSharperPlugin.Swift.Technology.Graphs;
+namespace SoftOmni.SwiftRd.Technology.Graphs;
 
 /// <summary>
 /// 

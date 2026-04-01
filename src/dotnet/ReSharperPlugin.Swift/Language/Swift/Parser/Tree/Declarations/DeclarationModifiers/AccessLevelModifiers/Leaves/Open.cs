@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 
 public class Open : LeafAccessLevelModifier, ISwiftKeyword
 {
     public const string Keyword = "open";
     
     internal Open(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Open)
+        : base(buffer, SwiftNodeTypes.Open)
     { }
 
     internal Open(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Open)
+        : base(parent, buffer, SwiftNodeTypes.Open)
     { }
 
 

@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Constants;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Blocks;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Clauses;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.SetterSetterBlocks.Clauses;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Constants;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Blocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Clauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.SetterSetterBlocks.Clauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables;
 
 public class Variable : Declaration
 {

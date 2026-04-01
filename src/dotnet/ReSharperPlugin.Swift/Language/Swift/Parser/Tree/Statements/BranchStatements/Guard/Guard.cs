@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Guard;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Guard;
 
 public class Guard : StatementLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Guard : StatementLeafNode, ISwiftKeyword
     public GuardStatement? GuardStatement { get; private set; }
     
     internal Guard(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Guard)
+        : base(buffer, SwiftNodeTypes.Guard)
     { }
 
     internal Guard(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Guard)
+        : base(parent, buffer, SwiftNodeTypes.Guard)
     {
         if (parent is GuardStatement guardStatement)
         {
@@ -24,7 +24,7 @@ public class Guard : StatementLeafNode, ISwiftKeyword
     }
 
     internal Guard(GuardStatement guardStatement, IEditableBuffer buffer)
-        : base(guardStatement, buffer, NodeTypes.NodeTypes.Guard)
+        : base(guardStatement, buffer, SwiftNodeTypes.Guard)
     {
         GuardStatement = guardStatement;
     }

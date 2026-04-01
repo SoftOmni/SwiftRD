@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
 
 public class NonMutating : MutationModifier, ISwiftKeyword
 {
     public const string Keyword = "nonmutating";
     
     internal NonMutating(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.NonMutating)
+        : base(buffer, SwiftNodeTypes.NonMutating)
     { }
 
     internal NonMutating(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.NonMutating)
+        : base(parent, buffer, SwiftNodeTypes.NonMutating)
     { }
 
 

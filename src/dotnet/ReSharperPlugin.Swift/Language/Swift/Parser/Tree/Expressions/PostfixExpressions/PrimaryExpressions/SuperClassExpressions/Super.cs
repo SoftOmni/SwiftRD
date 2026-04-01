@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperExpressions;
 
 public class Super : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Super : SwiftLeafNode, ISwiftKeyword
     public SuperClassExpression? SuperExpression { get; internal set; }
 
     internal Super(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Super)
+        : base(buffer, SwiftNodeTypes.Super)
     { }
 
     internal Super(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Super)
+        : base(parent, buffer, SwiftNodeTypes.Super)
     {
         if (parent is SuperClassExpression superExpression)
         {
@@ -24,7 +24,7 @@ public class Super : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Super(SuperClassExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Super)
+        : base(parent, buffer, SwiftNodeTypes.Super)
     {
         SuperExpression = parent;
     }

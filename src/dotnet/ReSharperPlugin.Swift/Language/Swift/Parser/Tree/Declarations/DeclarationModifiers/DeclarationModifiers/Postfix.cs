@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
 public class Postfix : DeclarationModifierLeaf, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Postfix : DeclarationModifierLeaf, ISwiftKeyword
     public PostfixOperatorDeclaration? PostfixOperatorDeclaration { get; internal set; }
     
     internal Postfix(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Postfix)
+        : base(SwiftNodeTypes.Postfix, buffer)
     { }
 
     internal Postfix(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Postfix)
+        : base(parent, buffer, SwiftNodeTypes.Postfix)
     {
         if (parent is PostfixOperatorDeclaration postfixOperatorDeclaration)
         {
@@ -25,7 +25,7 @@ public class Postfix : DeclarationModifierLeaf, ISwiftKeyword
     }
 
     internal Postfix(PostfixOperatorDeclaration parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Postfix)
+        : base(parent, buffer, SwiftNodeTypes.Postfix)
     {
         PostfixOperatorDeclaration = parent;
     }

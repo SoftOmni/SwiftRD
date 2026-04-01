@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types.TypeIdentifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
-namespace ReSharperPlugin.Swift.Rider.Language.Parser.Tree.Generics.WhereClauses;
+namespace SoftOmni.SwiftRd.Rider.Language.Parser.Tree.Generics.WhereClauses;
 
 public abstract class Requirement : SwiftInternalNode
 {

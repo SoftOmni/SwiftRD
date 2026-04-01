@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Generics.ArgumentClauses;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ArgumentClauses;
 
 public class GenericArgumentGroup : SwiftInternalNode, IList<IType>
 {

@@ -9,10 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3001.1.0.233" />
+    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3003.0.0.346" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
-    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2025.3.0.1" PrivateAssets="all" />
+    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2026.1.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
+    <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,16 +25,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Language\Base\Implementations\Constrained\Concretely\" />
-    <Folder Include="Language\Base\Implementations\Constrained\Loose\Internal\" />
-    <Folder Include="Language\Base\Implementations\Constrained\Loose\Leaf\" />
-    <Folder Include="Language\Base\Implementations\Constrained\Loose\Root\" />
     <Folder Include="Language\Base\Implementations\Flexible\Concretely\" />
-    <Folder Include="Language\DooC\" />
-    <Folder Include="Language\Leaf\" />
+    <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Replacement\" />
+    <Folder Include="Language\Base\Implementations\Flexible\Loose\Internal\Replacement\" />
+    <Folder Include="Language\Leaf\Parser\Tree\Base\" />
+    <Folder Include="Language\ModuleMaps\Parser\Tree\Base\" />
+    <Folder Include="Language\ObjectiveCXX\Parser\Tree\Base\" />
+    <Folder Include="Language\ObjectiveC\Parser\Tree\Base\" />
     <Folder Include="Language\Swift\" />
-    <Folder Include="Language\Swift\Parser\Tree\Base\Implementations\Root\" />
     <Folder Include="Ressources\Icons\Language\Raw\Declarations\Swift\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
   </ItemGroup>
 
 </Project>

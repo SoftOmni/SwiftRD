@@ -1,14 +1,14 @@
 using System;
 using System.Numerics;
 using ExtendedNumerics;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
-using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
-using Double = ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes.Double;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
+using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
+using Double = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.Double;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public partial class SwiftLexer
 {

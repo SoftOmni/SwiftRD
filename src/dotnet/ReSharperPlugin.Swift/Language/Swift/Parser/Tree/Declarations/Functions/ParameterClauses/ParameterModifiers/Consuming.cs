@@ -1,23 +1,23 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
 
 public class Consuming : ParameterModifier, ISwiftKeyword
 {
     public const string Keyword = "consuming";
     
     internal Consuming(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Consuming)
+        : base(buffer, SwiftNodeTypes.Consuming)
     { }
 
     internal Consuming(SwiftInternalNode parent, IEditableBuffer buffer) :
-        base(parent, buffer, NodeTypes.NodeTypes.Consuming)
+        base(parent, buffer, SwiftNodeTypes.Consuming)
     { }
 
     internal Consuming(Parameter parameter, IEditableBuffer buffer) 
-        : base(parameter, buffer, NodeTypes.NodeTypes.Consuming)
+        : base(parameter, buffer, SwiftNodeTypes.Consuming)
     { }
 
     public string KeywordValue => Keyword;

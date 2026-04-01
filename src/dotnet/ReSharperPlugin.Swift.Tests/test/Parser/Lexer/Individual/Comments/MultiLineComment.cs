@@ -1,12 +1,12 @@
 using System.Text;
 using JetBrains.Text;
 using NUnit.Framework;
-using ReSharperPlugin.Swift.Extensions;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Markers;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
+using SoftOmni.SwiftRd.Extensions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;
 
-namespace ReSharperPlugin.Swift.Tests.test.Parser.Lexer.Individual.Comments;
+namespace SoftOmni.SwiftRd.Tests.test.Parser.Lexer.Individual.Comments;
 
 [TestFixture]
 public class MultiLineComment

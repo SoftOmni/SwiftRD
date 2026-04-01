@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.ImageLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.ImageLiterals;
 
 public class ImageLiteralKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class ImageLiteralKeyword : SwiftLeafNode, ISwiftKeyword
     public ImageLiteral? ImageLiteral { get; internal set; }
 
     internal ImageLiteralKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ReservedImageLiteral)
+        : base(buffer, SwiftNodeTypes.ReservedImageLiteral)
     { }
 
     internal ImageLiteralKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedImageLiteral)
+        : base(parent, buffer, SwiftNodeTypes.ReservedImageLiteral)
     {
         if (parent is ImageLiteral imageLiteral)
         {
@@ -24,7 +24,7 @@ public class ImageLiteralKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal ImageLiteralKeyword(ImageLiteral parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedImageLiteral)
+        : base(parent, buffer, SwiftNodeTypes.ReservedImageLiteral)
     {
         ImageLiteral = parent;
     }

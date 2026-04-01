@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
-using ReSharperPlugin.Swift.Technology;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
+using SoftOmni.SwiftRd.Technology;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.StatementGroups;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
 public class StatementGroup : SwiftInternalNode, IList<IStatement>
 {

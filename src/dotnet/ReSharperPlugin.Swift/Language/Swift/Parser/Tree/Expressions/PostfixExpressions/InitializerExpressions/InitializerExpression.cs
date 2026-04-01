@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Initializers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.ExplicitMemberExpressions.ArgumentNames;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.ExplicitMemberExpressions.ArgumentNames;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.InitializerExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.InitializerExpressions;
 
 public class InitializerExpression : PostfixExpressionInternalNode
 {

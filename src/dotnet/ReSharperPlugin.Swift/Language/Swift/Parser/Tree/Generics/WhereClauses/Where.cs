@@ -1,10 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Generics.WhereClauses;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Switches;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Generics.GenericWhereClauseClauses;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.GenericWhereClauseClauses;
 
 public class Where : SwiftLeafNode, ISwiftKeyword
 {
@@ -15,11 +15,11 @@ public class Where : SwiftLeafNode, ISwiftKeyword
     public WhereClause? WhereClause { get; internal set; } 
 
     internal Where(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Where)
+        : base(buffer, SwiftNodeTypes.Where)
     { }
 
     internal Where(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Where)
+        : base(parent, buffer, SwiftNodeTypes.Where)
     {
         if (parent is GenericWhereClause genericWhereClause)
         {
@@ -32,13 +32,13 @@ public class Where : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Where(GenericWhereClause parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Where)
+        : base(parent, buffer, SwiftNodeTypes.Where)
     {
         GenericWhereClause = parent;
     }
     
     internal Where(WhereClause parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Where)
+        : base(parent, buffer, SwiftNodeTypes.Where)
     {
         WhereClause = parent;
     }

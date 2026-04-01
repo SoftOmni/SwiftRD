@@ -1,7 +1,7 @@
 using System.Text;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Extensions;
+namespace SoftOmni.SwiftRd.Extensions;
 
 public static class StringBuilderExtensions
 {

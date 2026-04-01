@@ -1,10 +1,10 @@
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.TypeAliases;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes.Keywords.Declarations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.Declarations;
 
 public class TypealiasNodeType : DeclarationNodeType
 {

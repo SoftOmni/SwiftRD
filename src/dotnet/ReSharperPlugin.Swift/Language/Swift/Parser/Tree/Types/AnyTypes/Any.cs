@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.AnyTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.AnyTypes;
 
 public class Any : TypeLeafNode, ISwiftKeyword
 {
     public const string Keyword = "Any";
     
     internal Any(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.AnyUppercase)
+        : base(buffer, SwiftNodeTypes.AnyUppercase)
     { }
 
     internal Any(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.AnyUppercase)
+        : base(parent, buffer, SwiftNodeTypes.AnyUppercase)
     { }
 
     public string KeywordValue => Keyword;

@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions.SwitchExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions.SwitchExpressions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Switches;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
 
 public class Switch : SwiftLeafNode, ISwiftKeyword
 {
@@ -14,11 +14,11 @@ public class Switch : SwiftLeafNode, ISwiftKeyword
     public SwitchExpression? SwitchExpression { get; internal set; }
 
     internal Switch(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Switch)
+        : base(buffer, SwiftNodeTypes.Switch)
     { }
 
     internal Switch(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Switch)
+        : base(parent, buffer, SwiftNodeTypes.Switch)
     {
         if (parent is SwitchStatement switchStatement)
         {
@@ -31,13 +31,13 @@ public class Switch : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Switch(SwitchStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Switch)
+        : base(parent, buffer, SwiftNodeTypes.Switch)
     {
         SwitchStatement = parent;
     }
     
     internal Switch(SwitchExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Switch)
+        : base(parent, buffer, SwiftNodeTypes.Switch)
     {
         SwitchExpression = parent;
     }

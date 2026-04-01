@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Semantics.Type;
+namespace SoftOmni.SwiftRd.Language.Semantics.Type;
 
 public class Type
 {

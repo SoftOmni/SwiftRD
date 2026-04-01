@@ -1,10 +1,8 @@
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.LeafNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Base.Interfaces.Root;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
-public interface ISwiftNode : INode<IInternalNode<ISwiftNode>, ILeafNode<ISwiftNode>>
-{
-    
-}
+public interface ISwiftNode<TSelf> : INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>
+    where TSelf : SwiftInternalNode<TSelf>;

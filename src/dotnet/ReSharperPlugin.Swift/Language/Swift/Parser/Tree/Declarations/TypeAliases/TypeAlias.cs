@@ -1,41 +1,81 @@
+using System;
 using System.Collections.Generic;
+using JetBrains.Application.UI.Icons.CompiledIcons;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Resources.Icons.Language;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.TypeAliases;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
 
-public class TypeAlias : Declaration
+public class TypeAlias : Declaration<IType>, ITypeAlias, INamedDeclaration<TypeAlias, IType>
 {
     public AttributeGroup? Attributes { get; internal set; }
-    
+
     public IAccessLevelModifier? AccessLevelModifier { get; internal set; }
+
+    public TypeAliasKeyword Keyword { get; }
     
-    public TypeAliasKeyword? Keyword { get; internal set; }
-    
+    public GenericParameterClause? GenericParameterClause { get; internal set; }
+
     public Identifier? Name { get; internal set; }
-    
-    public Equal? Equal { get; internal set; }
-    
-    public IType? Type { get; internal set; }
-    
-    public TypeAlias(IEditableBuffer buffer, List<ISwiftNode> children) 
+
+    public Equal Equal { get; }
+
+    public IType Type { get; }
+
+    internal TypeAlias(IEditableBuffer buffer, List<ISwiftNode<SwiftCompositeNode>> children, AttributeGroup? attributes, IAccessLevelModifier? accessLevelModifier, TypeAliasKeyword keyword,
+        Identifier name, Equal equal, IType type)
         : base(buffer, children)
-    { }
+    {
+        Attributes = attributes;
+        AccessLevelModifier = accessLevelModifier;
+        ActiveAccessLevelModifier = accessLevelModifier ?? DefaultAccessLevelModifier();
 
-    public TypeAlias(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+        ChildNodes.Add(keyword);
+        Keyword = keyword;
 
-    public TypeAlias(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+        Name = name;
+        Equal = equal;
+        Type = type;
+    }
 
-    public TypeAlias(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public bool HasAttributes => Attributes is not null;
+
+    public bool IsAttributeless => Attributes is null;
+
+    public bool AccessLevelModifierSpecified => AccessLevelModifier is not null;
+
+    public bool IsDefaultAccessLevelModifier => AccessLevelModifier is null;
+
+    public IAccessLevelModifier ActiveAccessLevelModifier { get; }
+
+    public IAccessLevelModifier DefaultAccessLevelModifier()
+    {
+        return Internal.Create();
+    }
+
+    public override AnyCompiledIconClass Icon => SwiftIcons.TypeAliasWithAccessModifier(AccessLevelModifier);
+
+    public void Rename(IType usage, string newName)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RenameAllUsages(string newName)
+    {
+        foreach (KeyValuePair<IType, TopLevelDeclaration> usagePair in Usages)
+        {
+            IType usage = usagePair.Key;
+            Rename(usage, newName);
+        }
+    }
 }

@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
 public class Prefix : DeclarationModifierLeaf, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Prefix : DeclarationModifierLeaf, ISwiftKeyword
     public PrefixOperatorDeclaration? PrefixOperatorDeclaration { get; internal set; }
     
     internal Prefix(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Prefix)
+        : base(SwiftNodeTypes.Prefix, buffer)
     { }
 
     internal Prefix(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Prefix)
+        : base(parent, buffer, SwiftNodeTypes.Prefix)
     {
         if (parent is PrefixOperatorDeclaration prefixOperatorDeclaration)
         {
@@ -25,7 +25,7 @@ public class Prefix : DeclarationModifierLeaf, ISwiftKeyword
     }
 
     internal Prefix(PrefixOperatorDeclaration parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Prefix)
+        : base(parent, buffer, SwiftNodeTypes.Prefix)
     {
         PrefixOperatorDeclaration = parent;
     }

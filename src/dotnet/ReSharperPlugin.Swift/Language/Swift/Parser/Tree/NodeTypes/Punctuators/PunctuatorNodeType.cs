@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Punctuators;
 
 public abstract class PunctuatorNodeType(string id, int index) : SwiftNodeType(id, index)
 {

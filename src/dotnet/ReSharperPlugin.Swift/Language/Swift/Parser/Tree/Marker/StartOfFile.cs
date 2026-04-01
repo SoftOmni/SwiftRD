@@ -1,15 +1,15 @@
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Marker;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Marker;
 
 public class StartOfFile : SwiftLeafNode, IMarker
 {
     public StartOfFile(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.StartOfFile)
+        : base(buffer, SwiftNodeTypes.StartOfFile)
     { }
 
     public StartOfFile(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.StartOfFile)
+        : base(parent, buffer, SwiftNodeTypes.StartOfFile)
     { }
 }

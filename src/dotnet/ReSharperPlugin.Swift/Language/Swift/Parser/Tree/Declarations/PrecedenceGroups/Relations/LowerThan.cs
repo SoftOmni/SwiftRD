@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.PrecedenceGroups.Relations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Relations;
 
 public class LowerThan : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class LowerThan : SwiftLeafNode, ISwiftKeyword
     public PrecedenceGroupRelation? PrecedenceGroupRelation { get; internal set; }
 
     internal LowerThan(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.LowerThan)
+        : base(buffer, SwiftNodeTypes.LowerThan)
     { }
 
     internal LowerThan(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.LowerThan)
+        : base(parent, buffer, SwiftNodeTypes.LowerThan)
     {
         if (parent is PrecedenceGroupRelation precedenceGroupRelation)
         {
@@ -24,7 +24,7 @@ public class LowerThan : SwiftLeafNode, ISwiftKeyword
     }
 
     internal LowerThan(PrecedenceGroupRelation parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.LowerThan)
+        : base(parent, buffer, SwiftNodeTypes.LowerThan)
     {
         PrecedenceGroupRelation = parent;
     }

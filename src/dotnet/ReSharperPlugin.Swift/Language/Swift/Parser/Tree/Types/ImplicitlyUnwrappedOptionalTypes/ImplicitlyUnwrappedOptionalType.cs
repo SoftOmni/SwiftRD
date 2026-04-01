@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.ImplicitlyUnwrappedOptionalType;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.ImplicitlyUnwrappedOptionalType;
 
 public class ImplicitlyUnwrappedOptionalType : TypeInternalNode
 {

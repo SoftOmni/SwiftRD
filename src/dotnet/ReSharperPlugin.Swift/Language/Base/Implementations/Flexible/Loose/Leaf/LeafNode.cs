@@ -1,17 +1,18 @@
+using System;
 using System.Text;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Extensions;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.LeafNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Extensions;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.Leaf;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.Leaf;
 
 public abstract class LeafNode : LeafElementBase, ILeafNode
 {
-    protected IEditableBuffer UnderlyingBuffer;
+    protected internal IEditableBuffer UnderlyingBuffer;
 
     protected IInternalNode? ParentNode;
     
@@ -65,11 +66,36 @@ public abstract class LeafNode : LeafElementBase, ILeafNode
         return ParentNode is not null;
     }
 
-    public int ParentIndex { get; protected set; }
+    public int ParentIndex { get; protected internal set; }
     
-    public int ParentTextIndex { get; protected set; }
+    public int ParentTextIndex { get; protected internal set; }
     
     public IBuffer Buffer => UnderlyingBuffer;
+
+    public void UnsafeDangerousSetParentIndex(int index)
+    {
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+        
+        ParentIndex = index;
+    }
+
+    public void UnsafeDangerousSetParentTextIndex(int index)
+    {
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+        
+        ParentTextIndex = index;
+    }
+
+    public void UnsafeDangerousSetUnderlyingBuffer(IEditableBuffer buffer)
+    {
+        UnderlyingBuffer = buffer;
+    }
 
     public abstract ILeafNode CloneAsDetached();
 

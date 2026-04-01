@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language;
+namespace SoftOmni.SwiftRd.Language;
 
 public class RegularExpression
 {

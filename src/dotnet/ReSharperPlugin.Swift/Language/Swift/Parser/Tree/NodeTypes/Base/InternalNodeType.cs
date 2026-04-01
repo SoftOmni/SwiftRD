@@ -3,11 +3,11 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 public class InternalNodeType : SwiftNodeType
 {
-    internal InternalNodeType() : base(NodeTypes.InternalNodeId, NodeTypes.InternalNodeIndex)
+    internal InternalNodeType() : base(SwiftNodeTypes.InternalNodeId, SwiftNodeTypes.InternalNodeIndex)
     { }
 
     public override LeafElementBase Create(IEditableBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)

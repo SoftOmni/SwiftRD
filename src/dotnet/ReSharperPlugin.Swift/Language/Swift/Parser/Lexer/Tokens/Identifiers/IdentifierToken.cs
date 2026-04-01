@@ -1,7 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace DefaultNamespace;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Identifiers;
 
 public class IdentifierToken() : SwiftTokenNodeType(SwiftTokens.IdentifierId, SwiftTokens.IdentifierIndex)
 {

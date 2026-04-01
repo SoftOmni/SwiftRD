@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Marker;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Marker;
 
 public interface IMarker;

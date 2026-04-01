@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types.TypeIdentifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.ProtocolCompositionType;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.ProtocolCompositionType;
 
 public class ProtocolCompositionType : SwiftInternalNode, IList<TypeIdentifier>, IReadOnlyList<Ampersand>
 {

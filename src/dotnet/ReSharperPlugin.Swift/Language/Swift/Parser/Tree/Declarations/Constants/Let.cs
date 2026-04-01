@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Constants;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Constants;
 
 public class Let : SwiftLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Let : SwiftLeafNode, ISwiftKeyword
     public Constant? Constant { get; private set; }
     
     internal Let(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Let)
+        : base(buffer, SwiftNodeTypes.Let)
     { }
 
     internal Let(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Let)
+        : base(parent, buffer, SwiftNodeTypes.Let)
     {
         if (parent is Constant constant)
         {
@@ -25,7 +25,7 @@ public class Let : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Let(Constant constant, IEditableBuffer buffer)
-        : base(constant, buffer, NodeTypes.NodeTypes.Let)
+        : base(constant, buffer, SwiftNodeTypes.Let)
     {
         Constant = constant;
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Technology;
+namespace SoftOmni.SwiftRd.Technology;
 
 public class ModularVisibilityHashSet<T> : ISet<T>, IReadOnlySet<T>
 {

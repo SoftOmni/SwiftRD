@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
 public class Lazy : DeclarationModifierLeaf, ISwiftKeyword
 {
     public const string Keyword = "lazy";
     
     internal Lazy(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Lazy)
+        : base(SwiftNodeTypes.Lazy, buffer)
     { }
 
     internal Lazy(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Lazy)
+        : base(parent, buffer, SwiftNodeTypes.Lazy)
     { }
 
 

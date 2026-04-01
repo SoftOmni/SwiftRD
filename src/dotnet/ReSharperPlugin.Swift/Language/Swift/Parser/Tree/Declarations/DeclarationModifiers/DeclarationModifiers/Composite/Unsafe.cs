@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers.Composite;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers.Composite;
 
 public class Unsafe : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Unsafe : SwiftLeafNode, ISwiftKeyword
     public UnownedUnsafe? UnownedUnsafe { get; internal set; }
 
     internal Unsafe(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Unsafe)
+        : base(buffer, SwiftNodeTypes.Unsafe)
     { }
 
     internal Unsafe(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Unsafe)
+        : base(parent, buffer, SwiftNodeTypes.Unsafe)
     {
         if (parent is UnownedUnsafe unownedUnsafe)
         {
@@ -24,7 +24,7 @@ public class Unsafe : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Unsafe(UnownedUnsafe parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Unsafe)
+        : base(parent, buffer, SwiftNodeTypes.Unsafe)
     {
         UnownedUnsafe = parent;
     }

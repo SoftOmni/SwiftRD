@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeInitializers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeInitializers;
 
 public class DeInit : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class DeInit : SwiftLeafNode, ISwiftKeyword
     public DeInitializer? DeInitializer { get; internal set; }
 
     internal DeInit(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Deinit)
+        : base(buffer, SwiftNodeTypes.Deinit)
     { }
 
     internal DeInit(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Deinit)
+        : base(parent, buffer, SwiftNodeTypes.Deinit)
     {
         if (parent is DeInitializer deInitializer)
         {
@@ -24,7 +24,7 @@ public class DeInit : SwiftLeafNode, ISwiftKeyword
     }
 
     internal DeInit(DeInitializer parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Deinit)
+        : base(parent, buffer, SwiftNodeTypes.Deinit)
     {
         DeInitializer = parent;
     }

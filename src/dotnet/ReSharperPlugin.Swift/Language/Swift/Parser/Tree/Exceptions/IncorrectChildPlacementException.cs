@@ -1,6 +1,6 @@
 using System;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Exceptions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Exceptions;
 
 public class IncorrectChildPlacementException : ArgumentException
 {

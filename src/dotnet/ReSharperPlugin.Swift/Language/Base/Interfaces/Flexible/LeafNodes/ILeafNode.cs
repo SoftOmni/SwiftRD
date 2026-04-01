@@ -1,13 +1,13 @@
 
 using System;
 using JetBrains.ReSharper.Psi.Tree;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.LeafNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.LeafNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.LeafNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
 
 /// <summary>
 ///     <para>

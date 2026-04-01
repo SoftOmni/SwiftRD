@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.FileLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.FileLiterals;
 
 public class FileLiteralKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class FileLiteralKeyword : SwiftLeafNode, ISwiftKeyword
     public FileLiteral? FileLiteral { get; internal set; }
 
     internal FileLiteralKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ReservedFileLiteral)
+        : base(buffer, SwiftNodeTypes.ReservedFileLiteral)
     { }
 
     internal FileLiteralKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedFileLiteral)
+        : base(parent, buffer, SwiftNodeTypes.ReservedFileLiteral)
     {
         if (parent is FileLiteral fileLiteral)
         {
@@ -24,7 +24,7 @@ public class FileLiteralKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal FileLiteralKeyword(FileLiteral parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedFileLiteral)
+        : base(parent, buffer, SwiftNodeTypes.ReservedFileLiteral)
     {
         FileLiteral = parent;
     }

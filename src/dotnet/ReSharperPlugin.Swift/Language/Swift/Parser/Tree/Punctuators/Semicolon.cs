@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class Semicolon : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = ";";
     
     internal Semicolon(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Semicolon)
+        : base(buffer, SwiftNodeTypes.Semicolon)
     { }
 
     internal Semicolon(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Semicolon)
+        : base(parent, buffer, SwiftNodeTypes.Semicolon)
     { }
 
 

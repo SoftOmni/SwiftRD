@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public interface ISwiftPunctuator
 {

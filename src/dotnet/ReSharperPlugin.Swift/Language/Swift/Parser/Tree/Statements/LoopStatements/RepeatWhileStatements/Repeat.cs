@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
 
 public class Repeat : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Repeat : SwiftLeafNode, ISwiftKeyword
     public RepeatWhileStatement? RepeatWhileStatement { get; internal set; }
 
     internal Repeat(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Repeat)
+        : base(buffer, SwiftNodeTypes.Repeat)
     { }
 
     internal Repeat(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Repeat)
+        : base(parent, buffer, SwiftNodeTypes.Repeat)
     {
         if (parent is RepeatWhileStatement repeatWhileStatement)
         {
@@ -24,7 +24,7 @@ public class Repeat : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Repeat(RepeatWhileStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Repeat)
+        : base(parent, buffer, SwiftNodeTypes.Repeat)
     {
         RepeatWhileStatement = parent;
     }

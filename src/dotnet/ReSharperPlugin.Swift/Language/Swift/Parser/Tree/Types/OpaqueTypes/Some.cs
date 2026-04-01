@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.OpaqueTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.OpaqueTypes;
 
 public class Some : SwiftLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Some : SwiftLeafNode, ISwiftKeyword
     public OpaqueType? OpaqueType { get; internal set; }
 
     internal Some(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Some)
+        : base(buffer, SwiftNodeTypes.Some)
     { }
 
     internal Some(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Some)
+        : base(parent, buffer, SwiftNodeTypes.Some)
     {
         if (parent is OpaqueType opaqueType)
         {
@@ -25,7 +25,7 @@ public class Some : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Some(OpaqueType parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Some)
+        : base(parent, buffer, SwiftNodeTypes.Some)
     {
         OpaqueType = parent;
     }

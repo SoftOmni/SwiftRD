@@ -1,12 +1,15 @@
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.LeafNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.LeafNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.LeafNodes;
 
-public interface ILeafNode<TBaseNode> : ILeafNode, INode<IInternalNode<TBaseNode>, ILeafNode<TBaseNode>>
-    where TBaseNode : INode<IInternalNode<TBaseNode>, ILeafNode<TBaseNode>>
+public interface ILeafNode<TFamily, TInternalNode, TSelf> :
+    INode<TFamily, TSelf, TInternalNode, TSelf>, ILeafNode
+    where TFamily : INodeFamily<TFamily, TInternalNode, TSelf>
+    where TInternalNode : IInternalNode<TFamily, TInternalNode, TSelf>
+    where TSelf : ILeafNode<TFamily, TInternalNode, TSelf>
 {
-    public void AttachToParent<TInternalNode>(TInternalNode newParent, int parentIndex)
-        where TInternalNode : IInternalNode<TBaseNode>;
+    public void AttachToParent<TParent>(TInternalNode newParent, int parentIndex)
+        where TParent : IInternalNode<TFamily, TInternalNode, TSelf>;
 }

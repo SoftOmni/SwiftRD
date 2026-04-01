@@ -1,6 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Punctuators;
 
 public class PunctuatorToken(string punctuator, string tokenId, int index) : SwiftTokenNodeType(tokenId, index)
 {

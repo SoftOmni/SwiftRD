@@ -1,216 +1,55 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
-using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Technology.Graphs;
-using ReSharperPlugin.Swift.Technology.Graphs.StateMachines;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Technology.Graphs;
+using SoftOmni.SwiftRd.Technology.Graphs.StateMachines;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 
-public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
+public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<TSelf>, TSelf, SwiftLeafNode<TSelf>>, ISwiftInternalNode<TSelf>
+    where TSelf : SwiftInternalNode<TSelf>
 {
-    protected readonly List<ISwiftNode> Children;
+    protected SwiftInternalNode(IEditableBuffer buffer)
+        : base(buffer)
+    { }
 
-    public SwiftInternalNode? CoreParent { get; protected set; }
+    protected SwiftInternalNode(TSelf parent, int index, IEditableBuffer editableBuffer, IEnumerable<ISwiftNode<TSelf>>? children = null)
+        : base(parent, index, editableBuffer, children)
+    { }
 
-    protected SwiftInternalNode(IEditableBuffer buffer, List<ISwiftNode> children)
-    {
-        EditableBuffer = buffer;
-        Children = children;
-    }
+    protected SwiftInternalNode(TSelf parent, int index, int textIndex, int lengthInParent, IEnumerable<ISwiftNode<TSelf>>? children = null)
+        : base(parent, index, textIndex, lengthInParent, children)
+    { }
 
-    protected SwiftInternalNode(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-    {
-        EditableBuffer = buffer;
-        Children = [..children];
-    }
-
-    protected SwiftInternalNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, List<ISwiftNode> nodes)
-    {
-        CoreParent = parent;
-        Children = nodes;
-        EditableBuffer = buffer;
-        ParentIndex = parentIndex;
-        ParentTextIndex = parentTextIndex;
-    }
-
-    protected SwiftInternalNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-    {
-        CoreParent = parent;
-        EditableBuffer = buffer;
-        Children = [..nodes];
-        ParentIndex = parentIndex;
-        ParentTextIndex = parentTextIndex;
-    }
-
-    protected IEditableBuffer EditableBuffer { get; set; }
-
-    public override NodeType NodeType => NodeTypes.NodeTypes.InternalNode;
-
-    public ISwiftNode this[int index]
-    {
-        get => GetChildAt(index);
-        set => SetChildAt(index, value);
-    }
-
-    public ISwiftNode GetChildAt(int index)
-    {
-        return Children[index];
-    }
-
-    
-
-    public virtual void ClearChildren()
-    {
-        while (Children.Count > 0)
-        {
-            DetachChild(Children.Count - 1);
-        }
-    }
-
-    internal virtual void ClearChildren(Action<ISwiftNode> onChildDetachment)
-    {
-        while (Children.Count > 0)
-        {
-            DetachChild(Children.Count - 1, onChildDetachment);
-        }
-    }
-
-    internal virtual void ClearChildrenForcibly()
-    {
-        while (Children.Count > 0)
-        {
-            DetachChildForcibly(Children.Count - 1);
-        }
-    }
-
-    internal virtual void ClearChildrenForcibly(Action<ISwiftNode> onChildDetachment)
-    {
-        while (Children.Count > 0)
-        {
-            DetachChildForcibly(Children.Count - 1, onChildDetachment);
-        }
-    }
-
-    public SwiftInternalNode? GetParent()
-    {
-        return CoreParent;
-    }
-
-    public bool HasParent()
-    {
-        return CoreParent is not null;
-    }
-
-    public int ParentIndex { get; internal set; }
-
-    public int ParentTextIndex { get; internal set; }
-
-    public IBuffer GetBuffer()
-    {
-        return EditableBuffer;
-    }
-
-    public int NumberOfChildren()
-    {
-        return Children.Count;
-    }
-
-    // In future, optimize more cloning algorithms for performance
-    protected abstract SwiftInternalNode DuplicateWithoutChildren();
-
-    protected abstract SwiftInternalNode Duplicate();
-
-    public ISwiftNode CloneAsDetachedDeep()
-    {
-        SwiftInternalNode newNode = DuplicateWithoutChildren();
-        for (int index = 0; index < Children.Count; index++)
-        {
-            ISwiftNode child = Children[index];
-            ISwiftNode cloned = child.CloneAsDetachedDeep();
-
-            newNode.AttachChildForcibly(index, cloned);
-        }
-
-        return newNode;
-    }
-
-    public ISwiftNode CloneAsAttachedToDeep(SwiftInternalNode newParent, int index)
-    {
-        ISwiftNode cloned = CloneAsDetachedDeep();
-        cloned.AttachToParent(newParent, index);
-
-        return cloned;
-    }
-
-    public virtual void AttachToParent(SwiftInternalNode newParent, int parentIndex)
-    {
-        CoreParent?.DetachChild(ParentIndex);
-        ParentTextIndex = newParent.AttachChild(parentIndex, this);
-        CoreParent = newParent;
-        ParentIndex = parentIndex;
-    }
-
-    internal virtual void AttachToParentForcibly(SwiftInternalNode newParent, int parentIndex)
-    {
-        CoreParent?.DetachChild(ParentIndex);
-        ParentTextIndex = newParent.AttachChildForcibly(parentIndex, this);
-        CoreParent = newParent;
-        ParentIndex = parentIndex;
-    }
-
-    public override string GetText()
-    {
-        return EditableBuffer.GetText();
-    }
-
-    public override int GetTextLength()
-    {
-        return EditableBuffer.Length;
-    }
-
-    public override StringBuilder GetText(StringBuilder to)
-    {
-        return StringBuilderExtensions.Append(EditableBuffer, to);
-    }
-
-    public override IBuffer GetTextAsBuffer()
-    {
-        return EditableBuffer;
-    }
-
-    public override ITreeNode? FirstChild => Children.Count > 0 ? Children[0] : null;
-
-    public override ITreeNode? LastChild => Children.Count > 0 ? Children[Children.Count - 1] : null;
+    protected SwiftInternalNode(IEditableBuffer buffer, IEnumerable<ISwiftNode<TSelf>> children)
+        : base(buffer, children)
+    { }
 
     public override PsiLanguageType Language => SwiftLanguage.Instance!;
 
-    public override ITreeNode FindNodeAt(TreeTextRange treeRange)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void FindNodesAtInternal(TreeTextRange relativeRange, List<ITreeNode> result, bool includeContainingNodes)
-    {
-        throw new NotImplementedException();
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Internal;
 
     protected void CheckChildren(Type expectedChildType, HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
     {
-        CheckChildren(GetType(), Children, expectedChildType, alwaysAllowedTypes, allowMultiples);
+        CheckChildren(GetType(), ChildNodes, expectedChildType, alwaysAllowedTypes, allowMultiples);
     }
 
-    protected static void CheckChildren(Type currentType, IEnumerable<ISwiftNode> childrenToCheck, Type expectedChildType,
+    protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childrenToCheck, Type expectedChildType,
         HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
     {
         bool sawChild = false;
-        foreach (ISwiftNode directChild in childrenToCheck)
+        foreach (INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>> directChild in childrenToCheck)
         {
             Type directChildType = directChild.GetType();
             if (directChildType == expectedChildType)
@@ -231,11 +70,11 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
         }
     }
 
-    protected static void CheckChildren(Type currentType, List<ISwiftNode> childrenToCheck, Type expectedChildType, HashSet<Type> alwaysAllowedTypes,
+    protected static void CheckChildren(Type currentType, List<ISwiftNode<TSelf>> childrenToCheck, Type expectedChildType, HashSet<Type> alwaysAllowedTypes,
         bool allowMultiples = false)
     {
         bool sawChild = false;
-        foreach (ISwiftNode directChild in childrenToCheck)
+        foreach (ISwiftNode<TSelf> directChild in childrenToCheck)
         {
             Type directChildType = directChild.GetType();
             if (directChildType == expectedChildType)
@@ -258,15 +97,15 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
 
     protected void CheckChildren(IEnumerable<Type> expectedChildTypes, HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
-        CheckChildren(GetType(), Children, expectedChildTypes, alwaysAllowedTypes, allowIncomplete);
+        CheckChildren(GetType(), ChildNodes, expectedChildTypes, alwaysAllowedTypes, allowIncomplete);
     }
 
 
-    protected static void CheckChildren(Type currentType, IEnumerable<ISwiftNode> childrenToCheck, IEnumerable<Type> expectedChildTypes,
+    protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childrenToCheck, IEnumerable<Type> expectedChildTypes,
         HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
         IEnumerator<Type> expectedTypesEnumerator = expectedChildTypes.GetEnumerator();
-        IEnumerator<ISwiftNode> childEnumerator = childrenToCheck.GetEnumerator();
+        IEnumerator<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childEnumerator = childrenToCheck.GetEnumerator();
         while (expectedTypesEnumerator.MoveNext())
         {
             Type childType = expectedTypesEnumerator.Current!;
@@ -310,7 +149,7 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
         childEnumerator.Dispose();
     }
 
-    protected static void CheckChildren(Type currentType, List<ISwiftNode> childrenToCheck, IEnumerable<Type> expectedChildTypes,
+    protected static void CheckChildren(Type currentType, List<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childrenToCheck, IEnumerable<Type> expectedChildTypes,
         HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
         IEnumerator<Type> enumerator = expectedChildTypes.GetEnumerator();
@@ -356,14 +195,14 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
 
     protected void CheckChildren(List<Type> expectedChildTypes, HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
-        CheckChildren(GetType(), Children, expectedChildTypes, alwaysAllowedTypes, allowIncomplete);
+        CheckChildren(GetType(), ChildNodes, expectedChildTypes, alwaysAllowedTypes, allowIncomplete);
     }
 
-    protected static void CheckChildren(Type currentType, IEnumerable<ISwiftNode> newChildren, List<Type> expectedChildTypes,
+    protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> newChildren, List<Type> expectedChildTypes,
         HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
         int childTypesIndex = 0;
-        IEnumerator<ISwiftNode> childEnumerator = newChildren.GetEnumerator();
+        IEnumerator<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childEnumerator = newChildren.GetEnumerator();
         while (childTypesIndex < expectedChildTypes.Count)
         {
             Type expectedChildType = expectedChildTypes[childTypesIndex];
@@ -405,14 +244,14 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
 
     protected void CheckChildren(ReadOnlyStateMachine<Type> expectedTypesStateMachine, HashSet<Type> alwaysAllowedTypes)
     {
-        CheckChildren(GetType(), Children, expectedTypesStateMachine, alwaysAllowedTypes);
+        CheckChildren(GetType(), ChildNodes, expectedTypesStateMachine, alwaysAllowedTypes);
     }
 
-    protected static void CheckChildren(Type currentType, IEnumerable<ISwiftNode> newChildren, ReadOnlyStateMachine<Type> expectedTypesStateMachine,
+    protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> newChildren, ReadOnlyStateMachine<Type> expectedTypesStateMachine,
         HashSet<Type> alwaysAllowedTypes)
     {
         ReadOnlyStateMachine<Type>.ReadOnlyStateMachineNode current = expectedTypesStateMachine.StartNode;
-        IEnumerator<ISwiftNode> childEnumerator = newChildren.GetEnumerator();
+        IEnumerator<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childEnumerator = newChildren.GetEnumerator();
         bool containsMoreChildren = childEnumerator.MoveNext();
         while (containsMoreChildren && current.Value != childEnumerator.Current!.GetType())
         {
@@ -459,7 +298,7 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
         throw new SyntaxError($"Expected one of the following nodes: {joinedChildren} after {current.Value} as a child of {currentType}");
     }
 
-    protected static void CheckChildren(Type currentType, List<ISwiftNode> newChildren, List<Type> expectedChildTypes,
+    protected static void CheckChildren(Type currentType, List<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> newChildren, List<Type> expectedChildTypes,
         HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
         int childTypesIndex = 0;
@@ -501,7 +340,7 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
         }
     }
 
-    protected static void CheckChildren(Type currentType, List<ISwiftNode> newChildren, ReadOnlyStateMachine<Type> expectedTypesStateMachine,
+    protected static void CheckChildren(Type currentType, List<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> newChildren, ReadOnlyStateMachine<Type> expectedTypesStateMachine,
         HashSet<Type> alwaysAllowedTypes)
     {
         ReadOnlyStateMachine<Type>.ReadOnlyStateMachineNode current = expectedTypesStateMachine.StartNode;
@@ -552,7 +391,7 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
 
     public int TextIndexOfInsertingAt(int index)
     {
-        if (index < 0 || index >= Children.Count)
+        if (index < 0 || index >= NumberOfChildren)
         {
             throw new ArgumentOutOfRangeException(nameof(index));
         }
@@ -562,14 +401,14 @@ public abstract partial class SwiftInternalNode : TreeElement, ISwiftNode
             return 0;
         }
 
-        ISwiftNode precedingChild = Children[index - 1];
+        ISwiftNode<TSelf> precedingChild = (ISwiftNode<TSelf>)ChildNodes[index - 1];
         return precedingChild.ParentTextIndex + precedingChild.GetTextLength();
     }
 }
 
 internal static class EditableBufferExtensions
 {
-    public static IEditableBuffer CloneBuffer(IEditableBuffer editableBuffer)
+    public static IEditableBuffer CloneBuffer(IBuffer editableBuffer)
     {
         EditableBuffer newBuffer = new(editableBuffer.Length);
         for (int i = 0; i < editableBuffer.Length; i++)
@@ -580,7 +419,7 @@ internal static class EditableBufferExtensions
         return newBuffer;
     }
 
-    public static IEditableBuffer CloneBuffer(IEditableBuffer editableBuffer, int start, int end)
+    public static IEditableBuffer CloneBuffer(IBuffer editableBuffer, int start, int end)
     {
         if (start < 0 || start > editableBuffer.Length)
         {

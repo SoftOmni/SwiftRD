@@ -1,20 +1,20 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 
 public class Rethrows : TypeLeafNode, ISwiftKeyword
 {
     public const string Keyword = "Rethrows";
     
     internal Rethrows(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Rethrows)
+        : base(buffer, SwiftNodeTypes.Rethrows)
     { }
 
     internal Rethrows(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Rethrows)
+        : base(parent, buffer, SwiftNodeTypes.Rethrows)
     { }
 
     public string KeywordValue => Keyword;

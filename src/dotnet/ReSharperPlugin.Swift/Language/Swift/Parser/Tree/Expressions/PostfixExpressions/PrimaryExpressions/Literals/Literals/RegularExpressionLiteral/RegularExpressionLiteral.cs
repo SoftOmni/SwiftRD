@@ -1,8 +1,8 @@
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Semantics.Type;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
 
 public class Regex : Type;
 
@@ -11,11 +11,11 @@ public class RegexCs;
 public class RegularExpressionLiteral : Literal<Regex, RegexCs>
 {
     public RegularExpressionLiteral(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.RegularExpressionLiteral)
+        : base(buffer, SwiftNodeTypes.RegularExpressionLiteral)
     { }
 
     public RegularExpressionLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.RegularExpressionLiteral)
+        : base(parent, buffer, SwiftNodeTypes.RegularExpressionLiteral)
     { }
 
     public override RegexCs GetValueCopy()

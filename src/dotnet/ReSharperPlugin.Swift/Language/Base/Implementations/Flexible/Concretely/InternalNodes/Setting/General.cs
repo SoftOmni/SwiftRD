@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public partial class InternalNode
 {
@@ -12,12 +12,17 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
     
-    public INode SetChildAt(int index, INode newNode, Action<INode, INode> actionOnAdditionAndRemoval)
+    public INode SetChildAt(int index, Node newNode)
     {
         throw new NotImplementedException();
     }
     
-    public INode SetChildAt(int index, INode newNode, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public Node SetChildAt(int index, Node newNode, Action<INode, INode> actionOnAdditionAndRemoval)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public Node SetChildAt(int index, Node newNode, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
@@ -27,42 +32,47 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildAtAndDiscard(int index, INode newNode, Action<INode, INode> actionOnAdditionAndRemoval)
+    public void SetChildAtAndDiscard(int index, Node newNode)
     {
         throw new NotImplementedException();
     }
 
-    public void SetChildAtAndDiscard(int index, INode newNode, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildAtAndDiscard(int index, Node newNode, Action<Node, Node> actionOnAdditionAndRemoval)
     {
         throw new NotImplementedException();
     }
 
-    public INode SetChildAtLoose(int index, INode newNode)
+    public void SetChildAtAndDiscard(int index, Node newNode, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
 
-    public INode SetChildAtLoose(int index, INode newNode, Action<INode, INode> actionOnAdditionAndRemoval)
+    public Node SetChildAtLoose(int index, Node newNode)
     {
         throw new NotImplementedException();
     }
 
-    public INode SetChildAtLoose(int index, INode newNode, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public Node SetChildAtLoose(int index, Node newNode, Action<Node, Node> actionOnAdditionAndRemoval)
     {
         throw new NotImplementedException();
     }
 
-    public void SetChildAtLooseAndDiscard(int index, INode newNode)
+    public Node SetChildAtLoose(int index, Node newNode, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
 
-    public void SetChildAtLooseAndDiscard(int index, INode newNode, Action<INode, INode> actionOnAdditionAndRemoval)
+    public void SetChildAtLooseAndDiscard(int index, Node newNode)
     {
         throw new NotImplementedException();
     }
 
-    public void SetChildAtLooseAndDiscard(int index, INode newNode, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildAtLooseAndDiscard(int index, Node newNode, Action<Node, Node> actionOnAdditionAndRemoval)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetChildAtLooseAndDiscard(int index, Node newNode, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
@@ -103,7 +113,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public INode SetChildAt<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public Node SetChildAt<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
@@ -115,19 +125,19 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildAtAndDiscard<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildAtAndDiscard<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
     }
 
-    public INode SetChildAtLoose<TNode>(int index, TNode newNode)
+    public Node SetChildAtLoose<TNode>(int index, TNode newNode)
         where TNode : INode
     {
         throw new NotImplementedException();
     }
 
-    public INode SetChildAtLoose<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public Node SetChildAtLoose<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
@@ -139,7 +149,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildAtLooseAndDiscard<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildAtLooseAndDiscard<TNode>(int index, TNode newNode, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
@@ -179,7 +189,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public List<Node> SetChild(INode child, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public List<Node> SetChild(INode child, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
@@ -194,7 +204,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildAndDiscard(INode child, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildAndDiscard(INode child, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
@@ -209,7 +219,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public List<INode> SetChildLoose(INode child, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public List<INode> SetChildLoose(INode child, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
@@ -224,7 +234,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildLooseAndDiscard(INode child, Action<INode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildLooseAndDiscard(INode child, Action<Node> actionOnAddition, Action<Node> actionOnRemoval)
     {
         throw new NotImplementedException();
     }
@@ -271,7 +281,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public List<Node> SetChild<TNode>(TNode child, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public List<Node> SetChild<TNode>(TNode child, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
@@ -289,7 +299,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildAndDiscard<TNode>(TNode child, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildAndDiscard<TNode>(TNode child, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
@@ -307,7 +317,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public List<INode> SetChildLoose<TNode>(TNode child, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public List<INode> SetChildLoose<TNode>(TNode child, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();
@@ -325,7 +335,7 @@ public partial class InternalNode
         throw new NotImplementedException();
     }
 
-    public void SetChildLooseAndDiscard<TNode>(TNode child, Action<TNode> actionOnAddition, Action<INode> actionOnRemoval)
+    public void SetChildLooseAndDiscard<TNode>(TNode child, Action<TNode> actionOnAddition, Action<Node> actionOnRemoval)
         where TNode : INode
     {
         throw new NotImplementedException();

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations.Cases;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.StatementGroups;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.CaseLabels;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.CaseLabels;
 
 public class CaseLabelCase : SwitchCase, IList<CaseItem>
 {

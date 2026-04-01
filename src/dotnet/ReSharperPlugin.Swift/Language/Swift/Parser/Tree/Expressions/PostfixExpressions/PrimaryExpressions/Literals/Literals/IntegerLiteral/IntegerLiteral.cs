@@ -2,44 +2,44 @@ using System;
 using System.Numerics;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
 
 public partial class IntegerLiteral : Literal<Int, BigInteger>
 {
     public IntegerLiteral(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.IntegerLiteral)
+        : base(buffer, SwiftNodeTypes.IntegerLiteral)
     {
         ParseValue(buffer);
         DeduceType();
     }
 
     public IntegerLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.IntegerLiteral)
+        : base(parent, buffer, SwiftNodeTypes.IntegerLiteral)
     {
         ParseValue(buffer);
         DeduceType();
     }
 
     public IntegerLiteral(BigInteger value)
-        : base(new EditableBuffer(value.ToString()), NodeTypes.NodeTypes.IntegerLiteral)
+        : base(new EditableBuffer(value.ToString()), SwiftNodeTypes.IntegerLiteral)
     { }
     
     public IntegerLiteral(SwiftInternalNode parent, BigInteger value)
-        : base(parent, new EditableBuffer(value.ToString()), NodeTypes.NodeTypes.IntegerLiteral)
+        : base(parent, new EditableBuffer(value.ToString()), SwiftNodeTypes.IntegerLiteral)
     { }
 
     internal IntegerLiteral(IEditableBuffer buffer, BigInteger value)
-        : base(buffer, NodeTypes.NodeTypes.IntegerLiteral)
+        : base(buffer, SwiftNodeTypes.IntegerLiteral)
     {
         Value = value;
         DeduceType();
     }
 
     internal IntegerLiteral(SwiftInternalNode parent, IEditableBuffer buffer, BigInteger value)
-        : base(parent, buffer, NodeTypes.NodeTypes.IntegerLiteral)
+        : base(parent, buffer, SwiftNodeTypes.IntegerLiteral)
     {
         Value = value;
         DeduceType();

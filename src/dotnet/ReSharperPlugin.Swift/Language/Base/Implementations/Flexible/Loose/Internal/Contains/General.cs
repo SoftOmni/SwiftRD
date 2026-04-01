@@ -1,7 +1,7 @@
 using System;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;
 
 public partial class InternalNode
 {

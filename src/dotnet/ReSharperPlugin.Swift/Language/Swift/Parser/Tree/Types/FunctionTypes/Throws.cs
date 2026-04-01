@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.FunctionTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes;
 
 public class Throws: SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Throws: SwiftLeafNode, ISwiftKeyword
     public ThrowsClause? ThrowsClause { get; internal set; }
     
     internal Throws(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Throws)
+        : base(buffer, SwiftNodeTypes.Throws)
     { }
 
     internal Throws(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Throws)
+        : base(parent, buffer, SwiftNodeTypes.Throws)
     {
         if (parent is ThrowsClause throwsClause)
         {
@@ -24,7 +24,7 @@ public class Throws: SwiftLeafNode, ISwiftKeyword
     }
 
     internal Throws(ThrowsClause parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Throws)
+        : base(parent, buffer, SwiftNodeTypes.Throws)
     {
         ThrowsClause = parent;
     }

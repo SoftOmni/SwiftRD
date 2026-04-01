@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
 
 public class SelfLowercase : SwiftLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class SelfLowercase : SwiftLeafNode, ISwiftKeyword
     public ISelfExpression? ISelfExpression { get; internal set; }
 
     internal SelfLowercase(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.SelfLowercase)
+        : base(buffer, SwiftNodeTypes.SelfLowercase)
     { }
 
     internal SelfLowercase(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.SelfLowercase)
+        : base(parent, buffer, SwiftNodeTypes.SelfLowercase)
     {
         if (parent is ISelfExpression iSelfExpression)
         {
@@ -25,7 +25,7 @@ public class SelfLowercase : SwiftLeafNode, ISwiftKeyword
     }
 
     internal SelfLowercase(ISelfExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.SelfLowercase)
+        : base(parent, buffer, SwiftNodeTypes.SelfLowercase)
     {
         ISelfExpression = parent;
     }

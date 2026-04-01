@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public class SwiftFilteringLexer : FilteringLexer, ICollection<int>
 {

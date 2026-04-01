@@ -1,32 +1,36 @@
 using System.Collections.Generic;
-using JetBrains.ReSharper.Psi.Resolve;
-using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Application.UI.Icons.CompiledIcons;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 
-public abstract class Declaration : StatementInternalNode
+public abstract class Declaration<TUsage> : SwiftCompositeNode, IDeclaration<TUsage>
 {
-    protected Declaration(IEditableBuffer buffer, List<ISwiftNode> children)
+    private Dictionary<TUsage, TopLevelDeclaration> _usages = [];
+    
+    protected Declaration(IEditableBuffer buffer)
+        : base(buffer)
+    { }
+
+    protected Declaration(SwiftCompositeNode parent, int index, IEditableBuffer editableBuffer, IEnumerable<ISwiftNode<SwiftCompositeNode>>? children = null)
+        : base(parent, index, editableBuffer, children)
+    { }
+
+    protected Declaration(SwiftCompositeNode parent, int index, int textIndex, int lengthInParent, IEnumerable<ISwiftNode<SwiftCompositeNode>>? children = null)
+        : base(parent, index, textIndex, lengthInParent, children)
+    { }
+
+    protected Declaration(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children)
         : base(buffer, children)
     { }
 
-    protected Declaration(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    public abstract AnyCompiledIconClass Icon { get; }
 
-    protected Declaration(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
-
-    protected Declaration(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
-    
-    public Icon Icon { get; private set; }
-    
-    public HashSet<ISwiftNode> Usages { get; private set; }
+    public IReadOnlyDictionary<TUsage, TopLevelDeclaration> Usages => _usages;
 }

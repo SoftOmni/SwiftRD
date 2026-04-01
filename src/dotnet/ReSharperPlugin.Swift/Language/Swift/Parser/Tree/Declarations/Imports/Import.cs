@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Imports;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Imports;
 
 public class Import : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Import : SwiftLeafNode, ISwiftKeyword
     public ImportDeclaration? ImportDeclaration { get; internal set; }
     
     internal Import(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Import)
+        : base(buffer, SwiftNodeTypes.Import)
     { }
 
     internal Import(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Import)
+        : base(parent, buffer, SwiftNodeTypes.Import)
     {
         if (parent is ImportDeclaration importDeclaration)
         {
@@ -24,7 +24,7 @@ public class Import : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Import(ImportDeclaration importDeclaration, IEditableBuffer buffer)
-        : base(importDeclaration, buffer, NodeTypes.NodeTypes.Import)
+        : base(importDeclaration, buffer, SwiftNodeTypes.Import)
     {
         ImportDeclaration = importDeclaration;
     }

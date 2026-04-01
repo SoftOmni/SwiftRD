@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.ActorIsolationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.ActorIsolationModifiers;
 
 public class NonIsolated : DeclarationModifierLeaf, ISwiftKeyword
 {
     public const string Keyword = "nonisolated";
     
     internal NonIsolated(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.NonIsolated)
+        : base(SwiftNodeTypes.NonIsolated, buffer)
     { }
 
     internal NonIsolated(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.NonIsolated)
+        : base(parent, buffer, SwiftNodeTypes.NonIsolated)
     { }
 
 

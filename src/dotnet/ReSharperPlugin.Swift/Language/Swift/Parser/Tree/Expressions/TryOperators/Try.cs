@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.TryOperators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.TryOperators;
 
 public class Try : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Try : SwiftLeafNode, ISwiftKeyword
     public TryOperator? TryOperator { get; internal set; }
 
     internal Try(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Try)
+        : base(buffer, SwiftNodeTypes.Try)
     { }
 
     internal Try(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Try)
+        : base(parent, buffer, SwiftNodeTypes.Try)
     {
         if (parent is TryOperator tryOperator)
         {
@@ -24,7 +24,7 @@ public class Try : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Try(TryOperator parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Try)
+        : base(parent, buffer, SwiftNodeTypes.Try)
     {
         TryOperator = parent;
     }

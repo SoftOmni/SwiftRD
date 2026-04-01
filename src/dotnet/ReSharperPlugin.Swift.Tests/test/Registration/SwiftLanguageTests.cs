@@ -4,10 +4,10 @@ using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Impl;
 using JetBrains.ReSharper.Psi.JavaScript.LanguageImpl;
 using NUnit.Framework;
-using ReSharperPlugin.Swift.Language;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
+using SoftOmni.SwiftRd.Language;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-namespace ReSharperPlugin.Swift.Tests.test.Registration;
+namespace SoftOmni.SwiftRd.Tests.test.Registration;
 
 [TestFixture]
 public class SwiftLanguageTests

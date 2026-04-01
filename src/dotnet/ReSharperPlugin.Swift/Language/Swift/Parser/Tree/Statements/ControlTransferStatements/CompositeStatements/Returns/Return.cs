@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Returns;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Returns;
 
 public class Return : ControlTransferStatementLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Return : ControlTransferStatementLeafNode, ISwiftKeyword
     public ReturnStatement? ReturnStatement { get; private set; }
     
     internal Return(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Return)
+        : base(buffer, SwiftNodeTypes.Return)
     { }
 
     internal Return(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Return)
+        : base(parent, buffer, SwiftNodeTypes.Return)
     {
         if (parent is ReturnStatement returnStatement)
         {
@@ -25,7 +25,7 @@ public class Return : ControlTransferStatementLeafNode, ISwiftKeyword
     }
 
     internal Return(ReturnStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Return)
+        : base(parent, buffer, SwiftNodeTypes.Return)
     {
         ReturnStatement = parent;
     }

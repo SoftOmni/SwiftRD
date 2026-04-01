@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class Colon : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = ":";
     
     internal Colon(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Colon)
+        : base(buffer, SwiftNodeTypes.Colon)
     { }
 
     internal Colon(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Colon)
+        : base(parent, buffer, SwiftNodeTypes.Colon)
     { }
 
 

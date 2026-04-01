@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
 public abstract class SwiftTokenNodeType : TokenNodeType
 {

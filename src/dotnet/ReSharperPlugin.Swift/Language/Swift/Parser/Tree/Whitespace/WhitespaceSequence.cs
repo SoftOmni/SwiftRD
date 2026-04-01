@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Formatting;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
 
 public class WhitespaceSequence : SwiftLeafNode, IWhitespaceNode
 {
@@ -20,21 +19,21 @@ public class WhitespaceSequence : SwiftLeafNode, IWhitespaceNode
     private readonly SortedSet<int> _tabs = [];
 
     internal WhitespaceSequence(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Whitespace)
+        : base(buffer, SwiftNodeTypes.Whitespace)
     {
         CountElements(buffer);
         TabWidth = FormattingConfiguration.TabWidth;
     }
 
     internal WhitespaceSequence(IEditableBuffer buffer, int tabWidth)
-        : base(buffer, NodeTypes.NodeTypes.Whitespace)
+        : base(buffer, SwiftNodeTypes.Whitespace)
     {
         CountElements(buffer);
         TabWidth = tabWidth;
     }
 
     internal WhitespaceSequence(IEditableBuffer buffer, int tabWidth, SortedSet<int> spaces, SortedSet<int> tabs)
-        : base(buffer, NodeTypes.NodeTypes.Whitespace)
+        : base(buffer, SwiftNodeTypes.Whitespace)
     {
         TabWidth = tabWidth;
         _spaces = new SortedSet<int>(spaces);
@@ -42,7 +41,7 @@ public class WhitespaceSequence : SwiftLeafNode, IWhitespaceNode
     }
 
     internal WhitespaceSequence(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
-        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.Whitespace)
+        : base(parent, parentIndex, parentTextIndex, buffer, SwiftNodeTypes.Whitespace)
     {
         CountElements(buffer);
         TabWidth = FormattingConfiguration.TabWidth;
@@ -50,7 +49,7 @@ public class WhitespaceSequence : SwiftLeafNode, IWhitespaceNode
 
     internal WhitespaceSequence(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
         int tabWidth)
-        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.Whitespace)
+        : base(parent, parentIndex, parentTextIndex, buffer, SwiftNodeTypes.Whitespace)
     {
         CountElements(buffer);
         TabWidth = tabWidth;

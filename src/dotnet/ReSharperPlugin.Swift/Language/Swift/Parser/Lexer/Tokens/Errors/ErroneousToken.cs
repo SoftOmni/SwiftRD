@@ -1,6 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 public class ErroneousToken(string tokenId, int errorIndex) : SwiftTokenNodeType(tokenId, errorIndex)
 {

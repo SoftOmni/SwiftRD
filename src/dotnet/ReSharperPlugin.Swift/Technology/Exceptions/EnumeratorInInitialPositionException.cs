@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Technology.Exceptions;
+namespace SoftOmni.SwiftRd.Technology.Exceptions;
 
 /// <summary>
 ///     <para>

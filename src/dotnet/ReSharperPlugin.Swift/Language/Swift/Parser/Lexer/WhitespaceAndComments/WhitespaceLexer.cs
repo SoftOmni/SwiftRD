@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 [SuppressMessage("ReSharper", "CanSimplifyStringEscapeSequence")]
 public partial class SwiftLexer

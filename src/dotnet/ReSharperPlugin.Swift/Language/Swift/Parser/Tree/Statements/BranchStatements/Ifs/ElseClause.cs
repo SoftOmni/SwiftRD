@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.CodeBlocks;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.StatementGroups;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
 
 public class ElseClause : SwiftInternalNode
 {

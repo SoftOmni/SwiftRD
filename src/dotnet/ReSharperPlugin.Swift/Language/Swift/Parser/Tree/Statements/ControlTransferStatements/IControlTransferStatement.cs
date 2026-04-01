@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 
 public interface IControlTransferStatement : IStatement;

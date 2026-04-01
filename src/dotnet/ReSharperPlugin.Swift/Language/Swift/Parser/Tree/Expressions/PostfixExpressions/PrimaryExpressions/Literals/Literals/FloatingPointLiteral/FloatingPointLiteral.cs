@@ -3,19 +3,19 @@
 using ExtendedNumerics;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
 
 public class FloatingPointLiteral : Literal<Double, BigDecimal>
 {
     public FloatingPointLiteral(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.FloatingPointLiteral)
+        : base(buffer, SwiftNodeTypes.FloatingPointLiteral)
     { }
 
     public FloatingPointLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.FloatingPointLiteral)
+        : base(parent, buffer, SwiftNodeTypes.FloatingPointLiteral)
     { }
 
     public override BigDecimal GetValueCopy()

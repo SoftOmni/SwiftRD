@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Literals;
 
 public abstract class LiteralNodeType(string id, int index) : SwiftNodeType(id, index)
 {

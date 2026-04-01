@@ -1,6 +1,6 @@
 using System;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Reserved;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
 public class PreviouslyReservedLineKeywordToken() : PreviouslyReservedKeywordToken("#line", SwiftTokens.PreviouslyReservedLineId, SwiftTokens.PreviouslyReservedLineIndex)
 {

@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 
 public abstract class BackerToken(string value, int index)
 {

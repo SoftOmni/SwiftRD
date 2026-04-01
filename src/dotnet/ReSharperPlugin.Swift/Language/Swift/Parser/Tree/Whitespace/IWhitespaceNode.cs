@@ -1,3 +1,6 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
-public interface IWhitespaceNode : ISwiftNode;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
+
+public interface IWhitespaceNode : ISwiftNode<SwiftCompositeNode>;

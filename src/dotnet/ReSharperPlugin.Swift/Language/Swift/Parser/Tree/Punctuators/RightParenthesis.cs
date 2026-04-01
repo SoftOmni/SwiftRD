@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class RightParenthesis : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = ")";
     
     internal RightParenthesis(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.RightParenthesis)
+        : base(buffer, SwiftNodeTypes.RightParenthesis)
     { }
 
     internal RightParenthesis(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.RightParenthesis)
+        : base(parent, buffer, SwiftNodeTypes.RightParenthesis)
     { }
 
 

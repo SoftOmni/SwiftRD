@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Structures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structures;
 
 public class Struct : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Struct : SwiftLeafNode, ISwiftKeyword
     public Structure? Structure { get; internal set; }
 
     internal Struct(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Struct)
+        : base(buffer, SwiftNodeTypes.Struct)
     { }
 
     internal Struct(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Struct)
+        : base(parent, buffer, SwiftNodeTypes.Struct)
     {
         if (parent is Structure structure)
         {
@@ -24,7 +24,7 @@ public class Struct : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Struct(Structure parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Struct)
+        : base(parent, buffer, SwiftNodeTypes.Struct)
     {
         Structure = parent;
     }

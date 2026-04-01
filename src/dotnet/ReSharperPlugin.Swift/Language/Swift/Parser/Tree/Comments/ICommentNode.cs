@@ -2,12 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
 
-public interface ICommentNode : ISwiftNode, IEnumerable<char>
+public interface ICommentNode : ISwiftNode<SwiftCompositeNode>, IEnumerable<char>
 {
     public int CommentValueLength { get; }
+    
+    public bool IsEmpty { get; }
+    
+    public char GetCharAt(int index);
+    
+    public void SetCharAt(int index, char value);
 
     public string GetCommentValue();
 

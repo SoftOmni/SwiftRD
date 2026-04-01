@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 [assembly: Apartment(ApartmentState.STA)]
 
-namespace ReSharperPlugin.Swift.Tests
+namespace SoftOmni.SwiftRd.Tests
 {
     [ZoneDefinition]
     public class SwiftTestEnvironmentZone : ITestsEnvZone, IRequire<PsiFeatureTestZone>, IRequire<ISwiftZone> { }

@@ -1,7 +1,7 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
-using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
+using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.ExpressionsAndTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ExpressionsAndTypes;
 
 public class TrueLiteralToken() : SwiftLiteral(SwiftTokens.TrueId, SwiftTokens.TrueIndex)
 {

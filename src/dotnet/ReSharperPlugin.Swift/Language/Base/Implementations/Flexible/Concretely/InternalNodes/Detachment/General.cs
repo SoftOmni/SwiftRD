@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.Base;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public partial class InternalNode
 {
@@ -66,123 +65,21 @@ public partial class InternalNode
     {
         throw new NotImplementedException();
     }
-    
-    public List<INode> DetachChildrenAt(int index, int count)
+
+    public TNode DetachChildAt<TNode>(int index)
+        where TNode : INode
     {
         throw new NotImplementedException();
     }
 
-    public void DetachChildrenAtAndDiscard(int index, int count)
+    public TNode DetachChildAt<TNode>(int index, Action<INode> onChildDetachment)
+        where TNode : INode
     {
         throw new NotImplementedException();
     }
 
-    public List<INode> DetachChildrenAt(int index, int count, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtAndDiscard(int index, int count, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-    
-    public List<INode> DetachChildrenAtLoose(int index, int count)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtLooseAndDiscard(int index, int count)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<INode> DetachChildrenAtLoose(int index, int count, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtLooseAndDiscard(int index, int count, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-    
-    public List<Node> DetachChildrenAtConcrete(int index, int count)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtConcreteAndDiscard(int index, int count)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Node> DetachChildrenAtConcrete(int index, int count, Action<Node> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtConcreteAndDiscard(int index, int count, Action<Node> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<INode> DetachChildrenAtWithRange(int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtWithRangeAndDiscard(int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<INode> DetachChildrenAtWithRange(int startIndex, int endIndex, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtWithRangeAndDiscard(int startIndex, int endIndex, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<INode> DetachChildrenAtWithRangeLoose(int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtWithRangeLooseAndDiscard(int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<INode> DetachChildrenAtWithRangeLoose(int startIndex, int endIndex, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtWithRangeLooseAndDiscard(int startIndex, int endIndex, Action<INode> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Node> DetachChildrenAtWithRangeConcrete(int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtWithRangeConcreteAndDiscard(int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Node> DetachChildrenAtWithRangeConcrete(int startIndex, int endIndex, Action<Node> onChildDetachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DetachChildrenAtWithRangeConcreteAndDiscard(int startIndex, int endIndex, Action<Node> onChildDetachment)
+    public void DetachChildAtAndDiscard<TNode>(int index)
+        where TNode : INode
     {
         throw new NotImplementedException();
     }

@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Statements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
 public class ElseKeywordToken() : StatementUsableKeywordToken("else", SwiftTokens.ElseId, SwiftTokens.ElseIndex);

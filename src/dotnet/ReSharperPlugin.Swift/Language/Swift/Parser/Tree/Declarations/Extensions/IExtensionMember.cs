@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Extensions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 
 public interface IExtensionMember : ISwiftNode;

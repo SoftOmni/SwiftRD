@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Language.Parser.FaultyParsers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.FaultyParsers;
 
 public class IncorrectlyStartedLexer : IParser
 {

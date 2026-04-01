@@ -1,6 +1,6 @@
 using System;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 public class UnmatchedOperatorToken() : ErroneousToken(SwiftTokens.UnmatchedOperatorId, SwiftTokens.UnmatchedOperatorIndex);
 

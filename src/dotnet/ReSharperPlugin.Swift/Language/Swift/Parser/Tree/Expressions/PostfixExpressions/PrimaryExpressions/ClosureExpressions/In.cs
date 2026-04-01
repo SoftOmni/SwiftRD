@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
 
 public class In : SwiftLeafNode, ISwiftKeyword
 {
     public const string Keyword = "in";
 
     internal In(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.In)
+        : base(buffer, SwiftNodeTypes.In)
     { }
 
     internal In(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.In)
+        : base(parent, buffer, SwiftNodeTypes.In)
     { }
 
     public string KeywordValue => Keyword;

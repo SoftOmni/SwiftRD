@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 
 public class Await : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Await : SwiftLeafNode, ISwiftKeyword
     public Expression? Expression { get; internal set; }
 
     internal Await(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Await)
+        : base(buffer, SwiftNodeTypes.Await)
     { }
 
     internal Await(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Await)
+        : base(parent, buffer, SwiftNodeTypes.Await)
     {
         if (parent is Expression expression)
         {
@@ -24,7 +24,7 @@ public class Await : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Await(Expression parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Await)
+        : base(parent, buffer, SwiftNodeTypes.Await)
     {
         Expression = parent;
     }

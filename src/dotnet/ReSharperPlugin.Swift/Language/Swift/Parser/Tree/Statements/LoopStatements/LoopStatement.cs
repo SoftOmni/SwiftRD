@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.CodeBlocks;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.StatementGroups;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements;
 
 public abstract class LoopStatement : StatementInternalNode
 {

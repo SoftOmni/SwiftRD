@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.WhileLoops;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.WhileLoops;
 
 public class While : SwiftLeafNode, ISwiftKeyword
 {
@@ -14,11 +14,11 @@ public class While : SwiftLeafNode, ISwiftKeyword
     public RepeatWhileStatement? RepeatWhileStatement { get; internal set; }
 
     internal While(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.While)
+        : base(buffer, SwiftNodeTypes.While)
     { }
 
     internal While(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.While)
+        : base(parent, buffer, SwiftNodeTypes.While)
     {
         if (parent is WhileStatement whileStatement)
         {
@@ -31,13 +31,13 @@ public class While : SwiftLeafNode, ISwiftKeyword
     }
 
     internal While(WhileStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.While)
+        : base(parent, buffer, SwiftNodeTypes.While)
     {
         WhileStatement = parent;
     }
     
     internal While(RepeatWhileStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.While)
+        : base(parent, buffer, SwiftNodeTypes.While)
     {
         RepeatWhileStatement = parent;
     }

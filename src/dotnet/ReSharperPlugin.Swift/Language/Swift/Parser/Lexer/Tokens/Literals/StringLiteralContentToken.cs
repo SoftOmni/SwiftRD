@@ -1,6 +1,6 @@
-using String = ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes.String;
+using String = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.String;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
 
 public class StringLiteralContentToken : SwiftLiteral
 {

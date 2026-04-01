@@ -1,6 +1,6 @@
 using JetBrains.ReSharper.Psi;
 
-namespace ReSharperPlugin.Swift.Language;
+namespace SoftOmni.SwiftRd.Language;
 
 [LanguageDefinition(Name)]
 public class SwiftLanguage : KnownLanguage

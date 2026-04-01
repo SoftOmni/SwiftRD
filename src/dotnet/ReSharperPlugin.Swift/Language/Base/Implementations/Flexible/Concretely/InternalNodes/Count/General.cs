@@ -1,139 +1,163 @@
 using System;
 using System.Collections.Generic;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public partial class InternalNode
 {
-    public int Count(INode child)
+    /*public int Count(Node child, bool recursive)
     {
-        throw new NotImplementedException();
-    }
+        int count = 0;
+
+        if (recursive)
+        {
+            foreach (Node childNode in _children)
+            {
+                if (childNode == child)
+                {
+                    count++;
+                }
+            }
+            
+            return count;
+        }
+        
+        foreach (Node childNode in _children)
+        {
+            if (childNode == child)
+            {
+                count++;
+            }
+            
+            count += childNode.Count
+        }
+    }*/
 
     public int Count<TNode>(TNode child)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(INode child, int startIndex)
+    public int Count(Node child, int startIndex)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(TNode child, int startIndex)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(INode child, int startIndex, int count)
+    public int Count(Node child, int startIndex, int count)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(TNode child, int startIndex, int count)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int CountInRange(INode child, int startIndex, int endIndex)
+    public int CountInRange(Node child, int startIndex, int endIndex)
     {
         throw new NotImplementedException();
     }
 
     public int CountInRange<TNode>(TNode child, int startIndex, int endIndex)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(Func<INode, bool> predicate)
+    public int Count(Func<Node, bool> predicate)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(Func<TNode, bool> predicate)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(Func<INode, bool> predicate, int startIndex)
+    public int Count(Func<Node, bool> predicate, int startIndex)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(Func<TNode, bool> predicate, int startIndex)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(Func<INode, bool> predicate, int startIndex, int count)
+    public int Count(Func<Node, bool> predicate, int startIndex, int count)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(Func<TNode, bool> predicate, int startIndex, int count)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int CountInRange(Func<INode, bool> predicate, int startIndex, int endIndex)
+    public int CountInRange(Func<Node, bool> predicate, int startIndex, int endIndex)
     {
         throw new NotImplementedException();
     }
 
-    public int CountInRange<TNode>(Func<INode, bool> predicate, int startIndex, int endIndex)
-        where TNode : INode
+    public int CountInRange<TNode>(Func<Node, bool> predicate, int startIndex, int endIndex)
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(Func<INode, int, bool> predicate)
+    public int Count(Func<Node, int, bool> predicate)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(Func<TNode, int, bool> predicate)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(Func<INode, int, bool> predicate, int startIndex)
+    public int Count(Func<Node, int, bool> predicate, int startIndex)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(Func<TNode, int, bool> predicate, int startIndex)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int Count(Func<INode, int, bool> predicate, int startIndex, int count)
+    public int Count(Func<Node, int, bool> predicate, int startIndex, int count)
     {
         throw new NotImplementedException();
     }
 
     public int Count<TNode>(Func<TNode, int, bool> predicate, int startIndex, int count)
-        where TNode : INode
+        where TNode : Node
     {
         throw new NotImplementedException();
     }
 
-    public int CountInRange(Func<INode, int, bool> predicate, int startIndex, int endIndex)
+    public int CountInRange(Func<Node, int, bool> predicate, int startIndex, int endIndex)
     {
         throw new NotImplementedException();
     }
 
-    public int CountInRange<TNode>(Func<INode, int, bool> predicate, int startIndex, int endIndex)
-        where TNode : INode
+    public int CountInRange<TNode>(Func<Node, int, bool> predicate, int startIndex, int endIndex)
+        where TNode : Node
     {
         throw new NotImplementedException();
     }

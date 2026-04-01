@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.ProjectModel;
 
-namespace ReSharperPlugin.Swift.Language.ModuleMaps.File;
+namespace SoftOmni.SwiftRd.Language.ModuleMaps.File;
 
 [ProjectFileTypeDefinition(Name)]
 public class ModuleMapsFileType : KnownProjectFileType

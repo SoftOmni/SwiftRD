@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Technology.Graphs;
+namespace SoftOmni.SwiftRd.Technology.Graphs;
 
 public interface IWeightedGraphNode : IReadOnlyWeightedGraphNode, INode
 {

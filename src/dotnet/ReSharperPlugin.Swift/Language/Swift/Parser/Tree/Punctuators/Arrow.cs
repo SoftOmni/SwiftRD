@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class Arrow : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = "->";
     
     internal Arrow(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Arrow)
+        : base(buffer, SwiftNodeTypes.Arrow)
     { }
 
     internal Arrow(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Arrow)
+        : base(parent, buffer, SwiftNodeTypes.Arrow)
     { }
 
 

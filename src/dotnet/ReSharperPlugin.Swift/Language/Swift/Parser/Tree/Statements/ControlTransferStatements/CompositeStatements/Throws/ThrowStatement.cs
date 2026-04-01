@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
-using ReSharperPlugin.Swift.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Semantics.Type;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Throws;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Throws;
 
 public class ThrowStatement : ControlTransferStatementInternalNode
 {

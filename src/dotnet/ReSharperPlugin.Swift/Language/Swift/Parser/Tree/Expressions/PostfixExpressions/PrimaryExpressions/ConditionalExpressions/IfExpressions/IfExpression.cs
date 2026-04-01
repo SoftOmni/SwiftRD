@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.Conditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.Conditions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions.IfExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions.IfExpressions;
 
 public class IfExpression : ConditionalExpression
 {

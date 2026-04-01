@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Protocols.Members;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols.Members;
 
 public class AssociatedType : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class AssociatedType : SwiftLeafNode, ISwiftKeyword
     public AssociatedTypeDeclaration? AssociatedTypeDeclaration { get; internal set; }
 
     internal AssociatedType(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.AssociatedType)
+        : base(buffer, SwiftNodeTypes.AssociatedType)
     { }
 
     internal AssociatedType(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.AssociatedType)
+        : base(parent, buffer, SwiftNodeTypes.AssociatedType)
     {
         if (parent is AssociatedTypeDeclaration associatedTypeDeclaration)
         {
@@ -24,7 +24,7 @@ public class AssociatedType : SwiftLeafNode, ISwiftKeyword
     }
 
     internal AssociatedType(AssociatedTypeDeclaration parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.AssociatedType)
+        : base(parent, buffer, SwiftNodeTypes.AssociatedType)
     {
         AssociatedTypeDeclaration = parent;
     }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
 
 // TODO
 [Serializable]

@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class LeftSquareBracket : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = "[";
     
     internal LeftSquareBracket(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.LeftSquareBracket)
+        : base(buffer, SwiftNodeTypes.LeftSquareBracket)
     { }
 
     internal LeftSquareBracket(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer) 
-        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.LeftSquareBracket)
+        : base(parent, parentIndex, parentTextIndex, buffer, SwiftNodeTypes.LeftSquareBracket)
     { }
 
 

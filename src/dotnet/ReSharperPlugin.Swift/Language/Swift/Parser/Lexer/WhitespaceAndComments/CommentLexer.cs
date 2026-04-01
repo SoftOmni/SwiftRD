@@ -1,9 +1,12 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public partial class SwiftLexer
 {
+    public const char Slash = '/';
+    public const char Star = '*';
+    
     private void LexSingleLineComment()
     {
         while (TokenEnd < EOFPos && !Buffer[TokenEnd].IsNewLine())
@@ -16,8 +19,8 @@ public partial class SwiftLexer
 
     private void AdvanceMultLineComment()
     {
-        const char multiLineCommentEndStart = '*';
-        const char multiLineCommentEndEnd = '/';
+        const char multiLineCommentEndStart = Star;
+        const char multiLineCommentEndEnd = Slash;
 
         TokenStart = TokenEnd;
 

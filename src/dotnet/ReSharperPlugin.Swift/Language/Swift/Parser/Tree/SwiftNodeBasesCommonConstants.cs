@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
 
 public static class SwiftNodeBasesCommonConstants
 {

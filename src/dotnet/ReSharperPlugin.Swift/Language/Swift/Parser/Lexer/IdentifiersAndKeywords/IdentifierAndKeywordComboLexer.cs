@@ -2,12 +2,12 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using JetBrains.Util.dataStructures;
 using NuGet;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Keywords;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public partial class SwiftLexer
 {

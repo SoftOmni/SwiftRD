@@ -1,14 +1,16 @@
 using System;
 using JetBrains.ReSharper.Psi.Tree;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.LeafNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.LeafNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 
-namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Constrained.Root;
-
-public interface INode<TInternalNode, TLeafNode> : INode
-    where TInternalNode : IInternalNode where TLeafNode : ILeafNode
+public interface INode<TFamily, TSelf, TInternalNode, TLeafNode> : INode
+    where TFamily : INodeFamily<TFamily, TInternalNode, TLeafNode>
+    where TSelf : INode<TFamily, TSelf, TInternalNode, TLeafNode>
+    where TInternalNode : IInternalNode<TFamily, TInternalNode, TLeafNode>
+    where TLeafNode : ILeafNode<TFamily, TInternalNode, TLeafNode>
 {
     /// <summary>
     ///     <para>
@@ -45,7 +47,7 @@ public interface INode<TInternalNode, TLeafNode> : INode
     /// <returns>
     ///     The cloned node.
     /// </returns>
-    public new INode<TInternalNode, TLeafNode> CloneAsDetached();
+    public new TSelf CloneAsDetached();
 
     /// <summary>
     ///     <para>
@@ -88,7 +90,7 @@ public interface INode<TInternalNode, TLeafNode> : INode
     /// <exception cref="ArgumentOutOfRangeException">
     ///     If the <paramref name="index"/> is greater or equal to the number of children (returned by <see cref="IInternalNode.NumberOfChildren"/>).
     /// </exception>
-    public new INode<TInternalNode, TLeafNode> CloneAsAttachedTo(IInternalNode newParent, int index);
+    public TSelf CloneAsAttachedTo(TInternalNode newParent, int index);
 
     /// <summary>
     ///     <para>

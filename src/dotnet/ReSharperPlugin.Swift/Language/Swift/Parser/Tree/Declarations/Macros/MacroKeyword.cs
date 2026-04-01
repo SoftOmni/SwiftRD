@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Macros;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Macros;
 
 public class MacroKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class MacroKeyword : SwiftLeafNode, ISwiftKeyword
     public Macro? Macro { get; internal set; }
 
     internal MacroKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Macro)
+        : base(buffer, SwiftNodeTypes.Macro)
     { }
 
     internal MacroKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Macro)
+        : base(parent, buffer, SwiftNodeTypes.Macro)
     {
         if (parent is Macro macro)
         {
@@ -24,7 +24,7 @@ public class MacroKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal MacroKeyword(Macro parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Macro)
+        : base(parent, buffer, SwiftNodeTypes.Macro)
     {
         Macro = parent;
     }

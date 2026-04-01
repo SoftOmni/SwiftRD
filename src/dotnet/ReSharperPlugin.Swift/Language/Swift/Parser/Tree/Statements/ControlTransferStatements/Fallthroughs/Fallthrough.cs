@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.Fallthroughs;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.Fallthroughs;
 
 public class Fallthrough : ControlTransferStatementLeafNode, ISwiftKeyword
 {
     public const string Keyword = "fallthrough";
     
     public Fallthrough(IEditableBuffer editableBuffer) 
-        : base(editableBuffer, NodeTypes.NodeTypes.Fallthrough)
+        : base(editableBuffer, SwiftNodeTypes.Fallthrough)
     { }
 
     public Fallthrough(SwiftInternalNode parent, IEditableBuffer editableBuffer) 
-        : base(parent, editableBuffer, NodeTypes.NodeTypes.Fallthrough)
+        : base(parent, editableBuffer, SwiftNodeTypes.Fallthrough)
     { }
 
     public string KeywordValue => Keyword;

@@ -1,4 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers;
 
-public interface IDeclarationModifier
-{ }
+public interface IDeclarationModifier;

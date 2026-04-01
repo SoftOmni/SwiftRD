@@ -6,12 +6,12 @@ using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.StatementGroups;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.TopLevel;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
 
 public class TopLevelDeclaration : SwiftInternalNode, IFile
 {

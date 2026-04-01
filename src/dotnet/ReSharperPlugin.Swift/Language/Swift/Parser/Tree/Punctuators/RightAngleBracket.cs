@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class RightAngleBracket : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = ">";
     
     internal RightAngleBracket(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.RightAngleBracket)
+        : base(buffer, SwiftNodeTypes.RightAngleBracket)
     { }
 
     internal RightAngleBracket(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.RightAngleBracket)
+        : base(parent, buffer, SwiftNodeTypes.RightAngleBracket)
     { }
 
 

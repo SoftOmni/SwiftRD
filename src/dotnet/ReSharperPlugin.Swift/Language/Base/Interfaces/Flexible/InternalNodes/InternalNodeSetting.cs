@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 
 public partial interface IInternalNode
 {
@@ -98,75 +98,4 @@ public partial interface IInternalNode
     public INode SetChildAt<TNode>(int index, TNode newNode) where TNode : INode;
     
     public void SetChildAtAndDiscard<TNode>(int index, TNode newNode) where TNode : INode;
-
-    /// <summary>
-    ///     <para>
-    ///         Sets the children of this <see cref="IInternalNode"/> to be the <see cref="INode"/> passed in in <paramref name="newNodes"/>.
-    ///         This detaches and removes all existing children (they all become independent trees that are their own root-<see cref="INode"/>
-    ///         of their trees with no parents (parent is obtainable with <see cref="INode.GetParent"/>).
-    ///         This attaches the <paramref name="newNodes"/> to be part of the tree formed from this <see cref="IInternalNode"/>.
-    ///     </para>
-    ///     <para>
-    ///         When removing a former child <see cref="INode"/>, the <see cref="INode"/> will be detached
-    ///         (turned into its own root <see cref="INode"/> in its own tree).
-    ///     </para>
-    ///     <para>
-    ///         
-    ///     </para>
-    /// </summary>
-    /// <param name="newNodes"></param>
-    /// <returns></returns> // TODO
-    public List<INode> SetChildren(IEnumerable<INode> newNodes);
-
-    public void SetChildrenAndDiscard(IEnumerable<INode> newNodes);
-
-    public List<INode> SetChildren(IEnumerable<INode> newNodes, int startIndexInEnumeration);
-
-    public void SetChildrenAndDiscard(IEnumerable<INode> newNodes, int startIndexInEnumeration);
-
-    public List<INode> SetChildren(IEnumerable<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
-
-    public void SetChildrenAndDiscard(IEnumerable<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
-
-    public List<INode> SetChildren(IReadOnlyList<INode> newNodes);
-
-    public void SetChildrenAndDiscard(IReadOnlyList<INode> newNodes);
-
-    public List<INode> SetChildren(IReadOnlyList<INode> newNodes, int startIndexInEnumeration);
-
-    public void SetChildrenAndDiscard(IReadOnlyList<INode> newNodes, int startIndexInEnumeration);
-
-    public List<INode> SetChildren(IReadOnlyList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
-
-    public void SetChildrenAndDiscard(IReadOnlyList<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
-
-    public List<INode> SetChildren(List<INode> newNodes);
-
-    public void SetChildrenAndDiscard(List<INode> newNodes);
-
-    public List<INode> SetChildren(List<INode> newNodes, int startIndexInEnumeration);
-
-    public void SetChildrenAndDiscard(List<INode> newNodes, int startIndexInEnumeration);
-
-    public List<INode> SetChildren(List<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
-
-    public void SetChildrenAndDiscard(List<INode> newNodes, int startIndexInEnumeration, int endIndexInEnumeration);
-
-    public List<INode> SetChildren<TList, TNode>(TList newNodes)
-        where TList : IReadOnlyList<TNode> where TNode : INode;
-
-    public void SetChildrenAndDiscard<TList, TNode>(TList newNodes)
-        where TList : IReadOnlyList<TNode> where TNode : INode;
-
-    public List<INode> SetChildren<TList, TNode>(TList newNodes, int startIndexInEnumeration)
-        where TList : IReadOnlyList<TNode> where TNode : INode;
-
-    public void SetChildrenAndDiscard<TList, TNode>(TList newNodes, int startIndexInEnumeration)
-        where TList : IReadOnlyList<TNode> where TNode : INode;
-
-    public List<INode> SetChildren<TList, TNode>(TList newNodes, int startIndexInEnumeration, int endIndexInEnumeration)
-        where TList : IReadOnlyList<TNode> where TNode : INode;
-
-    public void SetChildrenAndDiscard<TList, TNode>(TList newNodes, int startIndexInEnumeration, int endIndexInEnumeration)
-        where TList : IReadOnlyList<TNode> where TNode : INode;
 }
