@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using ReSharperPlugin.Swift.Technology.Graphs.PathfindingAlgorithms;
+using SoftOmni.SwiftRd.Technology.Graphs.PathfindingAlgorithms;
 
-namespace ReSharperPlugin.Swift.Technology.Graphs;
+namespace SoftOmni.SwiftRd.Technology.Graphs;
 
 public interface IWeightedGraph : IReadOnlyWeightedGraph, IGraph
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Extensions;
+namespace SoftOmni.SwiftRd.Extensions;
 
 public static class StackExtension
 {

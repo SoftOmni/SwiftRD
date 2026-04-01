@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
 using JetBrains.Threading;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Actors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
 public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
     public Actor? Actor { get; internal set; }
 
     internal ActorKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Actor)
+        : base(buffer, SwiftNodeTypes.Actor)
     { }
 
     internal ActorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Actor)
+        : base(parent, buffer, SwiftNodeTypes.Actor)
     {
         if (parent is Actor actor)
         {
@@ -25,7 +25,7 @@ public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal ActorKeyword(Actor parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Actor)
+        : base(parent, buffer, SwiftNodeTypes.Actor)
     {
         Actor = parent;
     }

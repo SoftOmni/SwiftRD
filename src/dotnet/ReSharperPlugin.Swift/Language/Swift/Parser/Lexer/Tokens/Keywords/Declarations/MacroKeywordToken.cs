@@ -1,6 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Macros;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Macros;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Declarations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 
 public class MacroKeywordToken : DeclarationUsableKeywordToken
 {

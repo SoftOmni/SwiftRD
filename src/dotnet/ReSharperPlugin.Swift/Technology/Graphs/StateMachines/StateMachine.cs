@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using ReSharperPlugin.Swift.Technology.Graphs.PathfindingAlgorithms;
+using SoftOmni.SwiftRd.Technology.Graphs.PathfindingAlgorithms;
 
-namespace ReSharperPlugin.Swift.Technology.Graphs.StateMachines;
+namespace SoftOmni.SwiftRd.Technology.Graphs.StateMachines;
 
 public class ReadOnlyStateMachine<TState> : IReadOnlyGraph<TState>
 {

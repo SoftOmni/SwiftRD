@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.Defers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.Defers;
 
 public class Defer : StatementLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Defer : StatementLeafNode, ISwiftKeyword
     public DeferStatement? DeferStatement { get; internal set; }
     
     internal Defer(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Defer)
+        : base(buffer, SwiftNodeTypes.Defer)
     { }
 
     internal Defer(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Defer)
+        : base(parent, buffer, SwiftNodeTypes.Defer)
     {
         if (parent is DeferStatement deferStatement)
         {
@@ -24,7 +24,7 @@ public class Defer : StatementLeafNode, ISwiftKeyword
     }
 
     internal Defer(DeferStatement deferStatement, IEditableBuffer buffer)
-        : base(deferStatement, buffer, NodeTypes.NodeTypes.Defer)
+        : base(deferStatement, buffer, SwiftNodeTypes.Defer)
     {
         DeferStatement = deferStatement;
     }

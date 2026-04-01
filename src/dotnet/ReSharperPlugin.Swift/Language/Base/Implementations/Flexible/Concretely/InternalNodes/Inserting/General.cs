@@ -1,74 +1,89 @@
 using System;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public partial class InternalNode
 {
     public int InsertChild(int index, INode child)
     {
-        throw new NotImplementedException();
+        if (child is not Node node)
+        {
+            throw new NotSupportedException("You cannot insert a none flexible concrete node");
+        }
+
+        return InsertChild(index, node);
     }
 
     public int InsertChild(int index, INode child, Action<INode> actionOnAddition)
     {
-        throw new NotImplementedException();
+        if (child is not Node node)
+        {
+            throw new NotSupportedException("You cannot insert a none flexible concrete node");
+        }
+
+        return InsertChild(index, node);
     }
 
-    public int InsertChildLoose(int index, INode child)
-    {
-        throw new NotImplementedException();
-    }
+    public int InsertChild(int index, Node child) => InsertChildConcrete(index, child);
 
-    public int InsertChildLoose(int index, INode child, Action<INode> actionOnAddition)
-    {
-        throw new NotImplementedException();
-    }
+    public int InsertChild(int index, Node child, Action<Node> actionOnAddition) => InsertChildConcrete(index, child, actionOnAddition);
 
     public int InsertChildConcrete(int index, Node child)
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChildConcrete(int index, Node child, Action<Node> actionOnAddition)
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 
     public int InsertChild<TNode>(int index, TNode child)
         where TNode : INode
     {
-        throw new NotImplementedException();
+        if (child is not Node node)
+        {
+            throw new NotSupportedException("You cannot insert a none flexible concrete node");
+        }
+        
+        CheckChildForAttachment(index, node);
+        return AttachChildForcibly(index, node);
     }
 
     public int InsertChild<TNode>(int index, TNode child, Action<TNode> actionOnAddition)
         where TNode : INode
     {
-        throw new NotImplementedException();
-    }
-
-    public int InsertChildLoose<TNode>(int index, TNode child)
-        where TNode : INode
-    {
-        throw new NotImplementedException();
-    }
-
-    public int InsertChildLoose<TNode>(int index, TNode child, Action<TNode> actionOnAddition)
-        where TNode : INode
-    {
-        throw new NotImplementedException();
+        if (child is not Node node)
+        {
+            throw new NotSupportedException("You cannot insert a none flexible concrete node");
+        }
+        
+        CheckChildForAttachment(index, node);
+        int newParentTextIndex = AttachChildForcibly(index, node);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 
     public int InsertChildConcrete<TNode>(int index, TNode child)
         where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChildConcrete<TNode>(int index, TNode child, Action<TNode> actionOnAddition)
         where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 }

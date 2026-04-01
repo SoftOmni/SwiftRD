@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Castle.Components.DictionaryAdapter;
 using JetBrains.Util;
-using ReSharperPlugin.Swift.Technology.Graphs.PathfindingAlgorithms;
+using SoftOmni.SwiftRd.Technology.Graphs.PathfindingAlgorithms;
 
-namespace ReSharperPlugin.Swift.Technology.Graphs.Implementations;
+namespace SoftOmni.SwiftRd.Technology.Graphs.Implementations;
 
 public class UndirectedReadOnlyAdjacencyMatrix : IReadOnlyGraph
 {

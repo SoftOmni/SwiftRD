@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes.WhitespaceAndComments;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.WhitespaceAndComments;
 
 public abstract class CommentNodeType(string id, int index) : SwiftNodeType(id, index)
 {

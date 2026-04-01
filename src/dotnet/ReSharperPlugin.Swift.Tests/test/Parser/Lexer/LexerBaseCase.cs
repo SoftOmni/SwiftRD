@@ -2,10 +2,10 @@ using System;
 using JetBrains.Annotations;
 using JetBrains.Text;
 using NUnit.Framework;
-using ReSharperPlugin.Swift.Extensions;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
+using SoftOmni.SwiftRd.Extensions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-namespace ReSharperPlugin.Swift.Tests.test.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Tests.test.Parser.Lexer;
 
 public class LexerBaseCase
 {

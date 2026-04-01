@@ -1,6 +1,6 @@
 using JetBrains.UI.Icons.CompiledIcons;
 
-namespace ReSharperPlugin.Swift.Language.Ui.Icons;
+namespace SoftOmni.SwiftRd.Language.Ui.Icons;
 
 public class SwiftIconManager
 {

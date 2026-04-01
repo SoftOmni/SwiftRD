@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements.Breaks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements.Breaks;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 
 public class Break : StatementLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Break : StatementLeafNode, ISwiftKeyword
     public BreakStatement? BreakStatement { get; internal set; }
     
     internal Break(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Break)
+        : base(buffer, SwiftNodeTypes.Break)
     { }
 
     internal Break(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Break)
+        : base(parent, buffer, SwiftNodeTypes.Break)
     {
         if (parent is BreakStatement breakStatement)
         {
@@ -25,7 +25,7 @@ public class Break : StatementLeafNode, ISwiftKeyword
     }
 
     internal Break(BreakStatement breakStatement, IEditableBuffer buffer)
-        : base(breakStatement, buffer, NodeTypes.NodeTypes.Break)
+        : base(breakStatement, buffer, SwiftNodeTypes.Break)
     {
         BreakStatement = breakStatement;
     }

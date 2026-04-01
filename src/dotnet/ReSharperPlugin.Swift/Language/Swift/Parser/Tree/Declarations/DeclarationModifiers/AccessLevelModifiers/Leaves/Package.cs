@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 
 public class Package : LeafAccessLevelModifier, ISwiftKeyword
 {
     public const string Keyword = "package";
     
     internal Package(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Package)
+        : base(buffer, SwiftNodeTypes.Package)
     { }
 
     internal Package(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Package)
+        : base(parent, buffer, SwiftNodeTypes.Package)
     { }
 
 

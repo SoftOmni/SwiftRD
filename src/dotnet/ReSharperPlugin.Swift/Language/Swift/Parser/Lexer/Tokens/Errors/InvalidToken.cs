@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 public class InvalidToken() : ErroneousToken(SwiftTokens.InvalidTokenId, SwiftTokens.InvalidTokenIndex);
 

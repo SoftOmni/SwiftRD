@@ -2,7 +2,7 @@ using System;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Extensions;
+namespace SoftOmni.SwiftRd.Extensions;
 
 public static class BufferExtensions
 {

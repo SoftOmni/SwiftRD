@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.ProjectModel;
 
-namespace ReSharperPlugin.Swift.Language.File;
+namespace SoftOmni.SwiftRd.Language.File;
 
 [ProjectFileTypeDefinition(Name)]
 public class SwiftProjectFileType : KnownProjectFileType

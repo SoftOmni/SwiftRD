@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using JetBrains.Util;
 using NuGet;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.UserDefinedOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.UserDefinedOperators;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public partial class SwiftLexer
 {
@@ -165,13 +166,13 @@ public partial class SwiftLexer
     {
         HashSet<char> operatorHeads = [];
 
-        operatorHeads.AddRange(['/', '=', Dash, Plus, '!', '*', '%', '<', '>', '&', '|', '^', '~', '?']);
+        operatorHeads.AddElements('/', '=', Dash, Plus, '!', '*', '%', '<', '>', '&', '|', '^', '~', '?');
 
         operatorHeads.AddUnicodeRange('\u00A1', '\u00A8', inclusive: true);
-        operatorHeads.AddRange(['\u00A9', '\u00AB']);
-        operatorHeads.AddRange(['\u00AC', '\u00AE']);
+        operatorHeads.AddElements('\u00A9', '\u00AB');
+        operatorHeads.AddElements('\u00AC', '\u00AE');
         operatorHeads.AddUnicodeRange('\u00B0', '\u00B1', inclusive: true);
-        operatorHeads.AddRange(['\u00B6', '\u00BB', '\u00BF', '\u00D7', '\u00F7']);
+        operatorHeads.AddElements('\u00B6', '\u00BB', '\u00BF', '\u00D7', '\u00F7');
         operatorHeads.AddUnicodeRange('\u2016', '\u2017', inclusive: true);
         operatorHeads.AddUnicodeRange('\u2020', '\u2027', inclusive: true);
         operatorHeads.AddUnicodeRange('\u2030', '\u203E', inclusive: true);

@@ -1,6 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Markers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
 
 public abstract class MarkerToken(string tokenId, int index) : SwiftTokenNodeType(string.Empty, index)
 {

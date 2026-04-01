@@ -1,16 +1,16 @@
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers;
 
-public abstract class DeclarationModifierLeaf : SwiftLeafNode, IDeclarationModifier
+public abstract class DeclarationModifierLeaf : SwiftLeafNode<SwiftCompositeNode>, IDeclarationModifier
 {
-    public DeclarationModifierLeaf(IEditableBuffer buffer, NodeType nodeType) 
-        : base(buffer, nodeType)
+    protected DeclarationModifierLeaf(IEditableBuffer buffer) 
+        : base(buffer)
     { }
 
-    public DeclarationModifierLeaf(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType) 
-        : base(parent, buffer, nodeType)
+    protected DeclarationModifierLeaf(IEditableBuffer buffer, SwiftCompositeNode parent, int parentIndex, int parentTextIndex) 
+        : base(buffer, parent, parentIndex, parentTextIndex)
     { }
 }

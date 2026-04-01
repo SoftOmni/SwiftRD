@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.MetaTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.MetaTypes;
 
 public class Type : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Type : SwiftLeafNode, ISwiftKeyword
     public TypeMetaType? TypeMetaType { get; internal set; }
 
     internal Type(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Type)
+        : base(buffer, SwiftNodeTypes.Type)
     { }
 
     internal Type(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Type)
+        : base(parent, buffer, SwiftNodeTypes.Type)
     {
         if (parent is TypeMetaType typeMetaType)
         {
@@ -24,7 +24,7 @@ public class Type : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Type(TypeMetaType parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Type)
+        : base(parent, buffer, SwiftNodeTypes.Type)
     {
         TypeMetaType = parent;
     }

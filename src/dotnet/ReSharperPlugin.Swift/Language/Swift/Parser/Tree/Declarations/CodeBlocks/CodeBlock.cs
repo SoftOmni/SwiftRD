@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Exceptions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.StatementGroups;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
-using ReSharperPlugin.Swift.Technology;
-using ReSharperPlugin.Swift.Technology.RelativePositions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Exceptions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
+using SoftOmni.SwiftRd.Technology;
+using SoftOmni.SwiftRd.Technology.RelativePositions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.CodeBlocks;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 
 public class CodeBlock : SwiftInternalNode, IList<IStatement>
 {

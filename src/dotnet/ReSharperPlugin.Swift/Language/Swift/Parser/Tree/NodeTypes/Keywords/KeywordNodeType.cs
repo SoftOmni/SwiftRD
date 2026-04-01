@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes.Keywords;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords;
 
 public abstract class KeywordNodeType(string id, int index) : SwiftNodeType(id, index)
 {

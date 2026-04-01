@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.CodeBlocks;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types.FunctionTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.DoStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
 
 public class DoStatement : StatementInternalNode, IList<CatchClause>
 {

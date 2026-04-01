@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 
 public class FilePrivate : LeafAccessLevelModifier, ISwiftKeyword
 {
     public const string Keyword = "filePrivate";
     
     internal FilePrivate(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.FilePrivate)
+        : base(buffer, SwiftNodeTypes.FilePrivate)
     { }
 
     internal FilePrivate(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.FilePrivate)
+        : base(parent, buffer, SwiftNodeTypes.FilePrivate)
     { }
 
 

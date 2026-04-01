@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
 public class Class : DeclarationModifierLeaf, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Class : DeclarationModifierLeaf, ISwiftKeyword
     public Classes.Class? ClassDeclaration { get; internal set; } 
     
     internal Class(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Class)
+        : base(SwiftNodeTypes.Class, buffer)
     { }
 
     internal Class(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Class)
+        : base(parent, buffer, SwiftNodeTypes.Class)
     {
         if (parent is Classes.Class @class)
         {
@@ -24,7 +24,7 @@ public class Class : DeclarationModifierLeaf, ISwiftKeyword
     }
 
     internal Class(Classes.Class @class, IEditableBuffer buffer)
-        : base(@class, buffer, NodeTypes.NodeTypes.Class)
+        : base(@class, buffer, SwiftNodeTypes.Class)
     {
         ClassDeclaration = @class;
     }

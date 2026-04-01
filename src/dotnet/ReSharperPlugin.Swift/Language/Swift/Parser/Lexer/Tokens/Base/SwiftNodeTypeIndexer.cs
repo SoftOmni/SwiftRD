@@ -1,6 +1,6 @@
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
 public class SwiftNodeTypeIndexer : AbstractNodeTypeIndexer
 {

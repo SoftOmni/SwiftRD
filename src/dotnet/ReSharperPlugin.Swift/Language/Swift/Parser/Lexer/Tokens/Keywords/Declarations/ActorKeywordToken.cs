@@ -1,6 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Actors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Declarations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 
 public class ActorKeywordToken : DeclarationUsableKeywordToken
 {

@@ -1,23 +1,28 @@
+using System;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
-public class Identifier : SwiftLeafNode
+public class Identifier : SwiftLeafNode<SwiftCompositeNode>
 {
     public bool IsOnlyAscii { get; private set; }
 
-    public Identifier(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Identifier)
+    internal Identifier(IEditableBuffer buffer)
+        : base(buffer)
     {
         IsOnlyAscii = IsMadeUpOfAscii();
     }
 
-    public Identifier(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Identifier)
+    internal Identifier(IEditableBuffer buffer, SwiftCompositeNode parentNode, int parentIndex, int parentTextIndex)
+        : base(buffer, parentNode, parentIndex, parentTextIndex)
     {
         IsOnlyAscii = IsMadeUpOfAscii();
     }
+
+    public override NodeType NodeType => SwiftNodeTypes.Identifier;
 
     public string GetIdentifierAsString()
     {
@@ -37,4 +42,8 @@ public class Identifier : SwiftLeafNode
 
         return true;
     }
+    
+    // TODO: Add creation API with lexer based checking
+    // TODO: Add changing API similar to comments
+    // TODO: Add integration into renaming refactoring
 }

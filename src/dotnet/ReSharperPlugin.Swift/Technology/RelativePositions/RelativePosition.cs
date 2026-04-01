@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Technology.RelativePositions;
+namespace SoftOmni.SwiftRd.Technology.RelativePositions;
 
 public enum RelativePosition
 {

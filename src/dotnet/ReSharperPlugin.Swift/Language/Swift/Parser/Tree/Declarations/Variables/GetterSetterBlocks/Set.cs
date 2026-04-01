@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.GetterSetterBlocks;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks;
 
 public class Set : SwiftLeafNode, ISwiftKeyword
 {
     public const string Keyword = "set";
     
     internal Set(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Set)
+        : base(buffer, SwiftNodeTypes.Set)
     { }
 
     internal Set(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Set)
+        : base(parent, buffer, SwiftNodeTypes.Set)
     { }
 
 

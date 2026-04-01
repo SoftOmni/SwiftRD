@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Guard;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Guard;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Ifs;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
 
 public class Else : StatementLeafNode, ISwiftKeyword
 {
@@ -14,11 +14,11 @@ public class Else : StatementLeafNode, ISwiftKeyword
     public GuardStatement? GuardStatement { get; internal set; }
 
     internal Else(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Else)
+        : base(buffer, SwiftNodeTypes.Else)
     { }
 
     internal Else(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Else)
+        : base(parent, buffer, SwiftNodeTypes.Else)
     {
         if (parent is ElseClause elseClause)
         {
@@ -31,13 +31,13 @@ public class Else : StatementLeafNode, ISwiftKeyword
     }
 
     internal Else(ElseClause elseClause, IEditableBuffer buffer)
-        : base(elseClause, buffer, NodeTypes.NodeTypes.Else)
+        : base(elseClause, buffer, SwiftNodeTypes.Else)
     {
         ElseClause = elseClause;
     }
 
     internal Else(GuardStatement guardStatement, IEditableBuffer buffer)
-        : base(guardStatement, buffer, NodeTypes.NodeTypes.Else)
+        : base(guardStatement, buffer, SwiftNodeTypes.Else)
     {
         GuardStatement = guardStatement;
     }

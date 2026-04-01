@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Protocols;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols;
 
 public class ProtocolLowercase : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class ProtocolLowercase : SwiftLeafNode, ISwiftKeyword
     public Protocol? Protocol { get; internal set; }
 
     internal ProtocolLowercase(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ProtocolLowercase)
+        : base(buffer, SwiftNodeTypes.ProtocolLowercase)
     { }
 
     internal ProtocolLowercase(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ProtocolLowercase)
+        : base(parent, buffer, SwiftNodeTypes.ProtocolLowercase)
     {
         if (parent is Protocol protocol)
         {
@@ -24,7 +24,7 @@ public class ProtocolLowercase : SwiftLeafNode, ISwiftKeyword
     }
 
     internal ProtocolLowercase(Protocol parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ProtocolLowercase)
+        : base(parent, buffer, SwiftNodeTypes.ProtocolLowercase)
     {
         Protocol = parent;
     }

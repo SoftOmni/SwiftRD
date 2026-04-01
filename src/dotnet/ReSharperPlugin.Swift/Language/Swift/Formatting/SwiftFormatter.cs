@@ -1,4 +1,5 @@
 using System;
+using System.IdentityModel.Protocols.WSTrust;
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.Lifetimes;
@@ -9,7 +10,7 @@ using JetBrains.ReSharper.Psi.Format;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
-namespace ReSharperPlugin.Swift.Language.Formatting;
+namespace SoftOmni.SwiftRd.Language.Formatting;
 
 public class SwiftFormatter : ICodeFormatter
 {

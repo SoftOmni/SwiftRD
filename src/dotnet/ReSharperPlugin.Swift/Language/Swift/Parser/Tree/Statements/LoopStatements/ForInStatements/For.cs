@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.ForInStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.ForInStatements;
 
 public class For : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class For : SwiftLeafNode, ISwiftKeyword
     public ForInStatement? ForInStatement { get; internal set; }
 
     internal For(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.For)
+        : base(buffer, SwiftNodeTypes.For)
     { }
 
     internal For(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.For)
+        : base(parent, buffer, SwiftNodeTypes.For)
     {
         if (parent is ForInStatement forInStatement)
         {
@@ -24,7 +24,7 @@ public class For : SwiftLeafNode, ISwiftKeyword
     }
 
     internal For(ForInStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.For)
+        : base(parent, buffer, SwiftNodeTypes.For)
     {
         ForInStatement = parent;
     }

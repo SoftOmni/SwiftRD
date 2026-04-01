@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.DirectiveClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.DirectiveClauses;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
 
 public class IfDirective : Directive
 {
     public IfDirectiveClause? Clause { get; internal set; }
 
-    internal IfDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedIf)
+    internal IfDirective(IEditableBuffer buffer) : base(buffer, SwiftNodeTypes.ReservedIf)
     { }
 
     internal IfDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
-        NodeTypes.NodeTypes.ReservedIf)
+        SwiftNodeTypes.ReservedIf)
     {
         if (parent is IfDirectiveClause clause)
         {
@@ -22,25 +22,25 @@ public class IfDirective : Directive
     }
 
     internal IfDirective(IfDirectiveClause parentClause, IEditableBuffer buffer) : base(parentClause, buffer,
-        NodeTypes.NodeTypes.ReservedIf)
+        SwiftNodeTypes.ReservedIf)
     {
         Clause = parentClause;
     }
 
     public static IfDirective Create()
     {
-        return new IfDirective(new EditableBuffer(NodeTypes.NodeTypes.ReservedIf.TokenRepresentation));
+        return new IfDirective(new EditableBuffer(SwiftNodeTypes.ReservedIf.TokenRepresentation));
     }
 
     public static IfDirective Create(IfDirectiveClause ifDirectiveClause)
     {
         return new IfDirective(ifDirectiveClause,
-            new EditableBuffer(NodeTypes.NodeTypes.ReservedIf.TokenRepresentation)); // TODO: Fix representations
+            new EditableBuffer(SwiftNodeTypes.ReservedIf.TokenRepresentation)); // TODO: Fix representations
     }
 
     internal static IfDirective CreateUnchecked(SwiftInternalNode parent)
     {
-        return new IfDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedIf.TokenRepresentation));
+        return new IfDirective(parent, new EditableBuffer(SwiftNodeTypes.ReservedIf.TokenRepresentation));
     }
 
     public bool AssociatedToClause => Clause is not null;

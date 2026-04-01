@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
 
 public class WillSet : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class WillSet : SwiftLeafNode, ISwiftKeyword
     public WillSetClause? WillSetClause { get; private set; }
     
     internal WillSet(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.WillSet)
+        : base(buffer, SwiftNodeTypes.WillSet)
     { }
 
     internal WillSet(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.WillSet)
+        : base(parent, buffer, SwiftNodeTypes.WillSet)
     {
         if (parent is WillSetClause willSetClause)
         {
@@ -24,7 +24,7 @@ public class WillSet : SwiftLeafNode, ISwiftKeyword
     }
 
     internal WillSet(WillSetClause willSetClause, IEditableBuffer buffer)
-        : base(willSetClause, buffer, NodeTypes.NodeTypes.WillSet)
+        : base(willSetClause, buffer, SwiftNodeTypes.WillSet)
     {
         WillSetClause = willSetClause;
     }

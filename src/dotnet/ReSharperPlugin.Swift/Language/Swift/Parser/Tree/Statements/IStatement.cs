@@ -1,8 +1,8 @@
 using System;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
 
 public interface IStatement : ISwiftNode
 {

@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.InfixExpressions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PrefixExpressions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.TryOperators;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.InfixExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PrefixExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.TryOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 
 public class Expression : StatementInternalNode
 {

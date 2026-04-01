@@ -1,23 +1,23 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
 
 public class Borrowing : ParameterModifier, ISwiftKeyword
 {
     public const string Keyword = "borrowing";
     
     internal Borrowing(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Borrowing)
+        : base(buffer, SwiftNodeTypes.Borrowing)
     { }
 
     internal Borrowing(SwiftInternalNode parent, IEditableBuffer buffer) :
-        base(parent, buffer, NodeTypes.NodeTypes.Borrowing)
+        base(parent, buffer, SwiftNodeTypes.Borrowing)
     { }
 
     internal Borrowing(Parameter parameter, IEditableBuffer buffer) 
-        : base(parameter, buffer, NodeTypes.NodeTypes.Borrowing)
+        : base(parameter, buffer, SwiftNodeTypes.Borrowing)
     { }
 
     public string KeywordValue => Keyword;

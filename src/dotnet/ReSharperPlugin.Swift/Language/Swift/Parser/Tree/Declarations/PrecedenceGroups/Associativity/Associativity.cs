@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
 
 public class Associativity : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Associativity : SwiftLeafNode, ISwiftKeyword
     public PrecedenceGroupAssociativity? PrecedenceGroupAssociativity { get; internal set; }
 
     internal Associativity(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Associativity)
+        : base(buffer, SwiftNodeTypes.Associativity)
     { }
 
     internal Associativity(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Associativity)
+        : base(parent, buffer, SwiftNodeTypes.Associativity)
     {
         if (parent is PrecedenceGroupAssociativity precedenceGroupAssociativity)
         {
@@ -24,7 +24,7 @@ public class Associativity : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Associativity(PrecedenceGroupAssociativity parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Associativity)
+        : base(parent, buffer, SwiftNodeTypes.Associativity)
     {
         PrecedenceGroupAssociativity = parent;
     }

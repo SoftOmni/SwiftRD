@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Generics;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics;
 
 public interface IGenericTypeValue;

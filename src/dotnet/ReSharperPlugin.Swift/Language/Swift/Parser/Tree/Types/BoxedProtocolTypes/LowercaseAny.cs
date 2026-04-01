@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.BoxedProtocolTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.BoxedProtocolTypes;
 
 public class LowercaseAny : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class LowercaseAny : SwiftLeafNode, ISwiftKeyword
     public BoxedProtocolType? BoxedProtocolType { get; internal set; }
 
     internal LowercaseAny(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.AnyLowercase)
+        : base(buffer, SwiftNodeTypes.AnyLowercase)
     { }
 
     internal LowercaseAny(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.AnyLowercase)
+        : base(parent, buffer, SwiftNodeTypes.AnyLowercase)
     {
         if (parent is BoxedProtocolType boxedProtocolType)
         {
@@ -24,7 +24,7 @@ public class LowercaseAny : SwiftLeafNode, ISwiftKeyword
     }
 
     internal LowercaseAny(BoxedProtocolType parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.AnyLowercase)
+        : base(parent, buffer, SwiftNodeTypes.AnyLowercase)
     {
         BoxedProtocolType = parent;
     }

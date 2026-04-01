@@ -1,37 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Comments;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
 
-public class BlockCommentStartNode : SwiftLeafNode
+public class BlockCommentStartNode : SwiftLeafNode<SwiftCompositeNode>
 {
+    public BlockCommentNode? BlockCommentNode { get; internal set; }
+    
     public BlockCommentEndNode? EndNode { get; internal set; }
-    
-    public BlockCommentContentNode? ContentNode { get; internal set; }
-    
-    internal BlockCommentStartNode(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.BlockCommentStart)
-    { }
 
-    internal BlockCommentStartNode(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
-        NodeTypes.NodeTypes.BlockCommentStart)
-    { }
+    internal BlockCommentStartNode(IEditableBuffer underlyingBuffer, BlockCommentEndNode? endNode = null)
+        : base(underlyingBuffer)
+    {
+        EndNode = endNode;
+    }
+
+    internal BlockCommentStartNode(IEditableBuffer underlyingBuffer, BlockCommentNode parentNode, int parentIndex, int parentTextIndex, BlockCommentEndNode? endNode = null)
+        : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex)
+    {
+        BlockCommentNode = parentNode;
+        EndNode = endNode;
+    }
+
+    public override NodeType NodeType => SwiftNodeTypes.BlockCommentStart;
 
     public static BlockCommentStartNode Create()
     {
         return new BlockCommentStartNode(new EditableBuffer("/*"));
-    }
-
-    public static BlockCommentStartNode Create(BlockCommentNode parent)
-    {
-        return new BlockCommentStartNode(parent, new EditableBuffer("/*"));
-    }
-
-    public static BlockCommentStartNode CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new BlockCommentStartNode(parent, new EditableBuffer("/*"));
     }
 }

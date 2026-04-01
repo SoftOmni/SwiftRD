@@ -1,10 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Throws;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Throws;
 
 public class Throw : ControlTransferStatementLeafNode, ISwiftKeyword
 {
@@ -13,11 +13,11 @@ public class Throw : ControlTransferStatementLeafNode, ISwiftKeyword
     public ThrowStatement? ThrowStatement { get; private set; }
 
     internal Throw(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Throw)
+        : base(buffer, SwiftNodeTypes.Throw)
     { }
 
     internal Throw(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Throw)
+        : base(parent, buffer, SwiftNodeTypes.Throw)
     {
         if (parent is ThrowStatement throwStatement)
         {
@@ -26,7 +26,7 @@ public class Throw : ControlTransferStatementLeafNode, ISwiftKeyword
     }
 
     internal Throw(ThrowStatement throwStatement, IEditableBuffer buffer)
-        : base(throwStatement, buffer, NodeTypes.NodeTypes.Throw)
+        : base(throwStatement, buffer, SwiftNodeTypes.Throw)
     {
         ThrowStatement = throwStatement;
     }

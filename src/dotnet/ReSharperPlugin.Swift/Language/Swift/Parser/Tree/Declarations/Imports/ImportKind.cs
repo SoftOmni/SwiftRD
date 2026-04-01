@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Imports;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Imports;
 
 public class ImportKind
 {

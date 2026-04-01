@@ -1,7 +1,7 @@
 using System;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;
 
 public class LineCommentToken()
     : SwiftTokenNodeType(SwiftTokens.LineCommentId, SwiftTokens.LineCommentIndex)

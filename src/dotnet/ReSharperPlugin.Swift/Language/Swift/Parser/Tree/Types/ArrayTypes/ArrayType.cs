@@ -4,10 +4,10 @@ using System.Linq;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.ArrayTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.ArrayTypes;
 
 public class ArrayType : TypeInternalNode
 {

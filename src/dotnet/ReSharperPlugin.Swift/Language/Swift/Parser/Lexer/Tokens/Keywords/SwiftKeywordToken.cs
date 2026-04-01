@@ -1,7 +1,7 @@
 using System;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Keywords;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
 
 public class SwiftKeywordToken(string value, string tokenId, int index) : SwiftTokenNodeType(tokenId, index)
 {

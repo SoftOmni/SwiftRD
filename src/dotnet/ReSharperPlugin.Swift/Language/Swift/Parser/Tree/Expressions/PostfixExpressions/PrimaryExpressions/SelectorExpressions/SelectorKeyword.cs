@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelectorExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelectorExpressions;
 
 public class SelectorKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class SelectorKeyword : SwiftLeafNode, ISwiftKeyword
     public SelectorExpression? SelectorExpression { get; internal set; }
 
     internal SelectorKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ReservedSelector)
+        : base(buffer, SwiftNodeTypes.ReservedSelector)
     { }
 
     internal SelectorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedSelector)
+        : base(parent, buffer, SwiftNodeTypes.ReservedSelector)
     {
         if (parent is SelectorExpression selectorExpression)
         {
@@ -24,7 +24,7 @@ public class SelectorKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal SelectorKeyword(SelectorExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedSelector)
+        : base(parent, buffer, SwiftNodeTypes.ReservedSelector)
     {
         SelectorExpression = parent;
     }

@@ -1,7 +1,7 @@
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public class SwiftLexerFactory : ILexerFactory
 {

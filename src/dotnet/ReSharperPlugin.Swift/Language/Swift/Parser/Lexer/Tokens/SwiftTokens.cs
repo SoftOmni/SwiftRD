@@ -1,19 +1,19 @@
 using DefaultNamespace;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.ContextSensitive;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Declarations;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.ExpressionsAndTypes;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Markers;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.BuiltinOperators;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Operators.UserDefinedOperators;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Patterns;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Punctuators;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Reserved;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Statements;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.WhitespaceAndComments;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ExpressionsAndTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.BuiltinOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.UserDefinedOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Patterns;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 
 public static class SwiftTokens
 {

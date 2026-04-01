@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.FunctionTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes;
 
 public class LabeledFunctionTypeArgument : FunctionTypeArgument
 {

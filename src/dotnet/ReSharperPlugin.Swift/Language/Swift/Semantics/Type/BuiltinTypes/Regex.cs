@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
+namespace SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
 public class Regex : Type
 {

@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Formatting;
+namespace SoftOmni.SwiftRd.Language.Formatting;
 
 public class FormattingConfiguration
 {

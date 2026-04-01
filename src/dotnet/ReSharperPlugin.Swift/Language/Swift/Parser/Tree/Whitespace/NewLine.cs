@@ -1,13 +1,15 @@
 using System;
 using System.Diagnostics;
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Whitespace;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
 
 [DebuggerDisplay("NEW_LINE_LEAF_NODE ({Type})")]
-public class NewLine : SwiftLeafNode, IWhitespaceNode
+public class NewLine : SwiftLeafNode<SwiftCompositeNode>, IWhitespaceNode
 {
     private const string LineFeed = "\n";
 
@@ -16,7 +18,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
     private const string CarriageReturnLineFeed = "\r\n";
 
     internal NewLine(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.NewLine)
+        : base(buffer)
     {
         if (buffer.Length == 2)
         {
@@ -29,23 +31,25 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
             : Kind.CarriageReturn;
     }
 
-    internal NewLine(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
-        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.NewLine)
+    internal NewLine(SwiftCompositeNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(buffer, parent, parentIndex, parentTextIndex)
     {
         SetupInternals(buffer);
     }
 
     private NewLine(IEditableBuffer buffer, Kind type)
-        : base(buffer, NodeTypes.NodeTypes.NewLine)
+        : base(buffer)
     {
         Type = type;
     }
 
-    internal NewLine(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, Kind type)
-        : base(parent, parentIndex, parentTextIndex, buffer, NodeTypes.NodeTypes.NewLine)
+    internal NewLine(SwiftCompositeNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, Kind type)
+        : base(buffer, parent, parentIndex, parentTextIndex)
     {
         Type = type;
     }
+
+    public override NodeType NodeType => SwiftNodeTypes.NewLine;
 
     private void SetupInternals(IEditableBuffer buffer)
     {
@@ -78,10 +82,11 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
     {
         if (Buffer.Length == 2)
         {
-            EditableBuffer.Remove(1, 1);
+            UnderlyingBuffer.Remove(1, 1);
+            CascadeTextOffsetChange(-1);
         }
 
-        EditableBuffer.Replace(0, 1, LineFeed);
+        UnderlyingBuffer.Replace(0, 1, LineFeed);
     }
 
     public void MakeLf()
@@ -93,10 +98,11 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
     {
         if (Buffer.Length == 2)
         {
-            EditableBuffer.Remove(1, 1);
+            UnderlyingBuffer.Remove(1, 1);
+            CascadeTextOffsetChange(-1);
         }
 
-        EditableBuffer.Replace(0, 1, CarriageReturn);
+        UnderlyingBuffer.Replace(0, 1, CarriageReturn);
     }
 
     public void MakeCr()
@@ -108,11 +114,12 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
     {
         if (Buffer.Length == 2)
         {
-            EditableBuffer.Replace(0, 2, CarriageReturnLineFeed);
+            UnderlyingBuffer.Replace(0, 2, CarriageReturnLineFeed);
             return;
         }
 
-        EditableBuffer.Replace(0, 1, CarriageReturnLineFeed);
+        UnderlyingBuffer.Replace(0, 1, CarriageReturnLineFeed);
+        CascadeTextOffsetChange(1);
     }
 
     public static NewLine CreateLineFeed()
@@ -120,7 +127,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return new NewLine(new EditableBuffer(LineFeed), Kind.LineFeed);
     }
 
-    public static NewLine CreateLineFeed(SwiftInternalNode parent, int parentIndex)
+    public static NewLine CreateLineFeed(SwiftCompositeNode parent, int parentIndex)
     {
         NewLine node = CreateLineFeed();
         node.AttachToParent(parent, parentIndex);
@@ -133,7 +140,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return CreateLineFeed();
     }
 
-    public static NewLine CreateLf(SwiftInternalNode parent, int parentIndex)
+    public static NewLine CreateLf(SwiftCompositeNode parent, int parentIndex)
     {
         return CreateLineFeed(parent, parentIndex);
     }
@@ -143,7 +150,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return new NewLine(new EditableBuffer(CarriageReturn), Kind.CarriageReturn);
     }
     
-    public static NewLine CreateCarriageReturn(SwiftInternalNode parent, int parentIndex)
+    public static NewLine CreateCarriageReturn(SwiftCompositeNode parent, int parentIndex)
     {
         NewLine node = CreateCarriageReturn();
         node.AttachToParent(parent, parentIndex);
@@ -156,7 +163,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return CreateCarriageReturn();
     }
     
-    public static NewLine CreateCr(SwiftInternalNode parent, int parentIndex)
+    public static NewLine CreateCr(SwiftCompositeNode parent, int parentIndex)
     {
         return CreateCarriageReturn(parent, parentIndex);
     }
@@ -166,7 +173,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return new NewLine(new EditableBuffer(CarriageReturnLineFeed), Kind.CarriageReturnLineFeed);
     }
 
-    public static NewLine CreateCarriageReturnLineFeed(SwiftInternalNode parent, int parentIndex)
+    public static NewLine CreateCarriageReturnLineFeed(SwiftCompositeNode parent, int parentIndex)
     {
         NewLine node = CreateCarriageReturnLineFeed();
         node.AttachToParent(parent, parentIndex);
@@ -179,7 +186,7 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return CreateCarriageReturnLineFeed();
     }
     
-    public static NewLine CreateCrLf(SwiftInternalNode parent, int parentIndex)
+    public static NewLine CreateCrLf(SwiftCompositeNode parent, int parentIndex)
     {
         return CreateCarriageReturnLineFeed(parent, parentIndex);
     }
@@ -206,9 +213,14 @@ public class NewLine : SwiftLeafNode, IWhitespaceNode
         return Type.AbbreviatedForm();
     }
 
-    protected override ISwiftNode Clone()
+    public new SwiftCompositeNode CloneAsDetached()
     {
-        return new NewLine(EditableBufferExtensions.CloneBuffer(EditableBuffer), Type);
+        throw new NotImplementedException();
+    }
+
+    public new SwiftCompositeNode CloneAsAttachedTo(SwiftCompositeNode newParent, int index)
+    {
+        throw new NotImplementedException();
     }
 }
 

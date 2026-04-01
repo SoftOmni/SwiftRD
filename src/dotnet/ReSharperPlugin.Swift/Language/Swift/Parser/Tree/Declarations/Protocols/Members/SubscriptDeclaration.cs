@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Functions.ParameterClauses;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Subscripts;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Generics.ParameterClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Protocols.Members;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols.Members;
 
 public class SubscriptDeclaration : ProtocolMember
 {

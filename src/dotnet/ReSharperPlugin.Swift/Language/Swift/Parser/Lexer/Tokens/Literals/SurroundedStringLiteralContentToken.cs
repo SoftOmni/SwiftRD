@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
 
 public class SurroundedStringLiteralContentToken() : StringLiteralContentToken(SwiftTokens.SurroundedStringLiteralContentId, SwiftTokens.SurroundedStringLiteralContentIndex);

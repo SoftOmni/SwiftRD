@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations.Cases.UnionValues;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Indirecterations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.UnionValues;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
 
 public class UnionStyleEnumeration : Enumeration
 {

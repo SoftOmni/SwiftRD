@@ -2,111 +2,35 @@ using System;
 using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;
 
-public abstract partial class InternalNode : TreeElement, IInternalNode
+public abstract partial class InternalNode : CompositeElement, IInternalNode
 {
     private readonly List<INode> _children = [];
 
     protected IEditableBuffer UnderlyingBuffer;
-
-    protected InternalNode(IEnumerator<INode> childEnumerator, bool mustDispose = true)
-    {
-        while (childEnumerator.MoveNext())
-        {
-            _children.Add(childEnumerator.Current);
-        }
-
-        if (mustDispose)
-        {
-            childEnumerator.Dispose();
-        }
-    }
-
-    protected InternalNode(IEnumerator<INode> childEnumerator, int startIndexInEnumerator, bool mustDispose = true)
-    {
-        int index = 0;
-        while (childEnumerator.MoveNext() && index < startIndexInEnumerator)
-        {
-            index++;
-        }
-
-        if (index < startIndexInEnumerator) // Means enumerator ran out
-        {
-            if (mustDispose)
-            {
-                childEnumerator.Dispose();
-            }
-
-            throw new ArgumentOutOfRangeException(nameof(startIndexInEnumerator));
-        }
-
-        while (childEnumerator.MoveNext())
-        {
-            _children.Add(childEnumerator.Current);
-        }
-
-        if (mustDispose)
-        {
-            childEnumerator.Dispose();
-        }
-    }
-
-    protected InternalNode(IEnumerator<INode> childEnumerator, int startIndexInEnumerator, int numberOfChildrenInEnumeratorToTake,
-        bool mustDispose = true)
-    {
-        int index = 0;
-        while (childEnumerator.MoveNext() && index < startIndexInEnumerator)
-        {
-            index++;
-        }
-
-        if (index < startIndexInEnumerator)
-        {
-            if (mustDispose)
-            {
-                childEnumerator.Dispose();
-            }
-
-            throw new ArgumentOutOfRangeException(nameof(startIndexInEnumerator));
-        }
-
-        int targetIndex = startIndexInEnumerator + numberOfChildrenInEnumeratorToTake;
-        while (childEnumerator.MoveNext() && index < targetIndex)
-        {
-            // _children.Add();
-            index++;
-        }
-    } /*
-
-    protected InternalNode(IEditableBuffer buffer)
-        : base(buffer)
-    { }
-
-    protected InternalNode(IEditableBuffer buffer, InternalNode parent, int parentIndex, int parentTextIndex)
-        : base(buffer, parent, parentIndex, parentTextIndex)
-    { }*/
+    
+    protected IInternalNode? ParentNode;
 
     public int NumberOfChildren => _children.Count;
 
     public INode this[int index]
     {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
+        get => _children[index];
+        set => SetChildAtAndDiscard(index, value);
     }
 
-    public IInternalNode? GetParent()
+    public virtual IInternalNode? GetParent()
     {
-        throw new NotImplementedException();
+        return ParentNode;
     }
 
-    public bool HasParent()
+    public virtual bool HasParent()
     {
-        throw new NotImplementedException();
+        return ParentNode is not null;
     }
 
     public int ParentIndex { get; protected set; }
@@ -115,10 +39,32 @@ public abstract partial class InternalNode : TreeElement, IInternalNode
 
     public IBuffer Buffer => UnderlyingBuffer;
 
-    public IInternalNode CloneAsDetached()
+    public void UnsafeDangerousSetParentIndex(int index)
     {
-        throw new NotImplementedException();
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+        
+        ParentIndex = index;
     }
+
+    public void UnsafeDangerousSetParentTextIndex(int index)
+    {
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+        
+        ParentTextIndex = index;
+    }
+
+    public void UnsafeDangerousSetUnderlyingBuffer(IEditableBuffer buffer)
+    {
+        UnderlyingBuffer = buffer;
+    }
+
+    public abstract IInternalNode CloneAsDetached();
 
     INode INode.CloneAsAttachedTo(IInternalNode newParent, int index)
     {
@@ -127,12 +73,15 @@ public abstract partial class InternalNode : TreeElement, IInternalNode
 
     public void AttachToParent(IInternalNode newParent, int parentIndex)
     {
-        throw new NotImplementedException();
+        ParentNode?.DetachChildAt(ParentIndex);
+        ParentTextIndex = newParent.AttachChild(parentIndex, this);
+        ParentNode = newParent;
+        ParentIndex = parentIndex;
     }
 
     public void DetachFromParent()
     {
-        throw new NotImplementedException();
+        ParentNode?.DetachChildAt(ParentIndex);
     }
 
     INode INode.CloneAsDetached()
@@ -142,7 +91,9 @@ public abstract partial class InternalNode : TreeElement, IInternalNode
 
     public IInternalNode CloneAsAttachedTo(IInternalNode newParent, int index)
     {
-        throw new NotImplementedException();
+        IInternalNode clonedNode = CloneAsDetached(); // Could be optimized
+        newParent.AttachChild(index, clonedNode);
+        return clonedNode;
     }
 
     private void CheckIndexes(int startIndex)

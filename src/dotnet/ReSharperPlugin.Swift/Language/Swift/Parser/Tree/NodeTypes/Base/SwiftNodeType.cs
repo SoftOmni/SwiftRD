@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using JetBrains.Util;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 public abstract class SwiftNodeType(string id, int index) : NodeType(id, index)
 {

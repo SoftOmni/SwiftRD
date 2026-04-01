@@ -9,13 +9,14 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
 using JetBrains.ReSharper.Psi.Modules;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
-using ReSharperPlugin.Swift.Language.Parser;
-using ReSharperPlugin.Swift.Language.Parser.FaultyParsers;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
-using ReSharperPlugin.Swift.Language.ProjectModel;
-using ReSharperPlugin.Swift.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Swift.Parser;
+using SoftOmni.SwiftRd.Language.Swift.Parser.FaultyParsers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.ProjectModel;
+using SoftOmni.SwiftRd.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels.Modules;
 
-namespace ReSharperPlugin.Swift.Language;
+namespace SoftOmni.SwiftRd.Language;
 
 [Language(typeof(SwiftLanguage))]
 public class SwiftLanguageService(SwiftLanguage swiftLanguage, ILazy<IConstantValueService> constantValueService)

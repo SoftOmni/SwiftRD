@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Attributes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 
 public interface IBalancedToken;

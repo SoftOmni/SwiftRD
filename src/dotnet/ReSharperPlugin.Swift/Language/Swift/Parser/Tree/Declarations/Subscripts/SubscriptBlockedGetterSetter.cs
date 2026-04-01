@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Blocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.Blocks;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Subscripts;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
 
 public class SubscriptBlockedGetterSetter : Subscript
 {

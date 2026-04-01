@@ -1,7 +1,7 @@
 using System.Numerics;
-using ReSharperPlugin.Swift.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Semantics.Type;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
 
 public class IntegerLiteralToken()
     : SwiftLiteral(SwiftTokens.IntegerLiteralId, SwiftTokens.IntegerLiteralIndex)

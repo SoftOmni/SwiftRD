@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.DoStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
 
 public class Catch : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Catch : SwiftLeafNode, ISwiftKeyword
     public CatchClause? CatchClause { get; internal set; }
 
     internal Catch(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Catch)
+        : base(buffer, SwiftNodeTypes.Catch)
     { }
 
     internal Catch(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Catch)
+        : base(parent, buffer, SwiftNodeTypes.Catch)
     {
         if (parent is CatchClause catchClause)
         {
@@ -24,7 +24,7 @@ public class Catch : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Catch(CatchClause parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Catch)
+        : base(parent, buffer, SwiftNodeTypes.Catch)
     {
         CatchClause = parent;
     }

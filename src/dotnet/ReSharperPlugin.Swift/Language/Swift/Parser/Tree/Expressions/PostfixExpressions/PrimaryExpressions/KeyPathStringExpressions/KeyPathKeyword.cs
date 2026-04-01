@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathStringExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathStringExpressions;
 
 public class KeyPathKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class KeyPathKeyword : SwiftLeafNode, ISwiftKeyword
     public KeyPathStringExpression? KeyPathStringExpression { get; internal set; }
 
     internal KeyPathKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ReservedKeyPath)
+        : base(buffer, SwiftNodeTypes.ReservedKeyPath)
     { }
 
     internal KeyPathKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedKeyPath)
+        : base(parent, buffer, SwiftNodeTypes.ReservedKeyPath)
     {
         if (parent is KeyPathStringExpression keyPathStringExpression)
         {
@@ -24,7 +24,7 @@ public class KeyPathKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal KeyPathKeyword(KeyPathStringExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedKeyPath)
+        : base(parent, buffer, SwiftNodeTypes.ReservedKeyPath)
     {
         KeyPathStringExpression = parent;
     }

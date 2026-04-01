@@ -1,74 +1,88 @@
 using System;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Root;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.Base;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;
 
 public partial class InternalNode
 {
-    public int InsertChild(int index, INode child)
-    {
-        throw new NotImplementedException();
-    }
+    public int InsertChild(int index, INode child) => InsertChildLoose(index, child);
 
-    public int InsertChild(int index, INode child, Action<INode> actionOnAddition)
-    {
-        throw new NotImplementedException();
-    }
+    public int InsertChild(int index, INode child, Action<INode> actionOnAddition) => InsertChildLoose(index, child, actionOnAddition);
 
     public int InsertChildLoose(int index, INode child)
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChildLoose(int index, INode child, Action<INode> actionOnAddition)
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 
     public int InsertChildConcrete(int index, Node child)
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChildConcrete(int index, Node child, Action<Node> actionOnAddition)
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 
     public int InsertChild<TNode>(int index, TNode child)
         where TNode : INode
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChild<TNode>(int index, TNode child, Action<TNode> actionOnAddition)
         where TNode : INode
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 
     public int InsertChildLoose<TNode>(int index, TNode child)
         where TNode : INode
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChildLoose<TNode>(int index, TNode child, Action<TNode> actionOnAddition)
         where TNode : INode
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 
     public int InsertChildConcrete<TNode>(int index, TNode child)
         where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        return AttachChildForcibly(index, child);
     }
 
     public int InsertChildConcrete<TNode>(int index, TNode child, Action<TNode> actionOnAddition)
         where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckChildForAttachment(index, child);
+        int newParentTextIndex = AttachChildForcibly(index, child);
+        actionOnAddition(child);
+        return newParentTextIndex;
     }
 }

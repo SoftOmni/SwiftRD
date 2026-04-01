@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.PrecedenceGroups;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups;
 
 public class PrecedenceGroupKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class PrecedenceGroupKeyword : SwiftLeafNode, ISwiftKeyword
     public PrecedenceGroup? PrecedenceGroup { get; internal set; }
 
     internal PrecedenceGroupKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.PrecedenceGroup)
+        : base(buffer, SwiftNodeTypes.PrecedenceGroup)
     { }
 
     internal PrecedenceGroupKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.PrecedenceGroup)
+        : base(parent, buffer, SwiftNodeTypes.PrecedenceGroup)
     {
         if (parent is PrecedenceGroup precedenceGroup)
         {
@@ -24,7 +24,7 @@ public class PrecedenceGroupKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal PrecedenceGroupKeyword(PrecedenceGroup parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.PrecedenceGroup)
+        : base(parent, buffer, SwiftNodeTypes.PrecedenceGroup)
     {
         PrecedenceGroup = parent;
     }

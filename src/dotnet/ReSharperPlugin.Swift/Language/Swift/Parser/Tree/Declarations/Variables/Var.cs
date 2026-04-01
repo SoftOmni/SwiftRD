@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables;
 
 public class Var : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Var : SwiftLeafNode, ISwiftKeyword
     public Variable? Variable { get; private set; }
     
     internal Var(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Var)
+        : base(buffer, SwiftNodeTypes.Var)
     { }
 
     internal Var(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Var)
+        : base(parent, buffer, SwiftNodeTypes.Var)
     {
         if (parent is Variable variable)
         {
@@ -24,7 +24,7 @@ public class Var : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Var(Variable variable, IEditableBuffer buffer)
-        : base(variable, buffer, NodeTypes.NodeTypes.Var)
+        : base(variable, buffer, SwiftNodeTypes.Var)
     {
         Variable = variable;
     }

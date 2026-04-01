@@ -1,18 +1,18 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
 
 public class EndIfDirective : Directive
 {
     public ConditionalCompilationBlock? ConditionalCompilationBlock { get; internal set; }
     
-    internal EndIfDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedEndIf)
+    internal EndIfDirective(IEditableBuffer buffer) : base(buffer, SwiftNodeTypes.ReservedEndIf)
     { }
 
     internal EndIfDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
-        NodeTypes.NodeTypes.ReservedEndIf)
+        SwiftNodeTypes.ReservedEndIf)
     {
         if (parent is ConditionalCompilationBlock conditionalCompilationBlock)
         {
@@ -22,16 +22,16 @@ public class EndIfDirective : Directive
 
     public static EndIfDirective Create()
     {
-        return new EndIfDirective(new EditableBuffer(NodeTypes.NodeTypes.ReservedEndIf.TokenRepresentation));
+        return new EndIfDirective(new EditableBuffer(SwiftNodeTypes.ReservedEndIf.TokenRepresentation));
     }
     
     public static EndIfDirective Create(ConditionalCompilationBlock conditionalCompilationBlock)
     {
-        return new EndIfDirective(conditionalCompilationBlock, new EditableBuffer(NodeTypes.NodeTypes.ReservedEndIf.TokenRepresentation));
+        return new EndIfDirective(conditionalCompilationBlock, new EditableBuffer(SwiftNodeTypes.ReservedEndIf.TokenRepresentation));
     }
 
     internal static EndIfDirective CreateUnchecked(SwiftInternalNode parent)
     {
-        return new EndIfDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedEndIf.TokenRepresentation));
+        return new EndIfDirective(parent, new EditableBuffer(SwiftNodeTypes.ReservedEndIf.TokenRepresentation));
     }
 }

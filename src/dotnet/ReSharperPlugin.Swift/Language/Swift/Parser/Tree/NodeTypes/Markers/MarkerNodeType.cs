@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.NodeTypes.Markers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Markers;
 
 public abstract class MarkerNodeType(string id, int index) : SwiftNodeType(id, index)
 {

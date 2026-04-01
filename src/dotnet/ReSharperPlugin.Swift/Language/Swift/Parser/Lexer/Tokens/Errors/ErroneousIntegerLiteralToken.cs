@@ -1,8 +1,8 @@
 using System.Numerics;
-using ReSharperPlugin.Swift.Language.Semantics.Type;
-using ReSharperPlugin.Swift.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 public class ErroneousIntegerLiteralToken() : ErroneousSwiftLiteral(SwiftTokens.ErroneousIntegerLiteralId, SwiftTokens.ErroneousIntegerLiteralIndex);
 

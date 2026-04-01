@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.ProjectModel;
 
-namespace ReSharperPlugin.Swift.Language.ObjectiveCXX.File;
+namespace SoftOmni.SwiftRd.Language.ObjectiveCXX.File;
 
 [ProjectFileTypeDefinition(Name)]
 public class ObjectiveCxxFileType : KnownProjectFileType

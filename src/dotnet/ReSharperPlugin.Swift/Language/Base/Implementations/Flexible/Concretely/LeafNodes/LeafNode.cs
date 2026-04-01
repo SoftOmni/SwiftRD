@@ -1,15 +1,15 @@
+using System;
 using System.Text;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Extensions;
-using ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.LeafNodes;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Extensions;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.LeafNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.LeafNodes;
 
 public abstract class LeafNode : LeafElementBase, ILeafNode
 {
@@ -42,6 +42,31 @@ public abstract class LeafNode : LeafElementBase, ILeafNode
     public int ParentTextIndex { get; protected set; }
     
     public IBuffer Buffer => UnderlyingBuffer;
+
+    public void UnsafeDangerousSetParentIndex(int index)
+    {
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+
+        ParentIndex = index;
+    }
+
+    public void UnsafeDangerousSetParentTextIndex(int index)
+    {
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+        
+        ParentTextIndex = index;
+    }
+
+    public void UnsafeDangerousSetUnderlyingBuffer(IEditableBuffer buffer)
+    {
+        UnderlyingBuffer = buffer;
+    }
 
     public abstract ILeafNode CloneAsDetached();
 

@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.MetaTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.MetaTypes;
 
 public class Protocol : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Protocol : SwiftLeafNode, ISwiftKeyword
     public ProtocolMetaType? ProtocolMetaType { get; internal set; }
 
     internal Protocol(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ProtocolUppercase)
+        : base(buffer, SwiftNodeTypes.ProtocolUppercase)
     { }
 
     internal Protocol(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ProtocolUppercase)
+        : base(parent, buffer, SwiftNodeTypes.ProtocolUppercase)
     {
         if (parent is ProtocolMetaType protocolMetaType)
         {
@@ -24,7 +24,7 @@ public class Protocol : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Protocol(ProtocolMetaType parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ProtocolUppercase)
+        : base(parent, buffer, SwiftNodeTypes.ProtocolUppercase)
     {
         ProtocolMetaType = parent;
     }

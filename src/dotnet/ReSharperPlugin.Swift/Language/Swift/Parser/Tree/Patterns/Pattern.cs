@@ -1,4 +1,4 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Patterns;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns;
 
 public class Pattern
 {

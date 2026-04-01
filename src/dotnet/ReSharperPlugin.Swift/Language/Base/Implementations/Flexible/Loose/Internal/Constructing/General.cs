@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.InternalNodes;
-using ReSharperPlugin.Swift.Technology;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
+using SoftOmni.SwiftRd.Technology;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;
 
 public partial class InternalNode
 {
@@ -44,6 +46,36 @@ public partial class InternalNode
         UnderlyingBuffer = new SubEditableBuffer(parent.UnderlyingBuffer, textIndex, lengthInParent);
         ParentTextIndex = textIndex;
         ParentIndex = index;
+    }
+
+    protected InternalNode(IEnumerator<INode> childEnumerator, bool mustDispose = true)
+    {
+        UnderlyingBuffer = new EditableBuffer();
+
+        while (childEnumerator.MoveNext())
+        {
+            INode? currentNode = childEnumerator.Current;
+            if (currentNode is null)
+            {
+                continue;
+            }
+
+            AppendChild(currentNode);
+        }
+
+        if (mustDispose)
+        {
+            childEnumerator.Dispose();
+        }
+    }
+
+    protected InternalNode(IEnumerable<INode> children)
+    {
+        UnderlyingBuffer = new EditableBuffer();
+        foreach (INode child in children)
+        {
+            AppendChild(child);
+        }
     }
 
     private static IEditableBuffer CloneBuffer(IEditableBuffer bufferToClone)

@@ -1,13 +1,14 @@
-using System;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
-using ReSharperPlugin.Swift.Language.Parser.Lexer;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.TopLevel;
-using ReSharperPlugin.Swift.Language.ProjectModel;
+using SoftOmni.SwiftRd.Language.ProjectModel;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels;
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels.Modules;
 
-namespace ReSharperPlugin.Swift.Language.Parser;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser;
 
-public class SwiftParser : IParser
+public partial class SwiftParser : IParser
 {
     public SwiftFilteringLexer FilteringLexer { get; internal set; }
     

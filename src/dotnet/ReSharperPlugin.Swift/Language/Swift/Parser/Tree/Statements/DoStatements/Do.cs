@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.DoStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
 
 public class Do : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Do : SwiftLeafNode, ISwiftKeyword
     public DoStatement? DoStatement { get; internal set; }
 
     internal Do(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Do)
+        : base(buffer, SwiftNodeTypes.Do)
     { }
 
     internal Do(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Do)
+        : base(parent, buffer, SwiftNodeTypes.Do)
     {
         if (parent is DoStatement doStatement)
         {
@@ -24,7 +24,7 @@ public class Do : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Do(DoStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Do)
+        : base(parent, buffer, SwiftNodeTypes.Do)
     {
         DoStatement = parent;
     }

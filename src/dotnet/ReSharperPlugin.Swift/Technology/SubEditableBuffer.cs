@@ -3,7 +3,7 @@ using System.Text;
 using JetBrains.Text;
 using JetBrains.Util;
 
-namespace ReSharperPlugin.Swift.Technology;
+namespace SoftOmni.SwiftRd.Technology;
 
 public class SubEditableBuffer : IEditableBuffer
 {

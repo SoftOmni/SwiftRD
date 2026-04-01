@@ -10,12 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3001.1.0.233" />
-    <PackageReference Include="IndexRange" Version="1.1.0" />
-    <PackageReference Include="JetBrains.Rider.SDK" Version="2025.3.0.1">
+    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3003.0.0.346" />
+    <PackageReference Include="IndexRange" Version="1.1.1" />
+    <PackageReference Include="JetBrains.Rider.SDK" Version="2026.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,27 @@
     <Folder Include="Language\Parser\Tree\Statements\ControlTransferStatements\CompositeStatements\LoopControlTransferStatements\Breaks\" />
     <Folder Include="Language\Parser\Tree\Statements\LoopStatements\WhileLoops\" />
     <Folder Include="Technology\Ranges\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="JetBrains.ReSharper.Cpp">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\home\jaschamerle\.nuget\packages\jetbrains.psi.features.cpp.src.core\253.0.20251112.231206\DotFiles\JetBrains.ReSharper.Cpp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\home\jaschamerle\.nuget\packages\system.collections.immutable\8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
   </ItemGroup>
 
 </Project>

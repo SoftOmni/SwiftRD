@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
 public class Optional : DeclarationModifierLeaf, ISwiftKeyword
 {
     public const string Keyword = "optional";
     
     internal Optional(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Optional)
+        : base(SwiftNodeTypes.Optional, buffer)
     { }
 
     internal Optional(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.Optional)
+        : base(parent, buffer, SwiftNodeTypes.Optional)
     { }
 
 

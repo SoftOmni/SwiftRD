@@ -1,9 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Indirecterations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
 
 public class Indirect : SwiftLeafNode, ISwiftKeyword
 {
@@ -12,11 +12,11 @@ public class Indirect : SwiftLeafNode, ISwiftKeyword
     public UnionStyleEnumeration? UnionStyleEnumeration { get; internal set; }
 
     internal Indirect(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Indirect)
+        : base(buffer, SwiftNodeTypes.Indirect)
     { }
 
     internal Indirect(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Indirect)
+        : base(parent, buffer, SwiftNodeTypes.Indirect)
     {
         if (parent is UnionStyleEnumeration unionStyleEnumeration)
         {
@@ -25,7 +25,7 @@ public class Indirect : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Indirect(UnionStyleEnumeration parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Indirect)
+        : base(parent, buffer, SwiftNodeTypes.Indirect)
     {
         UnionStyleEnumeration = parent;
     }

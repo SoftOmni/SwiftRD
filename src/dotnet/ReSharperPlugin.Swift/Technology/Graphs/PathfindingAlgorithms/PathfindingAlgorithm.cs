@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NuGet;
 
-namespace ReSharperPlugin.Swift.Technology.Graphs.PathfindingAlgorithms;
+namespace SoftOmni.SwiftRd.Technology.Graphs.PathfindingAlgorithms;
 
 public abstract class PathfindingAlgorithm
 {

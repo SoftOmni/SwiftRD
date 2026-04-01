@@ -1,15 +1,38 @@
 using System;
 using System.Collections.Generic;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Loose.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;
 
 public partial class InternalNode
 {
-    public int Count(INode child)
+    /*public int Count(INode child, bool recursive)
     {
-        throw new NotImplementedException();
-    }
+        int count = 0;
+
+        if (recursive)
+        {
+            foreach (INode childNode in _children)
+            {
+                if (childNode == child)
+                {
+                    count++;
+                }
+            }
+            
+            return count;
+        }
+        
+        foreach (INode childNode in _children)
+        {
+            if (childNode == child)
+            {
+                count++;
+            }
+            
+            count += childNode.Count
+        }
+    }*/
 
     public int Count<TNode>(TNode child)
         where TNode : INode

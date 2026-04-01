@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.InfixExpressions.TypeCastingOperators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.InfixExpressions.TypeCastingOperators;
 
 public class Is : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Is : SwiftLeafNode, ISwiftKeyword
     public IsTypeCastingOperator? IsTypeCastingOperator { get; internal set; }
 
     internal Is(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Is)
+        : base(buffer, SwiftNodeTypes.Is)
     { }
 
     internal Is(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Is)
+        : base(parent, buffer, SwiftNodeTypes.Is)
     {
         if (parent is IsTypeCastingOperator isTypeCastingOperator)
         {
@@ -24,7 +24,7 @@ public class Is : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Is(IsTypeCastingOperator parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Is)
+        : base(parent, buffer, SwiftNodeTypes.Is)
     {
         IsTypeCastingOperator = parent;
     }

@@ -1,140 +1,171 @@
 using System;
-using System.Collections.Generic;
-using ReSharperPlugin.Swift.Language.Base.Interfaces.Flexible.Root;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
-namespace ReSharperPlugin.Swift.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
 
 public partial class InternalNode
 {
     public bool Contains(INode child)
     {
-        throw new NotImplementedException();
+        return Contains(node => node == child);
+    }
+
+    public bool Contains(Node child)
+    {
+        return _children.Contains(child);
     }
 
     public bool Contains<TNode>(TNode child)
         where TNode : INode
     {
-        throw new NotImplementedException();
+        return Contains(node => node.Equals(child));
     }
 
-    public bool Contains(INode child, int startIndex)
+    public bool Contains(Node child, int startIndex)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex);
+        return ContainsInRangeUnchecked(child, startIndex, _children.Count);
     }
 
     public bool Contains<TNode>(TNode child, int startIndex)
-        where TNode : INode
+        where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex);
+        return ContainsInRangeUnchecked(child, startIndex, _children.Count);
     }
 
-    public bool Contains(INode child, int startIndex, int count)
+    public bool Contains(Node child, int startIndex, int count)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex, count);
+        return ContainsInRangeUnchecked(child, startIndex, _children.Count);
     }
 
     public bool Contains<TNode>(TNode child, int startIndex, int count)
-        where TNode : INode
+        where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex, count);
+        return ContainsInRangeUnchecked(child, startIndex, _children.Count);
     }
 
-    public bool ContainsInRange(INode child, int startIndex, int endIndex)
+    public bool ContainsInRange(Node child, int startIndex, int endIndex)
     {
-        throw new NotImplementedException();
+        CheckIndexesInRange(startIndex, endIndex);
+        return ContainsInRangeUnchecked(child, startIndex, endIndex);
     }
 
     public bool ContainsInRange<TNode>(TNode child, int startIndex, int endIndex)
-        where TNode : INode
+        where TNode : Node
     {
-        throw new NotImplementedException();
+        CheckIndexesInRange(startIndex, endIndex);
+        return ContainsInRangeUnchecked(child, startIndex, endIndex);
     }
 
-    public bool Contains(Func<INode, bool> predicate)
+    private bool ContainsInRangeUnchecked(Node child, int startIndex, int endIndex)
     {
-        throw new NotImplementedException();
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            if (_children[i] == child)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public bool Contains<TNode>(Func<TNode, bool> predicate)
-        where TNode : INode
+    private bool ContainsInRangeUnchecked<TNode>(TNode child, int startIndex, int endIndex)
+        where TNode : Node
     {
-        throw new NotImplementedException();
+        Node node = child;
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            if (_children[i] == node)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public bool Contains(Func<INode, bool> predicate, int startIndex)
+    public bool Contains(Func<Node, bool> predicate)
     {
-        throw new NotImplementedException();
+        foreach (Node node in _children)
+        {
+            if (predicate(node))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public bool Contains<TNode>(Func<TNode, bool> predicate, int startIndex)
-        where TNode : INode
+    public bool Contains(Func<Node, bool> predicate, int startIndex)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex);
+        return ContainsInRangeUnchecked(predicate, startIndex, _children.Count);
     }
 
-    public bool Contains(Func<INode, bool> predicate, int startIndex, int count)
+    public bool Contains(Func<Node, bool> predicate, int startIndex, int count)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex + count);
+        return ContainsInRangeUnchecked(predicate, startIndex, startIndex + count);
     }
 
-    public bool Contains<TNode>(Func<TNode, bool> predicate, int startIndex, int count)
-        where TNode : INode
+    public bool ContainsInRange(Func<Node, bool> predicate, int startIndex, int endIndex)
     {
-        throw new NotImplementedException();
+        CheckIndexesInRange(startIndex, endIndex);
+        return ContainsInRangeUnchecked(predicate, startIndex, endIndex);
     }
 
-    public bool ContainsInRange(Func<INode, bool> predicate, int startIndex, int endIndex)
+    public bool Contains(Func<Node, int, bool> predicate)
     {
-        throw new NotImplementedException();
+        return ContainsInRange(predicate, 0, _children.Count);
     }
 
-    public bool ContainsInRange<TNode>(Func<INode, bool> predicate, int startIndex, int endIndex)
-        where TNode : INode
+    public bool Contains(Func<Node, int, bool> predicate, int startIndex)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex);
+        return ContainsInRangeUnchecked(predicate, startIndex, _children.Count);
     }
 
-    public bool Contains(Func<INode, int, bool> predicate)
+    public bool Contains(Func<Node, int, bool> predicate, int startIndex, int count)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex);
+        return ContainsInRangeUnchecked(predicate, startIndex, startIndex + count);
     }
 
-    public bool Contains<TNode>(Func<TNode, int, bool> predicate)
-        where TNode : INode
+    public bool ContainsInRange(Func<Node, int, bool> predicate, int startIndex, int endIndex)
     {
-        throw new NotImplementedException();
+        CheckIndexes(startIndex, endIndex);
+        return ContainsInRangeUnchecked(predicate, startIndex, endIndex);
     }
 
-    public bool Contains(Func<INode, int, bool> predicate, int startIndex)
+    private bool ContainsInRangeUnchecked(Func<Node, bool> predicate, int startIndex, int endIndex)
     {
-        throw new NotImplementedException();
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            if (predicate(_children[i]))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public bool Contains<TNode>(Func<TNode, int, bool> predicate, int startIndex)
-        where TNode : INode
+    private bool ContainsInRangeUnchecked(Func<Node, int, bool> predicate, int startIndex, int endIndex)
     {
-        throw new NotImplementedException();
-    }
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            if (predicate(_children[i], i))
+            {
+                return true;
+            }
+        }
 
-    public bool Contains(Func<INode, int, bool> predicate, int startIndex, int count)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Contains<TNode>(Func<TNode, int, bool> predicate, int startIndex, int count)
-        where TNode : INode
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool ContainsInRange(Func<INode, int, bool> predicate, int startIndex, int endIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool ContainsInRange<TNode>(Func<INode, int, bool> predicate, int startIndex, int endIndex)
-        where TNode : INode
-    {
-        throw new NotImplementedException();
+        return false;
     }
 }

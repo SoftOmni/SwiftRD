@@ -1,6 +1,6 @@
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
 
 public class StringEscapeSequenceToken()
     : SwiftTokenNodeType(SwiftTokens.StringEscapeSequenceId, SwiftTokens.StringEscapeSequenceIndex)

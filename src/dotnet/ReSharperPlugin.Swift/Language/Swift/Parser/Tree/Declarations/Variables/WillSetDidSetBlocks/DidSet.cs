@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
 
 public class DidSet : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class DidSet : SwiftLeafNode, ISwiftKeyword
     public DidSetClause? DidSetClause { get; private set; }
     
     internal DidSet(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.DidSet)
+        : base(buffer, SwiftNodeTypes.DidSet)
     { }
 
     internal DidSet(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.DidSet)
+        : base(parent, buffer, SwiftNodeTypes.DidSet)
     {
         if (parent is DidSetClause didSetClause)
         {
@@ -24,7 +24,7 @@ public class DidSet : SwiftLeafNode, ISwiftKeyword
     }
 
     internal DidSet(DidSetClause didSetClause, IEditableBuffer buffer)
-        : base(didSetClause, buffer, NodeTypes.NodeTypes.DidSet)
+        : base(didSetClause, buffer, SwiftNodeTypes.DidSet)
     {
         DidSetClause = didSetClause;
     }

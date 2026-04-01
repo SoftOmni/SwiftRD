@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Operators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
 public class OperatorKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class OperatorKeyword : SwiftLeafNode, ISwiftKeyword
     public OperatorDeclaration? OperatorDeclaration { get; internal set; }
 
     internal OperatorKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Operator)
+        : base(buffer, SwiftNodeTypes.Operator)
     { }
 
     internal OperatorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Operator)
+        : base(parent, buffer, SwiftNodeTypes.Operator)
     {
         if (parent is OperatorDeclaration operatorDeclaration)
         {
@@ -24,7 +24,7 @@ public class OperatorKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal OperatorKeyword(OperatorDeclaration parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Operator)
+        : base(parent, buffer, SwiftNodeTypes.Operator)
     {
         OperatorDeclaration = parent;
     }

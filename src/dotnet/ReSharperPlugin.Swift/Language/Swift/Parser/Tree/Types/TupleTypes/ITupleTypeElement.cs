@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.TupleTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TupleTypes;
 
 public interface ITupleTypeElement;

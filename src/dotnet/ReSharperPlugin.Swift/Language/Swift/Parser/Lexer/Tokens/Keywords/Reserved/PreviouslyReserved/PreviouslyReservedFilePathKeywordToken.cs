@@ -1,6 +1,6 @@
 using System;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Reserved;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
 public class PreviouslyReservedFilePathKeywordToken()
     : PreviouslyReservedKeywordToken("#file", SwiftTokens.PreviouslyReservedFilePathId, SwiftTokens.PreviouslyReservedFilePathIndex)

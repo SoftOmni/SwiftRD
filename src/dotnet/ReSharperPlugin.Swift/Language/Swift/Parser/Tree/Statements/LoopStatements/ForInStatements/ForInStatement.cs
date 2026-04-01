@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Enumerations.Cases;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Patterns;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Switches;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.LoopStatements.ForInStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.ForInStatements;
 
 public class ForInStatement : LoopStatement
 {

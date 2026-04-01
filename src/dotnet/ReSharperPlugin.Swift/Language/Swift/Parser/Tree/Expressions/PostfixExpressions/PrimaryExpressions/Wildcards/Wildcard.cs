@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Wildcards;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Wildcards;
 
 public class Wildcard : PrimaryExpressionLeafNode, ISwiftKeyword
 {
     public const string Keyword = "_";
 
     internal Wildcard(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.Underscore)
+        : base(buffer, SwiftNodeTypes.Underscore)
     { }
 
     internal Wildcard(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Underscore)
+        : base(parent, buffer, SwiftNodeTypes.Underscore)
     { }
 
 

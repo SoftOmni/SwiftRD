@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.DefaultLabels;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.DefaultLabels;
 
 public class Default : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class Default : SwiftLeafNode, ISwiftKeyword
     public DefaultLabel? DefaultLabel { get; internal set; }
 
     internal Default(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Default)
+        : base(buffer, SwiftNodeTypes.Default)
     { }
 
     internal Default(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Default)
+        : base(parent, buffer, SwiftNodeTypes.Default)
     {
         if (parent is DefaultLabel defaultLabel)
         {
@@ -24,7 +24,7 @@ public class Default : SwiftLeafNode, ISwiftKeyword
     }
 
     internal Default(DefaultLabel parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Default)
+        : base(parent, buffer, SwiftNodeTypes.Default)
     {
         DefaultLabel = parent;
     }

@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.Colors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.Colors;
 
 public class ColorLiteral : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class ColorLiteral : SwiftLeafNode, ISwiftKeyword
     public Color? Color { get; internal set; }
 
     internal ColorLiteral(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.ReservedColorLiteral)
+        : base(buffer, SwiftNodeTypes.ReservedColorLiteral)
     { }
 
     internal ColorLiteral(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedColorLiteral)
+        : base(parent, buffer, SwiftNodeTypes.ReservedColorLiteral)
     {
         if (parent is Color color)
         {
@@ -24,7 +24,7 @@ public class ColorLiteral : SwiftLeafNode, ISwiftKeyword
     }
 
     internal ColorLiteral(Color parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.ReservedColorLiteral)
+        : base(parent, buffer, SwiftNodeTypes.ReservedColorLiteral)
     {
         Color = parent;
     }

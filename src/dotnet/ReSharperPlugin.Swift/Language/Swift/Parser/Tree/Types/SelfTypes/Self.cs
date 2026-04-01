@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Types.SelfTypes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.SelfTypes;
 
 public class Self : TypeLeafNode, ISwiftKeyword
 {
     public const string Keyword = "Self";
 
     internal Self(IEditableBuffer buffer)
-        : base(buffer, NodeTypes.NodeTypes.SelfUppercase)
+        : base(buffer, SwiftNodeTypes.SelfUppercase)
     { }
 
     internal Self(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.SelfUppercase)
+        : base(parent, buffer, SwiftNodeTypes.SelfUppercase)
     { }
 
     public string KeywordValue => Keyword;

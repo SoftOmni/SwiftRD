@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.DirectiveClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.DirectiveClauses;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
 
 public class ElseIfDirective : Directive
 {
     public ElseIfDirectiveClause? Clause { get; internal set; }
 
-    internal ElseIfDirective(IEditableBuffer buffer) : base(buffer, NodeTypes.NodeTypes.ReservedElseIf)
+    internal ElseIfDirective(IEditableBuffer buffer) : base(buffer, SwiftNodeTypes.ReservedElseIf)
     { }
 
     internal ElseIfDirective(SwiftInternalNode parent, IEditableBuffer buffer) : base(parent, buffer,
-        NodeTypes.NodeTypes.ReservedElseIf)
+        SwiftNodeTypes.ReservedElseIf)
     {
         if (parent is ElseIfDirectiveClause clause)
         {
@@ -22,25 +22,25 @@ public class ElseIfDirective : Directive
     }
 
     internal ElseIfDirective(ElseIfDirectiveClause parentClause, IEditableBuffer buffer) : base(parentClause, buffer,
-        NodeTypes.NodeTypes.ReservedIf)
+        SwiftNodeTypes.ReservedIf)
     {
         Clause = parentClause;
     }
 
     public static ElseIfDirective Create()
     {
-        return new ElseIfDirective(new EditableBuffer(NodeTypes.NodeTypes.ReservedElseIf.TokenRepresentation));
+        return new ElseIfDirective(new EditableBuffer(SwiftNodeTypes.ReservedElseIf.TokenRepresentation));
     }
 
     public static ElseIfDirective Create(ElseIfDirectiveClause ifDirectiveClause)
     {
         return new ElseIfDirective(ifDirectiveClause,
-            new EditableBuffer(NodeTypes.NodeTypes.ReservedElseIf.TokenRepresentation)); // TODO: Fix representations
+            new EditableBuffer(SwiftNodeTypes.ReservedElseIf.TokenRepresentation)); // TODO: Fix representations
     }
 
     internal static ElseIfDirective CreateUnchecked(SwiftInternalNode parent)
     {
-        return new ElseIfDirective(parent, new EditableBuffer(NodeTypes.NodeTypes.ReservedElseIf.TokenRepresentation));
+        return new ElseIfDirective(parent, new EditableBuffer(SwiftNodeTypes.ReservedElseIf.TokenRepresentation));
     }
 
     public bool AssociatedToClause => Clause is not null;

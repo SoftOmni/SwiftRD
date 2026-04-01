@@ -1,6 +1,6 @@
 using System;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 public class UnmatchedEscapeSequenceToken() : ErroneousToken(SwiftTokens.UnmatchedEscapeSequenceId, SwiftTokens.UnmatchedEscapeSequenceIndex);
 

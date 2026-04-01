@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Extensions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 
 public class ExtensionKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class ExtensionKeyword : SwiftLeafNode, ISwiftKeyword
     public Extension? Extension { get; internal set; }
 
     internal ExtensionKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Extension)
+        : base(buffer, SwiftNodeTypes.Extension)
     { }
 
     internal ExtensionKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Extension)
+        : base(parent, buffer, SwiftNodeTypes.Extension)
     {
         if (parent is Extension extension)
         {
@@ -24,7 +24,7 @@ public class ExtensionKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal ExtensionKeyword(Extension parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Extension)
+        : base(parent, buffer, SwiftNodeTypes.Extension)
     {
         Extension = parent;
     }

@@ -1,19 +1,19 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Punctuators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 public class LeftCurlyBrace : SwiftLeafNode, ISwiftPunctuator
 {
     public const string Value = "{";
     
     internal LeftCurlyBrace(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.LeftCurlyBrace)
+        : base(buffer, SwiftNodeTypes.LeftCurlyBrace)
     { }
 
     internal LeftCurlyBrace(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, NodeTypes.NodeTypes.LeftCurlyBrace)
+        : base(parent, buffer, SwiftNodeTypes.LeftCurlyBrace)
     { }
 
 

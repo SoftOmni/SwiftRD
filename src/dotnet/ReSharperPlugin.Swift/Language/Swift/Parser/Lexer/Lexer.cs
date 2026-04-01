@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 using JetBrains.Util;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens;
-using ReSharperPlugin.Swift.Language.Parser.Lexer.Tokens.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 // ReSharper disable RedundantDefaultMemberInitializer
 
-namespace ReSharperPlugin.Swift.Language.Parser.Lexer;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public partial class SwiftLexer: IIncrementalLexer
 {
@@ -322,6 +322,14 @@ internal static partial class SwiftLexerExtensions
         if (inclusive)
         {
             set.Add(end);
+        }
+    }
+
+    public static void AddElements(this HashSet<char> set, params char[] chars)
+    {
+        foreach (char c in chars)
+        {
+            set.Add(c);
         }
     }
 }

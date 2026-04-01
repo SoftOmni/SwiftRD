@@ -4,11 +4,11 @@ using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 using JetBrains.UI.Icons;
 using JetBrains.Util.Dotnet.TargetFrameworkIds;
-using ReSharperPlugin.Swift.Language;
-using ReSharperPlugin.Swift.Language.File;
-using ReSharperPlugin.Swift.Language.Ui.Icons;
+using SoftOmni.SwiftRd.Language;
+using SoftOmni.SwiftRd.Language.File;
+using SoftOmni.SwiftRd.Language.Ui.Icons;
 
-namespace ReSharperPlugin.Swift;
+namespace SoftOmni.SwiftRd;
 
 public class SwiftFileLanguageService : IProjectFileLanguageService
 {

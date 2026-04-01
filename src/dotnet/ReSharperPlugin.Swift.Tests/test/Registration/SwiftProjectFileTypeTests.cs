@@ -4,9 +4,9 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Resources.Shell;
 using JetBrains.TestFramework;
 using NUnit.Framework;
-using ReSharperPlugin.Swift.Language.File;
+using SoftOmni.SwiftRd.Language.File;
 
-namespace ReSharperPlugin.Swift.Tests.test.Registration;
+namespace SoftOmni.SwiftRd.Tests.test.Registration;
 
 [TestFixture]
 public class SwiftProjectFileTypeTests : BaseTest

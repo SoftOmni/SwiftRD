@@ -1,8 +1,8 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Parser.Tree.Declarations.Subscripts;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
 
 public class SubscriptKeyword : SwiftLeafNode, ISwiftKeyword
 {
@@ -11,11 +11,11 @@ public class SubscriptKeyword : SwiftLeafNode, ISwiftKeyword
     public Subscript? Subscript { get; internal set; }
 
     internal SubscriptKeyword(IEditableBuffer buffer) 
-        : base(buffer, NodeTypes.NodeTypes.Subscript)
+        : base(buffer, SwiftNodeTypes.Subscript)
     { }
 
     internal SubscriptKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Subscript)
+        : base(parent, buffer, SwiftNodeTypes.Subscript)
     {
         if (parent is Subscript subscript)
         {
@@ -24,7 +24,7 @@ public class SubscriptKeyword : SwiftLeafNode, ISwiftKeyword
     }
 
     internal SubscriptKeyword(Subscript parent, IEditableBuffer buffer)
-        : base(parent, buffer, NodeTypes.NodeTypes.Subscript)
+        : base(parent, buffer, SwiftNodeTypes.Subscript)
     {
         Subscript = parent;
     }
