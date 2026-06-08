@@ -13,6 +13,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 using SoftOmni.SwiftRd.Resources.Icons.Language;
+using Internal = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves.Internal;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
 
@@ -24,9 +25,9 @@ public class TypeAlias : Declaration<IType>, ITypeAlias, INamedDeclaration<TypeA
 
     public TypeAliasKeyword Keyword { get; }
     
-    public GenericParameterClause? GenericParameterClause { get; internal set; }
-
     public Identifier? Name { get; internal set; }
+    
+    public GenericParameterClause? GenericParameterClause { get; internal set; }
 
     public Equal Equal { get; }
 

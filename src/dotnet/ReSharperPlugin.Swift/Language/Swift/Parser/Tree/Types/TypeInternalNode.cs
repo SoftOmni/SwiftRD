@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-public abstract class TypeInternalNode : SwiftInternalNode, IType
+public abstract class TypeInternalNode : SwiftCompositeNode, IType
 {
     private readonly List<List<IType>> _subTypeChains = [];
 
@@ -20,37 +21,20 @@ public abstract class TypeInternalNode : SwiftInternalNode, IType
     
     private readonly ModularVisibilityHashSet<string> _subTypeNames = [];
 
-    protected TypeInternalNode(IEditableBuffer buffer, List<ISwiftNode> children)
-        : base(buffer, children)
-    {
-        TypeSignature = buffer.GetText();
-        DeclaredType = this;
-        ActualType = this;
-    }
+    protected TypeInternalNode(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    protected TypeInternalNode(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    {
-        TypeSignature = buffer.GetText();
-        DeclaredType = this;
-        ActualType = this;
-    }
+    protected TypeInternalNode(SwiftCompositeNode parent, int index, IEditableBuffer editableBuffer, IEnumerable<ISwiftNode<SwiftCompositeNode>>? children = null) 
+        : base(parent, index, editableBuffer, children)
+    { }
 
-    protected TypeInternalNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, parentIndex, parentTextIndex, buffer, nodes)
-    {
-        TypeSignature = buffer.GetText();
-        DeclaredType = this;
-        ActualType = this;
-    }
+    protected TypeInternalNode(SwiftCompositeNode parent, int index, int textIndex, int lengthInParent, IEnumerable<ISwiftNode<SwiftCompositeNode>>? children = null) 
+        : base(parent, index, textIndex, lengthInParent, children)
+    { }
 
-    protected TypeInternalNode(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, parentIndex, parentTextIndex, buffer, nodes)
-    {
-        TypeSignature = buffer.GetText();
-        DeclaredType = this;
-        ActualType = this;
-    }
+    protected TypeInternalNode(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children) : base(buffer, children)
+    { }
 
     public IType? DeclaredType { get; protected set; } = null;
 

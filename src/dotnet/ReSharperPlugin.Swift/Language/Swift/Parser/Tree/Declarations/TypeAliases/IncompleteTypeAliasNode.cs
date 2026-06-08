@@ -33,7 +33,7 @@ public class IncompleteTypeAliasNode : SwiftErrorCompositeNode, ITypeAlias
 
     internal IncompleteTypeAliasNode(IEditableBuffer buffer, List<ISwiftNode<SwiftCompositeNode>> children, AttributeGroup? attributes, IAccessLevelModifier? accessLevelModifier, TypeAliasKeyword keyword,
         Identifier? name, Equal? equal, IType? type)
-        : base(buffer, children)
+        : base(buffer, children, TODO)
     {
         Attributes = attributes;
         AccessLevelModifier = accessLevelModifier;

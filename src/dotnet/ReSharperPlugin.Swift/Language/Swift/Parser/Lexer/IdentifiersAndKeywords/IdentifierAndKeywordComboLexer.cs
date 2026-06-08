@@ -1,7 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using JetBrains.Util.dataStructures;
-using NuGet;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
@@ -53,8 +52,7 @@ public partial class SwiftLexer
         }
 
         TokenType = SwiftTokens.UnmatchedHashtagToken;
-        BackingUnmatchedHashtagToken backingUnmatchedHashtagToken =
-            new BackingUnmatchedHashtagToken(value,
+        BackingUnmatchedHashtagToken backingUnmatchedHashtagToken = new(value,
                 BackingUnmatchedHashtagToken.ErrorCase.UnmatchedHashtagReservedKeyword);
         
         BackPutBackingToken(backingUnmatchedHashtagToken);

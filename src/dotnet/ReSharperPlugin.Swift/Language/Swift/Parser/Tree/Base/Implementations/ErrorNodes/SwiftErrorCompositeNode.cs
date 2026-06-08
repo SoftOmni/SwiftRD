@@ -18,4 +18,25 @@ public abstract class SwiftErrorCompositeNode : SwiftErrorInternalNode<SwiftComp
     protected SwiftErrorCompositeNode(SwiftCompositeNode parent, int index, int textIndex, int lengthInParent, string message, IEnumerable<ISwiftNode<SwiftCompositeNode>>? children = null)
         : base(parent, index, textIndex, lengthInParent, message, children)
     { }
+
+    protected SwiftErrorCompositeNode(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>?> children,
+        string message)
+        : base(buffer, FilterOutNullChildren(children), message)
+    { }
+
+    private static IEnumerable<ISwiftNode<SwiftCompositeNode>> FilterOutNullChildren(
+        IEnumerable<ISwiftNode<SwiftCompositeNode>?> children)
+    {
+        List<ISwiftNode<SwiftCompositeNode>> list = [];
+
+        foreach (ISwiftNode<SwiftCompositeNode>? child in children)
+        {
+            if (child is not null)
+            {
+                list.Add(child);
+            }
+        }
+
+        return list;
+    }
 }

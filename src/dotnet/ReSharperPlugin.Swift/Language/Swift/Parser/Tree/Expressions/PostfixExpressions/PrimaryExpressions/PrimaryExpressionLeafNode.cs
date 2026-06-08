@@ -1,16 +1,15 @@
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions;
 
-public class PrimaryExpressionLeafNode : PostfixExpressionLeafNode, IPrimaryExpression
+public abstract class PrimaryExpressionLeafNode : PostfixExpressionLeafNode, IPrimaryExpression
 {
-    public PrimaryExpressionLeafNode(IEditableBuffer buffer, NodeType nodeType)
-        : base(buffer, nodeType)
+    protected PrimaryExpressionLeafNode(IEditableBuffer underlyingBuffer)
+        : base(underlyingBuffer)
     { }
 
-    public PrimaryExpressionLeafNode(SwiftInternalNode parent, IEditableBuffer buffer, NodeType nodeType)
-        : base(parent, buffer, nodeType)
+    protected PrimaryExpressionLeafNode(IEditableBuffer underlyingBuffer, SwiftCompositeNode parentNode, int parentIndex, int parentTextIndex)
+        : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex)
     { }
 }

@@ -1,30 +1,25 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class Period : SwiftLeafNode, ISwiftPunctuator
+public class Period : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator
 {
     public const string Value = "(";
     
     internal Period(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Period)
+        : base(buffer)
     { }
 
-    internal Period(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.Period)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.Period;
 
     public string AsString => Value;
 
     public static Period Create()
-    {
-        return new Period(new EditableBuffer(Value));
-    }
-
-    public static Period Create(SwiftInternalNode parent)
     {
         return new Period(new EditableBuffer(Value));
     }

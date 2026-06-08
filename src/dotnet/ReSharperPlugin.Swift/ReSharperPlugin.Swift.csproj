@@ -29,10 +29,11 @@
     <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Replacement\" />
     <Folder Include="Language\Base\Implementations\Flexible\Loose\Internal\Replacement\" />
     <Folder Include="Language\Leaf\Parser\Tree\Base\" />
-    <Folder Include="Language\ModuleMaps\Parser\Tree\Base\" />
     <Folder Include="Language\ObjectiveCXX\Parser\Tree\Base\" />
     <Folder Include="Language\ObjectiveC\Parser\Tree\Base\" />
     <Folder Include="Language\Swift\" />
+    <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\Literals\Literals\StringLiteral\InterpolatableStringLiterals\MultiLine\" />
+    <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\Literals\Literals\StringLiteral\RawValueStringLiterals\MultiLine\" />
     <Folder Include="Ressources\Icons\Language\Raw\Declarations\Swift\" />
   </ItemGroup>
 

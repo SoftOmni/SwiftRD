@@ -2,10 +2,6 @@ using System;
 using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.InternalNodes;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.LeafNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
 
@@ -22,8 +18,8 @@ namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 ///     <para>
 ///         This also doesn't assume that all the <see cref="INode"/>s of the tree have a particular language tied to them.
 ///         There could be differing languages within the same tree.
-///         Use <see cref="INode{TIInternalNode, TILeafNode}"/> and <see cref="IInternalNode{TBaseNode}"/> and <see cref="ILeafNode{TBaseNode}"/>
-///         to have a set of <see cref="INode"/>s that correspond to a particular language.
+///         Use <see cref="INode{TIInternalNode, TILeafNode}"/> and <see cref="IInternalNode{TBaseNode}"/>
+///         and <see cref="ILeafNode{TBaseNode}"/> to have a set of <see cref="INode"/>s that correspond to a particular language.
 ///     </para>
 /// </summary>
 public interface INode : ITreeNode
@@ -99,6 +95,7 @@ public interface INode : ITreeNode
     public int ParentTextIndex { get; }
     
     public void UnsafeDangerousSetUnderlyingBuffer(IEditableBuffer buffer);
+    
     /// <summary>
     ///    
     /// </summary>

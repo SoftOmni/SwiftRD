@@ -1,40 +1,26 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class LeftSquareBracket : SwiftLeafNode, ISwiftPunctuator
+public class LeftSquareBracket : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator
 {
     public const string Value = "[";
     
     internal LeftSquareBracket(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.LeftSquareBracket)
+        : base(buffer)
     { }
 
-    internal LeftSquareBracket(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer) 
-        : base(parent, parentIndex, parentTextIndex, buffer, SwiftNodeTypes.LeftSquareBracket)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.LeftSquareBracket;
 
     public string AsString => Value;
 
     public static LeftSquareBracket Create()
     {
         return new LeftSquareBracket(new EditableBuffer(Value));
-    }
-
-    public static LeftSquareBracket Create(SwiftInternalNode parent, int parentIndex)
-    {
-        // TODO: Develop core SwiftInternalNode and SwiftLeafNode classes to avoid some of this extra work
-        LeftSquareBracket leftSquareBracket = new(new EditableBuffer(Value));
-        leftSquareBracket.AttachToParent(parent, parentIndex);
-
-        return leftSquareBracket;
-    }
-
-    protected override ISwiftNode Clone()
-    {
-        return Create();
     }
 }

@@ -6,6 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InterconnectNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InterconnectNodes;
 

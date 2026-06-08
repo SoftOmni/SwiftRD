@@ -117,6 +117,21 @@ public class ErrorInternalNode<TFamily, TSelf, TLeafNode> : ErrorElement, IInter
             AppendChild(child);
         }
     }
+    
+    protected ErrorInternalNode(IEditableBuffer buffer, IEnumerable<INode<TFamily, TSelf, TSelf, TLeafNode>> children, string message) 
+        : base(message)
+    {
+        UnderlyingBuffer = buffer;
+        foreach (INode<TFamily, TSelf, TSelf, TLeafNode> child in children)
+        {
+            ChildNodes.Add(child); // TODO: Add more powerful logic
+        }
+    }
+
+    protected virtual void UpdateParentRelatedNodeConfiguration()
+    {
+        // Nothing to do
+    }
 
     private void AppendChild(INode<TFamily, TSelf, TSelf, TLeafNode> child)
     {

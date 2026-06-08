@@ -173,7 +173,7 @@ public abstract class Node : TreeElement, INode
         public const string ElementId = "SoftOmniConcreteNodeEmptyNodeType";
         
         private EmptyNodeType()
-            : base(ElementId, ElementIndex)
+            : base(ElementId, ElementIndex, NodeTypeFlags.Token)
         { }
     }
 }

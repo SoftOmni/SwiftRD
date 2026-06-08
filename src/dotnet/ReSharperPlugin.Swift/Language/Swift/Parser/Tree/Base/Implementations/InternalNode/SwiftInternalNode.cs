@@ -12,13 +12,14 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 using SoftOmni.SwiftRd.Technology.Graphs;
 using SoftOmni.SwiftRd.Technology.Graphs.StateMachines;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 
-public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<TSelf>, TSelf, SwiftLeafNode<TSelf>>, ISwiftInternalNode<TSelf>
-    where TSelf : SwiftInternalNode<TSelf>
+public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<TSelf>, TSelf, SwiftLeafNode<TSelf>>, ISwiftInternalNode<TSelf>,
+    ISwiftNode<TSelf> where TSelf : SwiftInternalNode<TSelf>
 {
     protected SwiftInternalNode(IEditableBuffer buffer)
         : base(buffer)

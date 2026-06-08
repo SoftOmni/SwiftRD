@@ -1,30 +1,25 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class At : SwiftLeafNode, ISwiftPunctuator
+public class At : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator
 {
     public const string Value = "@";
-    
-    internal At(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.At)
+
+    internal At(IEditableBuffer buffer)
+        : base(buffer)
     { }
 
-    internal At(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.At)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.At;
 
     public string AsString => Value;
 
     public static At Create()
-    {
-        return new At(new EditableBuffer(Value));
-    }
-
-    public static At Create(SwiftInternalNode parent)
     {
         return new At(new EditableBuffer(Value));
     }

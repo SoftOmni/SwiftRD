@@ -15,7 +15,7 @@ public class ForInStatement : LoopStatement
     
     public Case? Case { get; internal set; }
     
-    public Pattern? Pattern { get; internal set; }
+    public IPattern? Pattern { get; internal set; }
     
     public In? In { get; internal set; }
     
