@@ -12,7 +12,7 @@ public class LineControlStatement : CompilerControlStatement
     
     public IntegerLiteral? LineNumber { get; internal set; }
     
-    public StringLiteral? StaticStringLiteral { get; internal set; }
+    public RawValueSingleLineStringLiteral? StaticStringLiteral { get; internal set; }
 
     public LineControlStatement(IEditableBuffer buffer, List<ISwiftNode> children)
         : base(buffer, children)

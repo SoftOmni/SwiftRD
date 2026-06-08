@@ -6,8 +6,18 @@ using JetBrains.Util;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-public abstract class SwiftNodeType(string id, int index) : NodeType(id, index)
+public abstract class SwiftNodeType : NodeType
 {
+    protected SwiftNodeType(string id, int index) : base(id, index, NodeTypeFlags.Token)
+    {
+        TokenRepresentation = id;
+    }
+
+    protected SwiftNodeType(string id, int index, NodeTypeFlags flags) : base(id, index, flags)
+    {
+        TokenRepresentation = id;
+    }
+
     public virtual LeafElementBase Create(string token)
     {
         return Create(new EditableBuffer(token), TreeOffset.Zero, new TreeOffset(token.Length));
@@ -27,7 +37,7 @@ public abstract class SwiftNodeType(string id, int index) : NodeType(id, index)
 
     public abstract bool IsKeyword { get; }
 
-    public virtual string TokenRepresentation { get; } = id;
+    public virtual string TokenRepresentation { get; }
 
     public virtual bool IsFiltered => false;
 

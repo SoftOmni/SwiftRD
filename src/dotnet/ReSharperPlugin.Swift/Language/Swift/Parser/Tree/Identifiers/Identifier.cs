@@ -3,10 +3,11 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
-public class Identifier : SwiftLeafNode<SwiftCompositeNode>
+public class Identifier : SwiftLeafNode<SwiftCompositeNode>, IIdentifier
 {
     public bool IsOnlyAscii { get; private set; }
 
@@ -34,7 +35,7 @@ public class Identifier : SwiftLeafNode<SwiftCompositeNode>
         for (int i = 0; i < Buffer.Length; i++)
         {
             char character = Buffer[i];
-            if (character >= 128)
+            if (character >= 127)
             {
                 return false;
             }

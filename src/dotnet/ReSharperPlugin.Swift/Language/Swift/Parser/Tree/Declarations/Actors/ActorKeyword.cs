@@ -1,22 +1,24 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using JetBrains.Threading;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
-public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
+public class ActorKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeyword
 {
     public const string Keyword = "actor";
     
     public Actor? Actor { get; internal set; }
 
     internal ActorKeyword(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Actor)
+        : base(buffer)
     { }
 
-    internal ActorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Actor)
+    internal ActorKeyword(SwiftCompositeNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(buffer, parent, parentIndex, parentTextIndex)
     {
         if (parent is Actor actor)
         {
@@ -24,26 +26,18 @@ public class ActorKeyword : SwiftLeafNode, ISwiftKeyword
         }
     }
 
-    internal ActorKeyword(Actor parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Actor)
+    internal ActorKeyword(Actor parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(buffer, parent, parentIndex, parentTextIndex)
     {
         Actor = parent;
     }
+
+    public override NodeType NodeType => SwiftNodeTypes.Actor;
 
     public string KeywordValue => Keyword;
 
     public static ActorKeyword Create()
     {
         return new ActorKeyword(new EditableBuffer(Keyword));
-    }
-
-    public static ActorKeyword Create(Actor actor)
-    {
-        return new ActorKeyword(actor, new EditableBuffer(Keyword));
-    }
-
-    public static ActorKeyword CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new ActorKeyword(parent, new EditableBuffer(Keyword));
     }
 }

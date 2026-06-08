@@ -98,17 +98,16 @@ public abstract class InternalNode<TFamily, TSelf, TLeafNode> : CompositeElement
         UnderlyingBuffer = new EditableBuffer();
         foreach (INode<TFamily, TSelf, TSelf, TLeafNode> child in children)
         {
-            AppendChild(child);
+            ChildNodes.Add(child); // TODO: Add more powerful logic
         }
     }
-
+    
     protected InternalNode(IEditableBuffer buffer, IEnumerable<INode<TFamily, TSelf, TSelf, TLeafNode>> children)
     {
         UnderlyingBuffer = buffer;
         foreach (INode<TFamily, TSelf, TSelf, TLeafNode> child in children)
         {
-            
-            AppendChild(child);
+            ChildNodes.Add(child); // TODO: Add more powerful logic
         }
     }
 
@@ -118,6 +117,11 @@ public abstract class InternalNode<TFamily, TSelf, TLeafNode> : CompositeElement
         {
             ChildNodes.Add(child);
         }
+    }
+
+    protected virtual void UpdateParentRelatedNodeConfiguration()
+    {
+        // Nothing to do
     }
 
     private void AppendChild(INode<TFamily, TSelf, TSelf, TLeafNode> child)

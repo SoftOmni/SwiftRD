@@ -118,7 +118,7 @@ public partial class SwiftParser
                 return new IncompleteTypeAliasNode(buffer, children, attributeGroup, accessLevelModifier, keyword, identifier, null, null);
             }
 
-            Equal? equal;
+            Equal? equalNode;
             if (canBeReasonablyInterpretedAsType)
             {
                 IType type = ParseType();
@@ -128,7 +128,7 @@ public partial class SwiftParser
             }
             else if (lexer.TokenType is EqualsToken)
             {
-                equal = new Equal(new SubEditableBuffer(buffer, currentOffset, lexer.TokenLength));
+                equalNode = new Equal(new SubEditableBuffer(buffer, currentOffset, lexer.TokenLength));
             }
             else
             {
@@ -139,15 +139,15 @@ public partial class SwiftParser
             }
             
             currentOffset += lexer.TokenLength;
-            children.Add(equal);
+            children.Add(equalNode);
             currentOffset = AdvanceAndAddCommentsWhitespace(buffer, currentOffset, children, lexer);
 
             if (lexer.TokenType is EndOfFileToken)
             {
-                return new IncompleteTypeAliasNode(buffer, children, attributeGroup, accessLevelModifier, keyword, identifier, equalNode, type);
+                return new IncompleteTypeAliasNode(buffer, children, attributeGroup, accessLevelModifier, keyword, identifier, equalNode, null);
             }
 
-            return ParseWithEqualSignInHand(lexer, currentOffset, buffer, children, attributeGroup, accessLevelModifier, keyword, identifier, equal);
+            return ParseWithEqualSignInHand(lexer, currentOffset, buffer, children, attributeGroup, accessLevelModifier, keyword, identifier, equalNode);
         }
 
         private static ITypeAlias ParseWithEqualSignInHand(SwiftLexer lexer, int currentOffset, IEditableBuffer buffer,

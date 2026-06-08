@@ -6,7 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Punctuators;
 
-public class AtNodeType : PlaceholderNodeType
+public class AtNodeType : PunctuatorNodeType
 {
     internal AtNodeType()
         : base(SwiftTokens.AtId, SwiftTokens.AtIndex)

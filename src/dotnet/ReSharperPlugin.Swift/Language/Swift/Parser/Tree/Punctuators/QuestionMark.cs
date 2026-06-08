@@ -1,31 +1,26 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class QuestionMark : SwiftLeafNode, ISwiftPunctuator, IKeyPathPostfix
+public class QuestionMark : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator, IKeyPathPostfix
 {
     public const string Value = "?";
     
     internal QuestionMark(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.QuestionMark)
+        : base(buffer)
     { }
 
-    internal QuestionMark(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.QuestionMark)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.QuestionMark;
 
     public string AsString => Value;
 
     public static QuestionMark Create()
-    {
-        return new QuestionMark(new EditableBuffer(Value));
-    }
-
-    public static QuestionMark Create(SwiftInternalNode parent)
     {
         return new QuestionMark(new EditableBuffer(Value));
     }

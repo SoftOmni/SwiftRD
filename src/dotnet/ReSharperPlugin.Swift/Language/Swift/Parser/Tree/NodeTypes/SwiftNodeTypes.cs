@@ -2,9 +2,11 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.Declarations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.ExpressionsAndTypes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.Statements.LoopStatements;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Literals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Markers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Patterns;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.WhitespaceAndComments;
 
@@ -54,14 +56,14 @@ public static class SwiftNodeTypes
     public static readonly PlaceholderNodeType StringLiteralStart = new(SwiftTokens.StringLiteralStartId, SwiftTokens.StringLiteralStartIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType StringLiteralEnd = new(SwiftTokens.StringLiteralEndId, SwiftTokens.StringLiteralEndIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType StringLiteralContent = new(SwiftTokens.StringLiteralContentId, SwiftTokens.StringLiteralContentIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType SurroundedStringLiteralStart = new(SwiftTokens.SurroundedStringLiteralStartId, SwiftTokens.SurroundedStringLiteralStartIndex, isStringLiteral: true);
+    public static readonly PlaceholderNodeType RawValueStringLiteralStart = new(SwiftTokens.SurroundedStringLiteralStartId, SwiftTokens.SurroundedStringLiteralStartIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType SurroundedStringLiteralEnd = new(SwiftTokens.SurroundedStringLiteralEndId, SwiftTokens.SurroundedStringLiteralEndIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType SurroundedStringLiteralContent = new(SwiftTokens.SurroundedStringLiteralContentId, SwiftTokens.SurroundedStringLiteralContentIndex, isStringLiteral: true);
+    public static readonly PlaceholderNodeType RawValueStringLiteralContent = new(SwiftTokens.SurroundedStringLiteralContentId, SwiftTokens.SurroundedStringLiteralContentIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType MultiLineStringLiteralStart = new(SwiftTokens.MultiLineStringLiteralStartId, SwiftTokens.MultiLineStringLiteralStartIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType MultiLineStringLiteralEnd = new(SwiftTokens.MultiLineStringLiteralEndId, SwiftTokens.MultiLineStringLiteralEndIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType MultiLineStringLiteralContent = new(SwiftTokens.MultiLineStringLiteralContentId, SwiftTokens.MultiLineStringLiteralContentIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType SurroundedMultiLineStringLiteralStart = new(SwiftTokens.SurroundedMultiLineStringLiteralStartId, SwiftTokens.SurroundedMultiLineStringLiteralStartIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType SurroundedMultiLineStringLiteralEnd = new(SwiftTokens.SurroundedMultiLineStringLiteralEndId, SwiftTokens.SurroundedMultiLineStringLiteralEndIndex, isStringLiteral: true);
+    public static readonly PlaceholderNodeType RawValueMultiLineStringLiteralEnd = new(SwiftTokens.SurroundedMultiLineStringLiteralEndId, SwiftTokens.SurroundedMultiLineStringLiteralEndIndex, isStringLiteral: true);
     public static readonly PlaceholderNodeType SurroundedMultiLineStringLiteralContent = new(SwiftTokens.MultiLineSurroundedStringLiteralContentId, SwiftTokens.MultiLineSurroundedStringLiteralContentIndex, isStringLiteral: true);
     
     #endregion //StringLiterals
@@ -160,14 +162,14 @@ public static class SwiftNodeTypes
     public static readonly PlaceholderNodeType AnyUppercase = new(SwiftTokens.AnyId, SwiftTokens.AnyIndex, isKeyword: true);
     public static readonly PlaceholderNodeType As = new(SwiftTokens.AsId, SwiftTokens.AsIndex, isKeyword: true);
     public static readonly PlaceholderNodeType Await = new(SwiftTokens.AwaitId, SwiftTokens.AwaitIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType False = new(SwiftTokens.FalseId, SwiftTokens.FalseIndex, isKeyword: true);
+    public static readonly FalseNodeType False = new();
     public static readonly PlaceholderNodeType Is = new(SwiftTokens.IsId, SwiftTokens.IsIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Nil = new(SwiftTokens.NilId, SwiftTokens.NilIndex, isKeyword: true);
+    public static readonly NilNodeType Nil = new();
     public static readonly PlaceholderNodeType SelfLowercase = new(SwiftTokens.SelfLowercaseId, SwiftTokens.SelfLowercaseIndex, isKeyword: true);
     public static readonly PlaceholderNodeType SelfUppercase = new(SwiftTokens.SelfUppercaseId, SwiftTokens.SelfUppercaseIndex, isKeyword: true);
     public static readonly PlaceholderNodeType Super = new(SwiftTokens.SuperId, SwiftTokens.SuperIndex, isKeyword: true);
     public static readonly PlaceholderNodeType Throws = new(SwiftTokens.ThrowsId, SwiftTokens.ThrowsIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType True = new(SwiftTokens.TrueId, SwiftTokens.TrueIndex, isKeyword: true);
+    public static readonly TrueNodeType True = new();
     public static readonly PlaceholderNodeType Try = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
     public static readonly PlaceholderNodeType Red = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
     public static readonly PlaceholderNodeType Green = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
@@ -175,7 +177,7 @@ public static class SwiftNodeTypes
     public static readonly PlaceholderNodeType Alpha = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
 
     // Keywords - UsableInPatterns
-    public static readonly PlaceholderNodeType Underscore = new(SwiftTokens.UnderscoreId, SwiftTokens.UnderscoreIndex, isKeyword: true);
+    public static readonly UnderscoreNodeType Underscore = new();
 
     // Reserved identifiers
     public static readonly PlaceholderNodeType ReservedAvailable = new(SwiftTokens.ReservedAvailableId, SwiftTokens.ReservedAvailableIndex, isKeyword: true);

@@ -1,43 +1,29 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using Should.Core.Exceptions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class Ellipsis : SwiftInternalNode
+public class Ellipsis : SwiftCompositeNode
 {
-    public Period? FirstPeriod { get; internal set; }
+    public Period FirstPeriod { get; internal set; }
     
-    public Period? SecondPeriod { get; internal set; }
+    public Period SecondPeriod { get; internal set; }
     
-    public Period? ThirdPeriod { get; internal set; }
+    public Period ThirdPeriod { get; internal set; }
 
-    public Ellipsis(IEditableBuffer buffer, List<ISwiftNode> children) 
+    internal Ellipsis(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        Period firstPeriod, Period secondPeriod, Period thirdPeriod)
         : base(buffer, children)
-    { }
-
-    public Ellipsis(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
-
-    public Ellipsis(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    public Ellipsis(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-
-    public static Ellipsis Create()
     {
-        throw new NotImplementedException();
+        FirstPeriod = firstPeriod;
+        SecondPeriod = secondPeriod;
+        ThirdPeriod = thirdPeriod;
     }
 
-    public static Ellipsis Create(SwiftInternalNode parent)
+    public static Ellipsis Create()
     {
         throw new NotImplementedException();
     }

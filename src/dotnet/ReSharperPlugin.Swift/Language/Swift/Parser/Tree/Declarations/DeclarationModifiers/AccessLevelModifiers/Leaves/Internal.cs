@@ -1,7 +1,5 @@
 using JetBrains.DocumentModel.Impl;
-using JetBrains.ReSharper.Psi.Resources;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 

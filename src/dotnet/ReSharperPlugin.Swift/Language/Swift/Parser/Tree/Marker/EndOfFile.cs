@@ -1,15 +1,27 @@
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Marker;
 
-public class EndOfFile : SwiftLeafNode, IMarker
+public class EndOfFile : SwiftLeafNode<SwiftCompositeNode>, IMarker
 {
-    public EndOfFile(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.EndOfFile)
-    { }
+    public StartOfFile StartOfFile { get; }
 
-    public EndOfFile(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, parentbuffer, SwiftNodeTypes.EndOfFile)
-    { }
+    public EndOfFile(IEditableBuffer buffer, StartOfFile startOfFile)
+        : base(buffer)
+    {
+        StartOfFile = startOfFile;
+    }
+
+    public EndOfFile(SwiftCompositeNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
+        StartOfFile startOfFile)
+        : base(buffer, parent, parentIndex, parentTextIndex)
+    {
+        StartOfFile = startOfFile;
+    }
+
+    public override NodeType NodeType => SwiftNodeTypes.EndOfFile;
 }

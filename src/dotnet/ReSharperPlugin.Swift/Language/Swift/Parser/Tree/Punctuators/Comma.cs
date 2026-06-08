@@ -1,30 +1,25 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class Comma : SwiftLeafNode, ISwiftPunctuator
+public class Comma : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator
 {
-    public const string Value = "(";
+    public const string Value = ",";
     
     internal Comma(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Comma)
+        : base(buffer)
     { }
 
-    internal Comma(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.Comma)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.Comma;
 
     public string AsString => Value;
 
     public static Comma Create()
-    {
-        return new Comma(new EditableBuffer(Value));
-    }
-
-    public static Comma Create(SwiftInternalNode parent)
     {
         return new Comma(new EditableBuffer(Value));
     }

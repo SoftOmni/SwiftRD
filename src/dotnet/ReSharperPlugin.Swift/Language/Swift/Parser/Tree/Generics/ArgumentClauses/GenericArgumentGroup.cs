@@ -1,91 +1,160 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ArgumentClauses;
 
-public class GenericArgumentGroup : SwiftInternalNode, IList<IType>
+public class GenericArgumentGroup : ReadOnlyGenericArgumentGroup, IGenericArgumentGroup
 {
-    public GenericArgumentClause? GenericArgumentClause { get; internal set; }
+    public IGenericArgumentClause? EditableGenericArgumentClause { get; private set; }
+
+    internal GenericArgumentGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        List<IGenericArgument> genericArguments, List<IType> genericArgumentsType, List<Comma> commas) 
+        : base(buffer, children, genericArguments, genericArgumentsType, commas)
+    { }
     
-    private List<IType> _genericArguments = [];
-
-    private List<Comma> _commas = [];
-
-    public GenericArgumentGroup(IEditableBuffer buffer, List<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
-
-    public GenericArgumentGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
-
-    public GenericArgumentGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    public GenericArgumentGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    IEnumerator IEnumerable.GetEnumerator()
+    protected override void UpdateParentRelatedNodeConfiguration()
     {
-        return GetEnumerator();
-    }
-
-    public IEnumerator<IType> GetEnumerator()
-    {
-        throw new System.NotImplementedException();
+        if (Parent is IGenericArgumentClause genericArgumentClause)
+        {
+            EditableGenericArgumentClause = genericArgumentClause;
+        }
+        
+        base.UpdateParentRelatedNodeConfiguration();
     }
 
     public void Add(IType item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
+    }
+
+    public void Add(IGenericArgument item)
+    {
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        if (EditableGenericArgumentClause is IncompleteGenericArgumentClause incompleteGenericArgumentClause)
+        {
+            ClearChildren(0, NumberOfChildren);
+            DetachFromParent();
+
+            incompleteGenericArgumentClause.GenericArgumentGroup = null;
+            return;
+        }
+
+        if (Parent is null || GenericArgumentClause is null)
+        {
+            ClearChildren(0, NumberOfChildren);
+            DetachFromParent();
+            return;
+        }
+
+        SwiftCompositeNode? genericArgumentClauseParent = GenericArgumentClause.GetParent();
+        if (genericArgumentClauseParent is null)
+        {
+            ClearChildren(0, NumberOfChildren);
+            return;
+        }
+
+        int clauseParentIndex = GenericArgumentClause.ParentIndex;
+        GenericArgumentClause.DetachFromParent();
+
+        IEditableBuffer incompleteGenericArgumentClauseBuffer =
+            new EditableBuffer(LeftAngleBracket.Value + RightAngleBracket.Value);
+
+        LeftAngleBracket leftAngleBracket = new(
+                new SubEditableBuffer(incompleteGenericArgumentClauseBuffer, 0, LeftAngleBracket.Value.Length)
+            );
+
+        RightAngleBracket rightAngleBracket = new(new SubEditableBuffer(incompleteGenericArgumentClauseBuffer,
+            LeftAngleBracket.Value.Length, RightAngleBracket.Value.Length));
+
+        IncompleteGenericArgumentClause newIncompleteGenericArgumentClause = new(incompleteGenericArgumentClauseBuffer,
+            IncompleteGenericArgumentClause.MissingArgumentsErrorMessage, leftAngleBracket, null,
+            rightAngleBracket);
+
+        genericArgumentClauseParent.InsertChild(clauseParentIndex, newIncompleteGenericArgumentClause);
     }
 
     public bool Contains(IType item)
     {
-        throw new System.NotImplementedException();
+        return GenericArgumentTypesUnderlying.Contains(item);
+    }
+
+    public bool Contains(IGenericArgument item)
+    {
+        throw new NotImplementedException();
     }
 
     public void CopyTo(IType[] array, int arrayIndex)
     {
-        throw new System.NotImplementedException();
+        GenericArgumentTypesUnderlying.CopyTo(array, arrayIndex);
+    }
+
+    public void CopyTo(IGenericArgument[] array, int arrayIndex)
+    {
+        throw new NotImplementedException();
     }
 
     public bool Remove(IType item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public int Count { get; }
-    public bool IsReadOnly { get; }
+    public bool Remove(IGenericArgument item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsReadOnly => false;
+
     public int IndexOf(IType item)
     {
-        throw new System.NotImplementedException();
+        return GenericArgumentTypesUnderlying.IndexOf(item);
+    }
+
+    public int IndexOf(IGenericArgument item)
+    {
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IType item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
+    }
+
+    public void Insert(int index, IGenericArgument item)
+    {
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IType this[int index]
+    void IList<IType>.RemoveAt(int index)
     {
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
+        throw new NotImplementedException();
+    }
+
+    IType IList<IType>.this[int index]
+    {
+        get => GenericArgumentTypes[index];
+        set => throw new NotImplementedException();
+    }
+
+    public new IGenericArgument this[int index]
+    {
+        get => GenericArguments[index];
+        set => throw new NotImplementedException();
     }
 }
