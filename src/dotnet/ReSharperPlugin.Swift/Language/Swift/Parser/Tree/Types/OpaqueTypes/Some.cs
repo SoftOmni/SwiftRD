@@ -1,49 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.OpaqueTypes;
 
-public class Some : SwiftLeafNode, ISwiftKeyword
+public class Some : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Some>
 {
     public const string Keyword = "some";
     
-    public OpaqueType? OpaqueType { get; internal set; }
-
-    internal Some(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Some)
+    public Some()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Some(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Some)
-    {
-        if (parent is OpaqueType opaqueType)
-        {
-            OpaqueType = opaqueType;
-        }
-    }
+    internal Some(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal Some(OpaqueType parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Some)
-    {
-        OpaqueType = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Some;
 
     public string KeywordValue => Keyword;
 
     public static Some Create()
     {
         return new Some(new EditableBuffer(Keyword));
-    }
-
-    public static Some Create(OpaqueType opaqueType)
-    {
-        return new Some(opaqueType, new EditableBuffer(Keyword));
-    }
-
-    public static Some CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Some(parent, new EditableBuffer(Keyword));
     }
 }

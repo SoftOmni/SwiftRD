@@ -2,62 +2,49 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
 using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
-public class StatementGroup : SwiftInternalNode, IList<IStatement>
+public class StatementGroup : SwiftCompositeNode, IStatementGroup
 {
-    private readonly List<IStatement> _statements = [];
+    private readonly List<IReadOnlyStatement> _statements = [];
+
 
     // TODO: write the full API for statement group and then decide on the indexes data structure
-    private readonly Dictionary<IStatement, int> _statementsIndexes = [];
 
-    public StatementGroup(IEditableBuffer buffer, List<ISwiftNode> children)
+    private readonly Dictionary<IReadOnlyStatement, int> _statementsIndexes = [];
+
+    internal StatementGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        List<IReadOnlyStatement> statements)
         : base(buffer, children)
     {
-        SetupChildren();
+        _statements = statements;
     }
 
-    public StatementGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    {
-        SetupChildren();
-    }
-
-    public StatementGroup(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
-        List<ISwiftNode> nodes)
-        : base(parent, parentIndex, parentTextIndex, buffer, nodes)
-    {
-        SetupChildren();
-    }
-
-    public StatementGroup(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
-        IEnumerable<ISwiftNode> nodes)
-        : base(parent, parentIndex, parentTextIndex, buffer, nodes)
-    {
-        SetupChildren();
-    }
 
     private void SetupChildren()
     {
         // TODO: once data structure around fast index lookup of statements figured out, update this piece of code and all other relevant location
-        foreach (ISwiftNode child in Children)
+        foreach (INode? node in ChildNodes)
         {
-            if (child is IStatement statement)
+            if (node is IReadOnlyStatement statement)
             {
                 _statements.Add(statement);
             }
         }
     }
 
-    public IReadOnlyList<IStatement> Statements => _statements;
+    public IReadOnlyList<IReadOnlyStatement> Statements => _statements;
 
-    public IEnumerator<IStatement> GetEnumerator()
+    public IEnumerator<IReadOnlyStatement> GetEnumerator()
     {
         return _statements.GetEnumerator();
     }
@@ -67,24 +54,25 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         return GetEnumerator();
     }
 
-    public void InsertStatement(int index, IStatement statement)
+    public void InsertStatement(int index, IReadOnlyStatement statement)
     {
         CheckStatementIndexInclusive(index);
         InsertStatementCore(index, statement);
     }
 
-    public void InsertStatements(int index, IEnumerable<IStatement> statements)
+    public void InsertStatements(int index, IEnumerable<IReadOnlyStatement> statements)
     {
         CheckStatementIndexInclusive(index);
 
-        int childIndexToInsertAt = index == _statements.Count ? Children.Count : _statements[index].ParentIndex;
+        
+        int childIndexToInsertAt = index == _statements.Count ? ChildNodes.Count : _statements[index].ParentIndex;
 
         if (index == _statements.Count)
         {
             AttachChildren(childIndexToInsertAt, statements,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
 
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
@@ -92,47 +80,49 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             return;
         }
 
-        List<IStatement> nodesToMove = [];
+        List<IReadOnlyStatement> nodesToMove = [];
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 nodesToMove.Add(_statements[index]);
 
                 _statements.Insert(index, statement);
                 _statementsIndexes.Add(statement, index++);
             });
 
-        foreach (IStatement node in nodesToMove)
+        foreach (IReadOnlyStatement node in nodesToMove)
         {
             int previousIndex = _statementsIndexes[node];
             _statementsIndexes[node] = previousIndex + nodesToMove.Count;
         }
     }
 
-    public void InsertStatements(int index, IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void InsertStatements(int index, IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         CheckStatementIndexInclusive(index);
 
-        int childIndexToInsertAt = index == _statements.Count ? Children.Count : _statements[index].ParentIndex;
+        int childIndexToInsertAt = index == _statements.Count 
+            ? ChildNodes.Count 
+            : _statements[index].ParentIndex;
 
         if (index == _statements.Count)
         {
             AttachChildren(childIndexToInsertAt, statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
             return;
         }
 
-        List<IStatement> nodesToMove = [];
+        List<IReadOnlyStatement> nodesToMove = [];
         AttachChildren(childIndexToInsertAt, statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 nodesToMove.Add(_statements[index]);
 
                 _statements.Insert(index, statement);
@@ -140,14 +130,14 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             }
         );
 
-        foreach (IStatement node in nodesToMove)
+        foreach (IReadOnlyStatement node in nodesToMove)
         {
             int previousIndex = _statementsIndexes[node];
             _statementsIndexes[node] = previousIndex + nodesToMove.Count;
         }
     }
 
-    public void InsertStatements(int index, IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void InsertStatements(int index, IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         CheckStatementIndexInclusive(index);
@@ -160,7 +150,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
 
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
@@ -173,7 +163,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += distance;
 
                 _statements.Insert(index, statement);
@@ -181,7 +171,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void InsertStatements(int index, IList<IStatement> statements)
+    public void InsertStatements(int index, IList<IReadOnlyStatement> statements)
     {
         CheckStatementIndexInclusive(index);
 
@@ -192,7 +182,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             AttachChildren(childIndexToInsertAt, statements,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -202,7 +192,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -210,7 +200,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void InsertStatements(int index, IList<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void InsertStatements(int index, IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         CheckStatementIndexInclusive(index);
 
@@ -221,7 +211,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             AttachChildren(childIndexToInsertAt, statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
 
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
@@ -232,7 +222,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -241,7 +231,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         );
     }
 
-    public void InsertStatements(int index, IList<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void InsertStatements(int index, IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         CheckStatementIndexInclusive(index);
@@ -254,7 +244,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -266,7 +256,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += distance;
 
                 _statements.Insert(index, statement);
@@ -275,7 +265,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         );
     }
 
-    public void InsertStatements(int index, List<IStatement> statements)
+    public void InsertStatements(int index, List<IReadOnlyStatement> statements)
     {
         CheckStatementIndexInclusive(index);
 
@@ -286,7 +276,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             AttachChildren(childIndexToInsertAt, statements,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -296,7 +286,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -304,7 +294,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void InsertStatements(int index, List<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void InsertStatements(int index, List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         CheckStatementIndexInclusive(index);
 
@@ -315,7 +305,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             AttachChildren(childIndexToInsertAt, statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -325,7 +315,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -333,7 +323,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void InsertStatements(int index, List<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void InsertStatements(int index, List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         CheckStatementIndexInclusive(index);
@@ -345,7 +335,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -355,7 +345,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -374,7 +364,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             AttachChildren(childIndexToInsertAt, statements,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -384,7 +374,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -403,7 +393,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             AttachChildren(childIndexToInsertAt, statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -413,7 +403,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -433,7 +423,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -443,7 +433,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         AttachChildren(childIndexToInsertAt, statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -451,11 +441,11 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void PrependStatement(IStatement statement)
+    public void PrependStatement(IReadOnlyStatement statement)
     {
         PrependChild(statement);
 
-        foreach (IStatement statementToMove in _statements)
+        foreach (IReadOnlyStatement statementToMove in _statements)
         {
             _statementsIndexes[statementToMove]++;
         }
@@ -464,7 +454,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         _statementsIndexes.Add(statement, 0);
     }
 
-    public void PrependStatements(IEnumerable<IStatement> statements)
+    public void PrependStatements(IEnumerable<IReadOnlyStatement> statements)
     {
         int index = 0;
 
@@ -472,30 +462,30 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         {
             PrependChildren(statements, child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Insert(index, statement);
                 _statementsIndexes.Add(statement, index++);
             });
             return;
         }
 
-        List<IStatement> statementsToMove = new List<IStatement>(_statements);
+        List<IReadOnlyStatement> statementsToMove = new List<IReadOnlyStatement>(_statements);
         PrependChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             statementsToMove.Add(statement);
 
             _statements.Insert(index, statement);
             _statementsIndexes.Add(statement, index++);
         });
 
-        foreach (IStatement statementToMove in statementsToMove)
+        foreach (IReadOnlyStatement statementToMove in statementsToMove)
         {
             _statementsIndexes[statementToMove] += statementsToMove.Count;
         }
     }
 
-    public void PrependStatements(IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void PrependStatements(IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         int index = 0;
 
@@ -504,31 +494,31 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             PrependChildren(statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
             return;
         }
 
-        List<IStatement> moveStatements = [];
+        List<IReadOnlyStatement> moveStatements = [];
         PrependChildren(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 moveStatements.Add(statement);
 
                 _statements.Insert(index, statement);
                 _statementsIndexes.Add(statement, index++);
             });
 
-        foreach (IStatement statementToMove in moveStatements)
+        foreach (IReadOnlyStatement statementToMove in moveStatements)
         {
             _statementsIndexes[statementToMove] += moveStatements.Count;
         }
     }
 
-    public void PrependStatements(IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void PrependStatements(IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         int index = 0;
@@ -538,7 +528,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             PrependChildren(statements, startIndexInStatementsForInsertion, endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -549,7 +539,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         PrependChildren(statements, startIndexInStatementsForInsertion, endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += distance;
 
                 _statements.Insert(index, statement);
@@ -558,7 +548,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         );
     }
 
-    public void PrependStatements(IList<IStatement> statements)
+    public void PrependStatements(IList<IReadOnlyStatement> statements)
     {
         int index = 0;
 
@@ -566,7 +556,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         {
             PrependChildren(statements, child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Insert(index, statement);
                 _statementsIndexes.Add(statement, index++);
             });
@@ -575,7 +565,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
         PrependChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             _statementsIndexes[_statements[index]] += statements.Count;
 
             _statements.Insert(index, statement);
@@ -583,7 +573,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         });
     }
 
-    public void PrependStatements(IList<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void PrependStatements(IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         int index = 0;
 
@@ -592,7 +582,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             PrependChildren(statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -601,7 +591,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
         PrependChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             _statementsIndexes[_statements[index]] += statements.Count;
 
             _statements.Insert(index, statement);
@@ -609,7 +599,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         });
     }
 
-    public void PrependStatements(IList<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void PrependStatements(IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         int index = 0;
@@ -620,7 +610,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -630,7 +620,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         PrependChildren(statements, startIndexInStatementsForInsertion, endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += statements.Count;
 
                 _statements.Insert(index, statement);
@@ -638,7 +628,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void PrependStatements(List<IStatement> statements)
+    public void PrependStatements(List<IReadOnlyStatement> statements)
     {
         int index = 0;
 
@@ -646,7 +636,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         {
             PrependChildren(statements, child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Insert(index, statement);
                 _statementsIndexes.Add(statement, index++);
             });
@@ -655,7 +645,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
         PrependChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             _statementsIndexes[_statements[index]] += statements.Count;
 
             _statements.Insert(index, statement);
@@ -663,7 +653,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         });
     }
 
-    public void PrependStatements(List<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void PrependStatements(List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         int index = 0;
 
@@ -672,7 +662,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             PrependChildren(statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -682,7 +672,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         PrependChildren(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += statements.Count;
 
                 _statements.Insert(index, statement);
@@ -690,7 +680,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
             });
     }
 
-    public void PrependStatements(List<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void PrependStatements(List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         int index = 0;
@@ -701,7 +691,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -712,7 +702,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         PrependChildren(statements, startIndexInStatementsForInsertion,
             endIndexInStatementsForInsertion, child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += distance;
 
                 _statements.Insert(index, statement);
@@ -726,20 +716,20 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
         if (index == _statements.Count)
         {
-            PrependChildren<StatementGroup, IStatement>(statements,
+            PrependChildren<StatementGroup, IReadOnlyStatement>(statements,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
             return;
         }
 
-        PrependChildren<StatementGroup, IStatement>(statements,
+        PrependChildren<StatementGroup, IReadOnlyStatement>(statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -752,20 +742,20 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         int index = 0;
         if (index == _statements.Count)
         {
-            PrependChildren<StatementGroup, IStatement>(statements, startIndexInStatementsForInsertion,
+            PrependChildren<StatementGroup, IReadOnlyStatement>(statements, startIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statementsIndexes.Add(statement, index);
                     _statements.Insert(index++, statement);
                 });
             return;
         }
 
-        PrependChildren<StatementGroup, IStatement>(statements, startIndexInStatementsForInsertion,
+        PrependChildren<StatementGroup, IReadOnlyStatement>(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += Children.Count;
 
                 _statements.Insert(index, statement);
@@ -780,11 +770,11 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
         if (index == _statements.Count)
         {
-            PrependChildren<StatementGroup, IStatement>(statements, startIndexInStatementsForInsertion,
+            PrependChildren<StatementGroup, IReadOnlyStatement>(statements, startIndexInStatementsForInsertion,
                 endIndexInStatementsForInsertion,
                 child =>
                 {
-                    IStatement statement = (child as IStatement)!;
+                    IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                     _statements.Insert(index, statement);
                     _statementsIndexes.Add(statement, index++);
                 });
@@ -792,10 +782,10 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         }
 
         int distance = endIndexInStatementsForInsertion - startIndexInStatementsForInsertion;
-        PrependChildren<StatementGroup, IStatement>(statements, startIndexInStatementsForInsertion,
+        PrependChildren<StatementGroup, IReadOnlyStatement>(statements, startIndexInStatementsForInsertion,
             endIndexInStatementsForInsertion, child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statementsIndexes[_statements[index]] += distance;
 
                 _statements.Insert(index, statement);
@@ -804,113 +794,113 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         );
     }
 
-    public void Add(IStatement item)
+    public void Add(IReadOnlyStatement item)
     {
         AppendStatement(item);
     }
 
-    public void AppendStatement(IStatement statement)
+    public void AppendStatement(IReadOnlyStatement statement)
     {
         AppendChild(statement);
         _statements.Insert(Children.Count, statement);
     }
 
-    public void AppendStatements(IEnumerable<IStatement> statements)
+    public void AppendStatements(IEnumerable<IReadOnlyStatement> statements)
     {
         AppendChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             _statements.Add(statement);
             _statementsIndexes.Add(statement, Children.Count);
         });
     }
 
-    public void AppendStatements(IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void AppendStatements(IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         AppendChildren(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
     }
 
-    public void AppendStatements(IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void AppendStatements(IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         AppendChildren(statements, startIndexInStatementsForInsertion, endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
     }
 
-    public void AppendStatements(IList<IStatement> statements)
+    public void AppendStatements(IList<IReadOnlyStatement> statements)
     {
         AppendChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             _statements.Add(statement);
             _statementsIndexes.Add(statement, Children.Count);
         });
     }
 
-    public void AppendStatements(IList<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void AppendStatements(IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         AppendChildren(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
     }
 
-    public void AppendStatements(IList<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void AppendStatements(IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         AppendChildren(statements, startIndexInStatementsForInsertion,
             endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
     }
 
-    public void AppendStatements(List<IStatement> statements)
+    public void AppendStatements(List<IReadOnlyStatement> statements)
     {
         AppendChildren(statements, child =>
         {
-            IStatement statement = (child as IStatement)!;
+            IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
             _statements.Add(statement);
             _statementsIndexes.Add(statement, Children.Count);
         });
     }
 
-    public void AppendStatements(List<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void AppendStatements(List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         AppendChildren(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
     }
 
-    public void AppendStatements(List<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void AppendStatements(List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         AppendChildren(statements, startIndexInStatementsForInsertion,
             endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
@@ -918,10 +908,10 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
     public void AppendStatements(StatementGroup statements)
     {
-        AppendChildren<StatementGroup, IStatement>(statements,
+        AppendChildren<StatementGroup, IReadOnlyStatement>(statements,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
@@ -929,10 +919,10 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
     public void AppendStatements(StatementGroup statements, int startIndexInStatementsForInsertion)
     {
-        AppendChildren<StatementGroup, IStatement>(statements, startIndexInStatementsForInsertion,
+        AppendChildren<StatementGroup, IReadOnlyStatement>(statements, startIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
@@ -941,71 +931,71 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
     public void AppendStatements(StatementGroup statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
-        AppendChildren<StatementGroup, IStatement>(statements, startIndexInStatementsForInsertion,
+        AppendChildren<StatementGroup, IReadOnlyStatement>(statements, startIndexInStatementsForInsertion,
             endIndexInStatementsForInsertion,
             child =>
             {
-                IStatement statement = (child as IStatement)!;
+                IReadOnlyStatement statement = (child as IReadOnlyStatement)!;
                 _statements.Add(statement);
                 _statementsIndexes.Add(statement, Children.Count);
             });
     }
 
-    private void InsertStatementCore(int index, IStatement statement)
+    private void InsertStatementCore(int index, IReadOnlyStatement statement)
     {
         int childIndexToInsertAt = index == _statements.Count ? Children.Count : _statements[index].ParentIndex;
         _statements.Insert(index, statement);
         AttachChild(childIndexToInsertAt, statement);
     }
 
-    public void SetStatement(int index, IStatement statement)
+    public void SetStatement(int index, IReadOnlyStatement statement)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(IEnumerable<IStatement> statements)
+    public void SetStatements(IEnumerable<IReadOnlyStatement> statements)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void SetStatements(IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(IEnumerable<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void SetStatements(IEnumerable<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(IList<IStatement> statements)
+    public void SetStatements(IList<IReadOnlyStatement> statements)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(IList<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void SetStatements(IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(IList<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void SetStatements(IList<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(List<IStatement> statements)
+    public void SetStatements(List<IReadOnlyStatement> statements)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(List<IStatement> statements, int startIndexInStatementsForInsertion)
+    public void SetStatements(List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion)
     {
         throw new NotImplementedException();
     }
 
-    public void SetStatements(List<IStatement> statements, int startIndexInStatementsForInsertion,
+    public void SetStatements(List<IReadOnlyStatement> statements, int startIndexInStatementsForInsertion,
         int endIndexInStatementsForInsertion)
     {
         throw new NotImplementedException();
@@ -1027,82 +1017,82 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, IEnumerable<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, IEnumerable<IReadOnlyStatement> statements,
         bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, IEnumerable<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, IEnumerable<IReadOnlyStatement> statements,
         int startIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, IEnumerable<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, IEnumerable<IReadOnlyStatement> statements,
         int startIndexInStatementsForReplacement, int endIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, IList<IStatement> statements, bool extend = false)
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, IList<IReadOnlyStatement> statements, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, IList<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, IList<IReadOnlyStatement> statements,
         int startIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, IList<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, IList<IReadOnlyStatement> statements,
         int startIndexInStatementsForReplacement, int endIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, List<IStatement> statements, bool extend = false)
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, List<IReadOnlyStatement> statements, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, List<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, List<IReadOnlyStatement> statements,
         int startIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, List<IStatement> statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, List<IReadOnlyStatement> statements,
         int startIndexInStatementsForReplacement, int endIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, StatementGroup statements, bool extend = false)
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, StatementGroup statements, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, StatementGroup statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, StatementGroup statements,
         int startIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public List<IStatement> ReplaceStatements(int indexOfReplacement, StatementGroup statements,
+    public List<IReadOnlyStatement> ReplaceStatements(int indexOfReplacement, StatementGroup statements,
         int startIndexInStatementsForReplacement, int endIndexInStatementsForReplacement, bool extend = false)
     {
         throw new NotImplementedException();
     }
 
-    public bool Contains(IStatement item) => ContainsStatement(item);
+    public bool Contains(IReadOnlyStatement item) => ContainsStatement(item);
 
-    public bool ContainsStatement(IStatement item) => _statementsIndexes.ContainsKey(item);
+    public bool ContainsStatement(IReadOnlyStatement item) => _statementsIndexes.ContainsKey(item);
 
-    public bool ContainsStatement(Func<IStatement, bool> predicate)
+    public bool ContainsStatement(Func<IReadOnlyStatement, bool> predicate)
     {
-        foreach (IStatement statement in _statements)
+        foreach (IReadOnlyStatement statement in _statements)
         {
             if (predicate(statement))
             {
@@ -1113,7 +1103,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         return false;
     }
 
-    public bool ContainsStatement(Func<IStatement, int, bool> predicate)
+    public bool ContainsStatement(Func<IReadOnlyStatement, int, bool> predicate)
     {
         for (int i = 0; i < _statements.Count; i++)
         {
@@ -1126,12 +1116,12 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         return false;
     }
 
-    public void CopyTo(IStatement[] array, int arrayIndex)
+    public void CopyTo(IReadOnlyStatement[] array, int arrayIndex)
     {
         _statements.CopyTo(array, arrayIndex);
     }
 
-    public void RemoveWhere(Func<IStatement, bool> predicate)
+    public void RemoveWhere(Func<IReadOnlyStatement, bool> predicate)
     {
         int index = 0;
         while (index < _statements.Count)
@@ -1146,7 +1136,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         }
     }
 
-    public void RemoveWhere(Func<IStatement, int, bool> predicate)
+    public void RemoveWhere(Func<IReadOnlyStatement, int, bool> predicate)
     {
         int index = 0;
         while (index < _statements.Count)
@@ -1163,19 +1153,19 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
     public void RemoveAt(int index)
     {
-        IStatement statement = _statements[index];
+        IReadOnlyStatement statement = _statements[index];
         statement.DetachFromParent();
         _statements.RemoveAt(index);
 
         _statementsIndexes.Remove(statement);
         for (int i = index; i < _statements.Count; i++)
         {
-            IStatement statementToAdjust = _statements[i];
+            IReadOnlyStatement statementToAdjust = _statements[i];
             _statementsIndexes[statementToAdjust] = i;
         }
     }
 
-    public bool Remove(IStatement item)
+    public bool Remove(IReadOnlyStatement item)
     {
         if (!_statementsIndexes.TryGetValue(item, out int index))
         {
@@ -1188,25 +1178,26 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
         for (int i = index; i < _statements.Count; i++)
         {
-            IStatement statementToAdjust = _statements[i];
+            IReadOnlyStatement statementToAdjust = _statements[i];
             _statementsIndexes[statementToAdjust] = i;
         }
 
         return true;
     }
-    
+
     // TODO: Remove children or statements but API is unclear presently
+
 
     public void Clear()
     {
-        base.ClearChildren();
+        ClearChildren();
     }
 
     public void ClearStatements()
     {
         while (_statements.Count > 0)
         {
-            IStatement statement = _statements[_statements.Count - 1];
+            IReadOnlyStatement statement = _statements[_statements.Count - 1];
             statement.DetachFromParent();
             _statements.RemoveAt(_statements.Count - 1);
             _statementsIndexes.Remove(statement);
@@ -1217,17 +1208,17 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
 
     public bool IsReadOnly => false;
 
-    public int IndexOf(IStatement item)
+    public int IndexOf(IReadOnlyStatement item)
     {
         return _statementsIndexes.GetValueOrDefault(item, -1);
     }
 
-    public void Insert(int index, IStatement item)
+    public void Insert(int index, IReadOnlyStatement item)
     {
         InsertStatement(index, item);
     }
 
-    public new IStatement this[int index]
+    public new IReadOnlyStatement this[int index]
     {
         get => _statements[index];
         set => SetStatement(index, value);
@@ -1299,7 +1290,7 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
                 continue;
             }
 
-            IStatement statement = IStatement.Parser.ParseWithStart(lexer, subBuffer, offsetInSubBuffer);
+            IReadOnlyStatement statement = IReadOnlyStatement.Parser.ParseWithStart(lexer, subBuffer, offsetInSubBuffer);
             offsetInSubBuffer += statement.GetTextLength();
 
             children.Add(statement);
@@ -1307,13 +1298,18 @@ public class StatementGroup : SwiftInternalNode, IList<IStatement>
         }
     }
 
-    protected override SwiftInternalNode Duplicate()
+    private void AttachChildren(int index, IEnumerable<IStatement> statements, Action<ISwiftNode<SwiftCompositeNode>> onAttachment)
     {
-        throw new NotImplementedException();
+        
     }
 
-    protected override SwiftInternalNode DuplicateWithoutChildren()
+    private void PrependChildren(int index, IEnumerable<IStatement> statements, Action<ISwiftNode<SwiftCompositeNode>> onAttachment)
     {
-        throw new NotImplementedException();
+        
+    }
+
+    private void AppendChildren(IEnumerable<IStatement> statements, Action<ISwiftNode<SwiftCompositeNode>> onAttachment)
+    {
+        
     }
 }

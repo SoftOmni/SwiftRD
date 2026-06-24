@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Castle.Components.DictionaryAdapter;
 using JetBrains.Util;
 using SoftOmni.SwiftRd.Technology.Graphs.PathfindingAlgorithms;
 

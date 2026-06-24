@@ -1,35 +1,55 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ImplicitMemberExpressions;
 
-public class ImplicitMemberExpression : PrimaryExpressionInternalNode
+public class ImplicitMemberExpression : SwiftCompositeNode, IImplicitMemberExpression
 {
-    public Period? InitialPeriod { get; internal set; }
+    public Period Period { get; }
     
-    public Identifier? Identifier { get; internal set; }
+    public IIdentifier Member { get; }
     
-    public Period? SecondPeriod { get; internal set; }
+    public Period? FollowedUpPostfixExpressionAccess { get; }
     
-    public PostfixExpressionInternalNode? PostfixExpression { get; internal set; }
-    
-    public ImplicitMemberExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public IPostfixExpression? FollowedUpPostfixExpression { get; }
+
+    internal ImplicitMemberExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, Period period, 
+        IIdentifier member, Period? followedUpPostfixExpressionAccess = null, IPostfixExpression? followedUpPostfixExpression = null)
         : base(buffer, children)
-    { }
+    {
+        Period = period;
+        Member = member;
+        FollowedUpPostfixExpressionAccess = followedUpPostfixExpressionAccess;
+        FollowedUpPostfixExpression = followedUpPostfixExpression;
 
-    public ImplicitMemberExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ReturnType = UnknownType.Instance;
+    }
 
-    public ImplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyIdentifier IReadOnlyImplicitMemberExpression.Member => Member;
 
-    public ImplicitMemberExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyPostfixExpression? IReadOnlyImplicitMemberExpression.FollowedUpPostfixExpression => FollowedUpPostfixExpression;
+
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangeMember(IIdentifier newMember)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SetFollowupPostfixExpressionTo(IPostfixExpression? postfixExpression)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveFollowupPostfixExpression()
+    {
+        throw new System.NotImplementedException();
+    }
 }

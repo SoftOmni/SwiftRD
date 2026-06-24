@@ -1,19 +1,20 @@
 using System;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.
+    Literals;
 
-public abstract class BooleanLiteral : Literal<Bool, Boolean>, IBooleanLiteral
+public abstract class BooleanLiteral : Literal<Boolean>, IBooleanLiteral
 {
-    protected BooleanLiteral(IEditableBuffer buffer, bool value)
-        : base(buffer, Bool.Instance, value)
-    { }
+    protected new IPrimitiveLiteralTypeResolutionContext PrimitiveLiteralTypeResolutionContext { get; }
 
-    protected BooleanLiteral(IEditableBuffer underlyingBuffer, SwiftCompositeNode parentNode, int parentIndex, int parentTextIndex, bool value)
-        : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex, Bool.Instance, value)
-    { }
+    protected BooleanLiteral(IEditableBuffer buffer, bool value,
+        IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext)
+        : base(buffer, value)
+    {
+        PrimitiveLiteralTypeResolutionContext = primitiveLiteralTypeResolutionContext;
+    }
 
     public override bool GetValueCopy()
     {
@@ -32,7 +33,7 @@ public abstract class BooleanLiteral : Literal<Bool, Boolean>, IBooleanLiteral
         {
             return;
         }
-        
+
         // TODO: Log
     }
 
@@ -54,7 +55,7 @@ public abstract class BooleanLiteral : Literal<Bool, Boolean>, IBooleanLiteral
 
         FalseBooleanLiteral replacementNode = new();
         replacementNode.AttachToParent(GetParent()!, ParentIndex + 1);
-        
+
         DetachFromParent();
         return true;
     }
@@ -73,8 +74,18 @@ public abstract class BooleanLiteral : Literal<Bool, Boolean>, IBooleanLiteral
 
         TrueBooleanLiteral replacementNode = new();
         replacementNode.AttachToParent(GetParent()!, ParentIndex + 1);
-        
+
         DetachFromParent();
         return true;
+    }
+
+    public static explicit operator bool(BooleanLiteral booleanLiteral)
+    {
+        return booleanLiteral.Value;
+    }
+
+    protected override IReadOnlyPrimitiveLiteralTypeResolutionContext ProvidePrimitiveLiteralTypeResolutionContext()
+    {
+        return PrimitiveLiteralTypeResolutionContext;
     }
 }

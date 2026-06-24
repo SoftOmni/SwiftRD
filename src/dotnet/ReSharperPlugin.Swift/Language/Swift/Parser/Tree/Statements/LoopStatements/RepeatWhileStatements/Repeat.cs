@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
 
-public class Repeat : SwiftLeafNode, ISwiftKeyword
+public class Repeat : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "repeat";
     

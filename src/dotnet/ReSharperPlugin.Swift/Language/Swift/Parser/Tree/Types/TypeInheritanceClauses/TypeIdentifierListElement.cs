@@ -1,30 +1,90 @@
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 
-public class TypeIdentifierListElement : SwiftInternalNode
+public class TypeIdentifierListElement : SwiftCompositeNode, ITypeInheritanceListElement
 {
-    public AttributeGroup? AttributeGroup { get; internal set; }
+    public IAttributeGroup? AttributeGroup { get; }
     
-    public TypeIdentifier? TypeIdentifier { get; internal set; }
+    public IOperator? Tilde { get; }
     
-    public TypeIdentifierListElement(IEditableBuffer buffer, List<ISwiftNode> children) 
+    public ITypeIdentifier TypeIdentifier { get; }
+
+    internal TypeIdentifierListElement(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        ITypeIdentifier typeIdentifier)
         : base(buffer, children)
-    { }
+    {
+        AttributeGroup = null;
+        Tilde = null;
+        TypeIdentifier = typeIdentifier;
+    }
 
-    public TypeIdentifierListElement(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
+    internal TypeIdentifierListElement(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IAttributeGroup attributeGroup, ITypeIdentifier typeIdentifier)
         : base(buffer, children)
-    { }
+    {
+        AttributeGroup = attributeGroup;
+        Tilde = null;
+        TypeIdentifier = typeIdentifier;
+    }
 
-    public TypeIdentifierListElement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    internal TypeIdentifierListElement(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IOperator @operator, ITypeIdentifier typeIdentifier)
+        : base(buffer, children)
+    {
+        AttributeGroup = null;
+        Tilde = @operator;
+        TypeIdentifier = typeIdentifier;
+    }
 
-    public TypeIdentifierListElement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    internal TypeIdentifierListElement(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IAttributeGroup attributeGroup, IOperator @operator, ITypeIdentifier typeIdentifier)
+        : base(buffer, children)
+    {
+        AttributeGroup = attributeGroup;
+        Tilde = @operator;
+        TypeIdentifier = typeIdentifier;
+    }
+
+    IReadOnlyAttributeGroup? IReadOnlyTypeInheritanceListElement.AttributeGroup => AttributeGroup;
+
+    IReadOnlyOperator? IReadOnlyTypeInheritanceListElement.Tilde => Tilde;
+
+    IReadOnlyTypeIdentifier IReadOnlyTypeInheritanceListElement.TypeIdentifier => TypeIdentifier;
+
+    public bool AddIfNotPresentAttributeGroup(IAttributeGroup attributeGroup)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SetAttributeGroupTo(IAttributeGroup? attributeGroup)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveAttributeGroup()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddTildeIfNotPresent()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveTilde()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ChangeTypeIdentifier(ITypeIdentifier typeIdentifier)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -6,6 +6,8 @@ namespace SoftOmni.SwiftRd.Technology;
 
 public class ModularVisibilityHashSet<T> : ISet<T>, IReadOnlySet<T>
 {
+    public static readonly ModularVisibilityHashSet<T> Empty = [];
+    
     private readonly HashSet<T> _hashSet;
 
     public ModularVisibilityHashSet()

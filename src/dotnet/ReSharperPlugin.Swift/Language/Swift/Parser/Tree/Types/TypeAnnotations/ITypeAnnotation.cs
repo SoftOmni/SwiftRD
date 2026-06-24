@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Types.TypeAnnotations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
 
-public interface ITypeAnnotation : IReadOnlyTypeAnnotation, IList<IAttribute>
+public interface ITypeAnnotation : IReadOnlyTypeAnnotation
 {
-    new IAttributeGroup AttributeGroup { get; }
+    new IType Type { get; }
+    
+    new IAttributeGroup? AttributeGroup { get; }
 
-    void SetType(IType type);
+    void ChangeType(IType type);
 }

@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
 
-public class Associativity : SwiftLeafNode, ISwiftKeyword
+public class Associativity : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "associativity";
     

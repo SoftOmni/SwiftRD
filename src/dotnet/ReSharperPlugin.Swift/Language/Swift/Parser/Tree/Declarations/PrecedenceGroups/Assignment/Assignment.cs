@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
 
-public class Assignment : SwiftLeafNode, ISwiftKeyword
+public class Assignment : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "assignment";
     

@@ -6,4 +6,4 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNo
 
 public interface ISwiftInternalNode<TSelf> :
     IInternalNode<ISwiftNodeFamily<TSelf>, TSelf, SwiftLeafNode<TSelf>>
-    where TSelf : ISwiftInternalNode<TSelf>;
+    where TSelf : SwiftInternalNode<TSelf>;

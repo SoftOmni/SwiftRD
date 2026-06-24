@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
-using JetBrains.Util;
-using NuGet;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.UserDefinedOperators;

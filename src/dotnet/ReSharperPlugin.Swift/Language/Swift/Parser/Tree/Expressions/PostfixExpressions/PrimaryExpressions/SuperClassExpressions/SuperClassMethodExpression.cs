@@ -1,30 +1,43 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISuperClassExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperClassExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperExpressions;
+namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperClassExpressions;
 
-public class SuperClassMethodExpression : SuperClassExpression
+public class SuperClassMethodExpression : SwiftCompositeNode, ISuperClassMethodExpression
 {
-    public Period? Period { get; internal set; }
-    
-    public Identifier? Identifier { get; internal set; }
-    
-    public SuperClassMethodExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public Super Super { get; }
+
+    public Period Period { get; }
+
+    public IIdentifier MethodName { get; }
+
+    internal SuperClassMethodExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        Super super, Period period, IIdentifier methodName)
         : base(buffer, children)
-    { }
+    {
+        Super = super;
+        Period = period;
+        MethodName = methodName;
 
-    public SuperClassMethodExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ReturnType = UnknownType.Instance;
+    }
 
-    public SuperClassMethodExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyIdentifier IReadOnlySuperClassMethodExpression.MethodName => MethodName;
 
-    public SuperClassMethodExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangeMethodName(IIdentifier newMethodName)
+    {
+        throw new System.NotImplementedException();
+    }
 }

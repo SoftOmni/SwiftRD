@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
 
-public class Catch : SwiftLeafNode, ISwiftKeyword
+public class Catch : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "catch";
     

@@ -1,48 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISuperClassExpressions;
 
-public class Super : SwiftLeafNode, ISwiftKeyword
+public class Super : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Super>
 {
     public const string Keyword = "super";
-    
-    public SuperClassExpression? SuperExpression { get; internal set; }
 
-    internal Super(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Super)
+    public Super()
+        : base(new EditableBuffer(Keyword))
+    { }
+    
+    internal Super(IEditableBuffer buffer)
+        : base(buffer)
     { }
 
-    internal Super(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Super)
-    {
-        if (parent is SuperClassExpression superExpression)
-        {
-            SuperExpression = superExpression;
-        }
-    }
-
-    internal Super(SuperClassExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Super)
-    {
-        SuperExpression = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.SelfLowercase;
 
     public string KeywordValue => Keyword;
 
     public static Super Create()
     {
         return new Super(new EditableBuffer(Keyword));
-    }
-
-    public static Super Create(SuperClassExpression superClassExpression)
-    {
-        return new Super(superClassExpression, new EditableBuffer(Keyword));
-    }
-
-    public static Super CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Super(parent, new EditableBuffer(Keyword));
     }
 }

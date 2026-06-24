@@ -298,6 +298,11 @@ public abstract class InternalNode<TFamily, TSelf, TLeafNode> : CompositeElement
         throw new NotImplementedException();
     }
 
+    public void ClearChildren()
+    {
+        ClearChildren(0, ChildNodes.Count);
+    }
+
     public void ClearChildren(int startIndex, int endIndex)
     { }
 

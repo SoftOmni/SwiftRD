@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Relations;
 
-public class HigherThan : SwiftLeafNode, ISwiftKeyword
+public class HigherThan : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "higherThan";
     

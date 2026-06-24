@@ -6,7 +6,7 @@ using JetBrains.Util;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-public abstract class SwiftNodeType : NodeType
+public abstract class SwiftNodeType : NodeType // TODO: fix later (composite node types)
 {
     protected SwiftNodeType(string id, int index) : base(id, index, NodeTypeFlags.Token)
     {
@@ -47,4 +47,20 @@ public abstract class SwiftNodeType : NodeType
     }
 
     public virtual string GetDescription() => TokenRepresentation.IsNullOrEmpty() ? ToString() : TokenRepresentation;
+
+    protected static void CheckAgainstValue(string keywordValue, IEditableBuffer buffer, string tokenId)
+    {
+        if (buffer.Length != keywordValue.Length)
+        {
+            throw new InvalidLexicalBaseForElement(tokenId, buffer);
+        }
+
+        for (int i = 0; i < keywordValue.Length; i++)
+        {
+            if (buffer[i] != keywordValue[i])
+            {
+                throw new InvalidLexicalBaseForElement(tokenId, buffer);
+            }
+        }
+    }
 }

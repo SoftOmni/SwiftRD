@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols.Members;
 
-public class AssociatedType : SwiftLeafNode, ISwiftKeyword
+public class AssociatedType : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "associatedtype";
     

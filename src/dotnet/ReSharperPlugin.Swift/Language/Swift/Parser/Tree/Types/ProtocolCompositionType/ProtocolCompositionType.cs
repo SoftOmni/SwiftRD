@@ -1,137 +1,128 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
+using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.ProtocolCompositionType;
 
-public class ProtocolCompositionType : SwiftInternalNode, IList<TypeIdentifier>, IReadOnlyList<Ampersand>
+public class ProtocolCompositionType : SwiftCompositeNode, IProtocolCompositionType
 {
-    private List<TypeIdentifier> _typeIdentifiers = [];
+    private readonly List<ITypeIdentifier> _typeIdentifiers = [];
 
-    private List<Ampersand> _ampersands = [];
+    private readonly List<Ampersand> _ampersands = [];
 
-    public ProtocolCompositionType(IEditableBuffer buffer, List<ISwiftNode> children) 
+    internal ProtocolCompositionType(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        List<ITypeIdentifier> typeIdentifiers, List<Ampersand> ampersands)
         : base(buffer, children)
-    { }
-
-    public ProtocolCompositionType(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
-
-    public ProtocolCompositionType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    public ProtocolCompositionType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    public IReadOnlyList<TypeIdentifier> TypeIdentifiers => _typeIdentifiers;
-
-    public IReadOnlyList<Ampersand> Ampersands => _ampersands;
-
-    public int TypeIdentifiersCount => _typeIdentifiers.Count;
-
-    public int Count => NumberOfChildren();
-
-    public int AmpersandsCount => _ampersands.Count;
-
-    public bool IsReadOnly => false;
-
-    TypeIdentifier IList<TypeIdentifier>.this[int index]
     {
-        get => throw new System.NotImplementedException();
+        _typeIdentifiers = typeIdentifiers;
+        _ampersands = ampersands;
+    }
+
+    public IReadOnlyDeclaration? Declaration { get; internal set; } = null;
+    
+    public IReadOnlyType ActualType => this;
+    
+    public string TypeSignature => string.Join(" & ", _typeIdentifiers);
+
+    public IReadOnlyType? SuperType => null;
+
+    public IReadOnlyList<IReadOnlyList<IReadOnlyType>> SubTypeChains { get; } = [];
+    
+    public IReadOnlySet<IReadOnlyType> SubTypes { get; } = ModularVisibilityHashSet<IReadOnlyType>.Empty;
+    
+    public IReadOnlySet<string> SubTypeNames { get; } = ModularVisibilityHashSet<string>.Empty;
+
+    public bool IsFromStandardLibrary { get; internal set; } = false;
+
+    public int Size { get; }
+
+    IEnumerator<ITypeIdentifier> IEnumerable<ITypeIdentifier>.GetEnumerator()
+    {
+        return _typeIdentifiers.GetEnumerator();
+    }
+
+    ITypeIdentifier IProtocolCompositionType.this[int index]
+    {
+        get => _typeIdentifiers[index];
         set => throw new System.NotImplementedException();
     }
 
-    Ampersand IReadOnlyList<Ampersand>.this[int index] => throw new System.NotImplementedException();
-
-    public TypeIdentifier GetTypeIdentifierAtIndex(int index)
+    IEnumerator<IReadOnlyTypeIdentifier> IEnumerable<IReadOnlyTypeIdentifier>.GetEnumerator()
     {
-        throw new NotImplementedException();
-    }
-
-    public TypeIdentifier GetAmpersandAtIndex(int index)
-    {
-        throw new NotImplementedException();
-    }
-    
-    public void SetTypeIdentifierAtIndex(int index, TypeIdentifier newTypeIdentifier)
-    {
-        throw new NotImplementedException();
-    }
-
-    void ICollection<TypeIdentifier>.Clear()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Add(TypeIdentifier item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Insert(int index, TypeIdentifier item)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IList<TypeIdentifier>.RemoveAt(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Remove(TypeIdentifier item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Contains(TypeIdentifier item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Contains(Ampersand item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void CopyTo(TypeIdentifier[] array, int arrayIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void CopyTo(Ampersand[] array, int arrayIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int IndexOf(TypeIdentifier item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int IndexOf(Ampersand item)
-    {
-        throw new NotImplementedException();
+        return _typeIdentifiers.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        throw new NotImplementedException();
+        return _typeIdentifiers.GetEnumerator();
     }
 
-    IEnumerator<TypeIdentifier> IEnumerable<TypeIdentifier>.GetEnumerator()
+    public void Add(ITypeIdentifier item)
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
 
-    IEnumerator<Ampersand> IEnumerable<Ampersand>.GetEnumerator()
+    public void Clear()
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
+
+    public bool Contains(ITypeIdentifier item)
+    {
+        return _typeIdentifiers.Contains(item);
+    }
+
+    public void CopyTo(ITypeIdentifier[] array, int arrayIndex)
+    {
+        _typeIdentifiers.CopyTo(array, arrayIndex);
+    }
+
+    public bool Remove(ITypeIdentifier item)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    int IProtocolCompositionType.Count => _typeIdentifiers.Count;
+
+    int ICollection<ITypeIdentifier>.Count => _typeIdentifiers.Count;
+
+    int IReadOnlyCollection<IReadOnlyTypeIdentifier>.Count => _typeIdentifiers.Count;
+    
+    public bool IsReadOnly => false;
+
+    public int IndexOf(ITypeIdentifier item)
+    {
+        return _typeIdentifiers.IndexOf(item);
+    }
+
+    public void Insert(int index, ITypeIdentifier item)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveAt(int index)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    IEnumerator<ITypeIdentifier> IProtocolCompositionType.GetEnumerator()
+    {
+        return _typeIdentifiers.GetEnumerator();
+    }
+
+    ITypeIdentifier IList<ITypeIdentifier>.this[int index]
+    {
+        get => _typeIdentifiers[index];
+        set => throw new System.NotImplementedException();
+    }
+
+    IReadOnlyTypeIdentifier IReadOnlyList<IReadOnlyTypeIdentifier>.this[int index] => _typeIdentifiers[index];
+
+    public IReadOnlyList<IReadOnlyTypeIdentifier> ProtocolComposition => _typeIdentifiers;
 }

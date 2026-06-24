@@ -1,12 +1,10 @@
 using System;
 using System.Numerics;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
-public interface IReadOnlyIntegerLiteral : IReadOnlyLiteral<Int, BigInteger>
+public interface IReadOnlyIntegerLiteral : IReadOnlyLiteral<BigInteger>
 {
     public enum Base
     {

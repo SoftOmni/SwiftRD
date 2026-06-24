@@ -1,26 +1,21 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.MetaTypes;
 
-public class TypeMetaType : MetaType
+public class TypeMetaType : MetaType, ITypeMetaData
 {
-    public Type? TypeKeyword { get; internal set; }
-    
-    public TypeMetaType(IEditableBuffer buffer, List<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+    public Type TypeKeyword { get; }
 
-    public TypeMetaType(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+    internal TypeMetaType(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, IType type,
+        Period period, Type typeKeyword)
+        : base(buffer, children, type, period)
+    {
+        TypeKeyword = typeKeyword;
+    }
 
-    public TypeMetaType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    public TypeMetaType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public override string TypeSignature => $"{Type.TypeSignature}.{MetaTypes.Type.Keyword}";
 }

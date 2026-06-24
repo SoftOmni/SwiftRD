@@ -1,9 +1,7 @@
 using System;
-using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Resources.Shell;
 using JetBrains.TestFramework;
-using NUnit.Framework;
 using SoftOmni.SwiftRd.Language.File;
 
 namespace SoftOmni.SwiftRd.Tests.test.Registration;

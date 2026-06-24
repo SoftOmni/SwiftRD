@@ -1,11 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 
-public class Rethrows : TypeLeafNode, ISwiftKeyword
+public class Rethrows : TypeLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "Rethrows";
     

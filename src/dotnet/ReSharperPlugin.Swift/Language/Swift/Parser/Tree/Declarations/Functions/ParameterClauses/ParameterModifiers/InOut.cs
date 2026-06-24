@@ -1,11 +1,9 @@
 using JetBrains.DocumentModel.Impl;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
 
-public class InOut : ParameterModifier, ISwiftKeyword
+public class InOut : ParameterModifier, ISwiftKeywordNode
 {
     public const string Keyword = "inout";
     

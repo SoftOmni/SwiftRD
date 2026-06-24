@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 
-public class FilePrivate : LeafAccessLevelModifier, ISwiftKeyword
+public class FilePrivate : LeafAccessLevelModifier, ISwiftKeywordNode
 {
     public const string Keyword = "filePrivate";
     

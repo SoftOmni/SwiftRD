@@ -1,6 +1,5 @@
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
-using SoftOmni.SwiftRd.Language.ProjectModel;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
 using SoftOmni.SwiftRd.Language.Swift.ProjectModels;

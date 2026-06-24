@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements.Breaks;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 
-public class Break : StatementLeafNode, ISwiftKeyword
+public class Break : StatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "break";
     

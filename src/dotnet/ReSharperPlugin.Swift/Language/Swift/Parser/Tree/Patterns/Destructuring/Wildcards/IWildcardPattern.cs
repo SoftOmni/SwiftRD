@@ -1,4 +1,4 @@
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Types.TypeAnnotations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.Destructuring.Wildcards;
 

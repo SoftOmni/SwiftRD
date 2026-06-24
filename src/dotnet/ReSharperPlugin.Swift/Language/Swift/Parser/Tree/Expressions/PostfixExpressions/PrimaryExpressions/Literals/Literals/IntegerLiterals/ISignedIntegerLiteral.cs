@@ -1,6 +1,6 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
 public interface ISignedIntegerLiteral : IIntegerLiteral, IReadOnlySignedIntegerLiteral
 {

@@ -1,32 +1,44 @@
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-public class TypeAnnotation : SwiftInternalNode
+public class TypeAnnotation : SwiftCompositeNode, ITypeAnnotation
 {
-    public Colon? Colon { get; internal set; }
+    public Colon Colon { get; }
 
-    public AttributeGroup? AttributeGroup { get; internal set; }
+    public IAttributeGroup? AttributeGroup { get; internal set; }
 
-    public IType? Type { get; internal set; }
+    public IType Type { get; internal set; }
 
-    public TypeAnnotation(IEditableBuffer buffer, List<ISwiftNode> children) 
+    internal TypeAnnotation(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        Colon colon, IType type)
         : base(buffer, children)
-    { }
-
-    public TypeAnnotation(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
+    {
+        Colon = colon;
+        Type = type;
+    }
+    
+    internal TypeAnnotation(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        Colon colon, IAttributeGroup attributeGroup, IType type)
         : base(buffer, children)
-    { }
+    {
+        Colon = colon;
+        AttributeGroup = attributeGroup;
+        Type = type;
+    }
 
-    public TypeAnnotation(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyAttributeGroup? IReadOnlyTypeAnnotation.AttributeGroup => AttributeGroup;
 
-    public TypeAnnotation(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyType IReadOnlyTypeAnnotation.Type => Type;
+    
+    public void ChangeType(IType type)
+    {
+        throw new System.NotImplementedException();
+    }
 }

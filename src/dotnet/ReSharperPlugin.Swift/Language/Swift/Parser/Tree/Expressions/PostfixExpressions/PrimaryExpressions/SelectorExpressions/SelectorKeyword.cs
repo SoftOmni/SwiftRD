@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelectorExpressions;
 
-public class SelectorKeyword : SwiftLeafNode, ISwiftKeyword
+public class SelectorKeyword : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "#selectorKeyword";
     

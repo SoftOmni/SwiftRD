@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 

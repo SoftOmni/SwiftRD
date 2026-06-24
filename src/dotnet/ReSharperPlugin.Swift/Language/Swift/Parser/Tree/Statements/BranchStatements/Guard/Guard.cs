@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Guard;
 
-public class Guard : StatementLeafNode, ISwiftKeyword
+public class Guard : StatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "guard";
     

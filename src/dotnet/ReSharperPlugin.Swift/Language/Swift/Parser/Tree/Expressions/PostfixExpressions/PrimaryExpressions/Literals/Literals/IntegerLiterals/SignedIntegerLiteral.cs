@@ -1,12 +1,13 @@
 using System.Numerics;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using SoftOmni.SwiftRd.Technology;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
 public class SignedIntegerLiteral : SwiftCompositeNode, ISignedIntegerLiteral
 {
@@ -35,8 +36,6 @@ public class SignedIntegerLiteral : SwiftCompositeNode, ISignedIntegerLiteral
         IntegerLiteral = integerLiteral;
     }
 
-    public Int Type => IntegerLiteral.Type;
-
     public BigInteger Value => IntegerLiteral.Value;
 
     public IReadOnlyIntegerLiteral.Base CurrentBase => IntegerLiteral.CurrentBase;
@@ -46,6 +45,13 @@ public class SignedIntegerLiteral : SwiftCompositeNode, ISignedIntegerLiteral
     public IIntegerLiteralFormatting.HexadecimalMode? CurrentHexadecimalMode => IntegerLiteral.CurrentHexadecimalMode;
 
     IReadOnlyOperator? IReadOnlySignedIntegerLiteral.Operator => Operator;
+
+    public IReadOnlyPrimitiveLiteralTypeResolutionContext PrimitiveLiteralTypeResolutionContext =>
+        IntegerLiteral.PrimitiveLiteralTypeResolutionContext;
+
+    public IType ReturnType => IntegerLiteral.ReturnType;
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
 
     public BigInteger GetValueCopy()
     {
@@ -112,5 +118,10 @@ public class SignedIntegerLiteral : SwiftCompositeNode, ISignedIntegerLiteral
 
         Operator = new Operator(subEditableBuffer);
         CurrentSign = IReadOnlySignedIntegerLiteral.Sign.Negative;
+    }
+
+    public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
+    {
+        throw new System.NotImplementedException();
     }
 }

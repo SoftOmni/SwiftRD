@@ -1,12 +1,11 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Throws;
 
-public class Throw : ControlTransferStatementLeafNode, ISwiftKeyword
+public class Throw : ControlTransferStatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "throw";
 

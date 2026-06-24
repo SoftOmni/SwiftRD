@@ -1,22 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.InternalNodes;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
-using SoftOmni.SwiftRd.Technology.Graphs;
-using SoftOmni.SwiftRd.Technology.Graphs.StateMachines;
 
 namespace SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.InternalNodes;
 
@@ -39,11 +28,9 @@ public abstract class ModuleMapsInternalNode<TSelf> : InternalNode<IModuleMapsNo
         : base(buffer, children)
     { }
 
-    public override PsiLanguageType Language => SwiftLanguage.Instance!;
+    public override PsiLanguageType Language => ModuleMapsLanguage.Instance!;
 
-    public override NodeType NodeType => SwiftNodeTypes.Internal;
-
-    protected void CheckChildren(Type expectedChildType, HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
+    /*protected void CheckChildren(Type expectedChildType, HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
     {
         CheckChildren(GetType(), ChildNodes, expectedChildType, alwaysAllowedTypes, allowMultiples);
     }
@@ -406,5 +393,5 @@ public abstract class ModuleMapsInternalNode<TSelf> : InternalNode<IModuleMapsNo
 
         ISwiftNode<TSelf> precedingChild = (ISwiftNode<TSelf>)ChildNodes[index - 1];
         return precedingChild.ParentTextIndex + precedingChild.GetTextLength();
-    }
+    }*/
 }

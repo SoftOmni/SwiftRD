@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
 
-public class Mutating : MutationModifier, ISwiftKeyword
+public class Mutating : MutationModifier, ISwiftKeywordNode
 {
     public const string Keyword = "mutating";
 

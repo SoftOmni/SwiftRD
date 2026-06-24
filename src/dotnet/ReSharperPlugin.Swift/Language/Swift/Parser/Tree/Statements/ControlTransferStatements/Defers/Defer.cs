@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.Defers;
 
-public class Defer : StatementLeafNode, ISwiftKeyword
+public class Defer : StatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "defer";
     

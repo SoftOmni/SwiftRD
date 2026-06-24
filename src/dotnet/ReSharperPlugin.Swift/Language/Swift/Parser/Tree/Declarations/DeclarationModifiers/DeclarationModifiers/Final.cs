@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Final : DeclarationModifierLeaf, ISwiftKeyword
+public class Final : DeclarationModifierLeaf, ISwiftKeywordNode
 {
     public const string Keyword = "final";
     

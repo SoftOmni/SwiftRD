@@ -1,3 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structures;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 
-public class StructKeywordToken() : DeclarationUsableKeywordToken("struct", SwiftTokens.StructId, SwiftTokens.StructIndex);
+public class StructKeywordToken : DeclarationUsableKeywordToken<Struct>
+{
+    public StructKeywordToken()
+        : base(Struct.Keyword, SwiftTokens.StructId, SwiftTokens.StructIndex)
+    { }
+}

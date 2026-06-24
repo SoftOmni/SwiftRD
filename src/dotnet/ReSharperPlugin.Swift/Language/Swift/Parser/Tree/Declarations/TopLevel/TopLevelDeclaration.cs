@@ -7,8 +7,6 @@ using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;

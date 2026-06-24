@@ -1,12 +1,11 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.GenericWhereClauseClauses;
 
-public class Where : SwiftLeafNode, ISwiftKeyword
+public class Where : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "where";
     

@@ -1,3 +1,8 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class CaseKeywordToken() : StatementUsableKeywordToken("case", SwiftTokens.CaseId, SwiftTokens.CaseIndex);
+public class CaseKeywordToken : StatementUsableKeywordToken
+{
+    public CaseKeywordToken()
+        : base("case", SwiftTokens.CaseId, SwiftTokens.CaseIndex)
+    { }
+}

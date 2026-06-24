@@ -1,29 +1,36 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.ForcedValueExpressions;
 
-public class ForcedValueExpression : PostfixExpressionInternalNode
+public class ForcedValueExpression : SwiftCompositeNode, IForcedValueExpression
 {
-    public IPostfixExpression? PostfixExpression { get; internal set; }
+    public IPostfixExpression PostfixExpression { get; }
     
-    public ExclamationMark? ExclamationMark { get; internal set; }
-    
-    public ForcedValueExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public ExclamationMark ExclamationMark { get; }
+
+    internal ForcedValueExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IPostfixExpression postfixExpression, ExclamationMark exclamationMark)
         : base(buffer, children)
-    { }
+    {
+        PostfixExpression = postfixExpression;
+        ExclamationMark = exclamationMark;
+        
+        ReturnType = UnknownType.Instance;
+    }
 
-    public ForcedValueExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    IReadOnlyPostfixExpression IReadOnlyForcedValueExpression.PostfixExpression => PostfixExpression;
 
-    public ForcedValueExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IType ReturnType { get; }
 
-    public ForcedValueExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangePostfixExpression(IPostfixExpression newPostfixExpression)
+    {
+        throw new System.NotImplementedException();
+    }
 }

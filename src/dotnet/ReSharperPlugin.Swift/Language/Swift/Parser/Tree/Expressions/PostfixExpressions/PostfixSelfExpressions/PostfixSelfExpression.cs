@@ -1,33 +1,40 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PostfixSelfExpressions;
 
-public class PostfixSelfExpression : PostfixExpressionInternalNode, ISelfExpression
+public class PostfixSelfExpression : SwiftCompositeNode, IPostfixSelfExpression
 {
-    public IPostfixExpression? PostfixExpression { get; internal set; }
-    
-    public Period? Period { get; internal set; }
-    
-    public SelfLowercase? SelfLowercase { get; internal set; }
-    
-    public PostfixSelfExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public IPostfixExpression PostfixExpression { get; }
+
+    public Period Period { get; }
+
+    public SelfLowercase SelfLowercase { get; }
+
+    internal PostfixSelfExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IPostfixExpression postfixExpression, Period period, SelfLowercase selfLowercase)
         : base(buffer, children)
-    { }
+    {
+        PostfixExpression = postfixExpression;
+        Period = period;
+        SelfLowercase = selfLowercase;
+        
+        ReturnType = UnknownType.Instance;
+    }
 
-    public PostfixSelfExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    IReadOnlyPostfixExpression IReadOnlyPostfixSelfExpression.PostfixExpression => PostfixExpression;
 
-    public PostfixSelfExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IType ReturnType { get; }
 
-    public PostfixSelfExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangePostfixExpression(IPostfixExpression newPostfixExpression)
+    {
+        throw new System.NotImplementedException();
+    }
 }

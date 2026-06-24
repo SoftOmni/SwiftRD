@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
 
-public class Enum : SwiftLeafNode, ISwiftKeyword
+public class Enum : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "enum";
     

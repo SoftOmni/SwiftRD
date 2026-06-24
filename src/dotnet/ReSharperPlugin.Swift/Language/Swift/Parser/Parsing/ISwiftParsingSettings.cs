@@ -15,8 +15,16 @@ public interface ISwiftParsingSettings
         ConsiderFirstToBePartOfGenericsClause,
         ConsiderNoneToBePartOfGenericsClause
     }
+
+    enum TrailingWhitespaceAfterElementPolicy
+    {
+        IncludeAsChildOfElement,
+        IncludeAsSiblingOfElement
+    }
     
     GenericsClauseUnendedBehavior GetGenericsClauseUnendedBehavior { get; }
     
     GenericsClauseDoubleTypesWithoutComma GetGenericsClauseDoubleTypesWithoutComma { get; }
+    
+    TrailingWhitespaceAfterElementPolicy GetTrailingWhitespaceAfterElementPolicy { get; }
 }

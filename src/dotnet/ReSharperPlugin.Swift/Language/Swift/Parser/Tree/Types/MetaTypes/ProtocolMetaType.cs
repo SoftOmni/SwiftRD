@@ -1,26 +1,21 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.MetaTypes;
 
-public class ProtocolMetaType : MetaType
+public class ProtocolMetaType : MetaType, IProtocolMetaData
 {
-    public Protocol? Protocol { get; internal set; }
-    
-    public ProtocolMetaType(IEditableBuffer buffer, List<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+    public ProtocolUppercase ProtocolKeyword { get; }
 
-    public ProtocolMetaType(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+    public ProtocolMetaType(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, IType type,
+        Period period, ProtocolUppercase protocolKeyword)
+        : base(buffer, children, type, period)
+    {
+        ProtocolKeyword = protocolKeyword;
+    }
 
-    public ProtocolMetaType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
-
-    public ProtocolMetaType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public override string TypeSignature => $"{Type.TypeSignature}.{ProtocolUppercase.Keyword}";
 }

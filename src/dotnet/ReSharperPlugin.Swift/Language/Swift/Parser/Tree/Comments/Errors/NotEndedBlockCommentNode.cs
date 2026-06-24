@@ -2,7 +2,7 @@ using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.ErrorNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Comments.Errors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments.Errors;
 
 public class NotEndedBlockCommentNode : SwiftErrorLeafNode<SwiftCompositeNode>
 {

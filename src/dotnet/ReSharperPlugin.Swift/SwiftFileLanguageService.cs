@@ -4,7 +4,6 @@ using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 using JetBrains.UI.Icons;
 using JetBrains.Util.Dotnet.TargetFrameworkIds;
-using SoftOmni.SwiftRd.Language;
 using SoftOmni.SwiftRd.Language.File;
 using SoftOmni.SwiftRd.Language.Ui.Icons;
 

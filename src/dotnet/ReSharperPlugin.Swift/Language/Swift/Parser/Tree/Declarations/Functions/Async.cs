@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
 
-public class Async: SwiftLeafNode, ISwiftKeyword
+public class Async: SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "async";
     

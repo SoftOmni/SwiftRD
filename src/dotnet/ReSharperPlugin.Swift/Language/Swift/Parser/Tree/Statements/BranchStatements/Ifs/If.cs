@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
 
-public class If : StatementLeafNode, ISwiftKeyword
+public class If : StatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "if";
     

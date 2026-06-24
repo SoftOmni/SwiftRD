@@ -1,31 +1,39 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ParenthesizedExpressions;
 
-public class ParenthesizedExpression : PrimaryExpressionInternalNode
+public class ParenthesizedExpression : SwiftCompositeNode, IParenthesizedExpression
 {
-    public LeftParenthesis? LeftParenthesis { get; internal set; }
+    public LeftParenthesis LeftParenthesis { get; }
 
-    public Expression? Expression { get; internal set; }
+    public IExpression Expression { get; }
 
-    public RightParenthesis? RightParenthesis { get; internal set; }
+    public RightParenthesis RightParenthesis { get; }
 
-    public ParenthesizedExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    internal ParenthesizedExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, 
+        LeftParenthesis leftParenthesis, IExpression expression, RightParenthesis rightParenthesis)
         : base(buffer, children)
-    { }
+    {
+        LeftParenthesis = leftParenthesis;
+        Expression = expression;
+        RightParenthesis = rightParenthesis;
+        
+        ReturnType = UnknownType.Instance;
+    }
 
-    public ParenthesizedExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    IReadOnlyExpression IReadOnlyParenthesizedExpression.Expression => Expression;
 
-    public ParenthesizedExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IType ReturnType { get; }
 
-    public ParenthesizedExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangeExpression(IExpression newExpression)
+    {
+        throw new System.NotImplementedException();
+    }
 }

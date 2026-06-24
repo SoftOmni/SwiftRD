@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Prefix : DeclarationModifierLeaf, ISwiftKeyword
+public class Prefix : DeclarationModifierLeaf, ISwiftKeywordNode
 {
     public const string Keyword = "prefix";
     

@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
 
-public class Consuming : ParameterModifier, ISwiftKeyword
+public class Consuming : ParameterModifier, ISwiftKeywordNode
 {
     public const string Keyword = "consuming";
     
