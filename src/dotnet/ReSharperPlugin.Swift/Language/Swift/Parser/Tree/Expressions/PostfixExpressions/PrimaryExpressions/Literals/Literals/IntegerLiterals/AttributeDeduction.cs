@@ -1,7 +1,7 @@
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
 public partial class IntegerLiteral
 {
@@ -104,9 +104,9 @@ public partial class IntegerLiteral
             case IReadOnlyIntegerLiteral.Base.Octal or IReadOnlyIntegerLiteral.Base.Decimal:
                 fillUpThreshold = int.MaxValue;
                 break;
-            case IReadOnlyIntegerLiteral.Base.Hexadecimal when digitCount == Type.Size / 4:
-            case IReadOnlyIntegerLiteral.Base.Binary when digitCount == Type.Size:
-                fillUpThreshold = Type.Size;
+            case IReadOnlyIntegerLiteral.Base.Hexadecimal when digitCount == ReturnType.Size / 4:
+            case IReadOnlyIntegerLiteral.Base.Binary when digitCount == ReturnType.Size:
+                fillUpThreshold = ReturnType.Size;
                 break;
             default:
                 fillUpThreshold = int.MaxValue;

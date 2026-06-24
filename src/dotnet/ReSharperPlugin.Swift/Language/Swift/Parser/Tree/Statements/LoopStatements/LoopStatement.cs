@@ -1,12 +1,7 @@
 using System.Collections.Generic;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements;
 

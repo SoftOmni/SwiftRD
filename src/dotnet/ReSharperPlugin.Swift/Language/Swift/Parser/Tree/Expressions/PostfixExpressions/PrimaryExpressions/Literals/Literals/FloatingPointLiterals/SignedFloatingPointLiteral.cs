@@ -1,11 +1,13 @@
+using System;
 using System.Numerics;
 using ExtendedNumerics;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals;
@@ -36,8 +38,6 @@ public class SignedFloatingPointLiteral : SwiftCompositeNode, ISignedFloatingPoi
         Operator = @operator;
         FloatingPointLiteral = floatingPointLiteral;
     }
-
-    public Double Type => FloatingPointLiteral.Type;
 
     public BigDecimal Value => FloatingPointLiteral.Value;
 
@@ -70,6 +70,13 @@ public class SignedFloatingPointLiteral : SwiftCompositeNode, ISignedFloatingPoi
     public int IndexOfNonPresence => FloatingPointLiteral.IndexOfNonPresence;
 
     IReadOnlyOperator? IReadOnlySignedFloatingPointLiteral.Operator => Operator;
+
+    public IReadOnlyPrimitiveLiteralTypeResolutionContext PrimitiveLiteralTypeResolutionContext
+        => FloatingPointLiteral.PrimitiveLiteralTypeResolutionContext;
+
+    public IType ReturnType => FloatingPointLiteral.ReturnType;
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
 
     public BigDecimal GetValueCopy()
     {
@@ -106,5 +113,10 @@ public class SignedFloatingPointLiteral : SwiftCompositeNode, ISignedFloatingPoi
 
         Operator = new Operator(subEditableBuffer);
         CurrentSign = IReadOnlyFloatingPointLiteral.Sign.Negative;
+    }
+
+    public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
+    {
+        throw new NotImplementedException();
     }
 }

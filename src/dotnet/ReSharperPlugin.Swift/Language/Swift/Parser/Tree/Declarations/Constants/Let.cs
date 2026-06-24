@@ -1,11 +1,9 @@
 using JetBrains.DocumentModel.Impl;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Constants;
 
-public class Let : SwiftLeafNode, ISwiftKeyword
+public class Let : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "let";
     

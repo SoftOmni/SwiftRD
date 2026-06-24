@@ -1,6 +1,5 @@
 using System.Text;
 using JetBrains.Text;
-using NUnit.Framework;
 using SoftOmni.SwiftRd.Extensions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;

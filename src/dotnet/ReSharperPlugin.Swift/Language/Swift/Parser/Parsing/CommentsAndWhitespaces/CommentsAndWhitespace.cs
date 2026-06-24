@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Comments.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;

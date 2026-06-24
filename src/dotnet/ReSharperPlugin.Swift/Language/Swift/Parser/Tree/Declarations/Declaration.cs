@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.Application.UI.Icons.CompiledIcons;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
 

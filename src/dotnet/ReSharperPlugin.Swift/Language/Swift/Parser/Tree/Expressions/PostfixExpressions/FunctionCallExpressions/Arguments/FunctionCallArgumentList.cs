@@ -1,44 +1,94 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.FunctionCallExpressions.Arguments;
 
-public class FunctionCallArgumentList : SwiftInternalNode, IList<CallArgument>
+public class FunctionCallArgumentList : SwiftCompositeNode, IFunctionCallArgumentList
 {
-    private List<CallArgument> _arguments = [];
+    public LeftParenthesis LeftParenthesis { get; }
 
-    private List<Comma> _commas = [];
+    private readonly List<IFunctionCallArgument> _arguments;
 
-    public FunctionCallArgumentList(IEditableBuffer buffer, List<ISwiftNode> children)
+    private readonly List<Comma> _commas;
+    
+    public RightParenthesis RightParenthesis { get; }
+
+    internal FunctionCallArgumentList(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        LeftParenthesis leftParenthesis, List<IFunctionCallArgument> arguments,
+        List<Comma> commas, RightParenthesis rightParenthesis)
         : base(buffer, children)
-    { }
+    {
+        LeftParenthesis = leftParenthesis;
+        _arguments = arguments;
+        _commas = commas;
+        RightParenthesis = rightParenthesis;
+    }
 
-    public FunctionCallArgumentList(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    public IReadOnlyList<IFunctionCallArgument> Arguments => _arguments;
 
-    public FunctionCallArgumentList(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyList<IReadOnlyFunctionCallArgument> IReadOnlyFunctionCallArgumentList.Arguments => Arguments;
 
-    public FunctionCallArgumentList(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyList<Comma> Commas => _commas;
+
+    public int Count => _arguments.Count;
+
+    public bool IsReadOnly => false;
+
+    public new IFunctionCallArgument this[int index]
+    {
+        get => _arguments[index];
+        set => throw new System.NotImplementedException();
+    }
+
+    IReadOnlyFunctionCallArgument IReadOnlyFunctionCallArgumentList.this[int index] => _arguments[index];
+
+    IReadOnlyFunctionCallArgument IReadOnlyList<IReadOnlyFunctionCallArgument>.this[int index] => _arguments[index];
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return GetEnumerator();
+        return _arguments.GetEnumerator();
     }
 
-    public IEnumerator<CallArgument> GetEnumerator()
+    IEnumerator<IReadOnlyFunctionCallArgument> IEnumerable<IReadOnlyFunctionCallArgument>.GetEnumerator()
     {
-        throw new System.NotImplementedException();
+        return _arguments.GetEnumerator();
     }
 
-    public void Add(CallArgument item)
+    IEnumerator<IReadOnlyFunctionCallArgument> IReadOnlyFunctionCallArgumentList.GetEnumerator()
+    {
+        return _arguments.GetEnumerator();
+    }
+
+    IEnumerator<IFunctionCallArgument> IEnumerable<IFunctionCallArgument>.GetEnumerator()
+    {
+        return _arguments.GetEnumerator();
+    }
+
+    IEnumerator<IFunctionCallArgument> IFunctionCallArgumentList.GetEnumerator()
+    {
+        return _arguments.GetEnumerator();
+    }
+
+    public bool Contains(IFunctionCallArgument item)
+    {
+        return _arguments.Contains(item);
+    }
+
+    public int IndexOf(IFunctionCallArgument item)
+    {
+        return _arguments.IndexOf(item);
+    }
+
+    public void CopyTo(IFunctionCallArgument[] array, int arrayIndex)
+    {
+        _arguments.CopyTo(array, arrayIndex);
+    }
+
+    public void Add(IFunctionCallArgument item)
     {
         throw new System.NotImplementedException();
     }
@@ -48,29 +98,12 @@ public class FunctionCallArgumentList : SwiftInternalNode, IList<CallArgument>
         throw new System.NotImplementedException();
     }
 
-    public bool Contains(CallArgument item)
+    public bool Remove(IFunctionCallArgument item)
     {
         throw new System.NotImplementedException();
     }
 
-    public void CopyTo(CallArgument[] array, int arrayIndex)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool Remove(CallArgument item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int Count { get; }
-    public bool IsReadOnly { get; }
-    public int IndexOf(CallArgument item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Insert(int index, CallArgument item)
+    public void Insert(int index, IFunctionCallArgument item)
     {
         throw new System.NotImplementedException();
     }
@@ -78,11 +111,5 @@ public class FunctionCallArgumentList : SwiftInternalNode, IList<CallArgument>
     public void RemoveAt(int index)
     {
         throw new System.NotImplementedException();
-    }
-
-    public CallArgument this[int index]
-    {
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
     }
 }

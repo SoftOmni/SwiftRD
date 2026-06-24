@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions.SwitchExpressions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
 
-public class Switch : SwiftLeafNode, ISwiftKeyword
+public class Switch : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "switch";
     

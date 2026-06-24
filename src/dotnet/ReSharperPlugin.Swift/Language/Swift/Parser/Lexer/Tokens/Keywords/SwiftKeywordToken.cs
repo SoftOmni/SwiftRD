@@ -1,11 +1,22 @@
 using System;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
 
-public class SwiftKeywordToken(string value, string tokenId, int index) : SwiftTokenNodeType(tokenId, index)
+public abstract class SwiftKeywordToken<AstLeafNode>(string value, string tokenId, int index) : SwiftTokenNodeType(tokenId, index) 
+    where AstLeafNode : LeafElementBase, ISwiftKeywordNode<AstLeafNode>, new()
 {
     public override string TokenRepresentation { get; } = value;
+
+    public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+    {
+        CheckAgainstValue(TokenRepresentation, buffer, Name);
+        return new AstLeafNode();
+    }
 
     public override bool IsKeyword => true;
 

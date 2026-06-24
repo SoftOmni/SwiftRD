@@ -1,30 +1,37 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ArgumentClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
-public class TypeIdentifierComponent : SwiftInternalNode
+public class TypeIdentifierComponent : SwiftCompositeNode, ITypeIdentifierComponent
 {
-    public Identifier? Identifier { get; internal set; }
+    public IIdentifier Name { get; internal set; }
     
-    public GenericArgumentClause? GenericArgumentClause { get; internal set; }
+    public IGenericArgumentClause? GenericArgumentClause { get; internal set; }
 
-    public TypeIdentifierComponent(IEditableBuffer buffer, List<ISwiftNode> children) 
+    internal TypeIdentifierComponent(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IIdentifier name, IGenericArgumentClause? genericArgumentClause = null)
         : base(buffer, children)
-    { }
+    {
+        Name = name;
+        GenericArgumentClause = genericArgumentClause;
+    }
 
-    public TypeIdentifierComponent(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+    IReadOnlyIdentifier IReadOnlyTypeIdentifierComponent.Name => Name;
 
-    public TypeIdentifierComponent(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyGenericArgumentClause? IReadOnlyTypeIdentifierComponent.GenericArgumentClause => GenericArgumentClause;
+    
+    public void ChangeName(IIdentifier name)
+    {
+        throw new System.NotImplementedException();
+    }
 
-    public TypeIdentifierComponent(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public void ChangeGenericArgumentClause(IGenericArgumentClause? genericArgumentClause)
+    {
+        throw new System.NotImplementedException();
+    }
 }

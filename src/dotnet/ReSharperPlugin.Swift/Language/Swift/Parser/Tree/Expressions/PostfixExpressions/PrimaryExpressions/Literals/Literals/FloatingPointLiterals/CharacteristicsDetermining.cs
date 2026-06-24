@@ -1,7 +1,7 @@
 using System;
 using System.Numerics;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals.Formatting;
 using SoftOmni.SwiftRd.Technology;
@@ -138,7 +138,7 @@ public partial class FloatingPointLiteral
         }
 
         IEditableBuffer subIntegralBuffer = new SubEditableBuffer(UnderlyingBuffer, index, index - startIndex);
-        IntegerLiteral integerLiteral = new(subIntegralBuffer, value);
+        IntegerLiteral integerLiteral = new(subIntegralBuffer, value, _primitiveLiteralTypeResolutionContext);
 
         return integerLiteral;
     }

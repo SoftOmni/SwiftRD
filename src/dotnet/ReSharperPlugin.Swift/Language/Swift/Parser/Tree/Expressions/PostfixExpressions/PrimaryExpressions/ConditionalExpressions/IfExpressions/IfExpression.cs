@@ -1,43 +1,72 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.Conditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions.IfExpressions;
 
-public class IfExpression : ConditionalExpression
+public class IfExpression : SwiftCompositeNode, IIfExpression
 {
-    public If? If { get; internal set; }
-
-    private List<ConditionList> _conditionLists = [];
-
-    private List<(Else @else, If @if)> _elseIfs = [];
-
-    private List<IStatement> _statements = [];
+    public If If { get; }
     
-    public Else? Else { get; internal set; }
+    public IConditionList ConditionList { get; }
+    
+    public LeftCurlyBrace LeftCurlyBrace { get; }
 
-    public IfExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    private readonly List<IStatement> _ifStatements;
+
+    public RightCurlyBrace RightCurlyBrace { get; }
+
+    private readonly List<IElseIfExpression> _elseIfExpressions;
+    
+    public IElseExpression ElseExpression { get; }
+
+    internal IfExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, If @if,
+        IConditionList conditionList, LeftCurlyBrace leftCurlyBrace, List<IStatement> ifStatements,
+        RightCurlyBrace rightCurlyBrace, List<IElseIfExpression> elseIfExpressions, IElseExpression elseExpression)
         : base(buffer, children)
-    { }
+    {
+        If = @if;
+        ConditionList = conditionList;
+        
+        LeftCurlyBrace = leftCurlyBrace;
+        _ifStatements = ifStatements;
+        RightCurlyBrace = rightCurlyBrace;
+        
+        _elseIfExpressions = elseIfExpressions;
+        ElseExpression = elseExpression;
 
-    public IfExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ReturnType = UnknownType.Instance;
+    }
 
-    public IfExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyConditionList IReadOnlyIfExpression.ConditionList => ConditionList;
 
-    public IfExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyList<IStatement> IfBlockStatements => _ifStatements;
 
-    public IReadOnlyList<ConditionList> Conditions => _conditionLists;
+    IReadOnlyList<IReadOnlyStatement> IReadOnlyIfExpression.IfBlockStatements => IfBlockStatements;
 
-    public IReadOnlyList<(Else @else, If @if)> ElseIfs => _elseIfs;
+    public IReadOnlyList<IElseIfExpression> ElseIfExpressions => _elseIfExpressions;
 
-    public IReadOnlyList<IStatement> Statements => _statements;
+    IReadOnlyList<IReadOnlyElseIfExpression> IReadOnlyIfExpression.ElseIfExpressions => ElseIfExpressions;
+
+    IReadOnlyElseExpression IReadOnlyIfExpression.ElseExpression => ElseExpression;
+
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangeConditionList(IConditionList newConditionList)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ChangeElseExpression(IElseExpression newElseExpression)
+    {
+        throw new System.NotImplementedException();
+    }
 }

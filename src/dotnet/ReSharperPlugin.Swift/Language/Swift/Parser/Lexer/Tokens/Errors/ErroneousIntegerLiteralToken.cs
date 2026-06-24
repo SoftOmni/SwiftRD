@@ -1,6 +1,5 @@
 using System.Numerics;
 using SoftOmni.SwiftRd.Language.Semantics.Type;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 

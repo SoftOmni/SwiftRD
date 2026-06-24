@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers.Composite;
 
-public class Safe : SwiftLeafNode, ISwiftKeyword
+public class Safe : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "safe";
     

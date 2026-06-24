@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables;
 
-public class Var : SwiftLeafNode, ISwiftKeyword
+public class Var : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "var";
     

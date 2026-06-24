@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.Fallthroughs;
 
-public class Fallthrough : ControlTransferStatementLeafNode, ISwiftKeyword
+public class Fallthrough : ControlTransferStatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "fallthrough";
     

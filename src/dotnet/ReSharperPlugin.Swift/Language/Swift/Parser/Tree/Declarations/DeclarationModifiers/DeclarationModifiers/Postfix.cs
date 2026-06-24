@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Postfix : DeclarationModifierLeaf, ISwiftKeyword
+public class Postfix : DeclarationModifierLeaf, ISwiftKeywordNode
 {
     public const string Keyword = "postfix";
     

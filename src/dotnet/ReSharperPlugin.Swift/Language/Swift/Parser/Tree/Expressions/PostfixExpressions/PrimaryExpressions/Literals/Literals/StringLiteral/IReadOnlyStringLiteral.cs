@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.StringLiterals.Formatting;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.StringLiterals;
 
-public interface IReadOnlyStringLiteral : IReadOnlyLiteral<String, string>
+public interface IReadOnlyStringLiteral : IReadOnlyLiteral<string>
 {
     int Length { get; }
     

@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
 

@@ -1,7 +1,6 @@
 using JetBrains.ReSharper.Psi;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.LeafNodes;
-using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces.LeafNode;
@@ -11,7 +10,7 @@ namespace SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.
 
 public abstract class ModuleMapsLeafNode<TSelf> :
     LeafNode<IModuleMapsNodeFamily<TSelf>, ModuleMapsLeafNode<TSelf>, TSelf>,
-    IModuleMapsLeafNode<TSelf>, IModuleMapsNode<TSelf>
+    IModuleMapsLeafNode<TSelf>
     where TSelf : class, IModuleMapsInternalNode<TSelf>
 {
     protected ModuleMapsLeafNode(IEditableBuffer underlyingBuffer)
@@ -22,8 +21,17 @@ public abstract class ModuleMapsLeafNode<TSelf> :
         : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex)
     { }
 
-    public override PsiLanguageType Language => SwiftLanguage.Instance!;
+    public override PsiLanguageType Language => ModuleMapsLanguage.Instance!;
 
+    IModuleMapsNode<TSelf> IModuleMapsLeafNode<TSelf>.CloneAsAttachedTo(TSelf newParent, int index)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    IModuleMapsNode<TSelf> IModuleMapsLeafNode<TSelf>.CloneAsDetached()
+    {
+        throw new System.NotImplementedException();
+    }
 
     public TSelf CloneAsDetached()
     {

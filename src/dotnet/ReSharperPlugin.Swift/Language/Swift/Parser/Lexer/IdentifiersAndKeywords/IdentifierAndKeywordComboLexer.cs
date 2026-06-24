@@ -1,22 +1,23 @@
-using System.Collections.Frozen;
 using System.Collections.Generic;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Util.dataStructures;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 public partial class SwiftLexer
 {
-    private static readonly FrozenDictionary<string, SwiftTokenNodeType> Keywords = BuildKeywords();
+    private static readonly Dictionary<string, SwiftTokenNodeType> Keywords = BuildKeywords();
 
-    public static readonly FrozenSet<char> IdentifierHeads = FillIdentifierHeadCharacters();
+    public static readonly HashSet<char> IdentifierHeads = FillIdentifierHeadCharacters();
 
-    public static readonly FrozenSet<char> IdentifierCharacters = FillIdentifierCharacters();
+    public static readonly HashSet<char> IdentifierCharacters = FillIdentifierCharacters();
 
-    public static readonly FrozenDictionary<string, SwiftTokenNodeType> ReservedKeywords = BuildReservedKeywords();
+    public static readonly Dictionary<string, SwiftTokenNodeType> ReservedKeywords = BuildReservedKeywords();
 
     private void LexIdentifierOrKeyword()
     {
@@ -58,7 +59,7 @@ public partial class SwiftLexer
         BackPutBackingToken(backingUnmatchedHashtagToken);
     }
 
-    private static FrozenSet<char> FillIdentifierHeadCharacters()
+    private static HashSet<char> FillIdentifierHeadCharacters()
     {
         HashSet<char> identifierHeads = [];
 
@@ -66,7 +67,11 @@ public partial class SwiftLexer
         identifierHeads.AddUnicodeRange('a', 'z', inclusive: true);
         identifierHeads.Add('_');
 
-        identifierHeads.AddRange(['\u00A8', '\u00AA', '\u00AD', '\u00AF']);
+        identifierHeads.Add('\u00A8');
+        identifierHeads.Add('\u00AA');
+        identifierHeads.Add('\u00AD');
+        identifierHeads.Add('\u00AF');
+        
         identifierHeads.AddUnicodeRange('\u00B2', '\u00B5', inclusive: true);
         identifierHeads.AddUnicodeRange('\u00B7', '\u00BA', inclusive: true);
 
@@ -110,23 +115,33 @@ public partial class SwiftLexer
         // Note: Upper Unicode planes (U+10000 and above) require surrogate pair handling
         // which is not straightforward with char type. These would need special handling.
 
-        return identifierHeads.ToFrozenSet();
+        return identifierHeads;
     }
 
-    private static FrozenSet<char> FillIdentifierCharacters()
+    private static HashSet<char> FillIdentifierCharacters()
     {
         HashSet<char> identifierCharacters = new(IdentifierHeads);
-
-        identifierCharacters.AddRange(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
+        
+        identifierCharacters.Add('0');
+        identifierCharacters.Add('1');
+        identifierCharacters.Add('2');
+        identifierCharacters.Add('3');
+        identifierCharacters.Add('4');
+        identifierCharacters.Add('5');
+        identifierCharacters.Add('6');
+        identifierCharacters.Add('7');
+        identifierCharacters.Add('8');
+        identifierCharacters.Add('9');
+        
         identifierCharacters.AddUnicodeRange('\u0300', '\u036F', inclusive: true);
         identifierCharacters.AddUnicodeRange('\u1DC0', '\u1DFF', inclusive: true);
         identifierCharacters.AddUnicodeRange('\u20D0', '\u20FF', inclusive: true);
         identifierCharacters.AddUnicodeRange('\uFE20', '\uFE2F', inclusive: true);
 
-        return identifierCharacters.ToFrozenSet();
+        return identifierCharacters;
     }
 
-    private static FrozenDictionary<string, SwiftTokenNodeType> BuildKeywords()
+    private static Dictionary<string, SwiftTokenNodeType> BuildKeywords()
     {
         Dictionary<string, SwiftTokenNodeType> dictionary = new()
         {
@@ -242,10 +257,10 @@ public partial class SwiftLexer
             { "willSet", SwiftTokens.WillSetKeywordToken }
         };
 
-        return dictionary.ToFrozenDictionary();
+        return dictionary;
     }
 
-    private static FrozenDictionary<string, SwiftTokenNodeType> BuildReservedKeywords()
+    private static Dictionary<string, SwiftTokenNodeType> BuildReservedKeywords()
     {
         Dictionary<string, SwiftTokenNodeType> dictionary = new();
 
@@ -257,7 +272,7 @@ public partial class SwiftLexer
             }
         }
 
-        return dictionary.ToFrozenDictionary();
+        return dictionary;
     }
 }
 
@@ -273,8 +288,8 @@ internal partial class SwiftLexerExtensions
         return SwiftLexer.IdentifierCharacters.Contains(c);
     }
 
-    public static void Add(this SimpleTrie<char, SwiftKeywordToken> trie, string keyword,
-        SwiftKeywordToken keywordToken)
+    public static void Add<AstLeafNode>(this SimpleTrie<char, SwiftKeywordToken<AstLeafNode>> trie, string keyword,
+        SwiftKeywordToken<AstLeafNode> keywordToken) where AstLeafNode : LeafElementBase, ISwiftKeywordNode<AstLeafNode>, new()
     {
         trie.SetValue(keyword.ToCharArray(), keywordToken);
     }

@@ -1,30 +1,36 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
+namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 
-public class SelfInitializerExpression : SelfExpression
+public class SelfInitializerExpression : SwiftCompositeNode, ISelfInitializerExpression
 {
-    public Period? Period { get; internal set; }
-    
-    public Init? Init { get; internal set; }
+    public SelfLowercase SelfLowercase { get; }
 
-    public SelfInitializerExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public Period Period { get; }
+
+    public Init Init { get; }
+
+    internal SelfInitializerExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, 
+        SelfLowercase selfLowercase, Period period, Init init)
         : base(buffer, children)
-    { }
+    {
+        SelfLowercase = selfLowercase;
+        Period = period;
+        Init = init;
+        
+        ReturnType = UnknownType.Instance;
+    }
 
-    public SelfInitializerExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    public IType ReturnType { get; }
 
-    public SelfInitializerExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
-
-    public SelfInitializerExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
 }

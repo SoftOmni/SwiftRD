@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Comments.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments.Errors;
 using SoftOmni.SwiftRd.Extensions;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
@@ -254,7 +254,7 @@ public class BlockCommentNode : SwiftCompositeNode, ICommentNode, IEnumerable<Bl
         while (commentEnumerator.MoveNext())
         {
             BlockCommentContentNode commentContentNode = commentEnumerator.Current;
-            StringBuilderExtensions.Append(commentContentNode.Buffer, commentValue);
+            StringBuilderExtensions.Append(commentValue, commentContentNode.Buffer);
         }
 
         commentEnumerator.Dispose();
@@ -738,7 +738,7 @@ public class BlockCommentNode : SwiftCompositeNode, ICommentNode, IEnumerable<Bl
 
                 commentContentNode.RemoveInCommentValue(localIndex);
                 removalLocations.Add(localIndex);
-                localIndex--;
+                localIndex--; // TODO: Investigate if this is intentional
             }
 
             globalIndex += commentContentNode.GetTextLength();

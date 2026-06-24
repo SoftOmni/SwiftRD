@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
-using SoftOmni.SwiftRd.Language.Semantics.Type;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Returns;
 

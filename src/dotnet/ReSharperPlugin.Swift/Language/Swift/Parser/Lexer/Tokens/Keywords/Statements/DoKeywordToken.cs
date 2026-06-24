@@ -1,3 +1,8 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class DoKeywordToken() : StatementUsableKeywordToken("do", SwiftTokens.DoId, SwiftTokens.DoIndex);
+public class DoKeywordToken : StatementUsableKeywordToken
+{
+    public DoKeywordToken()
+        : base("do", SwiftTokens.DoId, SwiftTokens.DoIndex)
+    { }
+}

@@ -1,3 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions.CaptureLists;
 
-public interface ICaptureSpecifier : ISwiftNode;
+public interface ICaptureSpecifier : IReadOnlyCaptureSpecifier;

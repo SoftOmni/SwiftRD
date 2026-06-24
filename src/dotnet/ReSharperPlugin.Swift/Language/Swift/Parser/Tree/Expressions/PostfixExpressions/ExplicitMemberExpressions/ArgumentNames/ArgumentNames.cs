@@ -1,47 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.ExplicitMemberExpressions.ArgumentNames;
 
-public class ArgumentNames : SwiftInternalNode, IList<Identifier>
+public class ArgumentNames : SwiftCompositeNode, IArgumentNames
 {
-    private List<Identifier> _arguments = [];
+    private List<IIdentifier> _argumentNames;
+    
+    private List<Colon> _colons;
 
-    private List<Colon> _colons = [];
-
-    public ArgumentNames(IEditableBuffer buffer, List<ISwiftNode> children)
+    internal ArgumentNames(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        List<IIdentifier> argumentNames, List<Colon> colons)
         : base(buffer, children)
-    { }
+    {
+        _argumentNames = argumentNames;
+        _colons = colons;
+    }
 
-    public ArgumentNames(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+    public IReadOnlyList<IReadOnlyIdentifier> Names => _argumentNames;
 
-    public ArgumentNames(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyList<Colon> Colons => _colons;
+    
+    public int Count => _argumentNames.Count;
+    
+    public bool IsReadOnly => false;
 
-    public ArgumentNames(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public new IIdentifier this[int index]
+    {
+        get => _argumentNames[index];
+        set => throw new System.NotImplementedException();
+    }
 
-    public IReadOnlyList<Identifier> Arguments => _arguments;
+    IReadOnlyIdentifier IReadOnlyList<IReadOnlyIdentifier>.this[int index] => _argumentNames[index];
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return GetEnumerator();
+        return _argumentNames.GetEnumerator();
     }
 
-    public IEnumerator<Identifier> GetEnumerator()
+    IEnumerator<IReadOnlyIdentifier> IEnumerable<IReadOnlyIdentifier>.GetEnumerator()
     {
-        throw new System.NotImplementedException();
+        return _argumentNames.GetEnumerator();
     }
 
-    public void Add(Identifier item)
+    IEnumerator<IIdentifier> IEnumerable<IIdentifier>.GetEnumerator()
+    {
+        return _argumentNames.GetEnumerator();
+    }
+
+    IEnumerator<IIdentifier> IArgumentNames.GetEnumerator()
+    {
+        return _argumentNames.GetEnumerator();
+    }
+
+    public bool Contains(IIdentifier item)
+    {
+        return _argumentNames.Contains(item);
+    }
+
+    public int IndexOf(IIdentifier item)
+    {
+        return _argumentNames.IndexOf(item);
+    }
+
+    public void CopyTo(IIdentifier[] array, int arrayIndex)
+    {
+        _argumentNames.CopyTo(array, arrayIndex);
+    }
+
+    public void Add(IIdentifier item)
     {
         throw new System.NotImplementedException();
     }
@@ -51,29 +83,12 @@ public class ArgumentNames : SwiftInternalNode, IList<Identifier>
         throw new System.NotImplementedException();
     }
 
-    public bool Contains(Identifier item)
+    public bool Remove(IIdentifier item)
     {
         throw new System.NotImplementedException();
     }
 
-    public void CopyTo(Identifier[] array, int arrayIndex)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool Remove(Identifier item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int Count { get; }
-    public bool IsReadOnly { get; }
-    public int IndexOf(Identifier item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Insert(int index, Identifier item)
+    public void Insert(int index, IIdentifier item)
     {
         throw new System.NotImplementedException();
     }
@@ -81,11 +96,5 @@ public class ArgumentNames : SwiftInternalNode, IList<Identifier>
     public void RemoveAt(int index)
     {
         throw new System.NotImplementedException();
-    }
-
-    public Identifier this[int index]
-    {
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
     }
 }

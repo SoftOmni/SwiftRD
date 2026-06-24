@@ -2,80 +2,82 @@ using System.Numerics;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.
+    Literals.IntegerLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.
-    Literals.IntegerLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
-public partial class IntegerLiteral : Literal<Int, BigInteger>, IIntegerLiteral
+public partial class IntegerLiteral : Literal<BigInteger>, IIntegerLiteral
 {
-    public IntegerLiteral(BigInteger value)
-        : base(GetBufferFromValue(value), Int.Instance, value)
-    {
-        CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(IReadOnlyIntegerLiteral.Base.Decimal);
-        DeduceAttributes();
-    }
+    private readonly IPrimitiveLiteralTypeResolutionContext _primitiveLiteralTypeResolutionContext;
 
-    public IntegerLiteral(BigInteger value, IReadOnlyIntegerLiteral.Base @base)
-        : base(GetBufferFromValue(value, @base), Int.Instance, value)
+    public IntegerLiteral(BigInteger value,
+        IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
+        : base(GetBufferFromValue(value), value)
     {
-        CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(@base);
-        DeduceAttributes();
-    }
-
-    public IntegerLiteral(BigInteger value, IIntegerLiteralFormatting formatting)
-        : base(GetBufferFromValue(value, formatting), Int.Instance, value)
-    {
+        _primitiveLiteralTypeResolutionContext =
+            primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();
         CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(IReadOnlyIntegerLiteral.Base.Decimal);
         DeduceAttributes();
     }
 
     public IntegerLiteral(BigInteger value, IReadOnlyIntegerLiteral.Base @base,
-        IIntegerLiteralFormatting formatting)
-        : base(GetBufferFromValue(value, @base, formatting), Int.Instance, value)
+        IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
+        : base(GetBufferFromValue(value, @base), value)
     {
+        _primitiveLiteralTypeResolutionContext =
+            primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();
         CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(@base);
         DeduceAttributes();
     }
 
-    internal IntegerLiteral(IEditableBuffer underlyingBuffer, BigInteger value)
-        : base(underlyingBuffer, Int.Instance, value)
+    public IntegerLiteral(BigInteger value, IIntegerLiteralFormatting formatting,
+        IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
+        : base(GetBufferFromValue(value, formatting), value)
     {
+        _primitiveLiteralTypeResolutionContext =
+            primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();
+        CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(IReadOnlyIntegerLiteral.Base.Decimal);
+        DeduceAttributes();
+    }
+
+    public IntegerLiteral(BigInteger value, IReadOnlyIntegerLiteral.Base @base,
+        IIntegerLiteralFormatting formatting,
+        IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
+        : base(GetBufferFromValue(value, @base, formatting), value)
+    {
+        _primitiveLiteralTypeResolutionContext =
+            primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();
+        CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(@base);
+        DeduceAttributes();
+    }
+
+    internal IntegerLiteral(IEditableBuffer underlyingBuffer, BigInteger value,
+        IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext)
+        : base(underlyingBuffer, value)
+    {
+        _primitiveLiteralTypeResolutionContext = primitiveLiteralTypeResolutionContext;
         DeduceAttributesWithoutFormatting();
         CurrentFormatting = DeduceFormatting();
     }
 
     internal IntegerLiteral(IEditableBuffer underlyingBuffer, BigInteger value,
-        IReadOnlyIntegerLiteral.Base @base, IIntegerLiteralFormatting? strategy = null,
+        IReadOnlyIntegerLiteral.Base @base,
+        IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext,
+        IIntegerLiteralFormatting? strategy = null,
         IIntegerLiteralFormatting.HexadecimalMode? hexadecimalMode = null)
-        : base(underlyingBuffer, Int.Instance, value)
+        : base(underlyingBuffer, value)
     {
         CurrentBase = @base;
+        _primitiveLiteralTypeResolutionContext = primitiveLiteralTypeResolutionContext;
         CurrentFormatting = strategy ?? DeduceFormatting();
         CurrentHexadecimalMode = hexadecimalMode;
     }
 
-    internal IntegerLiteral(IEditableBuffer underlyingBuffer, SwiftCompositeNode parentNode, int parentIndex,
-        int parentTextIndex, BigInteger value)
-        : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex, Int.Instance, value)
-    {
-        DeduceAttributesWithoutFormatting();
-        CurrentFormatting = DeduceFormatting();
-    }
-
-    internal IntegerLiteral(IEditableBuffer underlyingBuffer, SwiftCompositeNode parentNode, int parentIndex,
-        int parentTextIndex, BigInteger value, IReadOnlyIntegerLiteral.Base @base,
-        IIntegerLiteralFormatting? strategy = null, IIntegerLiteralFormatting.HexadecimalMode? hexadecimalMode = null)
-        : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex, Int.Instance, value)
-    {
-        CurrentBase = @base;
-        CurrentFormatting = strategy ?? DeduceFormatting();
-        CurrentHexadecimalMode = hexadecimalMode;
-    }
+    public override IType ReturnType => _primitiveLiteralTypeResolutionContext.DefaultIntegerLiteralType.Type;
 
     public override NodeType NodeType => SwiftNodeTypes.IntegerLiteral;
 
@@ -164,13 +166,15 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>, IIntegerLiteral
     private static IEditableBuffer GetBufferFromValue(BigInteger value)
     {
         return GetBufferFromValue(value, IReadOnlyIntegerLiteral.Base.Decimal,
-            new IntegerLiteralFormatting(3, int.MaxValue, IIntegerLiteralFormatting.Endianness.Little, IIntegerLiteralFormatting.HexadecimalMode.Uppercase));
+            new IntegerLiteralFormatting(3, int.MaxValue, IIntegerLiteralFormatting.Endianness.Little,
+                IIntegerLiteralFormatting.HexadecimalMode.Uppercase));
     }
 
     private static IEditableBuffer GetBufferFromValue(BigInteger value, IReadOnlyIntegerLiteral.Base @base)
     {
         return GetBufferFromValue(value, @base,
-            new IntegerLiteralFormatting(3, int.MaxValue, IIntegerLiteralFormatting.Endianness.Little, IIntegerLiteralFormatting.HexadecimalMode.Uppercase));
+            new IntegerLiteralFormatting(3, int.MaxValue, IIntegerLiteralFormatting.Endianness.Little,
+                IIntegerLiteralFormatting.HexadecimalMode.Uppercase));
     }
 
     private static IEditableBuffer GetBufferFromValue(BigInteger value, IIntegerLiteralFormatting formatting)
@@ -213,16 +217,20 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>, IIntegerLiteral
         switch (formatting.CurrentEndianness)
         {
             case IIntegerLiteralFormatting.Endianness.Center:
-                InsertBufferForValueFormattedCenter(buffer, value, formatting, radix, numberOfRequiredDigits, @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
+                InsertBufferForValueFormattedCenter(buffer, value, formatting, radix, numberOfRequiredDigits,
+                    @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
                 return;
             case IIntegerLiteralFormatting.Endianness.Big:
-                InsertBufferForValueFormattedBigEndian(buffer, value, formatting, numberOfRequiredDigits, radix, @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
+                InsertBufferForValueFormattedBigEndian(buffer, value, formatting, numberOfRequiredDigits, radix,
+                    @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
                 return;
             case IIntegerLiteralFormatting.Endianness.Little:
-                InsertBufferForValueFormattedLittleEndian(buffer, value, formatting, numberOfRequiredDigits, radix, @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
+                InsertBufferForValueFormattedLittleEndian(buffer, value, formatting, numberOfRequiredDigits, radix,
+                    @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
                 return;
             default:
-                InsertBufferForValueNoFormatting(buffer, value, radix, @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
+                InsertBufferForValueNoFormatting(buffer, value, radix,
+                    @base.BaseValueToCharFunction(formatting.CurrentHexadecimalMode));
                 return;
         }
     }
@@ -235,6 +243,7 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>, IIntegerLiteral
             CurrentFormatting = IntegerLiteralFormatting.CurrentDefaultForBase(IReadOnlyIntegerLiteral.Base.Decimal);
             return;
         }
+
         char secondChar = Buffer[1];
 
         (CurrentBase, ValueStart) = secondChar switch
@@ -251,5 +260,10 @@ public partial class IntegerLiteral : Literal<Int, BigInteger>, IIntegerLiteral
         DeduceAttributesWithoutFormatting();
 
         CurrentFormatting = DeduceFormatting();
+    }
+
+    protected override IReadOnlyPrimitiveLiteralTypeResolutionContext ProvidePrimitiveLiteralTypeResolutionContext()
+    {
+        return _primitiveLiteralTypeResolutionContext;
     }
 }

@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
 
-public class DidSet : SwiftLeafNode, ISwiftKeyword
+public class DidSet : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "didSet";
     

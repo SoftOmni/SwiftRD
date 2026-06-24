@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
-
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels.SwiftPackageManager.Packages.Modules.Swift.Swift;
 using SoftOmni.SwiftRd.Language.Swift.ProjectModels.SwiftPackageManager.Packages.Origins;
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels.SwiftPackageManager.Packages.Products;
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels.SwiftPackageManager.Packages.Targets;
 
 namespace SoftOmni.SwiftRd.Language.Swift.ProjectModels.SwiftPackageManager.Packages;
 
@@ -23,22 +25,22 @@ public interface ISwiftPackage
 
     IReadOnlySet<ISwiftSourceModuleTarget> SourceModuleTargets { get; }
 
-    IReadOnlySet<ISwiftTarget> AllTargets { get; }
+    IReadOnlySet<ITarget> AllTargets { get; }
     
-    IReadOnlyList<ISwiftTarget> TargetList { get; }
+    IReadOnlyList<ITarget> TargetList { get; }
 
-    IReadOnlySet<ISwiftTarget> Targets();
+    IReadOnlySet<ITarget> Targets();
 
-    IReadOnlyList<ISwiftTarget> Targets(IEnumerable<string> targetNames);
+    IReadOnlyList<ITarget> Targets(IEnumerable<string> targetNames);
 
-    IReadOnlyList<TTarget> Targets<TTarget>() where TTarget : ISwiftTarget;
+    IReadOnlyList<TTarget> Targets<TTarget>() where TTarget : ITarget;
     
-    IReadOnlySet<ISwiftProduct> AllProducts { get; }
+    IReadOnlySet<IProduct> AllProducts { get; }
 
-    IReadOnlyList<ISwiftProduct> Products();
+    IReadOnlyList<IProduct> Products();
     
-    IReadOnlyList<ISwiftProduct> Products(IEnumerable<string> productNames);
+    IReadOnlyList<IProduct> Products(IEnumerable<string> productNames);
 
     IReadOnlyList<TProduct> Products<TProduct>()
-        where TProduct : ISwiftProduct;
+        where TProduct : IProduct;
 }

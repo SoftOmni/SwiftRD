@@ -77,7 +77,7 @@ public static class SwiftTokens
     public const string IntegerLiteralId = "LITERAL_INTEGER";
     public const int IntegerLiteralIndex = 801;
     
-    public static readonly FloatingPointLiteral FloatingPointLiteralToken = new();
+    public static readonly FloatingPointLiteralToken FloatingPointLiteralToken = new();
     public const string FloatingPointLiteralId = "LITERAL_FLOAT";
     public const int FloatingPointLiteralIndex = 802;
 
@@ -448,8 +448,8 @@ public static class SwiftTokens
     public const int AnyLowercaseIndex = 3001;
     
     public static readonly AnyUppercaseKeywordToken AnyUppercaseKeywordToken = new();
-    public const string AnyId = "KEYWORD_ANY_UPPERCASE";
-    public const int AnyIndex = 3002;
+    public const string AnyUppercaseId = "KEYWORD_ANY_UPPERCASE";
+    public const int AnyUppercaseIndex = 3002;
 
     public static readonly AsKeywordToken AsKeywordToken = new();
     public const string AsId = "KEYWORD_AS";

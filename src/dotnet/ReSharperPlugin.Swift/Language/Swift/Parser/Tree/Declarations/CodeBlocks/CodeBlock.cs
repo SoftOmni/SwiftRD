@@ -3,71 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Exceptions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
 using SoftOmni.SwiftRd.Technology;
-using SoftOmni.SwiftRd.Technology.RelativePositions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 
-public class CodeBlock : SwiftInternalNode, IList<IStatement>
+public class CodeBlock : SwiftCompositeNode, IList<IReadOnlyStatement>
 {
-    public LeftCurlyBrace? LeftCurlyBrace { get; protected set; }
+    public LeftCurlyBrace LeftCurlyBrace { get; protected set; }
 
-    public StatementGroup? StatementGroup { get; private set; }
+    public IStatementGroup StatementGroup { get; private set; }
 
-    public RightCurlyBrace? RightCurlyBrace { get; protected set; }
+    public RightCurlyBrace RightCurlyBrace { get; protected set; }
 
-    internal CodeBlock(IEditableBuffer buffer, List<ISwiftNode> children)
+    internal CodeBlock(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        LeftCurlyBrace leftCurlyBrace, IStatementGroup statementGroup, RightCurlyBrace rightCurlyBrace)
         : base(buffer, children)
-    { }
-
-    internal CodeBlock(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
-
-    internal CodeBlock(IEditableBuffer buffer, List<ISwiftNode> swiftNodes, LeftCurlyBrace leftCurlyBrace,
-        RightCurlyBrace rightCurlyBrace, StatementGroup? statementGroup = null)
-        : base(buffer, swiftNodes)
     {
         LeftCurlyBrace = leftCurlyBrace;
         StatementGroup = statementGroup;
         RightCurlyBrace = rightCurlyBrace;
     }
 
-    internal CodeBlock(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
-        List<ISwiftNode> nodes)
-        : base(parent, parentIndex, parentTextIndex, buffer, nodes)
-    { }
+    public bool IsEmpty => StatementGroup.IsEmpty;
 
-    internal CodeBlock(SwiftInternalNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer,
-        IEnumerable<ISwiftNode> nodes)
-        : base(parent, parentIndex, parentTextIndex, buffer, nodes)
-    { }
-
-    public bool IsEmpty => StatementGroup is null or StatementGroup.IsEmpty;
-
-    public bool HasStatements => StatementGroup is not null and StatementGroup.HasStatements;
+    public bool HasStatements => StatementGroup.HasStatements;
 
     public static CodeBlock Create()
     {
         IEditableBuffer buffer = new EditableBuffer(LeftCurlyBrace.Value + RightCurlyBrace.Value);
 
-        LeftCurlyBrace leftCurlyBrace = new(new SubEditableBuffer(buffer, 0, 0));
-        RightCurlyBrace rightCurlyBrace = new(new SubEditableBuffer(buffer, 1, LeftCurlyBrace.Value.Length));
+        LeftCurlyBrace leftCurlyBrace = new(new SubEditableBuffer(buffer, 0, LeftCurlyBrace.Value.Length));
+        StatementGroup statementGroup = new(new SubEditableBuffer(buffer, LeftCurlyBrace.Value.Length, 0), [], []);
+        RightCurlyBrace rightCurlyBrace = new(new SubEditableBuffer(buffer, LeftCurlyBrace.Value.Length, RightCurlyBrace.Value.Length));
 
-        return new CodeBlock(buffer, [leftCurlyBrace, rightCurlyBrace], leftCurlyBrace, rightCurlyBrace);
+        return new CodeBlock(buffer, [leftCurlyBrace, statementGroup, rightCurlyBrace], leftCurlyBrace, statementGroup, rightCurlyBrace);
     }
 
-    public static CodeBlock Create(IEnumerable<IStatement> statements)
+    public static CodeBlock Create(IEnumerable<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create();
-        foreach (IStatement statement in statements)
+        foreach (IReadOnlyStatement statement in statements)
         {
             codeBlock.Add(statement);
         }
@@ -75,10 +56,10 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock Create(IEnumerable<IStatement> statements, int start)
+    public static CodeBlock Create(IEnumerable<IReadOnlyStatement> statements, int start)
     {
         CodeBlock codeBlock = Create();
-        IEnumerator<IStatement> enumerator = statements.GetEnumerator();
+        IEnumerator<IReadOnlyStatement> enumerator = statements.GetEnumerator();
         int index = 0;
         while (enumerator.MoveNext() && index < start)
         {
@@ -99,10 +80,10 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock Create(IEnumerable<IStatement> statements, int start, int end)
+    public static CodeBlock Create(IEnumerable<IReadOnlyStatement> statements, int start, int end)
     {
         CodeBlock codeBlock = Create();
-        IEnumerator<IStatement> enumerator = statements.GetEnumerator();
+        IEnumerator<IReadOnlyStatement> enumerator = statements.GetEnumerator();
         int index = 0;
         while (enumerator.MoveNext() && index < start)
         {
@@ -124,10 +105,10 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock Create(List<IStatement> statements)
+    public static CodeBlock Create(List<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create();
-        foreach (IStatement statement in statements)
+        foreach (IReadOnlyStatement statement in statements)
         {
             codeBlock.Add(statement);
         }
@@ -135,7 +116,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock Create(List<IStatement> statements, int start)
+    public static CodeBlock Create(List<IReadOnlyStatement> statements, int start)
     {
         if (start < 0 || start >= statements.Count)
         {
@@ -152,7 +133,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock Create(List<IStatement> statements, int start, int end)
+    public static CodeBlock Create(List<IReadOnlyStatement> statements, int start, int end)
     {
         if (start < 0 || start >= statements.Count)
         {
@@ -224,7 +205,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex)
     {
         CodeBlock codeBlock = Create();
         parent.AttachChild(parentIndex, codeBlock);
@@ -232,8 +213,8 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
-        IEnumerable<IStatement> statements)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
+        IEnumerable<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create(statements);
         parent.AttachChild(parentIndex, codeBlock);
@@ -241,8 +222,8 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
-        IEnumerable<IStatement> statements, int startIndex)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
+        IEnumerable<IReadOnlyStatement> statements, int startIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex);
         parent.AttachChild(parentIndex, codeBlock);
@@ -250,8 +231,8 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
-        IEnumerable<IStatement> statements, int startIndex, int endIndex)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
+        IEnumerable<IReadOnlyStatement> statements, int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex, endIndex);
         parent.AttachChild(parentIndex, codeBlock);
@@ -259,8 +240,8 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
-        List<IStatement> statements)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
+        List<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create(statements);
         parent.AttachChild(parentIndex, codeBlock);
@@ -268,8 +249,8 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
-        List<IStatement> statements, int startIndex)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
+        List<IReadOnlyStatement> statements, int startIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex);
         parent.AttachChild(parentIndex, codeBlock);
@@ -277,8 +258,8 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
-        List<IStatement> statements, int startIndex, int endIndex)
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
+        List<IReadOnlyStatement> statements, int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex, endIndex);
         parent.AttachChild(parentIndex, codeBlock);
@@ -286,7 +267,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
         StatementGroup statementGroup)
     {
         CodeBlock codeBlock = Create(statementGroup);
@@ -295,7 +276,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
         StatementGroup statementGroup, int startIndex)
     {
         CodeBlock codeBlock = Create(statementGroup, startIndex);
@@ -304,7 +285,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsInsertedInto(SwiftInternalNode parent, int parentIndex,
+    public static CodeBlock CreateAsInsertedInto(ISwiftInternalNode<SwiftCompositeNode> parent, int parentIndex,
         StatementGroup statementGroup, int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statementGroup, startIndex, endIndex);
@@ -313,188 +294,179 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent)
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent)
     {
         CodeBlock codeBlock = Create();
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, IEnumerable<IStatement> statements)
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, IEnumerable<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create(statements);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent,
-        IEnumerable<IStatement> statements, int startIndex)
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent,
+        IEnumerable<IReadOnlyStatement> statements, int startIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent,
-        IEnumerable<IStatement> statements, int startIndex, int endIndex)
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent,
+        IEnumerable<IReadOnlyStatement> statements, int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex, endIndex);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, List<IStatement> statements)
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, List<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create(statements);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, List<IStatement> statements,
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, List<IReadOnlyStatement> statements,
         int startIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, List<IStatement> statements, int startIndex,
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, List<IReadOnlyStatement> statements, int startIndex,
         int endIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex, endIndex);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, StatementGroup statementGroup)
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, StatementGroup statementGroup)
     {
         CodeBlock codeBlock = Create(statementGroup);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, StatementGroup statementGroup,
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, StatementGroup statementGroup,
         int startIndex)
     {
         CodeBlock codeBlock = Create(statementGroup, startIndex);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsPrependedTo(SwiftInternalNode parent, StatementGroup statementGroup,
+    public static CodeBlock CreateAsPrependedTo(ISwiftInternalNode<SwiftCompositeNode> parent, StatementGroup statementGroup,
         int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statementGroup, startIndex, endIndex);
-        parent.PrependChild(codeBlock);
+        parent.AttachChild(0, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent)
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent)
     {
         CodeBlock codeBlock = Create();
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, IEnumerable<IStatement> statements)
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, IEnumerable<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create(statements);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, IEnumerable<IStatement> statements,
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, IEnumerable<IReadOnlyStatement> statements,
         int startIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, IEnumerable<IStatement> statements,
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, IEnumerable<IReadOnlyStatement> statements,
         int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex, endIndex);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, List<IStatement> statements)
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, List<IReadOnlyStatement> statements)
     {
         CodeBlock codeBlock = Create(statements);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, List<IStatement> statements,
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, List<IReadOnlyStatement> statements,
         int startIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, List<IStatement> statements,
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, List<IReadOnlyStatement> statements,
         int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statements, startIndex, endIndex);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, StatementGroup statementGroup)
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, StatementGroup statementGroup)
     {
         CodeBlock codeBlock = Create(statementGroup);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, StatementGroup statementGroup,
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, StatementGroup statementGroup,
         int startIndex)
     {
         CodeBlock codeBlock = Create(statementGroup, startIndex);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    public static CodeBlock CreateAsAppendedTo(SwiftInternalNode parent, StatementGroup statementGroup,
+    public static CodeBlock CreateAsAppendedTo(ISwiftInternalNode<SwiftCompositeNode> parent, StatementGroup statementGroup,
         int startIndex, int endIndex)
     {
         CodeBlock codeBlock = Create(statementGroup, startIndex, endIndex);
-        parent.AppendChild(codeBlock);
+        parent.AttachChild(parent.NumberOfChildren, codeBlock);
 
         return codeBlock;
     }
 
-    protected override SwiftInternalNode Duplicate()
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override SwiftInternalNode DuplicateWithoutChildren()
-    {
-        throw new NotImplementedException();
-    }
-
+    /*
     protected override void CheckChildrenForSetting(List<ISwiftNode> newNodes)
     {
         base.CheckChildrenForSetting(newNodes);
@@ -548,7 +520,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
             return base.AttachChild(index, child);
         }
 
-        if (child is not IStatement statement)
+        if (child is not IReadOnlyStatement statement)
         {
             throw new ArgumentException("The type you tried to attach is neither a whitespace, a comment, " +
                                         "a left curly brace, a right curly brace or a statement.\n" +
@@ -562,34 +534,9 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         }
 
         return base.AttachChild(index, child);
-    }
+    }*/
 
-    internal override int AttachChildForcibly(int index, ISwiftNode child)
-    {
-        return base.AttachChildForcibly(index, child);
-    }
-
-    public override void ClearChildren()
-    {
-        base.ClearChildren();
-    }
-
-    internal override void ClearChildrenForcibly()
-    {
-        base.ClearChildrenForcibly();
-    }
-
-    public override void DetachChild(int childIndex)
-    {
-        base.DetachChild(childIndex);
-    }
-
-    public static implicit operator StatementGroup?(CodeBlock codeBlock)
-    {
-        return codeBlock.StatementGroup;
-    }
-
-    public IEnumerator<IStatement> GetEnumerator()
+    public IEnumerator<IReadOnlyStatement> GetEnumerator()
     {
         throw new NotImplementedException();
     }
@@ -599,7 +546,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         return GetEnumerator();
     }
 
-    public void Add(IStatement item)
+    public void Add(IReadOnlyStatement item)
     {
         throw new NotImplementedException();
     }
@@ -609,17 +556,17 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         throw new NotImplementedException();
     }
 
-    public bool Contains(IStatement item)
+    public bool Contains(IReadOnlyStatement item)
     {
         throw new NotImplementedException();
     }
 
-    public void CopyTo(IStatement[] array, int arrayIndex)
+    public void CopyTo(IReadOnlyStatement[] array, int arrayIndex)
     {
         throw new NotImplementedException();
     }
 
-    public bool Remove(IStatement item)
+    public bool Remove(IReadOnlyStatement item)
     {
         throw new NotImplementedException();
     }
@@ -628,12 +575,12 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
 
     public bool IsReadOnly { get; }
 
-    public int IndexOf(IStatement item)
+    public int IndexOf(IReadOnlyStatement item)
     {
         throw new NotImplementedException();
     }
 
-    public void Insert(int index, IStatement item)
+    public void Insert(int index, IReadOnlyStatement item)
     {
         throw new NotImplementedException();
     }
@@ -643,7 +590,7 @@ public class CodeBlock : SwiftInternalNode, IList<IStatement>
         throw new NotImplementedException();
     }
 
-    public new IStatement this[int index]
+    public new IReadOnlyStatement this[int index]
     {
         get => throw new NotImplementedException();
         set => throw new NotImplementedException();

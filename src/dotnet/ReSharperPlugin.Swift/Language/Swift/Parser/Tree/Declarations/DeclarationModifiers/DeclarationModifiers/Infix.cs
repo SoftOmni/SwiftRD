@@ -1,12 +1,11 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Infix : DeclarationModifierLeaf, ISwiftKeyword
+public class Infix : DeclarationModifierLeaf, ISwiftKeywordNode
 {
     public const string Keyword = "infix";
 

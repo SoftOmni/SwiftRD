@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 
-public class Public : LeafAccessLevelModifier, ISwiftKeyword
+public class Public : LeafAccessLevelModifier, ISwiftKeywordNode
 {
     public const string Keyword = "public";
     

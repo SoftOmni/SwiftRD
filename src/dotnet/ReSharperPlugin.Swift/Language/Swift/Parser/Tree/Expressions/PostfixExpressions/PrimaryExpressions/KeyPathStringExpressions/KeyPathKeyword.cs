@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathStringExpressions;
 
-public class KeyPathKeyword : SwiftLeafNode, ISwiftKeyword
+public class KeyPathKeyword : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "#keyPath";
     

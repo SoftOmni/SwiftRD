@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Guard;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
 
-public class Else : StatementLeafNode, ISwiftKeyword
+public class Else : StatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "else";
 

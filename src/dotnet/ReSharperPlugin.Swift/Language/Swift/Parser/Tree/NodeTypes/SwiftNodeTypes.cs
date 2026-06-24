@@ -1,257 +1,267 @@
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Identifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.Declarations;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.ExpressionsAndTypes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Keywords.Statements.LoopStatements;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Literals;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Markers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Patterns;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.Punctuators;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes.WhitespaceAndComments;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ExpressionsAndTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.BuiltinOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.UserDefinedOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Patterns;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 public static class SwiftNodeTypes
 {
+    #region LeafNodes
+    
     #region Markers
     
     public const string InternalNodeId = "INTERNAL_NODE";
     public const int InternalNodeIndex = 110;
-    public static readonly InternalNodeType InternalNode = new();
+    public static readonly InternalKeywordToken InternalNode = SwiftTokens.InternalKeywordToken;
     
-    public static readonly StartOfFileNodeType StartOfFile = new();
-    public static readonly EndOfFileNodeType EndOfFile = new();
-    public static readonly EmptyNodeType Empty = new();
+    public static readonly StartOfFileToken StartOfFile = new();
+    public static readonly EndOfFileToken EndOfFile = new();
+    public static readonly EmptyToken Empty = new();
     
     #endregion // Markers
 
     #region WhitespaceAndComments
 
-    public static readonly NewLineNodeType NewLine = new();
-    public static readonly WhitespaceNodeType Whitespace = new();
-    public static readonly LineCommentNodeType LineComment = new();
-    public static readonly BlockCommentStartNodeType BlockCommentStart = new();
-    public static readonly BlockCommentEndNodeType BlockCommentEnd = new();
-    public static readonly BlockCommentContentNodeType BlockCommentContent = new();
+    public static readonly NewLineToken NewLine = new();
+    public static readonly WhitespaceToken Whitespace = new();
+    public static readonly LineCommentToken LineComment = new();
+    public static readonly BlockCommentStartToken BlockCommentStart = new();
+    public static readonly BlockCommentEndToken BlockCommentEnd = new();
+    public static readonly BlockCommentContentToken BlockCommentContent = new();
 
     #endregion // WhitespaceAndComments
 
     #region Identifiers
     
-    public static readonly IdentifierNodeType Identifier = new();
+    public static readonly IdentifierToken Identifier = new();
     
     #endregion // Identifiers
 
     #region Literals
     
-    public static readonly IntegerLiteralNodeType IntegerLiteral = new();
-    public static readonly FloatingPointLiteralNodeType FloatingPointLiteral = new();
+    public static readonly IntegerLiteralToken IntegerLiteral = new();
+    public static readonly FloatingPointLiteralToken FloatingPointLiteral = new();
 
     #region StringLiterals
 
-    public static readonly PlaceholderNodeType StringInterpolationStart = new(SwiftTokens.StringInterpolationStartId, SwiftTokens.StringInterpolationStartIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType StringInterpolationEnd = new(SwiftTokens.StringInterpolationEndId, SwiftTokens.StringInterpolationEndIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType StringEscapeSequence = new(SwiftTokens.StringEscapeSequenceId, SwiftTokens.StringEscapeSequenceIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType StringLiteralStart = new(SwiftTokens.StringLiteralStartId, SwiftTokens.StringLiteralStartIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType StringLiteralEnd = new(SwiftTokens.StringLiteralEndId, SwiftTokens.StringLiteralEndIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType StringLiteralContent = new(SwiftTokens.StringLiteralContentId, SwiftTokens.StringLiteralContentIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType RawValueStringLiteralStart = new(SwiftTokens.SurroundedStringLiteralStartId, SwiftTokens.SurroundedStringLiteralStartIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType SurroundedStringLiteralEnd = new(SwiftTokens.SurroundedStringLiteralEndId, SwiftTokens.SurroundedStringLiteralEndIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType RawValueStringLiteralContent = new(SwiftTokens.SurroundedStringLiteralContentId, SwiftTokens.SurroundedStringLiteralContentIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType MultiLineStringLiteralStart = new(SwiftTokens.MultiLineStringLiteralStartId, SwiftTokens.MultiLineStringLiteralStartIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType MultiLineStringLiteralEnd = new(SwiftTokens.MultiLineStringLiteralEndId, SwiftTokens.MultiLineStringLiteralEndIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType MultiLineStringLiteralContent = new(SwiftTokens.MultiLineStringLiteralContentId, SwiftTokens.MultiLineStringLiteralContentIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType SurroundedMultiLineStringLiteralStart = new(SwiftTokens.SurroundedMultiLineStringLiteralStartId, SwiftTokens.SurroundedMultiLineStringLiteralStartIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType RawValueMultiLineStringLiteralEnd = new(SwiftTokens.SurroundedMultiLineStringLiteralEndId, SwiftTokens.SurroundedMultiLineStringLiteralEndIndex, isStringLiteral: true);
-    public static readonly PlaceholderNodeType SurroundedMultiLineStringLiteralContent = new(SwiftTokens.MultiLineSurroundedStringLiteralContentId, SwiftTokens.MultiLineSurroundedStringLiteralContentIndex, isStringLiteral: true);
+    public static readonly StringInterpolationStartToken StringInterpolationStart = SwiftTokens.StringInterpolationStartToken;
+    public static readonly StringInterpolationEndToken StringInterpolationEnd = SwiftTokens.StringInterpolationEndToken;
+    public static readonly StringEscapeSequenceToken StringEscapeSequence = SwiftTokens.StringEscapeSequenceToken;
+    public static readonly StringLiteralStartToken StringLiteralStart = SwiftTokens.StringLiteralStartToken;
+    public static readonly StringLiteralEndToken StringLiteralEnd = SwiftTokens.StringLiteralEndToken;
+    public static readonly StringLiteralContentToken StringLiteralContent = SwiftTokens.StringLiteralContentToken;
+    public static readonly SurroundedStringLiteralStartToken RawValueStringLiteralStart = SwiftTokens.SurroundedStringLiteralStartToken;
+    public static readonly SurroundedStringLiteralEndToken SurroundedStringLiteralEnd = SwiftTokens.SurroundedStringLiteralEndToken;
+    public static readonly SurroundedStringLiteralContentToken RawValueStringLiteralContent = SwiftTokens.SurroundedStringLiteralContentToken;
+    public static readonly MultiLineStringLiteralStartToken MultiLineStringLiteralStart = SwiftTokens.MultiLineStringLiteralStartToken;
+    public static readonly MultiLineStringLiteralEndToken MultiLineStringLiteralEnd = SwiftTokens.MultiLineStringLiteralEndToken;
+    public static readonly MultiLineStringLiteralContentToken MultiLineStringLiteralContent = SwiftTokens.MultiLineStringLiteralContentToken;
+    public static readonly SurroundedMultiLineStringLiteralStartToken SurroundedMultiLineStringLiteralStart = SwiftTokens.SurroundedMultiLineStringLiteralStartToken;
+    public static readonly SurroundedMultiLineStringLiteralEndToken RawValueMultiLineStringLiteralEnd = SwiftTokens.SurroundedMultiLineStringLiteralEndToken;
+    public static readonly SurroundedMultiLineStringLiteralContentToken SurroundedMultiLineStringLiteralContent = SwiftTokens.SurroundedMultiLineStringLiteralContentToken;
     
     #endregion //StringLiterals
     
-    public static readonly RegularExpressionLiteralNodeType RegularExpressionLiteral = new();
+    public static readonly RegularExpressionLiteralToken RegularExpressionLiteral = new();
     
     #endregion // Literals
 
     #region Punctuators
 
-    public static readonly LeftParenthesisNodeType LeftParenthesis = new();
-    public static readonly RightParenthesisNodeType RightParenthesis = new();
-    public static readonly LeftCurlyBraceNodeType LeftCurlyBrace = new();
-    public static readonly RightSquareBracketNodeType RightCurlyBrace = new();
-    public static readonly LeftSquareBracketNodeType LeftSquareBracket = new();
-    public static readonly RightSquareBracketNodeType RightSquareBracket = new();
-    public static readonly LeftAngleNodeType LeftAngleBracket = new();
-    public static readonly RightAngleNodeType RightAngleBracket = new();
-    public static readonly PeriodNodeType Period = new();
-    public static readonly CommaNodeType Comma = new();
-    public static readonly ColonNodeType Colon = new();
-    public static readonly SemicolonNodeType Semicolon = new();
-    public static readonly EqualNodeType Equal = new();
-    public static readonly AtNodeType At = new();
-    public static readonly HashNodeType Hash = new();
-    public static readonly AmpersandNodeType Ampersand = new();
-    public static readonly ArrowNodeType Arrow = new();
-    public static readonly BacktickNodeType Backtick = new();
-    public static readonly QuestionMarkNodeType QuestionMark = new();
-    public static readonly ExclamationMarkNodeType ExclamationMark = new();
+    public static readonly LeftParenthesisToken LeftParenthesis = SwiftTokens.LeftParenthesisToken;
+    public static readonly RightParenthesisToken RightParenthesis = SwiftTokens.RightParenthesisToken;
+    public static readonly LeftCurlyBraceToken LeftCurlyBrace = SwiftTokens.LeftCurlyBraceToken;
+    public static readonly RightCurlyBraceToken RightCurlyBrace = SwiftTokens.RightCurlyBraceToken;
+    public static readonly LeftSquareBracketToken LeftSquareBracket = SwiftTokens.LeftSquareBracketToken;
+    public static readonly RightSquareBracketToken RightSquareBracket = SwiftTokens.RightSquareBracketToken;
+    public static readonly LeftAngleBracketToken LeftAngleBracket = SwiftTokens.LeftAngleBracketToken;
+    public static readonly RightAngleBracketToken RightAngleBracket = SwiftTokens.RightAngleBracketToken;
+    public static readonly PeriodToken Period = SwiftTokens.PeriodToken;
+    public static readonly CommaToken Comma = SwiftTokens.CommaToken;
+    public static readonly ColonToken Colon = SwiftTokens.ColonToken;
+    public static readonly SemicolonToken Semicolon = SwiftTokens.SemicolonToken;
+    public static readonly EqualsToken Equal = SwiftTokens.EqualsToken;
+    public static readonly AtToken At = SwiftTokens.AtToken;
+    public static readonly HashToken Hash = SwiftTokens.HashToken;
+    public static readonly AmpersandToken Ampersand = SwiftTokens.AmpersandToken;
+    public static readonly ArrowToken Arrow = SwiftTokens.ArrowToken;
+    public static readonly BacktickToken Backtick = SwiftTokens.BacktickToken;
+    public static readonly QuestionMarkToken QuestionMark = SwiftTokens.QuestionMarkToken;
+    public static readonly ExclamationMarkToken ExclamationMark = SwiftTokens.ExclamationMarkToken;
 
     #endregion // Punctuators
     
 
     // Keywords - UsableInDeclarations
-    public static readonly AssociatedTypeNodeType AssociatedType = new();
-    public static readonly ActorNodeType Actor = new();
-    public static readonly BorrowingNodeType Borrowing = new();
-    public static readonly ClassNodeType Class = new();
-    public static readonly ConsumingNodeType Consuming = new();
-    public static readonly DeinitNodeType Deinit = new();
-    public static readonly EnumNodeType Enum = new();
-    public static readonly ExtensionNodeType Extension = new();
-    public static readonly FilePrivateNodeType FilePrivate = new();
-    public static readonly FuncNodeType Func = new();
-    public static readonly ImportNodeType Import = new();
-    public static readonly InitNodeType Init = new();
-    public static readonly InoutNodeType Inout = new();
-    public static readonly InternalNodeType Internal = new();
-    public static readonly PlaceholderNodeType Let = new(SwiftTokens.LetId, SwiftTokens.LetIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType NonIsolated = new(SwiftTokens.NonIsolatedId, SwiftTokens.NonIsolatedIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Open = new(SwiftTokens.OpenId, SwiftTokens.OpenIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Operator = new(SwiftTokens.OperatorId, SwiftTokens.OperatorIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PrecedenceGroup = new(SwiftTokens.PrecedenceGroupId, SwiftTokens.PrecedenceGroupIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Private = new(SwiftTokens.PrivateId, SwiftTokens.PrivateIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ProtocolLowercase = new(SwiftTokens.ProtocolLowercaseId, SwiftTokens.ProtocolLowercaseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Public = new(SwiftTokens.PublicId, SwiftTokens.PublicIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Rethrows = new(SwiftTokens.RethrowsId, SwiftTokens.RethrowsIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Static = new(SwiftTokens.StaticId, SwiftTokens.StaticIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Struct = new(SwiftTokens.StructId, SwiftTokens.StructIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Subscript = new(SwiftTokens.SubscriptId, SwiftTokens.SubscriptIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Typealias = new(SwiftTokens.TypealiasId, SwiftTokens.TypealiasIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Var = new(SwiftTokens.VarId, SwiftTokens.VarIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Safe = new(SwiftTokens.SafeId, SwiftTokens.SafeIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Unsafe = new(SwiftTokens.UnsafeId, SwiftTokens.UnsafeIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Macro = new(SwiftTokens.MacroId, SwiftTokens.MacroIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType LowerThan = new(SwiftTokens.MacroId, SwiftTokens.MacroIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType HigherThan = new(SwiftTokens.MacroId, SwiftTokens.MacroIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Assignment = new(SwiftTokens.MacroId, SwiftTokens.MacroIndex, isKeyword: true);
+    public static readonly AssociatedTypeKeywordToken AssociatedType = SwiftTokens.AssociatedTypeKeywordToken;
+    public static readonly ActorKeywordToken Actor = SwiftTokens.ActorKeywordToken;
+    public static readonly BorrowingKeywordToken Borrowing = SwiftTokens.BorrowingKeywordToken;
+    public static readonly ClassKeywordToken Class = SwiftTokens.ClassKeywordToken;
+    public static readonly ConsumingKeywordToken Consuming = SwiftTokens.ConsumingKeywordToken;
+    public static readonly DeinitKeywordToken Deinit = SwiftTokens.DeinitKeywordToken;
+    public static readonly EnumKeywordToken Enum = SwiftTokens.EnumKeywordToken;
+    public static readonly ExtensionKeywordToken Extension = SwiftTokens.ExtensionKeywordToken;
+    public static readonly FilePrivateKeywordToken FilePrivate = SwiftTokens.FilePrivateKeywordToken;
+    public static readonly FuncKeywordToken Func = SwiftTokens.FuncKeywordToken;
+    public static readonly ImportKeywordToken Import = SwiftTokens.ImportKeywordToken;
+    public static readonly InitKeywordToken Init = SwiftTokens.InitKeywordToken;
+    public static readonly InoutKeywordToken Inout = SwiftTokens.InoutKeywordToken;
+    public static readonly InternalKeywordToken Internal = SwiftTokens.InternalKeywordToken;
+    public static readonly LetKeywordToken Let = SwiftTokens.LetKeywordToken;
+    public static readonly NonIsolatedKeywordToken NonIsolated = SwiftTokens.NonIsolatedKeywordToken;
+    public static readonly OpenKeywordToken Open = SwiftTokens.OpenKeywordToken;
+    public static readonly OperatorKeywordToken Operator = SwiftTokens.OperatorKeywordToken;
+    public static readonly PrecedenceGroupKeywordToken PrecedenceGroup = SwiftTokens.PrecedenceGroupKeywordToken;
+    public static readonly PrivateKeywordToken Private = SwiftTokens.PrivateKeywordToken;
+    public static readonly ProtocolLowercaseKeywordToken ProtocolLowercase = SwiftTokens.ProtocolLowercaseKeywordToken;
+    public static readonly PublicKeywordToken Public = SwiftTokens.PublicKeywordToken;
+    public static readonly RethrowsKeywordToken Rethrows = SwiftTokens.RethrowsKeywordToken;
+    public static readonly StaticKeywordToken Static = SwiftTokens.StaticKeywordToken;
+    public static readonly StructKeywordToken Struct = SwiftTokens.StructKeywordToken;
+    public static readonly SubscriptKeywordToken Subscript = SwiftTokens.SubscriptKeywordToken;
+    public static readonly TypealiasKeywordToken Typealias = SwiftTokens.TypealiasKeywordToken;
+    public static readonly VarKeywordToken Var = SwiftTokens.VarKeywordToken;
+    public static readonly SafeKeywordToken Safe = SwiftTokens.SafeKeywordToken;
+    public static readonly UnsafeKeywordToken Unsafe = SwiftTokens.UnsafeKeywordToken;
+    public static readonly MacroKeywordToken Macro = SwiftTokens.MacroKeywordToken;/*
+    public static readonly LowerThanKeywordToken LowerThan = SwiftTokens.LowerThanKeywordToken;
+    public static readonly HigherThanKeywordToken HigherThan = SwiftTokens.HigherThanKeywordToken;
+    public static readonly AssignmentKeywordToken Assignment = SwiftTokens.AssignmentKeywordToken;*/
     
     
 
     // Keywords - UsableInStatements
-    public static readonly BreakNodeType Break = new();
-    public static readonly PlaceholderNodeType Case = new(SwiftTokens.CaseId, SwiftTokens.CaseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Catch = new(SwiftTokens.CatchId, SwiftTokens.CatchIndex, isKeyword: true);
-    public static readonly ContinueNodeType Continue = new();
-    public static readonly PlaceholderNodeType Default = new(SwiftTokens.DefaultId, SwiftTokens.DefaultIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Defer = new(SwiftTokens.DeferId, SwiftTokens.DeferIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Do = new(SwiftTokens.DoId, SwiftTokens.DoIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Else = new(SwiftTokens.ElseId, SwiftTokens.ElseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Fallthrough = new(SwiftTokens.FallthroughId, SwiftTokens.FallthroughIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType For = new(SwiftTokens.ForId, SwiftTokens.ForIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Guard = new(SwiftTokens.GuardId, SwiftTokens.GuardIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType If = new(SwiftTokens.IfId, SwiftTokens.IfIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType In = new(SwiftTokens.InId, SwiftTokens.InIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Repeat = new(SwiftTokens.RepeatId, SwiftTokens.RepeatIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Return = new(SwiftTokens.ReturnId, SwiftTokens.ReturnIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Switch = new(SwiftTokens.SwitchId, SwiftTokens.SwitchIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Throw = new(SwiftTokens.ThrowId, SwiftTokens.ThrowIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Where = new(SwiftTokens.WhereId, SwiftTokens.WhereIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType While = new(SwiftTokens.WhileId, SwiftTokens.WhileIndex, isKeyword: true);
+    public static readonly BreakKeywordToken Break = SwiftTokens.BreakKeywordToken;
+    public static readonly CaseKeywordToken Case = SwiftTokens.CaseKeywordToken;
+    public static readonly CatchKeywordToken Catch = SwiftTokens.CatchKeywordToken;
+    public static readonly ContinueKeywordToken Continue = SwiftTokens.ContinueKeywordToken;
+    public static readonly DefaultKeywordToken Default = SwiftTokens.DefaultKeywordToken;
+    public static readonly DeferKeywordToken Defer = SwiftTokens.DeferKeywordToken;
+    public static readonly DoKeywordToken Do = SwiftTokens.DoKeywordToken;
+    public static readonly ElseKeywordToken Else = SwiftTokens.ElseKeywordToken;
+    public static readonly FallthroughKeywordToken Fallthrough = SwiftTokens.FallthroughKeywordToken;
+    public static readonly ForKeywordToken For = SwiftTokens.ForKeywordToken;
+    public static readonly GuardKeywordToken Guard = SwiftTokens.GuardKeywordToken;
+    public static readonly IfKeywordToken If = SwiftTokens.IfKeywordToken;
+    public static readonly InKeywordToken In = SwiftTokens.InKeywordToken;
+    public static readonly RepeatKeywordToken Repeat = SwiftTokens.RepeatKeywordToken;
+    public static readonly ReturnKeywordToken Return = SwiftTokens.ReturnKeywordToken;
+    public static readonly SwitchKeywordToken Switch = SwiftTokens.SwitchKeywordToken;
+    public static readonly ThrowKeywordToken Throw = SwiftTokens.ThrowKeywordToken;
+    public static readonly WhereKeywordToken Where = SwiftTokens.WhereKeywordToken;
+    public static readonly WhileKeywordToken While = SwiftTokens.WhileKeywordToken;
 
     // Keywords - UsableInExpressionsAndTypes
-    public static readonly PlaceholderNodeType AnyLowercase = new(SwiftTokens.AnyId, SwiftTokens.AnyIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType AnyUppercase = new(SwiftTokens.AnyId, SwiftTokens.AnyIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType As = new(SwiftTokens.AsId, SwiftTokens.AsIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Await = new(SwiftTokens.AwaitId, SwiftTokens.AwaitIndex, isKeyword: true);
-    public static readonly FalseNodeType False = new();
-    public static readonly PlaceholderNodeType Is = new(SwiftTokens.IsId, SwiftTokens.IsIndex, isKeyword: true);
-    public static readonly NilNodeType Nil = new();
-    public static readonly PlaceholderNodeType SelfLowercase = new(SwiftTokens.SelfLowercaseId, SwiftTokens.SelfLowercaseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType SelfUppercase = new(SwiftTokens.SelfUppercaseId, SwiftTokens.SelfUppercaseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Super = new(SwiftTokens.SuperId, SwiftTokens.SuperIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Throws = new(SwiftTokens.ThrowsId, SwiftTokens.ThrowsIndex, isKeyword: true);
-    public static readonly TrueNodeType True = new();
-    public static readonly PlaceholderNodeType Try = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Red = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Green = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Blue = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Alpha = new(SwiftTokens.TryId, SwiftTokens.TryIndex, isKeyword: true);
+    public static readonly AnyLowercaseKeywordToken AnyLowercase = SwiftTokens.AnyLowercaseKeywordToken;
+    public static readonly AnyUppercaseKeywordToken AnyUppercase = SwiftTokens.AnyUppercaseKeywordToken;
+    public static readonly AsKeywordToken As = SwiftTokens.AsKeywordToken;
+    public static readonly AwaitKeywordToken Await = SwiftTokens.AwaitKeywordToken;
+    public static readonly FalseLiteralToken False = SwiftTokens.FalseLiteralToken;
+    public static readonly IsKeywordToken Is = SwiftTokens.IsKeywordToken;
+    public static readonly NilLiteralToken Nil = SwiftTokens.NilLiteralToken;
+    public static readonly SelfLowercaseKeywordToken SelfLowercase = SwiftTokens.SelfLowercaseKeywordToken;
+    public static readonly SelfUppercaseKeywordToken SelfUppercase = SwiftTokens.SelfUppercaseKeywordToken;
+    public static readonly SuperKeywordToken Super = SwiftTokens.SuperKeywordToken;
+    public static readonly ThrowsKeywordToken Throws = SwiftTokens.ThrowsKeywordToken;
+    public static readonly TrueLiteralToken True = SwiftTokens.TrueLiteralToken;
+    public static readonly TryKeywordToken Try = SwiftTokens.TryKeywordToken;
 
     // Keywords - UsableInPatterns
-    public static readonly UnderscoreNodeType Underscore = new();
+    public static readonly UnderscoreTokenKeyword Underscore = SwiftTokens.UnderscoreKeywordToken;
 
     // Reserved identifiers
-    public static readonly PlaceholderNodeType ReservedAvailable = new(SwiftTokens.ReservedAvailableId, SwiftTokens.ReservedAvailableIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedColorLiteral = new(SwiftTokens.ReservedColorLiteralId, SwiftTokens.ReservedColorLiteralIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedElse = new(SwiftTokens.ReservedElseId, SwiftTokens.ReservedElseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedElseIf = new(SwiftTokens.ReservedElseIfId, SwiftTokens.ReservedElseIfIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedEndIf = new(SwiftTokens.ReservedEndIfId, SwiftTokens.ReservedEndIfIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedFileLiteral = new(SwiftTokens.ReservedFileLiteralId, SwiftTokens.ReservedFileLiteralIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedIf = new(SwiftTokens.ReservedIfId, SwiftTokens.ReservedIfIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedImageLiteral = new(SwiftTokens.ReservedImageLiteralId, SwiftTokens.ReservedImageLiteralIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedKeyPath = new(SwiftTokens.ReservedKeyPathId, SwiftTokens.ReservedKeyPathIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedSelector = new(SwiftTokens.ReservedSelectorId, SwiftTokens.ReservedSelectorIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedSourceLocation = new(SwiftTokens.ReservedSourceLocationId, SwiftTokens.ReservedSourceLocationIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ReservedUnavailable = new(SwiftTokens.ReservedUnavailableId, SwiftTokens.ReservedUnavailableIndex, isKeyword: true);
+    public static readonly ReservedAvailableKeywordToken ReservedAvailable = SwiftTokens.ReservedAvailableKeywordToken;
+    public static readonly ReservedColorLiteralKeywordToken ReservedColorLiteral = SwiftTokens.ReservedColorLiteralKeywordToken;
+    public static readonly ReservedElseKeywordToken ReservedElse = SwiftTokens.ReservedElseKeywordToken;
+    public static readonly ReservedElseIfKeywordToken ReservedElseIf = SwiftTokens.ReservedElseIfKeywordToken;
+    public static readonly ReservedEndIfKeywordToken ReservedEndIf = SwiftTokens.ReservedEndIfKeywordToken;
+    public static readonly ReservedFileLiteralKeywordToken ReservedFileLiteral = SwiftTokens.ReservedFileLiteralKeywordToken;
+    public static readonly ReservedIfKeywordToken ReservedIf = SwiftTokens.ReservedIfKeywordToken;
+    public static readonly ReservedImageLiteralKeywordToken ReservedImageLiteral = SwiftTokens.ReservedImageLiteralKeywordToken;
+    public static readonly ReservedKeyPathKeywordToken ReservedKeyPath = SwiftTokens.ReservedKeyPathKeywordToken;
+    public static readonly ReservedSelectorKeywordToken ReservedSelector = SwiftTokens.ReservedSelectorKeywordToken;
+    public static readonly ReservedSourceLocationKeywordToken ReservedSourceLocation = SwiftTokens.ReservedSourceLocationKeywordToken;
+    public static readonly ReservedUnavailableKeywordToken ReservedUnavailable = SwiftTokens.ReservedUnavailableKeywordToken;
 
     // Previously reserved identifiers
-    public static readonly PlaceholderNodeType PreviouslyReservedColumn = new(SwiftTokens.PreviouslyReservedColumnId, SwiftTokens.PreviouslyReservedColumnIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedDsoHandle = new(SwiftTokens.PreviouslyReservedDsoHandleId, SwiftTokens.PreviouslyReservedDsoHandleIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedError = new(SwiftTokens.PreviouslyReservedErrorId, SwiftTokens.PreviouslyReservedErrorIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedFileId = new(SwiftTokens.PreviouslyReservedFileIdId, SwiftTokens.PreviouslyReservedFileIdIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedFilePath = new(SwiftTokens.PreviouslyReservedFilePathId, SwiftTokens.PreviouslyReservedFilePathIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedFile = new(SwiftTokens.PreviouslyReservedFileId, SwiftTokens.PreviouslyReservedFileIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedFunction = new(SwiftTokens.PreviouslyReservedFunctionId, SwiftTokens.PreviouslyReservedFunctionIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedLine = new(SwiftTokens.PreviouslyReservedLineId, SwiftTokens.PreviouslyReservedLineIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType PreviouslyReservedWarning = new(SwiftTokens.PreviouslyReservedWarningId, SwiftTokens.PreviouslyReservedWarningIndex, isKeyword: true);
+    public static readonly PreviouslyReservedColumnKeywordToken PreviouslyReservedColumn = SwiftTokens.PreviouslyReservedColumnKeywordToken;
+    public static readonly PreviouslyReservedDsoHandleKeywordToken PreviouslyReservedDsoHandle = SwiftTokens.PreviouslyReservedDsoHandleKeywordToken;
+    public static readonly PreviouslyReservedErrorKeywordToken PreviouslyReservedError = SwiftTokens.PreviouslyReservedErrorKeywordToken;
+    public static readonly PreviouslyReservedFileIdKeywordToken PreviouslyReservedFileId = SwiftTokens.PreviouslyReservedFileIdKeywordToken;
+    public static readonly PreviouslyReservedFilePathKeywordToken PreviouslyReservedFilePath = SwiftTokens.PreviouslyReservedFilePathKeywordToken;
+    public static readonly PreviouslyReservedFileKeywordToken PreviouslyReservedFile = SwiftTokens.PreviouslyReservedFileKeywordToken;
+    public static readonly PreviouslyReservedFunctionKeywordToken PreviouslyReservedFunction = SwiftTokens.PreviouslyReservedFunctionKeywordToken;
+    public static readonly PreviouslyReservedLineKeywordToken PreviouslyReservedLine = SwiftTokens.PreviouslyReservedLineKeywordToken;
+    public static readonly PreviouslyReservedWarningKeywordToken PreviouslyReservedWarning = SwiftTokens.PreviouslyReservedWarningKeywordToken;
 
     // Context sensitive keywords
-    public static readonly PlaceholderNodeType Associativity = new(SwiftTokens.AssociativityId, SwiftTokens.AssociativityIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Async = new(SwiftTokens.AsyncId, SwiftTokens.AsyncIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Convenience = new(SwiftTokens.ConvenienceId, SwiftTokens.ConvenienceIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType DidSet = new(SwiftTokens.DidSetId, SwiftTokens.DidSetIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Dynamic = new(SwiftTokens.DynamicId, SwiftTokens.DynamicIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Final = new(SwiftTokens.FinalId, SwiftTokens.FinalIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Get = new(SwiftTokens.GetId, SwiftTokens.GetIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Indirect = new(SwiftTokens.IndirectId, SwiftTokens.IndirectIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Infix = new(SwiftTokens.InfixId, SwiftTokens.InfixIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Lazy = new(SwiftTokens.LazyId, SwiftTokens.LazyIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Left = new(SwiftTokens.LeftId, SwiftTokens.LeftIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Mutating = new(SwiftTokens.MutatingId, SwiftTokens.MutatingIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType None = new(SwiftTokens.NoneId, SwiftTokens.NoneIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType NonMutating = new(SwiftTokens.NonMutatingId, SwiftTokens.NonMutatingIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Optional = new(SwiftTokens.OptionalId, SwiftTokens.OptionalIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Override = new(SwiftTokens.OverrideId, SwiftTokens.OverrideIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Package = new(SwiftTokens.PackageId, SwiftTokens.PackageIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Postfix = new(SwiftTokens.PostfixId, SwiftTokens.PostfixIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Precedence = new(SwiftTokens.PrecedenceId, SwiftTokens.PrecedenceIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Prefix = new(SwiftTokens.PrefixId, SwiftTokens.PrefixIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType ProtocolUppercase = new(SwiftTokens.ProtocolUppercaseId, SwiftTokens.ProtocolUppercaseIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Required = new(SwiftTokens.RequiredId, SwiftTokens.RequiredIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Right = new(SwiftTokens.RightId, SwiftTokens.RightIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Set = new(SwiftTokens.SetId, SwiftTokens.SetIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Some = new(SwiftTokens.SomeId, SwiftTokens.SomeIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Type = new(SwiftTokens.TypeId, SwiftTokens.TypeIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Unowned = new(SwiftTokens.UnownedId, SwiftTokens.UnownedIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType Weak = new(SwiftTokens.WeakId, SwiftTokens.WeakIndex, isKeyword: true);
-    public static readonly PlaceholderNodeType WillSet = new(SwiftTokens.WillSetId, SwiftTokens.WillSetIndex, isKeyword: true);
+    public static readonly AssociativityKeywordToken Associativity = SwiftTokens.AssociativityKeywordToken;
+    public static readonly AsyncKeywordToken Async = SwiftTokens.AsyncKeywordToken;
+    public static readonly ConvenienceKeywordToken Convenience = SwiftTokens.ConvenienceKeywordToken;
+    public static readonly DidSetKeywordToken DidSet = SwiftTokens.DidSetKeywordToken;
+    public static readonly DynamicKeywordToken Dynamic = SwiftTokens.DynamicKeywordToken;
+    public static readonly FinalKeywordToken Final = SwiftTokens.FinalKeywordToken;
+    public static readonly GetKeywordToken Get = SwiftTokens.GetKeywordToken;
+    public static readonly IndirectKeywordToken Indirect = SwiftTokens.IndirectKeywordToken;
+    public static readonly InfixKeywordToken Infix = SwiftTokens.InfixKeywordToken;
+    public static readonly LazyKeywordToken Lazy = SwiftTokens.LazyKeywordToken;
+    public static readonly LeftKeywordToken Left = SwiftTokens.LeftKeywordToken;
+    public static readonly MutatingKeywordToken Mutating = SwiftTokens.MutatingKeywordToken;
+    public static readonly NoneKeywordToken None = SwiftTokens.NoneKeywordToken;
+    public static readonly NonMutatingKeywordToken NonMutating = SwiftTokens.NonMutatingKeywordToken;
+    public static readonly OptionalKeywordToken Optional = SwiftTokens.OptionalKeywordToken;
+    public static readonly OverrideKeywordToken Override = SwiftTokens.OverrideKeywordToken;
+    public static readonly PackageKeywordToken Package = SwiftTokens.PackageKeywordToken;
+    public static readonly PostfixKeywordToken Postfix = SwiftTokens.PostfixKeywordToken;
+    public static readonly PrecedenceKeywordToken Precedence = SwiftTokens.PrecedenceKeywordToken;
+    public static readonly PrefixKeywordToken Prefix = SwiftTokens.PrefixKeywordToken;
+    public static readonly ProtocolUppercaseKeywordToken ProtocolUppercase = SwiftTokens.ProtocolUppercaseKeywordToken;
+    public static readonly RequiredKeywordToken Required = SwiftTokens.RequiredKeywordToken;
+    public static readonly RightKeywordToken Right = SwiftTokens.RightKeywordToken;
+    public static readonly SetKeywordToken Set = SwiftTokens.SetKeywordToken;
+    public static readonly SomeKeywordToken Some = SwiftTokens.SomeKeywordToken;
+    public static readonly TypeKeywordToken Type = SwiftTokens.TypeKeywordToken;
+    public static readonly UnownedKeywordToken Unowned = SwiftTokens.UnownedKeywordToken;
+    public static readonly WeakKeywordToken Weak = SwiftTokens.WeakKeywordToken;
+    public static readonly WillSetKeywordToken WillSet = SwiftTokens.WillSetKeywordToken;
 
     // Operators
-    public static readonly PlaceholderNodeType InfixOperator = new(SwiftTokens.InfixOperatorId, SwiftTokens.InfixOperatorIndex);
-    public static readonly PlaceholderNodeType PrefixOperator = new(SwiftTokens.PrefixOperatorId, SwiftTokens.PrefixOperatorIndex);
-    public static readonly PlaceholderNodeType PostfixOperator = new(SwiftTokens.PostfixOperatorId, SwiftTokens.PostfixOperatorIndex);
-    public static readonly PlaceholderNodeType TernaryOperator = new(SwiftTokens.TernaryOperatorId, SwiftTokens.TernaryOperatorIndex);
-    public static readonly PlaceholderNodeType OptionalChainingOperator = new(SwiftTokens.OptionalChainingOperatorId, SwiftTokens.OptionalChainingOperatorIndex);
-    public static readonly PlaceholderNodeType QuestionMarkPrefixOperator = new(SwiftTokens.QuestionMarkPrefixOperatorId, SwiftTokens.QuestionMarkPrefixOperatorIndex);
-    public static readonly PlaceholderNodeType QuestionMarkPostfixOperator = new(SwiftTokens.QuestionMarkPostfixOperatorId, SwiftTokens.QuestionMarkPostfixOperatorIndex);
-    public static readonly PlaceholderNodeType ExclamationMarkPrefixOperator = new(SwiftTokens.ExclamationMarkPrefixOperatorId, SwiftTokens.ExclamationMarkPrefixOperatorIndex);
-    public static readonly PlaceholderNodeType ExclamationMarkPostfixOperator = new(SwiftTokens.ExclamationMarkPostfixOperatorId, SwiftTokens.ExclamationMarkPostfixOperatorIndex);
+    public static readonly InfixOperatorToken InfixOperator = SwiftTokens.InfixOperatorToken;
+    public static readonly PrefixOperatorToken PrefixOperator = SwiftTokens.PrefixOperatorToken;
+    public static readonly PostfixOperatorToken PostfixOperator = SwiftTokens.PostfixOperatorToken;
+    public static readonly TernaryOperatorToken TernaryOperator = SwiftTokens.TernaryOperatorToken;
+    public static readonly OptionalChainingOperatorToken OptionalChainingOperator = SwiftTokens.OptionalChainingOperatorToken;
+    public static readonly QuestionMarkPrefixOperatorToken QuestionMarkPrefixOperator = SwiftTokens.QuestionMarkPrefixOperatorToken;
+    public static readonly QuestionMarkPostfixOperatorToken QuestionMarkPostfixOperator = SwiftTokens.QuestionMarkPostfixOperatorToken;
+    public static readonly ExclamationMarkPrefixOperatorToken ExclamationMarkPrefixOperator = SwiftTokens.ExclamationMarkPrefixOperatorToken;
+    public static readonly ExclamationMarkPostfixOperatorToken ExclamationMarkPostfixOperator = SwiftTokens.ExclamationMarkPostfixOperatorToken;
 
     // Errors
-    public static readonly PlaceholderNodeType InvalidToken = new(SwiftTokens.InvalidTokenId, SwiftTokens.InvalidTokenIndex);
-    public static readonly PlaceholderNodeType UnmatchedOperator = new(SwiftTokens.UnmatchedOperatorId, SwiftTokens.UnmatchedOperatorIndex);
-    public static readonly PlaceholderNodeType ErroneousIntegerLiteral = new(SwiftTokens.ErroneousIntegerLiteralId, SwiftTokens.ErroneousIntegerLiteralIndex);
-    public static readonly PlaceholderNodeType ErroneousFloatingPointLiteral = new(SwiftTokens.ErroneousFloatingPointLiteralId, SwiftTokens.ErroneousFloatingPointLiteralIndex);
-    public static readonly PlaceholderNodeType UnmatchedHashtag = new(SwiftTokens.UnmatchedHashtagId, SwiftTokens.UnmatchedHashtagIndex);
-    public static readonly PlaceholderNodeType ErroneousStringLiteral = new(SwiftTokens.ErroneousStringLiteralId, SwiftTokens.ErroneousStringLiteralIndex);
-    public static readonly PlaceholderNodeType UnmatchedEscapeSequence = new(SwiftTokens.UnmatchedEscapeSequenceId, SwiftTokens.UnmatchedEscapeSequenceIndex);
+    public static readonly InvalidToken InvalidToken = SwiftTokens.InvalidToken;
+    public static readonly UnmatchedOperatorToken UnmatchedOperator = SwiftTokens.UnmatchedOperatorToken;
+    public static readonly ErroneousIntegerLiteralToken ErroneousIntegerLiteral = SwiftTokens.ErroneousIntegerLiteralToken;
+    public static readonly ErroneousFloatingPointLiteralToken ErroneousFloatingPointLiteral = SwiftTokens.ErroneousFloatingPointLiteralToken;
+    public static readonly UnmatchedHashtagToken UnmatchedHashtag = SwiftTokens.UnmatchedHashtagToken;
+    public static readonly ErroneousStringLiteralToken ErroneousStringLiteral = SwiftTokens.ErroneousStringLiteralToken;
+    public static readonly UnmatchedEscapeSequenceToken UnmatchedEscapeSequence = SwiftTokens.UnmatchedEscapeSequenceToken;
+    
+    #endregion
+
+    #region InternalNodes
+
+    
+
+    #endregion
 }

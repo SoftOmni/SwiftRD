@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.Concretely.Root
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces.InternalNode;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
+using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.Root;
 
@@ -18,7 +18,7 @@ public class ModuleMapsRootNode<TSelf> : RootNode<IModuleMapsNodeFamily<TSelf>, 
         
     }
 
-    public override NodeType NodeType => SwiftNodeTypes.Internal;
+    public override NodeType NodeType => ModuleMapsNodeTypes.File;
 
-    public override PsiLanguageType Language => SwiftLanguage.Instance!;
+    public override PsiLanguageType Language => ModuleMapsLanguage.Instance!;
 }

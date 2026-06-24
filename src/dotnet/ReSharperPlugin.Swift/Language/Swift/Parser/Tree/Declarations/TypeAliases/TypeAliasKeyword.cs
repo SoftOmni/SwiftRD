@@ -7,11 +7,15 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
 
-public class TypeAliasKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeyword
+public class TypeAliasKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<TypeAliasKeyword>
 {
     public const string Keyword = "typealias";
     
     public TypeAlias? TypeAlias { get; internal set; }
+    
+    public TypeAliasKeyword()
+        : base(new EditableBuffer(Keyword))
+    { }
 
     internal TypeAliasKeyword(IEditableBuffer buffer) 
         : base(buffer)

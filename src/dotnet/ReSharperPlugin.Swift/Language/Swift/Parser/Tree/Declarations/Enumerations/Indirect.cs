@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
 
-public class Indirect : SwiftLeafNode, ISwiftKeyword
+public class Indirect : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "indirect";
     

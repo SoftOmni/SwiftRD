@@ -1,3 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 
-public interface IControlTransferStatement : IStatement;
+public interface IControlTransferStatement : IReadOnlyStatement;

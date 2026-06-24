@@ -1,30 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
 
-public class In : SwiftLeafNode, ISwiftKeyword
+public class In : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<In>
 {
     public const string Keyword = "in";
-
-    internal In(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.In)
+    
+    public In()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal In(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.In)
+    internal In(IEditableBuffer buffer) 
+        : base(buffer)
     { }
 
     public string KeywordValue => Keyword;
 
+    public override NodeType NodeType => SwiftNodeTypes.In;
+
     public static In Create()
     {
         return new In(new EditableBuffer(Keyword));
-    }
-
-    public static In Create(SwiftInternalNode parent)
-    {
-        return new In(parent, new EditableBuffer(Keyword));
     }
 }

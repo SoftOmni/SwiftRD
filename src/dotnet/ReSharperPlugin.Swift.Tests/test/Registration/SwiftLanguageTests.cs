@@ -1,10 +1,5 @@
 using System;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
-using JetBrains.ReSharper.Psi.CSharp.Impl;
-using JetBrains.ReSharper.Psi.JavaScript.LanguageImpl;
-using NUnit.Framework;
-using SoftOmni.SwiftRd.Language;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 namespace SoftOmni.SwiftRd.Tests.test.Registration;

@@ -1,30 +1,43 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
+namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 
-public class SelfMethodExpression : SelfExpression
+public class SelfMethodExpression : SwiftCompositeNode, ISelfMethodExpression
 {
-    public Period? Period { get; internal set; }
-    
-    public Identifier? Identifier { get; internal set; }
-    
-    public SelfMethodExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public SelfLowercase SelfLowercase { get; }
+
+    public Period Period { get; }
+
+    public IIdentifier MethodName { get; }
+
+    internal SelfMethodExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        SelfLowercase selfLowercase, Period period, IIdentifier methodName)
         : base(buffer, children)
-    { }
+    {
+        SelfLowercase = selfLowercase;
+        Period = period;
+        MethodName = methodName;
 
-    public SelfMethodExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ReturnType = UnknownType.Instance;
+    }
 
-    public SelfMethodExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyIdentifier IReadOnlySelfMethodExpression.MethodName => MethodName;
 
-    public SelfMethodExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangeMethodName(IIdentifier newMethodName)
+    {
+        throw new System.NotImplementedException();
+    }
 }

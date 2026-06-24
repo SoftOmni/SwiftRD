@@ -7,6 +7,8 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.
     StringLiterals.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using String = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.String;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.
@@ -24,12 +26,16 @@ public class RawValueSingleLineStringLiteral : SwiftCompositeNode, IStringLitera
 
     public IStringFormatting Formatting { get; }
 
+    private readonly IPrimitiveLiteralTypeResolutionContext _primitiveLiteralTypeResolutionContext;
+
     internal RawValueSingleLineStringLiteral(IEditableBuffer buffer,
         IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         RawValueSingleLineStringLiteralStart start, RawValueSingleLineStringLiteralContent content,
-        RawValueSingleLineStringLiteralEnd end)
+        RawValueSingleLineStringLiteralEnd end,
+        IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext)
         : base(buffer, children)
     {
+        _primitiveLiteralTypeResolutionContext = primitiveLiteralTypeResolutionContext;
         Formatting = StringFormatting.Default();
 
         Start = start;
@@ -48,6 +54,10 @@ public class RawValueSingleLineStringLiteral : SwiftCompositeNode, IStringLitera
     public bool SupportsEscapes => false;
 
     public bool SupportsInterpolations => false;
+
+    public IType ReturnType => _primitiveLiteralTypeResolutionContext.DefaultStringLiteralType.Type;
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
 
     public string GetValueCopy()
     {
@@ -91,18 +101,15 @@ public class RawValueSingleLineStringLiteral : SwiftCompositeNode, IStringLitera
             && (newCharacter <= 127 ||
                 Formatting.PreferredInsertionWay is not IStringFormatting.CharacterInsertion.UnicodeEscape))
         {
-            UnderlyingBuffer.newCharacter;
             UnderlyingValue[index] = newCharacter;
             return;
         }
-        
+
         UnderlyingValue[index] = '\\';
         if (Formatting.PreferredInsertionSimpleEscapeSupportedCharacters is IStringFormatting
                 .SimpleEscapeSupportedCharacterInsertion.UnicodeEscape)
-        {
-            
-        }
-        
+        { }
+
         switch (newCharacter)
         {
             case '\0':
@@ -196,7 +203,7 @@ public class RawValueSingleLineStringLiteral : SwiftCompositeNode, IStringLitera
         StringBuilder unicodeScalarBuilder = new(11);
         unicodeScalarBuilder.Append('u');
         unicodeScalarBuilder.Append('{');
-            
+
         int value = character;
         while (value > 0)
         {
@@ -223,7 +230,30 @@ public class RawValueSingleLineStringLiteral : SwiftCompositeNode, IStringLitera
 
             value /= 16;
         }
-        
+
         UnderlyingBuffer.Insert(LeadingHashtags + 1 + index, unicodeScalarBuilder.ToString());
+    }
+
+    public IReadOnlyPrimitiveLiteralTypeResolutionContext PrimitiveLiteralTypeResolutionContext
+        => _primitiveLiteralTypeResolutionContext;
+
+    public void IncrementSurroundingHashtags()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DecrementSurroundingHashtags()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetSurroundingHashtagsTo(int value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
+    {
+        throw new NotImplementedException();
     }
 }

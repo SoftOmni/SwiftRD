@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases;
 
-public class Case : SwiftLeafNode, ISwiftKeyword
+public class Case : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "case";
 

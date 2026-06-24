@@ -1,11 +1,14 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.WhileLoops;
 
-public class While : SwiftLeafNode, ISwiftKeyword
+public class While : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode
 {
     public const string Keyword = "while";
     
@@ -14,11 +17,11 @@ public class While : SwiftLeafNode, ISwiftKeyword
     public RepeatWhileStatement? RepeatWhileStatement { get; internal set; }
 
     internal While(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.While)
+        : base(buffer)
     { }
 
-    internal While(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.While)
+    internal While(SwiftCompositeNode parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
+        : base(buffer, parent, parentIndex, parentTextIndex)
     {
         if (parent is WhileStatement whileStatement)
         {
@@ -30,38 +33,12 @@ public class While : SwiftLeafNode, ISwiftKeyword
         }
     }
 
-    internal While(WhileStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.While)
-    {
-        WhileStatement = parent;
-    }
-    
-    internal While(RepeatWhileStatement parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.While)
-    {
-        RepeatWhileStatement = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.While;
 
     public string KeywordValue => Keyword;
 
     public static While Create()
     {
         return new While(new EditableBuffer(Keyword));
-    }
-
-    public static While Create(WhileStatement whileStatement)
-    {
-        return new While(whileStatement, new EditableBuffer(Keyword));
-    }
-    
-    
-    public static While Create(RepeatWhileStatement repeatWhileStatement)
-    {
-        return new While(repeatWhileStatement, new EditableBuffer(Keyword));
-    }
-
-    public static While CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new While(parent, new EditableBuffer(Keyword));
     }
 }

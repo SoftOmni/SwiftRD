@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.DefaultLabels;
 
-public class Default : SwiftLeafNode, ISwiftKeyword
+public class Default : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "default";
     

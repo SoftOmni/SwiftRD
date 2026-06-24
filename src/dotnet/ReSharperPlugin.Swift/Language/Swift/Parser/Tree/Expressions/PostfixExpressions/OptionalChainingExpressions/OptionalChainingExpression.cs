@@ -1,29 +1,37 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.OptionalChainingExpressions;
 
-public class OptionalChainingExpression : PostfixExpressionInternalNode
+public class OptionalChainingExpression : SwiftCompositeNode, IOptionalChainingExpression
 {
-    public IPostfixExpression? PostfixExpression { get; internal set; }
-    
-    public QuestionMark? QuestionMark { get; internal set; }
-    
-    public OptionalChainingExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    public IPostfixExpression PostfixExpression { get; }
+
+    public QuestionMark QuestionMark { get; }
+
+    internal OptionalChainingExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IPostfixExpression postfixExpression, QuestionMark questionMark)
         : base(buffer, children)
-    { }
+    {
+        PostfixExpression = postfixExpression;
+        QuestionMark = questionMark;
 
-    public OptionalChainingExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ReturnType = UnknownType.Instance;
+    }
 
-    public OptionalChainingExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyPostfixExpression IReadOnlyOptionalChainingExpression.PostfixExpression => PostfixExpression;
 
-    public OptionalChainingExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public void ChangePostfixExpression(IPostfixExpression newPostfixExpression)
+    {
+        throw new System.NotImplementedException();
+    }
 }
+

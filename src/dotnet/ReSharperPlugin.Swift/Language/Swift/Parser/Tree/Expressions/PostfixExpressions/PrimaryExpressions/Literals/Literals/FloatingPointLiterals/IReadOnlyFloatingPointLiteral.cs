@@ -1,12 +1,11 @@
 using System.Numerics;
 using ExtendedNumerics;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals.Formatting;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals;
 
-public interface IReadOnlyFloatingPointLiteral : IReadOnlyLiteral<Double, BigDecimal>
+public interface IReadOnlyFloatingPointLiteral : IReadOnlyLiteral<BigDecimal>
 {
     enum Base
     {

@@ -4,61 +4,65 @@ using ExtendedNumerics;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals.Formatting;
-using ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
-using Double = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.Double;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.
+    Literals.FloatingPointLiterals;
 
-public partial class FloatingPointLiteral : Literal<Double, BigDecimal>, IFloatingPointLiteral
+public partial class FloatingPointLiteral : Literal<BigDecimal>, IFloatingPointLiteral
 {
     public IReadOnlyFloatingPointLiteral.Base Base { get; private set; }
 
     public IFloatingPointLiteralFormatting Formatting { get; private set; }
 
-    public FloatingPointLiteral(BigDecimal value)
-        : base(GetBufferFromValue(value, FloatingPointLiteralFormatting.Default()), Double.Instance, value)
+    private readonly IPrimitiveLiteralTypeResolutionContext _primitiveLiteralTypeResolutionContext;
+
+    public FloatingPointLiteral(BigDecimal value,
+        IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
+        : base(GetBufferFromValue(value, FloatingPointLiteralFormatting.Default()), value)
     {
         Base = IReadOnlyFloatingPointLiteral.Base.Decimal;
         Formatting = FloatingPointLiteralFormatting.Default();
-        
+        _primitiveLiteralTypeResolutionContext =
+            primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();
+
         DetermineCharacteristicsWithoutFormatting();
         // This is the default as GetBufferFromValue will use default formatting rules
     }
 
-    public FloatingPointLiteral(BigDecimal value, IFloatingPointLiteralFormatting formatting)
-        : base(GetBufferFromValue(value, formatting), Double.Instance, value)
+    public FloatingPointLiteral(BigDecimal value, IFloatingPointLiteralFormatting formatting,
+        IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
+        : base(GetBufferFromValue(value, formatting), value)
     {
         Base = IReadOnlyFloatingPointLiteral.Base.Decimal;
         Formatting = formatting;
-        
+        _primitiveLiteralTypeResolutionContext =
+            primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();
+
         DetermineCharacteristicsWithoutFormatting();
     }
 
-    public FloatingPointLiteral(IEditableBuffer underlyingBuffer, BigDecimal value)
-        : base(underlyingBuffer, Double.Instance, value)
+    public FloatingPointLiteral(IEditableBuffer underlyingBuffer, BigDecimal value,
+        IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext)
+        : base(underlyingBuffer, value)
     {
+        _primitiveLiteralTypeResolutionContext = primitiveLiteralTypeResolutionContext;
+
         Base = IReadOnlyFloatingPointLiteral.Base.Decimal;
         Formatting = FloatingPointLiteralFormatting.Default();
         DetermineCharacteristics();
     }
-
-    public FloatingPointLiteral(IEditableBuffer underlyingBuffer, SwiftCompositeNode parentNode, int parentIndex,
-        int parentTextIndex, BigDecimal value)
-        : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex, Double.Instance, value)
-    {
-        Base = IReadOnlyFloatingPointLiteral.Base.Decimal;
-        Formatting = FloatingPointLiteralFormatting.Default();
-        DetermineCharacteristics();
-    }
-
+    
     public override NodeType NodeType => SwiftNodeTypes.FloatingPointLiteral;
 
     public BigInteger IntegralPartValue { get; private set; } = BigInteger.Zero;
 
-    public IReadOnlyIntegerLiteral IntegralPartDetachedValue { get; private set; } = new IntegerLiteral(BigInteger.Zero);
+    public IReadOnlyIntegerLiteral IntegralPartDetachedValue { get; private set; } =
+        new IntegerLiteral(BigInteger.Zero);
 
     public int DecimalSeparatorIndex { get; private set; } = INDEX_OF_NON_PRESENCE;
 
@@ -73,7 +77,8 @@ public partial class FloatingPointLiteral : Literal<Double, BigDecimal>, IFloati
 
     public bool HasExponentPart => ExponentIndex != IndexOfNonPresence;
 
-    public IReadOnlyFloatingPointLiteral.Sign ExponentSign { get; private set; } = IReadOnlyFloatingPointLiteral.Sign.Positive;
+    public IReadOnlyFloatingPointLiteral.Sign ExponentSign { get; private set; } =
+        IReadOnlyFloatingPointLiteral.Sign.Positive;
 
     public bool HasExplicitExponentSign =>
         Formatting.SignExplicitness is IFloatingPointLiteralFormatting.Explicitness.Explicit;
@@ -84,6 +89,8 @@ public partial class FloatingPointLiteral : Literal<Double, BigDecimal>, IFloati
         new IntegerLiteral(BigInteger.Zero);
 
     public int IndexOfNonPresence => INDEX_OF_NON_PRESENCE;
+
+    public override IType ReturnType => _primitiveLiteralTypeResolutionContext.DefaultFloatingPointLiteralType.Type;
 
     public override BigDecimal GetValueCopy()
     {
@@ -118,10 +125,15 @@ public partial class FloatingPointLiteral : Literal<Double, BigDecimal>, IFloati
         {
             return;
         }
-        
-        
+
+
         throw new NotImplementedException();
     }
 
     private const int INDEX_OF_NON_PRESENCE = -1;
+
+    protected override IReadOnlyPrimitiveLiteralTypeResolutionContext ProvidePrimitiveLiteralTypeResolutionContext()
+    {
+        return _primitiveLiteralTypeResolutionContext;
+    }
 }

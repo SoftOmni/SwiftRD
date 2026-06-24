@@ -5,16 +5,14 @@ using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.Concretely.Erro
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
+using SoftOmni.SwiftRd.Language.ModuleMaps;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.Base;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
 
-namespace SoftOmni.SwiftRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.ErrorNodes;
+namespace SoftOmni.ModuleMapsRd.Language.ModuleMaps.Parser.Tree.Base.Implementations.ErrorNodes;
 
 public class ModuleMapsErrorLeafNode<TSelf> :
     ErrorNode<IModuleMapsNodeFamily<TSelf>, ModuleMapsNode<TSelf>, TSelf, ModuleMapsLeafNode<TSelf>>, IModuleMapsNode<ModuleMapsCompositeNode>
@@ -28,22 +26,22 @@ public class ModuleMapsErrorLeafNode<TSelf> :
         : base(underlyingBuffer, parentNode, parentIndex, parentTextIndex, message)
     { }
 
-    public SwiftCompositeNode? GetParent()
+    public ModuleMapsCompositeNode? GetParent()
     {
         throw new NotImplementedException();
     }
 
-    SwiftCompositeNode INode<ISwiftNodeFamily<SwiftCompositeNode>, SwiftCompositeNode, SwiftCompositeNode, SwiftLeafNode<SwiftCompositeNode>>.CloneAsDetached()
+    ModuleMapsCompositeNode INode<IModuleMapsNodeFamily<ModuleMapsCompositeNode>, ModuleMapsCompositeNode, ModuleMapsCompositeNode, ModuleMapsLeafNode<ModuleMapsCompositeNode>>.CloneAsDetached()
     {
         throw new NotImplementedException();
     }
 
-    public SwiftCompositeNode CloneAsAttachedTo(SwiftCompositeNode newParent, int index)
+    public ModuleMapsCompositeNode CloneAsAttachedTo(ModuleMapsCompositeNode newParent, int index)
     {
         throw new NotImplementedException();
     }
 
-    public void AttachToParent(SwiftCompositeNode newParent, int parentIndex)
+    public void AttachToParent(ModuleMapsCompositeNode newParent, int parentIndex)
     {
         throw new NotImplementedException();
     }
@@ -58,5 +56,5 @@ public class ModuleMapsErrorLeafNode<TSelf> :
         throw new NotImplementedException();
     }
 
-    public override PsiLanguageType Language => SwiftLanguage.Instance!;
+    public override PsiLanguageType Language => ModuleMapsLanguage.Instance!;
 }

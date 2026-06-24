@@ -1,3 +1,8 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class ElseKeywordToken() : StatementUsableKeywordToken("else", SwiftTokens.ElseId, SwiftTokens.ElseIndex);
+public class ElseKeywordToken : StatementUsableKeywordToken
+{
+    public ElseKeywordToken()
+        : base("else", SwiftTokens.ElseId, SwiftTokens.ElseIndex)
+    { }
+}

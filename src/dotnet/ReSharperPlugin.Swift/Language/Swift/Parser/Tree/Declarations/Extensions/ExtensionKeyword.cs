@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 
-public class ExtensionKeyword : SwiftLeafNode, ISwiftKeyword
+public class ExtensionKeyword : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "extension";
     

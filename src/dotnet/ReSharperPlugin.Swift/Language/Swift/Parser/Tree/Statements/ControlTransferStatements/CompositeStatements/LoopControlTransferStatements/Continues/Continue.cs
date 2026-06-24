@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.LoopControlTransferStatements.Continues;
 
-public class Continue : StatementLeafNode, ISwiftKeyword
+public class Continue : StatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "continue";
     

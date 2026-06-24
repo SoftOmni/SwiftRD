@@ -1,43 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
-public class TypeIdentifier : TypeInternalNode, IList<TypeIdentifierComponent>
+public class TypeIdentifier : SwiftCompositeNode, ITypeIdentifier
 {
-    private List<TypeIdentifierComponent> _components = [];
+    private readonly List<ITypeIdentifierComponent> _components;
+    
+    private readonly List<Period> _periods;
+    
+    private readonly List<List<IType>> _subTypeChains = [];
 
-    public TypeIdentifier(IEditableBuffer buffer, List<ISwiftNode> children) 
+    private readonly ModularVisibilityHashSet<IReadOnlyType> _subTypesReadonly = [];
+    
+    private readonly ModularVisibilityHashSet<IType> _subTypes = [];
+    
+    private readonly ModularVisibilityHashSet<string> _subTypeNames = [];
+
+    public TypeIdentifier(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        List<ITypeIdentifierComponent> components, List<Period> periods)
         : base(buffer, children)
-    { }
+    {
+        _components = components;
+        _periods = periods;
 
-    public TypeIdentifier(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+        ActualType = this;
+    }
 
-    public TypeIdentifier(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyDeclaration? Declaration { get; internal set; } = null;
+    
+    public IReadOnlyType ActualType { get; internal set; }
+    
+    public string TypeSignature => string.Join(".", _components);
+    
+    public IReadOnlyType? SuperType { get; internal set; } = null;
+    
+    public IReadOnlyList<IReadOnlyList<IReadOnlyType>> SubTypeChains => _subTypeChains;
+    
+    public IReadOnlySet<IReadOnlyType> SubTypes => _subTypesReadonly;
+    
+    public IReadOnlySet<string> SubTypeNames => _subTypeNames;
+    
+    public bool IsFromStandardLibrary { get; internal set; } = false;
 
-    public TypeIdentifier(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public int Size { get; }
 
-    public IReadOnlyList<TypeIdentifierComponent> Components => _components;
+    IEnumerator<ITypeIdentifierComponent> IEnumerable<ITypeIdentifierComponent>.GetEnumerator()
+    {
+        return _components.GetEnumerator();
+    }
+
+    ITypeIdentifierComponent ITypeIdentifier.this[int index]
+    {
+        get => _components[index];
+        set => throw new System.NotImplementedException();
+    }
+
+    IEnumerator<IReadOnlyTypeIdentifierComponent> IEnumerable<IReadOnlyTypeIdentifierComponent>.GetEnumerator()
+    {
+        return _components.GetEnumerator();
+    }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return GetEnumerator();
+        return _components.GetEnumerator();
     }
 
-    public IEnumerator<TypeIdentifierComponent> GetEnumerator()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Add(TypeIdentifierComponent item)
+    public void Add(ITypeIdentifierComponent item)
     {
         throw new System.NotImplementedException();
     }
@@ -47,29 +82,35 @@ public class TypeIdentifier : TypeInternalNode, IList<TypeIdentifierComponent>
         throw new System.NotImplementedException();
     }
 
-    public bool Contains(TypeIdentifierComponent item)
+    public bool Contains(ITypeIdentifierComponent item)
+    {
+        return _components.Contains(item);
+    }
+
+    public void CopyTo(ITypeIdentifierComponent[] array, int arrayIndex)
+    {
+        _components.CopyTo(array, arrayIndex);
+    }
+
+    public bool Remove(ITypeIdentifierComponent item)
     {
         throw new System.NotImplementedException();
     }
 
-    public void CopyTo(TypeIdentifierComponent[] array, int arrayIndex)
+    int ITypeIdentifier.Count => _components.Count;
+
+    int ICollection<ITypeIdentifierComponent>.Count => _components.Count;
+
+    public bool IsReadOnly => false;
+
+    int IReadOnlyCollection<IReadOnlyTypeIdentifierComponent>.Count => _components.Count;
+
+    public int IndexOf(ITypeIdentifierComponent item)
     {
-        throw new System.NotImplementedException();
+        return _components.IndexOf(item);
     }
 
-    public bool Remove(TypeIdentifierComponent item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int Count { get; }
-    public bool IsReadOnly { get; }
-    public int IndexOf(TypeIdentifierComponent item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Insert(int index, TypeIdentifierComponent item)
+    public void Insert(int index, ITypeIdentifierComponent item)
     {
         throw new System.NotImplementedException();
     }
@@ -79,9 +120,20 @@ public class TypeIdentifier : TypeInternalNode, IList<TypeIdentifierComponent>
         throw new System.NotImplementedException();
     }
 
-    public TypeIdentifierComponent this[int index]
+    IEnumerator<ITypeIdentifierComponent> ITypeIdentifier.GetEnumerator()
     {
-        get => throw new System.NotImplementedException();
+        return _components.GetEnumerator();
+    }
+
+    ITypeIdentifierComponent IList<ITypeIdentifierComponent>.this[int index]
+    {
+        get => _components[index];
         set => throw new System.NotImplementedException();
     }
+
+    IReadOnlyTypeIdentifierComponent IReadOnlyList<IReadOnlyTypeIdentifierComponent>.this[int index] => _components[index];
+
+    public IReadOnlyList<IReadOnlyTypeIdentifierComponent> Identifiers => _components;
+
+    public IReadOnlyList<Period> Periods => _periods;
 }

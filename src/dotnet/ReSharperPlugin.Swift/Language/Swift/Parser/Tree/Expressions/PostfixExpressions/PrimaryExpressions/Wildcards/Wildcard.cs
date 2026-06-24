@@ -1,21 +1,26 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
+using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Wildcards;
 
-public class Wildcard : PrimaryExpressionLeafNode, ISwiftKeyword
+public class Wildcard : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Wildcard>
 {
     public const string Keyword = "_";
+    
+    public Wildcard()
+        : base(new EditableBuffer(Keyword))
+    { }
 
     internal Wildcard(IEditableBuffer buffer)
-        : base(buffer, SwiftNodeTypes.Underscore)
+        : base(buffer)
     { }
 
-    internal Wildcard(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Underscore)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.Underscore;
 
     public string KeywordValue => Keyword;
 
@@ -24,8 +29,12 @@ public class Wildcard : PrimaryExpressionLeafNode, ISwiftKeyword
         return new Wildcard(new EditableBuffer(Keyword));
     }
 
-    public static Wildcard Create(SwiftInternalNode parent)
+    public static IWildcardExpression CreateWithExpression()
     {
-        return new Wildcard(parent, new EditableBuffer(Keyword));
+        IEditableBuffer wildcardExpressionBuffer = new EditableBuffer(Keyword);
+        IEditableBuffer wildcardLeafTokenBuffer = new SubEditableBuffer(wildcardExpressionBuffer, 0, Keyword.Length);
+
+        Wildcard wildcard = new(wildcardLeafTokenBuffer);
+        return new WildcardExpression(wildcardExpressionBuffer, [wildcard], wildcard);
     }
 }

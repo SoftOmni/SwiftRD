@@ -7,7 +7,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
-public class ActorKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeyword
+public class ActorKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode
 {
     public const string Keyword = "actor";
     

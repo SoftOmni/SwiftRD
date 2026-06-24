@@ -3,7 +3,7 @@ using JetBrains.Text;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
 
-public class Internal : LeafAccessLevelModifier, ISwiftKeyword
+public class Internal : LeafAccessLevelModifier, ISwiftKeywordNode
 {
     public const string Keyword = "internal";
     

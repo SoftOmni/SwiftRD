@@ -1,28 +1,54 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
+using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.OpaqueTypes;
 
-public class OpaqueType : TypeInternalNode
+public class OpaqueType : SwiftCompositeNode, IOpaqueType
 {
-    public Some? Some { get; internal set; }
+    public Some Some { get; }
+
+    public IType Type { get; private set; }
     
-    public IType? Type { get; internal set; }
+    private ModularVisibilityHashSet<IReadOnlyType> _subTypes { get; } = [];
     
-    public OpaqueType(IEditableBuffer buffer, List<ISwiftNode> children) 
+    private ModularVisibilityHashSet<string> _subTypeNames { get; } = [];
+
+    public OpaqueType(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        Some some, IType type)
         : base(buffer, children)
-    { }
+    {
+        Some = some;
+        Type = type;
+        ActualType = this;
+    }
 
-    public OpaqueType(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
-    { }
+    IReadOnlyType IReadOnlyOpaqueType.Type => Type;
 
-    public OpaqueType(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyDeclaration? Declaration { get; internal set; } = null;
 
-    public OpaqueType(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyType ActualType { get; internal set; }
+
+    public string TypeSignature => $"{Some.KeywordValue} {Type.TypeSignature}";
+
+    public IReadOnlyType? SuperType { get; internal set; } = null;
+
+    public IReadOnlyList<IReadOnlyList<IReadOnlyType>> SubTypeChains { get; } = [];
+
+    public IReadOnlySet<IReadOnlyType> SubTypes => _subTypes;
+
+    public IReadOnlySet<string> SubTypeNames => _subTypeNames;
+
+    public bool IsFromStandardLibrary { get; internal set; } = false;
+
+    public int Size { get; }
+
+    public void ChangeType(IType type)
+    {
+        throw new NotImplementedException();
+    }
 }

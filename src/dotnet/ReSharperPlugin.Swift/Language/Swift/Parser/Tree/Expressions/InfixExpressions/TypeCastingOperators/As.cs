@@ -1,48 +1,32 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.InfixExpressions.TypeCastingOperators;
 
-public class As : SwiftLeafNode, ISwiftKeyword
+public class As : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<As>, ITypeCastingOperator
 {
     public const string Keyword = "as";
     
-    public AsTypeCastingOperator? AsTypeCastingOperator { get; internal set; }
-
-    internal As(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.As)
+    public As()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal As(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.As)
-    {
-        if (parent is AsTypeCastingOperator asTypeCastingOperator)
-        {
-            AsTypeCastingOperator = asTypeCastingOperator;
-        }
-    }
+    internal As(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal As(AsTypeCastingOperator parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.As)
-    {
-        AsTypeCastingOperator = parent;
-    }
+    public IReadOnlyTypeCastingOperator.Kind CurrentKind => IReadOnlyTypeCastingOperator.Kind.As;
+
+    public override NodeType NodeType => SwiftNodeTypes.As;
 
     public string KeywordValue => Keyword;
 
     public static As Create()
     {
         return new As(new EditableBuffer(Keyword));
-    }
-
-    public static As Create(AsTypeCastingOperator asTypeCastingOperator)
-    {
-        return new As(asTypeCastingOperator, new EditableBuffer(Keyword));
-    }
-
-    public static As CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new As(parent, new EditableBuffer(Keyword));
     }
 }

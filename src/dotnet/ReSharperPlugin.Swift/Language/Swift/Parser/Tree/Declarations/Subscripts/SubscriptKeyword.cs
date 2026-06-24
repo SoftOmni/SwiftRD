@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
 
-public class SubscriptKeyword : SwiftLeafNode, ISwiftKeyword
+public class SubscriptKeyword : SwiftLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "subscriptKeyword";
     

@@ -1,10 +1,9 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Convenience : DeclarationModifierLeaf, ISwiftKeyword
+public class Convenience : DeclarationModifierLeaf, ISwiftKeywordNode
 {
     public const string Keyword = "convenience";
     

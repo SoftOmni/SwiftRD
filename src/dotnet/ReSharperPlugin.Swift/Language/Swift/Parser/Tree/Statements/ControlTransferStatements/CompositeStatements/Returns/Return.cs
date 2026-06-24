@@ -1,11 +1,10 @@
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.CompositeStatements.Returns;
 
-public class Return : ControlTransferStatementLeafNode, ISwiftKeyword
+public class Return : ControlTransferStatementLeafNode, ISwiftKeywordNode
 {
     public const string Keyword = "return";
     

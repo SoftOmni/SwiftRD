@@ -7,6 +7,8 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.ErrorNode
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.StringLiterals.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using String = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.String;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.StringLiterals;
@@ -23,10 +25,14 @@ public class ErroneousRawValueSingleLineStringLiteral : SwiftErrorCompositeNode,
     
     public IStringFormatting Formatting { get; }
 
+    private readonly IPrimitiveLiteralTypeResolutionContext _primitiveLiteralTypeResolutionContext;
+    
     internal ErroneousRawValueSingleLineStringLiteral(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        RawValueSingleLineStringLiteralStart start, RawValueSingleLineStringLiteralContent content, RawValueSingleLineStringLiteralEnd end)
+        RawValueSingleLineStringLiteralStart start, RawValueSingleLineStringLiteralContent content, RawValueSingleLineStringLiteralEnd end,
+        IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext)
         : base(buffer, children, "")
-    { 
+    {
+        _primitiveLiteralTypeResolutionContext = primitiveLiteralTypeResolutionContext;
         Formatting = StringFormatting.Default();
 
         Start = start;
@@ -54,6 +60,10 @@ public class ErroneousRawValueSingleLineStringLiteral : SwiftErrorCompositeNode,
     public bool SupportsEscapes => false;
 
     public bool SupportsInterpolations => false;
+
+    public IType ReturnType => _primitiveLiteralTypeResolutionContext.DefaultStringLiteralType.Type;
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
 
     public string GetValueCopy()
     {
@@ -113,6 +123,29 @@ public class ErroneousRawValueSingleLineStringLiteral : SwiftErrorCompositeNode,
     }
 
     public void ChangeFormatting(IStringFormatting formatting)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IReadOnlyPrimitiveLiteralTypeResolutionContext PrimitiveLiteralTypeResolutionContext =>
+        _primitiveLiteralTypeResolutionContext;
+
+    public void IncrementSurroundingHashtags()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DecrementSurroundingHashtags()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetSurroundingHashtagsTo(int value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
     {
         throw new NotImplementedException();
     }

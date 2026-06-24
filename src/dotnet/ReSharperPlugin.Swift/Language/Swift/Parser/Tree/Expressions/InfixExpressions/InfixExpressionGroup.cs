@@ -1,43 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.InfixExpressions;
 
-public class InfixExpressionGroup : SwiftInternalNode, IList<InfixExpression>
+public class InfixExpressionGroup : SwiftCompositeNode, IInfixExpressionGroup
 {
-    private List<InfixExpression> _infixExpressions = [];
+    private readonly List<IInfixExpression> _expressions;
 
-    public InfixExpressionGroup(IEditableBuffer buffer, List<ISwiftNode> children)
+    public InfixExpressionGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        List<IInfixExpression> expressions)
         : base(buffer, children)
-    { }
-
-    public InfixExpressionGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
-
-    public InfixExpressionGroup(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
-
-    public InfixExpressionGroup(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
-
-    public IReadOnlyList<InfixExpression> InfixExpressions => _infixExpressions;
-
-    IEnumerator IEnumerable.GetEnumerator()
     {
-        return GetEnumerator();
+        _expressions = expressions;
     }
 
-    public IEnumerator<InfixExpression> GetEnumerator()
+    public int Count => _expressions.Count;
+
+    public bool IsReadOnly => false;
+
+    public IReadOnlyList<IReadOnlyInfixExpression> InfixExpressions => _expressions;
+
+    public new IInfixExpression this[int index]
     {
-        throw new System.NotImplementedException();
+        get => _expressions[index];
+        set => throw new System.NotImplementedException();
     }
 
-    public void Add(InfixExpression item)
+    IReadOnlyInfixExpression IReadOnlyInfixExpressionGroup.this[int index] => _expressions[index];
+
+    IReadOnlyInfixExpression IReadOnlyList<IReadOnlyInfixExpression>.this[int index] => _expressions[index];
+
+    public IEnumerator GetEnumerator()
+    {
+        return _expressions.GetEnumerator();
+    }
+
+    IEnumerator<IInfixExpression> IInfixExpressionGroup.GetEnumerator()
+    {
+        return _expressions.GetEnumerator();
+    }
+
+    IEnumerator<IInfixExpression> IEnumerable<IInfixExpression>.GetEnumerator()
+    {
+        return _expressions.GetEnumerator();
+    }
+
+    IEnumerator<IReadOnlyInfixExpression> IEnumerable<IReadOnlyInfixExpression>.GetEnumerator()
+    {
+        return _expressions.GetEnumerator();
+    }
+
+    IEnumerator<IReadOnlyInfixExpression> IReadOnlyInfixExpressionGroup.GetEnumerator()
+    {
+        return _expressions.GetEnumerator();
+    }
+
+    public bool Contains(IInfixExpression item)
+    {
+        return _expressions.Contains(item);
+    }
+
+    public void CopyTo(IInfixExpression[] array, int arrayIndex)
+    {
+        _expressions.CopyTo(array, arrayIndex);
+    }
+
+    public int IndexOf(IInfixExpression item)
+    {
+        return _expressions.IndexOf(item);
+    }
+
+    public void Add(IInfixExpression item)
     {
         throw new System.NotImplementedException();
     }
@@ -47,29 +83,12 @@ public class InfixExpressionGroup : SwiftInternalNode, IList<InfixExpression>
         throw new System.NotImplementedException();
     }
 
-    public bool Contains(InfixExpression item)
+    public bool Remove(IInfixExpression item)
     {
         throw new System.NotImplementedException();
     }
 
-    public void CopyTo(InfixExpression[] array, int arrayIndex)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool Remove(InfixExpression item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int Count { get; }
-    public bool IsReadOnly { get; }
-    public int IndexOf(InfixExpression item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Insert(int index, InfixExpression item)
+    public void Insert(int index, IInfixExpression item)
     {
         throw new System.NotImplementedException();
     }
@@ -77,11 +96,5 @@ public class InfixExpressionGroup : SwiftInternalNode, IList<InfixExpression>
     public void RemoveAt(int index)
     {
         throw new System.NotImplementedException();
-    }
-
-    public InfixExpression this[int index]
-    {
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
     }
 }
