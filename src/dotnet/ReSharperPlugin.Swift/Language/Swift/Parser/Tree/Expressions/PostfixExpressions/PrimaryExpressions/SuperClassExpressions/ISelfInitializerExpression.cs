@@ -1,3 +1,0 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperClassExpressions;
-
-public interface ISuperClassInitializerExpression : IReadOnlySuperClassInitializerExpression, ISuperClassExpression;

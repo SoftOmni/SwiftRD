@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3003.0.0.346" />
-    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
-    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2026.1.0" PrivateAssets="all" />
+    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3003.2.0.161" />
+    <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
+    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2026.2.0-eap08" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
     <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
   </ItemGroup>

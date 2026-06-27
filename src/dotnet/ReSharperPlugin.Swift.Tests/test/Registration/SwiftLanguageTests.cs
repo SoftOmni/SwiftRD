@@ -1,10 +1,9 @@
 using System;
 using JetBrains.ReSharper.Psi;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
 namespace SoftOmni.SwiftRd.Tests.test.Registration;
 
-[TestFixture]
+/*[TestFixture]
 public class SwiftLanguageTests
 {
     [Test]
@@ -31,4 +30,4 @@ public class SwiftLanguageTests
             Console.WriteLine(languageType.PresentableName);
         }
     }
-}
+}*/

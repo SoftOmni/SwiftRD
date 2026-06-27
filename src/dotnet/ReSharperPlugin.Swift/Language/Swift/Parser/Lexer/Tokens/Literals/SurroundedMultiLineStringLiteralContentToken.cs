@@ -1,3 +1,0 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
-
-public class SurroundedMultiLineStringLiteralContentToken() : MultiLineStringLiteralContentToken(SwiftTokens.MultiLineSurroundedStringLiteralContentId, SwiftTokens.MultiLineSurroundedStringLiteralContentIndex);

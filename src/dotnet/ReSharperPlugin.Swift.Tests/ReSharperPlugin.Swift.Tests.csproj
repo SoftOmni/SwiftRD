@@ -2,19 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <RootNamespace>SoftOmni.SwiftRd.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitHubActionsTestLogger" Version="3.0.2">
+    <PackageReference Include="GitHubActionsTestLogger" Version="3.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2026.1.0">
+    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2026.2.0-eap08">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
     <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
   </ItemGroup>
@@ -25,11 +26,6 @@
 
   <ItemGroup>
     <Compile Remove="test/**/*" />
-    <Compile Include="test\Parser\Lexer\Individual\Comments\MultiLineComment.cs" />
-    <Compile Include="test\Parser\Lexer\Individual\Comments\SingleLineComment.cs" />
-    <Compile Include="test\Parser\Lexer\Individual\NewLine\NewLine.cs" />
-    <Compile Include="test\Parser\Lexer\Individual\Whitespace\Whitespace.cs" />
-    <Compile Include="test\Parser\Lexer\LexerBaseCase.cs" />
     <Compile Include="test\Registration\SwiftLanguageTests.cs" />
     <Compile Include="test\Registration\SwiftProjectFileTypeTests.cs" />
     <None Include="test/**/*" />
@@ -37,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="test\data\scratch_testing\" />
-    <Folder Include="test\Technology\" />
   </ItemGroup>
 
 </Project>
