@@ -6,7 +6,7 @@ using JetBrains.ReSharper.TestFramework;
 using JetBrains.TestFramework;
 using JetBrains.TestFramework.Application.Zones;
 
-[assembly: Apartment(ApartmentState.STA)]
+// [assembly: Apartment(ApartmentState.STA)]
 
 namespace SoftOmni.SwiftRd.Tests
 {
@@ -16,6 +16,6 @@ namespace SoftOmni.SwiftRd.Tests
     [ZoneMarker]
     public class ZoneMarker : IRequire<ICodeEditingZone>, IRequire<ILanguageCSharpZone>, IRequire<SwiftTestEnvironmentZone> { }
 
-    [SetUpFixture]
+    // [SetUpFixture]
     public class SwiftTestsAssembly : ExtensionTestEnvironmentAssembly<SwiftTestEnvironmentZone> { }
 }

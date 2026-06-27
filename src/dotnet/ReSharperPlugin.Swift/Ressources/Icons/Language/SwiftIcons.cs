@@ -1,5 +1,5 @@
+using System;
 using JetBrains.Application.UI.Icons.CompiledIcons;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
 
 namespace SoftOmni.SwiftRd.Resources.Icons.Language;
 
@@ -51,8 +51,8 @@ public static class SwiftIcons
 
     #endregion
     
-    public static AnyCompiledIconClass TypeAliasWithAccessModifier(IAccessLevelModifier? accessLevelModifier)
-    {
-        throw new System.NotImplementedException();
-    }
+    // public static AnyCompiledIconClass TypeAliasWithAccessModifier(IAccessLevelModifier? accessLevelModifier)
+    // {
+    //     throw new NotImplementedException();
+    // }
 }
