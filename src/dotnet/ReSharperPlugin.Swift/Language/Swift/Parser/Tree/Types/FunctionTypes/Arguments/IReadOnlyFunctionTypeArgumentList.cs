@@ -7,4 +7,6 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes.Argume
 public interface IReadOnlyFunctionTypeArgumentList : ISwiftInternalNode<SwiftCompositeNode>, IReadOnlyList<IReadOnlyFunctionTypeArgument>
 {
     IReadOnlyList<IReadOnlyFunctionTypeArgument> TypeArguments { get; }
+    
+    new IReadOnlyFunctionTypeArgument this[int index] { get; }
 }

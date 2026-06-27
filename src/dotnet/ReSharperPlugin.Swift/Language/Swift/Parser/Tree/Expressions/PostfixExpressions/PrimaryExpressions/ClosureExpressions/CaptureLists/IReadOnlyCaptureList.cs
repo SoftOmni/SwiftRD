@@ -15,6 +15,6 @@ public interface IReadOnlyCaptureList : ISwiftInternalNode<SwiftCompositeNode>, 
     
     RightSquareBracket RightSquareBracket { get; }
     
-    new IReadOnlyCaptureList this[int index] { get; }
+    new IReadOnlyCaptureListItem this[int index] { get; }
 }
 // TODO: Finish closures

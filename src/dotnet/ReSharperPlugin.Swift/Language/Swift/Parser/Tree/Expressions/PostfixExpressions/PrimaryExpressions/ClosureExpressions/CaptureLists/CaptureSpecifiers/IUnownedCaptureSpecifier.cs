@@ -1,0 +1,3 @@
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions.CaptureLists.CaptureSpecifiers;
+
+public interface IUnownedCaptureSpecifier : IReadOnlyUnownedCaptureSpecifier, ICaptureSpecifier;

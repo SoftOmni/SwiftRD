@@ -4,9 +4,12 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes.Argume
 
 public interface IFunctionTypeArgumentList : IReadOnlyFunctionTypeArgumentList, IList<IFunctionTypeArgument>
 {
+    new IReadOnlyList<IFunctionTypeArgument> TypeArguments { get; }
+    
     new int Count { get; }
 
     new IEnumerator<IFunctionTypeArgument> GetEnumerator();
     
     new IFunctionTypeArgument this[int index] { get; set; } 
 }
+// TODO: Implement Concrete Type

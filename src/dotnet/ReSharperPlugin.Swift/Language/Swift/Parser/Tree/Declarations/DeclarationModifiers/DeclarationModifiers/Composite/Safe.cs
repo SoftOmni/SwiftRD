@@ -1,47 +1,32 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers.Composite;
 
-public class Safe : SwiftLeafNode, ISwiftKeywordNode
+public class Safe : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Safe>
 {
     public const string Keyword = "safe";
     
     public UnownedSafe? UnownedSafe { get; internal set; }
 
+    public Safe()
+        : base(new EditableBuffer(Keyword))
+    { }
+    
     internal Safe(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Safe)
+        : base(buffer)
     { }
 
-    internal Safe(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Safe)
-    {
-        if (parent is UnownedSafe unownedSafe)
-        {
-            UnownedSafe = unownedSafe;
-        }
-    }
-
-    internal Safe(UnownedSafe parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Safe)
-    {
-        UnownedSafe = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Safe;
 
     public string KeywordValue => Keyword;
 
     public static Safe Create()
     {
         return new Safe(new EditableBuffer(Keyword));
-    }
-
-    public static Safe Create(UnownedSafe unownedSafe)
-    {
-        return new Safe(unownedSafe, new EditableBuffer(Keyword));
-    }
-
-    public static Safe CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Safe(parent, new EditableBuffer(Keyword));
     }
 }
