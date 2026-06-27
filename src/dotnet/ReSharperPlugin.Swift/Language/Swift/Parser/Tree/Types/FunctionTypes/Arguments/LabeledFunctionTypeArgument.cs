@@ -21,7 +21,9 @@ public class LabeledFunctionTypeArgument : SwiftCompositeNode, ILabeledFunctionT
 
     public LabeledFunctionTypeArgument(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children)
         : base(buffer, children)
-    { }
+    {
+        // TODO: Implement me
+    }
 
     IReadOnlyAttributeGroup? IReadOnlyFunctionTypeArgument.AttributeGroup => AttributeGroup;
 

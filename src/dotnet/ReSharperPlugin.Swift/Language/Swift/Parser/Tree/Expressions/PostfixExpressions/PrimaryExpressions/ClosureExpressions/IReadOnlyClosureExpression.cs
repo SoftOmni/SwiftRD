@@ -12,7 +12,7 @@ public interface IReadOnlyClosureExpression : IReadOnlyPrimaryExpression
     
     IReadOnlyAttributeGroup? AttributeGroup { get; }
     
-    IReadOnlyClosureSignature? ClosureSignature { get; }
+    IReadOnlyClosureSignature? Signature { get; }
     
     IReadOnlyList<IReadOnlyStatement> Statements { get; }
     

@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class UnownedKeywordToken : ContextSensitiveKeywordToken
+public class UnownedKeywordToken : ContextSensitiveKeywordToken<Unowned>
 {
-    public UnownedKeywordToken()
-        : base("unowned", SwiftTokens.UnownedId, SwiftTokens.UnownedIndex)
+    internal UnownedKeywordToken()
+        : base(Unowned.Keyword, SwiftTokens.UnownedId, SwiftTokens.UnownedIndex)
     { }
 }
