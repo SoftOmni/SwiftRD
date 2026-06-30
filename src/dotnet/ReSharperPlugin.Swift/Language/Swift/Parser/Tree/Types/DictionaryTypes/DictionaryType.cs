@@ -19,7 +19,7 @@ public class DictionaryType : SwiftCompositeNode, IDictionaryType
     
     public RightSquareBracket RightSquareBracket { get; }
 
-    public DictionaryType(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+    internal DictionaryType(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         LeftSquareBracket leftSquareBracket, IType keyType, Colon colon, IType valueType,
         RightSquareBracket rightSquareBracket)
         : base(buffer, children)

@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelectorExpressions;
 
-public class SelectorKeyword : SwiftLeafNode, ISwiftKeywordNode
+public class SelectorKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<SelectorKeyword>
 {
-    public const string Keyword = "#selectorKeyword";
+    public const string Keyword = "#selector";
     
-    public SelectorExpression? SelectorExpression { get; internal set; }
-
-    internal SelectorKeyword(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.ReservedSelector)
+    public SelectorKeyword()
+        : this(new EditableBuffer(Keyword))
     { }
 
-    internal SelectorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.ReservedSelector)
-    {
-        if (parent is SelectorExpression selectorExpression)
-        {
-            SelectorExpression = selectorExpression;
-        }
-    }
+    internal SelectorKeyword(IEditableBuffer buffer)
+        : base(buffer)
+    { }
 
-    internal SelectorKeyword(SelectorExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.ReservedSelector)
-    {
-        SelectorExpression = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.ReservedSelector;
 
     public string KeywordValue => Keyword;
 
     public static SelectorKeyword Create()
     {
         return new SelectorKeyword(new EditableBuffer(Keyword));
-    }
-
-    public static SelectorKeyword Create(SelectorExpression selectorExpression)
-    {
-        return new SelectorKeyword(selectorExpression, new EditableBuffer(Keyword));
-    }
-
-    public static SelectorKeyword CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new SelectorKeyword(parent, new EditableBuffer(Keyword));
     }
 }

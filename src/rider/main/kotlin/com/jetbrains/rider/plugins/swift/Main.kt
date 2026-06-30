@@ -1,5 +1,8 @@
 package com.jetbrains.rider.plugins.swift
 
-fun main(args: List<String>) {
+import com.jetbrains.ide.model.uiautomation.BeNotificationType
+import com.jetbrains.rd.ui.bedsl.dsl.notification
 
+fun main(args: List<String>) {
+    notification("Loaded successfully", type = BeNotificationType.SUCCESS)
 }
