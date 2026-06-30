@@ -7,7 +7,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperClassExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperClassExpressions;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SuperClassExpressions;
 
 public class SuperClassExpressionStandalone : SwiftCompositeNode, ISuperClassExpression
 {

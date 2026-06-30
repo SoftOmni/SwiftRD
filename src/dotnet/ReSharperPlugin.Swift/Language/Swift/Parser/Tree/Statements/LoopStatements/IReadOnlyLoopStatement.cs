@@ -6,7 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStat
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements;
 
-public interface IReadOnlyLoop : IReadOnlyStatement, ISwiftInternalNode<SwiftCompositeNode>
+public interface IReadOnlyLoopStatement : IReadOnlyStatement, ISwiftInternalNode<SwiftCompositeNode>
 {
     IReadOnlyCodeBlock CodeBlock { get; }
     

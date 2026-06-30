@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathStringExpressions;
 
-public class KeyPathKeyword : SwiftLeafNode, ISwiftKeywordNode
+public class KeyPathKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<KeyPathKeyword>
 {
     public const string Keyword = "#keyPath";
     
-    public KeyPathStringExpression? KeyPathStringExpression { get; internal set; }
-
-    internal KeyPathKeyword(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.ReservedKeyPath)
+    public KeyPathKeyword()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal KeyPathKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.ReservedKeyPath)
-    {
-        if (parent is KeyPathStringExpression keyPathStringExpression)
-        {
-            KeyPathStringExpression = keyPathStringExpression;
-        }
-    }
+    internal KeyPathKeyword(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal KeyPathKeyword(KeyPathStringExpression parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.ReservedKeyPath)
-    {
-        KeyPathStringExpression = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.ReservedKeyPath;
 
     public string KeywordValue => Keyword;
 
     public static KeyPathKeyword Create()
     {
         return new KeyPathKeyword(new EditableBuffer(Keyword));
-    }
-
-    public static KeyPathKeyword Create(KeyPathStringExpression keyPathStringExpression)
-    {
-        return new KeyPathKeyword(keyPathStringExpression, new EditableBuffer(Keyword));
-    }
-
-    public static KeyPathKeyword CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new KeyPathKeyword(parent, new EditableBuffer(Keyword));
     }
 }

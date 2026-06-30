@@ -1,51 +1,98 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
+using SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions.Components;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions;
+namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions;
 
-public class KeyPathExpression : PrimaryExpressionInternalNode, IList<KeyPathComponent>
+public class KeyPathExpression : SwiftCompositeNode, IKeyPathExpression
 {
-    public Operator? Backslash { get; internal set; } // TODO: Not sure about
+    public IReadOnlyOperator Operator { get; }
     
-    public IType? Type { get; internal set; }
+    public IType? Type { get; }
     
-    public Period? Period { get; internal set; }
+    public Period TypeSeparator { get; }
 
-    private List<KeyPathComponent> _components = [];
+    private readonly List<IKeyPathComponent> _keyPathComponents;
 
-    public KeyPathExpression(IEditableBuffer buffer, List<ISwiftNode> children)
+    private readonly List<Period> _keyPathComponentsSeparators;
+
+    internal KeyPathExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IReadOnlyOperator @operator, IType? type, Period typeSeparator, List<IKeyPathComponent> keyPathComponents,
+        List<Period> keyPathComponentsSeparators)
         : base(buffer, children)
-    { }
+    {
+        _keyPathComponents = keyPathComponents;
+        _keyPathComponentsSeparators = keyPathComponentsSeparators;
+        Operator = @operator;
+        Type = type;
+        TypeSeparator = typeSeparator;
 
-    public KeyPathExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ReturnType = UnknownType.Instance;
+    }
 
-    public KeyPathExpression(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyType? IReadOnlyKeyPathExpression.Type => Type;
 
-    public KeyPathExpression(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    public IReadOnlyList<IKeyPathComponent> KeyPathComponents => _keyPathComponents;
 
-    public IReadOnlyList<KeyPathComponent> Components => _components;
+    IReadOnlyList<IReadOnlyKeyPathComponent> IReadOnlyKeyPathExpression.KeyPathComponents => KeyPathComponents;
+
+    public IReadOnlyList<Period> KeyPathComponentsSeparators => _keyPathComponentsSeparators;
+
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
+
+    public int Count => _keyPathComponents.Count;
+
+    public bool IsReadOnly => false;
+
+    public new IKeyPathComponent this[int index]
+    {
+        get => _keyPathComponents[index];
+        set => throw new System.NotImplementedException();
+    }
+
+    IReadOnlyKeyPathComponent IReadOnlyList<IReadOnlyKeyPathComponent>.this[int index]
+        => _keyPathComponents[index];
+
+    public IEnumerator<IKeyPathComponent> GetEnumerator()
+    {
+        return _keyPathComponents.GetEnumerator();
+    }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
 
-    public IEnumerator<KeyPathComponent> GetEnumerator()
+    IEnumerator<IReadOnlyKeyPathComponent> IEnumerable<IReadOnlyKeyPathComponent>.GetEnumerator()
     {
-        throw new System.NotImplementedException();
+        return GetEnumerator();
     }
 
-    public void Add(KeyPathComponent item)
+    public bool Contains(IKeyPathComponent item)
+    {
+        return _keyPathComponents.Contains(item);
+    }
+
+    public int IndexOf(IKeyPathComponent item)
+    {
+        return _keyPathComponents.IndexOf(item);
+    }
+
+    public void CopyTo(IKeyPathComponent[] array, int arrayIndex)
+    {
+        _keyPathComponents.CopyTo(array, arrayIndex);
+    }
+
+    public void Add(IKeyPathComponent item)
     {
         throw new System.NotImplementedException();
     }
@@ -55,29 +102,12 @@ public class KeyPathExpression : PrimaryExpressionInternalNode, IList<KeyPathCom
         throw new System.NotImplementedException();
     }
 
-    public bool Contains(KeyPathComponent item)
+    public bool Remove(IKeyPathComponent item)
     {
         throw new System.NotImplementedException();
     }
 
-    public void CopyTo(KeyPathComponent[] array, int arrayIndex)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool Remove(KeyPathComponent item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int Count { get; }
-    public bool IsReadOnly { get; }
-    public int IndexOf(KeyPathComponent item)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Insert(int index, KeyPathComponent item)
+    public void Insert(int index, IKeyPathComponent item)
     {
         throw new System.NotImplementedException();
     }
@@ -85,11 +115,5 @@ public class KeyPathExpression : PrimaryExpressionInternalNode, IList<KeyPathCom
     public void RemoveAt(int index)
     {
         throw new System.NotImplementedException();
-    }
-
-    public KeyPathComponent this[int index]
-    {
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
     }
 }

@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.TryOperators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TupleTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.TupleExpressions;
 
-public class TupleExpression : Expression, ITupleExpression
+public class TupleExpression : SwiftCompositeNode, ITupleExpression
 {
     public LeftParenthesis LeftParenthesis { get; }
 
@@ -21,27 +19,22 @@ public class TupleExpression : Expression, ITupleExpression
     
     public RightParenthesis RightParenthesis { get; }
 
-    public TupleExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        LeftParenthesis leftParenthesis, List<ITupleExpressionElement> elements, List<Comma> commas,
-        RightParenthesis rightParenthesis, ITryExpression? accompanyingTryExpression = null,
-        IAwaitExpression? awaitExpression = null)
-        : base(buffer, children, accompanyingTryExpression, awaitExpression)
+    internal TupleExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        LeftParenthesis leftParenthesis, List<ITupleExpressionElement> tupleElements, List<Comma> commas,
+        RightParenthesis rightParenthesis)
+        : base(buffer, children)
     {
-        LeftParenthesis = leftParenthesis;
-        _tupleElements = elements;
+        _tupleElements = tupleElements;
         _commas = commas;
+        LeftParenthesis = leftParenthesis;
         RightParenthesis = rightParenthesis;
 
-        TupleType tupleType = TupleType.CreateEmpty();
-        foreach (ITupleExpressionElement tupleExpressionElement in elements)
-        {
-            tupleType.Add(tupleExpressionElement.Expression.ReturnType);
-        }
-
-        ReturnType = tupleType;
+        ReturnType = UnknownType.Instance; // TODO: Reconsider
     }
-    
-    public IReadOnlyList<IReadOnlyTupleExpressionElement> Elements => _tupleElements;
+
+    public IReadOnlyList<ITupleExpressionElement> Elements => _tupleElements;
+
+    IReadOnlyList<IReadOnlyTupleExpressionElement> IReadOnlyTupleExpression.Elements => Elements;
 
     public int NumberOfElements => Elements.Count;
 
@@ -51,7 +44,9 @@ public class TupleExpression : Expression, ITupleExpression
 
     public bool IsVoid => NumberOfElements == 0; // TODO: Consider making me set by the semantic analyzer
 
-    public override IType ReturnType { get; }
+    public IType ReturnType { get; }
+
+    IReadOnlyType IReadOnlyBaseExpression.ReturnType => ReturnType;
 
     public IEnumerator<ITupleExpressionElement> GetEnumerator()
     {

@@ -5,16 +5,13 @@ namespace SoftOmni.SwiftRd.Extensions;
 
 public static class StringBuilderExtensions
 {
-    extension(StringBuilder builder)
+    public static StringBuilder Append(this StringBuilder builder, IBuffer buffer)
     {
-        public StringBuilder Append(IBuffer buffer)
+        for (int i = 0; i < buffer.Length; i++)
         {
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                builder.Append(buffer[i]);
-            }
-
-            return builder;
+            builder.Append(buffer[i]);
         }
+
+        return builder;
     }
 }

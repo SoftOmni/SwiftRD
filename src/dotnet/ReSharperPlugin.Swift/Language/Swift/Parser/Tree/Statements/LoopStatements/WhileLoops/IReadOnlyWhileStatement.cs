@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.WhileLoops;
 
-public interface IReadOnlyWhileStatement : IReadOnlyLoop
+public interface IReadOnlyWhileStatement : IReadOnlyLoopStatement
 {
     While While { get; }
     

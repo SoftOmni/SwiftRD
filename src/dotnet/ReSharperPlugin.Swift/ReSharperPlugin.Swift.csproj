@@ -33,6 +33,7 @@
     <Folder Include="Language\ObjectiveC\Parser\Tree\Base\" />
     <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\Literals\Literals\StringLiteral\InterpolatableStringLiterals\MultiLine\" />
     <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\Literals\Literals\StringLiteral\RawValueStringLiterals\MultiLine\" />
+    <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\MacroExpansionExpressions\" />
     <Folder Include="Ressources\Icons\Language\Raw\Declarations\Swift\" />
   </ItemGroup>
 
