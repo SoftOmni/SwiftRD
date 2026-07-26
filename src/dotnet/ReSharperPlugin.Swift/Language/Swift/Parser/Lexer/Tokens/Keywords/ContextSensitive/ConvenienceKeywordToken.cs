@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class ConvenienceKeywordToken : ContextSensitiveKeywordToken
+public class ConvenienceKeywordToken : ContextSensitiveKeywordToken<Convenience>
 {
-    public ConvenienceKeywordToken()
-        : base("convenience", SwiftTokens.ConvenienceId, SwiftTokens.ConvenienceIndex)
+    internal ConvenienceKeywordToken()
+        : base(Convenience.Keyword, SwiftTokens.ConvenienceId, SwiftTokens.ConvenienceIndex)
     { }
 }

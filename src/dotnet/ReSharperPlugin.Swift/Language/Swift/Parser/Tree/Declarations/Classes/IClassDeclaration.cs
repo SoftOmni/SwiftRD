@@ -6,9 +6,9 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
 
-public interface IClassureDeclaration : IReadOnlyClassureDeclaration, 
+public interface IClassDeclaration : IReadOnlyClassDeclaration, 
     IDeclaration,
     IList<IClassMember>
 {

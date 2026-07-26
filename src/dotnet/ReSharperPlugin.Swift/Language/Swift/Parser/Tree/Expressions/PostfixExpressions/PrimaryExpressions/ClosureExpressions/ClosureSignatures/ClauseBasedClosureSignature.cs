@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.Signatures;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions.CaptureLists;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions.ClojureParameterLists;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes.ThrowClauses;
@@ -65,36 +67,36 @@ public class ClauseBasedClosureSignature : SwiftCompositeNode, IClauseBasedClosu
 
     public void SetCaptureListTo(ICaptureList? captureList)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveCaptureList()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeClosureParameterClause(IClosureParameterClause newClosureParameterClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetThrowsClause(IThrowsClause? throwsClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveThrowsClause()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetFunctionResult(IFunctionResult? functionResult)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveFunctionResult()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

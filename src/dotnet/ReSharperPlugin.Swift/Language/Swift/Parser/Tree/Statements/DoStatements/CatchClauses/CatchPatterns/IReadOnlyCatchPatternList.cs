@@ -3,7 +3,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses.CatchPatterns;
 
 public interface IReadOnlyCatchPatternList : ISwiftInternalNode<SwiftCompositeNode>,
     IReadOnlyList<IReadOnlyCatchPattern>

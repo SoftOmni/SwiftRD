@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class DidSetKeywordToken : ContextSensitiveKeywordToken
+public class DidSetKeywordToken : ContextSensitiveKeywordToken<DidSet>
 {
-    public DidSetKeywordToken()
-        : base("didSet", SwiftTokens.DidSetId, SwiftTokens.DidSetIndex)
+    internal DidSetKeywordToken()
+        : base(DidSet.Keyword, SwiftTokens.DidSetId, SwiftTokens.DidSetIndex)
     { }
 }

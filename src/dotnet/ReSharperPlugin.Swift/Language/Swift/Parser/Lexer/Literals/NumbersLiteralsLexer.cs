@@ -1,11 +1,11 @@
 using System;
 using System.Numerics;
 using ExtendedNumerics;
+using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
-using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 using Double = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.Double;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;

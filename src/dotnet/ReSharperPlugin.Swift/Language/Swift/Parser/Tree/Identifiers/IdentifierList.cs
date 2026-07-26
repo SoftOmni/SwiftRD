@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -36,7 +37,7 @@ public class IdentifierList : SwiftCompositeNode, IIdentifierList
     IIdentifier IList<IIdentifier>.this[int index]
     {
         get => _identifiers[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -76,26 +77,26 @@ public class IdentifierList : SwiftCompositeNode, IIdentifierList
 
     public void Add(IIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

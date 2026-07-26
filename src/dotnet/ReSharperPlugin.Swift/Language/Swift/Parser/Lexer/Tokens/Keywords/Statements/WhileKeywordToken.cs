@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.WhileLoops;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class WhileKeywordToken : StatementUsableKeywordToken
+public class WhileKeywordToken : StatementUsableKeywordToken<While>
 {
-    public WhileKeywordToken()
-        : base("while", SwiftTokens.WhileId, SwiftTokens.WhileIndex)
+    internal WhileKeywordToken()
+        : base(While.Keyword, SwiftTokens.WhileId, SwiftTokens.WhileIndex)
     { }
 }

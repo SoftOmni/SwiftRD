@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class IfKeywordToken : StatementUsableKeywordToken
+public class IfKeywordToken : StatementUsableKeywordToken<If>
 {
-    public IfKeywordToken()
-        : base("if", SwiftTokens.IfId, SwiftTokens.IfIndex)
+    internal IfKeywordToken()
+        : base(If.Keyword, SwiftTokens.IfId, SwiftTokens.IfIndex)
     { }
 }

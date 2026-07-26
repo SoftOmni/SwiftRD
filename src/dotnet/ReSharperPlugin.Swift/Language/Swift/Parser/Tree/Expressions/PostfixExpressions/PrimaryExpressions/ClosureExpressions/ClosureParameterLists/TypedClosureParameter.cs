@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -36,16 +37,16 @@ public class TypedClosureParameter : SwiftCompositeNode, ITypedClosureParameter
 
     public void ChangeName(IIdentifier newName)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetTypeAnnotationTo(ITypeAnnotation? typeAnnotation)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveTypeAnnotation()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

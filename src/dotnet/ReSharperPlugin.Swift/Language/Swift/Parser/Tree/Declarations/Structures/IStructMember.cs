@@ -1,3 +1,3 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structs;
 
-public interface IStructMember : ISwiftNode;
+public interface IStructMember : IReadOnlyStructMember;

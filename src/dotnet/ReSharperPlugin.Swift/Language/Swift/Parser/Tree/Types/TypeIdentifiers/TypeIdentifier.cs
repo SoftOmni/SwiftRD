@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -59,7 +60,7 @@ public class TypeIdentifier : SwiftCompositeNode, ITypeIdentifier
     ITypeIdentifierComponent ITypeIdentifier.this[int index]
     {
         get => _components[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IEnumerator<IReadOnlyTypeIdentifierComponent> IEnumerable<IReadOnlyTypeIdentifierComponent>.GetEnumerator()
@@ -74,12 +75,12 @@ public class TypeIdentifier : SwiftCompositeNode, ITypeIdentifier
 
     public void Add(ITypeIdentifierComponent item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Contains(ITypeIdentifierComponent item)
@@ -94,7 +95,7 @@ public class TypeIdentifier : SwiftCompositeNode, ITypeIdentifier
 
     public bool Remove(ITypeIdentifierComponent item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     int ITypeIdentifier.Count => _components.Count;
@@ -112,12 +113,12 @@ public class TypeIdentifier : SwiftCompositeNode, ITypeIdentifier
 
     public void Insert(int index, ITypeIdentifierComponent item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IEnumerator<ITypeIdentifierComponent> ITypeIdentifier.GetEnumerator()
@@ -128,7 +129,7 @@ public class TypeIdentifier : SwiftCompositeNode, ITypeIdentifier
     ITypeIdentifierComponent IList<ITypeIdentifierComponent>.this[int index]
     {
         get => _components[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyTypeIdentifierComponent IReadOnlyList<IReadOnlyTypeIdentifierComponent>.this[int index] => _components[index];

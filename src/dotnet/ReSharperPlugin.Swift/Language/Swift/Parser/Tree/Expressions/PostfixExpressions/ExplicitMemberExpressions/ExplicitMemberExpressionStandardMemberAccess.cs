@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -47,16 +48,16 @@ public class ExplicitMemberExpressionStandardMemberAccess
 
     public void ChangePostfixExpression(IPostfixExpression newPostfixExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeMember(IIdentifier newMemberToReference)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeGenericArgumentClause(IGenericArgumentClause newGenericArgumentClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

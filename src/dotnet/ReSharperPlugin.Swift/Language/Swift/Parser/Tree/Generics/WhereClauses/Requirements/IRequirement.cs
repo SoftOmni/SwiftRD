@@ -1,3 +1,3 @@
-namespace ReSharperPlugin.Swift.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses;
+namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
 
 public interface IRequirement : IReadOnlyRequirement;

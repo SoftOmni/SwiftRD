@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Application.UI.Icons.CompiledIcons;
 using JetBrains.Text;
@@ -13,7 +14,7 @@ using SoftOmni.SwiftRd.Resources.Icons.Language;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.Variables;
 
-public class GetterSetterVariable : SwiftCompositeNode, IGetterSetterVariable
+public class GetterSetterKeywordVariable : SwiftCompositeNode, IGetterSetterKeywordVariable
 {
     public IAttributeGroup? Attributes { get; }
 
@@ -25,11 +26,11 @@ public class GetterSetterVariable : SwiftCompositeNode, IGetterSetterVariable
 
     public ITypeAnnotation TypeAnnotation { get; }
 
-    public IGetterSetterBlock GetterSetterBlock { get; }
+    public IGetterSetterKeywordBlock GetterSetterBlock { get; }
 
-    internal GetterSetterVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+    internal GetterSetterKeywordVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         IAttributeGroup? attributes, IDeclarationModifierGroup? declarationModifiers, Var keyword, IIdentifier name,
-        ITypeAnnotation typeAnnotation, IGetterSetterBlock getterSetterBlock)
+        ITypeAnnotation typeAnnotation, IGetterSetterKeywordBlock getterSetterBlock)
         : base(buffer, children)
     {
         Attributes = attributes;
@@ -40,9 +41,9 @@ public class GetterSetterVariable : SwiftCompositeNode, IGetterSetterVariable
         GetterSetterBlock = getterSetterBlock;
     }
 
-    internal GetterSetterVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+    internal GetterSetterKeywordVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         IAttributeGroup? attributes, Var keyword, IIdentifier name, ITypeAnnotation typeAnnotation, 
-        IGetterSetterBlock getterSetterBlock)
+        IGetterSetterKeywordBlock getterSetterBlock)
         : base(buffer, children)
     {
         Attributes = attributes;
@@ -52,9 +53,9 @@ public class GetterSetterVariable : SwiftCompositeNode, IGetterSetterVariable
         GetterSetterBlock = getterSetterBlock;
     }
 
-    internal GetterSetterVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+    internal GetterSetterKeywordVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         IDeclarationModifierGroup? declarationModifiers, Var keyword, IIdentifier name,
-        ITypeAnnotation typeAnnotation, IGetterSetterBlock getterSetterBlock)
+        ITypeAnnotation typeAnnotation, IGetterSetterKeywordBlock getterSetterBlock)
         : base(buffer, children)
     {
         DeclarationModifiers = declarationModifiers;
@@ -64,9 +65,9 @@ public class GetterSetterVariable : SwiftCompositeNode, IGetterSetterVariable
         GetterSetterBlock = getterSetterBlock;
     }
 
-    internal GetterSetterVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+    internal GetterSetterKeywordVariable(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         Var keyword, IIdentifier name, ITypeAnnotation typeAnnotation, 
-        IGetterSetterBlock getterSetterBlock)
+        IGetterSetterKeywordBlock getterSetterBlock)
         : base(buffer, children)
     {
         Keyword = keyword;
@@ -81,49 +82,49 @@ public class GetterSetterVariable : SwiftCompositeNode, IGetterSetterVariable
 
     IReadOnlyDeclarationModifierGroup? IReadOnlyVariable.DeclarationModifiers => DeclarationModifiers;
 
-    IReadOnlyIdentifier IReadOnlyGetterSetterVariable.Name => Name;
+    IReadOnlyIdentifier IReadOnlyGetterSetterKeywordVariable.Name => Name;
 
-    IReadOnlyTypeAnnotation IReadOnlyGetterSetterVariable.TypeAnnotation => TypeAnnotation;
+    IReadOnlyTypeAnnotation IReadOnlyGetterSetterKeywordVariable.TypeAnnotation => TypeAnnotation;
 
-    IReadOnlyGetterSetterBlock IReadOnlyGetterSetterVariable.GetterSetterBlock => GetterSetterBlock;
+    IReadOnlyGetterSetterKeywordBlock IReadOnlyGetterSetterKeywordVariable.GetterSetterBlock => GetterSetterBlock;
 
     public void ChangeAccessLevelModifier(IAccessLevelModifier accessLevelModifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetAttributesTo(IAttributeGroup? attributes)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributes()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDeclarationModifiers()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveDeclarationModifiers()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeName(IIdentifier newName)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeTypeAnnotation(ITypeAnnotation newTypeAnnotation)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public void ChangeGetterSetterBlock(IGetterSetterBlock newGetterSetterBlock)
+    public void ChangeGetterSetterBlock(IGetterSetterKeywordBlock newGetterSetterBlock)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

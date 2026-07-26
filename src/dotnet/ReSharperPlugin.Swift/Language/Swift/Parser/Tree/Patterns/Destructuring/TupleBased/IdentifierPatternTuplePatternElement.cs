@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -32,11 +33,11 @@ public class IdentifierPatternTuplePatternElement : SwiftCompositeNode, ITuplePa
     
     public void SetIdentifier(IIdentifier identifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetPattern(IPattern pattern)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

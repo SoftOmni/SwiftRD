@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using JetBrains.Application.Components;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.TupleExpressions;
 

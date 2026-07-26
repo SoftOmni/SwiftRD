@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class AsyncKeywordToken : ContextSensitiveKeywordToken
+public class AsyncKeywordToken : ContextSensitiveKeywordToken<Async>
 {
-    public AsyncKeywordToken()
-        : base("async", SwiftTokens.AsyncId, SwiftTokens.AsyncIndex)
+    internal AsyncKeywordToken()
+        : base(Async.Keyword, SwiftTokens.AsyncId, SwiftTokens.AsyncIndex)
     { }
 }

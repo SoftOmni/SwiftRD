@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Guard;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class GuardKeywordToken : StatementUsableKeywordToken
+public class GuardKeywordToken : StatementUsableKeywordToken<Guard>
 {
-    public GuardKeywordToken()
-        : base("guard", SwiftTokens.GuardId, SwiftTokens.GuardIndex)
+    internal GuardKeywordToken()
+        : base(Guard.Keyword, SwiftTokens.GuardId, SwiftTokens.GuardIndex)
     { }
 }

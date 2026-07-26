@@ -5,8 +5,7 @@ using System.Text;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.
-    StringLiterals.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.StringLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using String = SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes.String;
@@ -106,8 +105,7 @@ public class RawValueSingleLineStringLiteral : SwiftCompositeNode, IStringLitera
         }
 
         UnderlyingValue[index] = '\\';
-        if (Formatting.PreferredInsertionSimpleEscapeSupportedCharacters is IStringFormatting
-                .SimpleEscapeSupportedCharacterInsertion.UnicodeEscape)
+        if (Formatting.PreferredInsertionSimpleEscapeSupportedCharacters is IStringFormatting.SimpleEscapeSupportedCharacterInsertion.UnicodeEscape)
         { }
 
         switch (newCharacter)

@@ -22,51 +22,51 @@ public interface IReadOnlyPrimitiveLiteralTypeResolutionContext
     
     (IReadOnlyType type, bool isFallback) DefaultGraphemeClusterLiteralType { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) IntegerPointLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IntegerPointLiteralTypeProtocol { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) FloatingPointLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) FloatingPointLiteralTypeProtocol { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) StringLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) StringLiteralTypeProtocol { get; }
 
-    (IReadOnlyProtocol type, bool isFallback) RegularExpressionLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) RegularExpressionLiteralTypeProtocol { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) BooleanLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) BooleanLiteralTypeProtocol { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) NilLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) NilLiteralTypeProtocol { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) UnicodeScalarLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) UnicodeScalarLiteralTypeProtocol { get; }
     
-    (IReadOnlyProtocol type, bool isFallback) GraphemeClusterLiteralTypeProtocol { get; }
+    (IReadOnlyProtocolDeclaration type, bool isFallback) GraphemeClusterLiteralTypeProtocol { get; }
 
-    IReadOnlyProtocol GenerateDefaultIntegerLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultIntegerLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
 
-    IReadOnlyProtocol GenerateDefaultFloatingPointLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultFloatingPointLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
 
-    IReadOnlyProtocol GenerateDefaultStringLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultStringLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
 
-    IReadOnlyProtocol GenerateDefaultRegularExpressionLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultRegularExpressionLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
 
-    IReadOnlyProtocol GenerateDefaultBooleanLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultBooleanLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
 
-    IReadOnlyProtocol GenerateDefaultNilLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultNilLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
     
-    IReadOnlyProtocol GenerateDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
     
-    IReadOnlyProtocol GenerateDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
+    IProtocolDeclaration GenerateDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion);
 
-    bool ConformsToDefaultIntegerLiteralTypeProtocol(IReadOnlyProtocol integerLiteralProtocol);
+    bool ConformsToDefaultIntegerLiteralTypeProtocol(IReadOnlyProtocolDeclaration integerLiteralProtocol);
 
-    bool ConformsToDefaultFloatingPointLiteralTypeProtocol(IReadOnlyProtocol floatingPointLiteralProtocol);
+    bool ConformsToDefaultFloatingPointLiteralTypeProtocol(IReadOnlyProtocolDeclaration floatingPointLiteralProtocol);
 
-    bool ConformsToDefaultStringLiteralTypeProtocol(IReadOnlyProtocol stringLiteralProtocol);
+    bool ConformsToDefaultStringLiteralTypeProtocol(IReadOnlyProtocolDeclaration stringLiteralProtocol);
 
-    bool ConformsToDefaultRegularExpressionLiteralTypeProtocol(IReadOnlyProtocol regularExpressionLiteralProtocol);
+    bool ConformsToDefaultRegularExpressionLiteralTypeProtocol(IReadOnlyProtocolDeclaration regularExpressionLiteralProtocol);
 
-    bool ConformsToDefaultBooleanLiteralTypeProtocol(IReadOnlyProtocol booleanLiteralProtocol);
+    bool ConformsToDefaultBooleanLiteralTypeProtocol(IReadOnlyProtocolDeclaration booleanLiteralProtocol);
 
-    bool ConformsToDefaultNilLiteralTypeProtocol(IReadOnlyProtocol nilLiteralProtocol);
+    bool ConformsToDefaultNilLiteralTypeProtocol(IReadOnlyProtocolDeclaration nilLiteralProtocol);
 
-    bool ConformsToDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlyProtocol unicodeScalarLiteralProtocol);
+    bool ConformsToDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlyProtocolDeclaration unicodeScalarLiteralProtocol);
 
-    bool ConformsToDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlyProtocol graphemeClusterLiteralProtocol);
+    bool ConformsToDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlyProtocolDeclaration graphemeClusterLiteralProtocol);
 }

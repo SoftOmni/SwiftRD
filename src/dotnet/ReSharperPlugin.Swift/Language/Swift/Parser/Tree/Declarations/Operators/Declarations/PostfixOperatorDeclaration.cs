@@ -9,18 +9,18 @@ using SoftOmni.SwiftRd.Resources.Icons.Language;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Declarations;
 
-public class PrefixOperatorDeclaration : SwiftCompositeNode, IPrefixOperatorDeclaration
+public class PostfixOperatorDeclaration : SwiftCompositeNode, IPostfixOperatorDeclaration
 {
-    public Prefix PrefixKeyword { get; }
+    public Postfix PostfixKeyword { get; }
     
     public OperatorKeyword OperatorKeyword { get; }
     
     public IOperator Operator { get; }
 
-    internal PrefixOperatorDeclaration(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, Prefix prefixKeyword, OperatorKeyword operatorKeyword, IOperator @operator)
+    internal PostfixOperatorDeclaration(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, Postfix postfixKeyword, OperatorKeyword operatorKeyword, IOperator @operator)
         : base(buffer, children)
     {
-        PrefixKeyword = prefixKeyword;
+        PostfixKeyword = postfixKeyword;
         OperatorKeyword = operatorKeyword;
         Operator = @operator;
 
@@ -29,7 +29,7 @@ public class PrefixOperatorDeclaration : SwiftCompositeNode, IPrefixOperatorDecl
 
     public AnyCompiledIconClass Icon { get; }
 
-    IReadOnlyOperator IReadOnlyPrefixOperatorDeclaration.Operator => Operator;
+    IReadOnlyOperator IReadOnlyPostfixOperatorDeclaration.Operator => Operator;
 
     public void ChangeOperator(IOperator newOperator)
     {

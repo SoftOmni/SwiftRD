@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -33,7 +34,7 @@ public class TrailingClosuresGroup : SwiftCompositeNode, ITrailingClosuresGroup
     public new ILabeledTrailingExpression this[int index]
     {
         get => _labeledTrailingExpressions[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyLabeledTrailingExpression IReadOnlyList<IReadOnlyLabeledTrailingExpression>.this[int index] 
@@ -83,26 +84,26 @@ public class TrailingClosuresGroup : SwiftCompositeNode, ITrailingClosuresGroup
 
     public void Add(ILabeledTrailingExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(ILabeledTrailingExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, ILabeledTrailingExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class IndirectKeywordToken : ContextSensitiveKeywordToken
+public class IndirectKeywordToken : ContextSensitiveKeywordToken<Indirect>
 {
-    public IndirectKeywordToken()
-        : base("indirect", SwiftTokens.IndirectId, SwiftTokens.IndirectIndex)
+    internal IndirectKeywordToken()
+        : base(Indirect.Keyword, SwiftTokens.IndirectId, SwiftTokens.IndirectIndex)
     { }
 }

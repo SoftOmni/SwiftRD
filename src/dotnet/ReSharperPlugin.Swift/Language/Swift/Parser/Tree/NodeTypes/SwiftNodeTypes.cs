@@ -135,10 +135,7 @@ public static class SwiftNodeTypes
     public static readonly VarKeywordToken Var = SwiftTokens.VarKeywordToken;
     public static readonly SafeKeywordToken Safe = SwiftTokens.SafeKeywordToken;
     public static readonly UnsafeKeywordToken Unsafe = SwiftTokens.UnsafeKeywordToken;
-    public static readonly MacroKeywordToken Macro = SwiftTokens.MacroKeywordToken;/*
-    public static readonly LowerThanKeywordToken LowerThan = SwiftTokens.LowerThanKeywordToken;
-    public static readonly HigherThanKeywordToken HigherThan = SwiftTokens.HigherThanKeywordToken;
-    public static readonly AssignmentKeywordToken Assignment = SwiftTokens.AssignmentKeywordToken;*/
+    public static readonly MacroKeywordToken Macro = SwiftTokens.MacroKeywordToken;
     
     
 
@@ -184,11 +181,11 @@ public static class SwiftNodeTypes
     // Reserved identifiers
     public static readonly ReservedAvailableKeywordToken ReservedAvailable = SwiftTokens.ReservedAvailableKeywordToken;
     public static readonly ReservedColorLiteralKeywordToken ReservedColorLiteral = SwiftTokens.ReservedColorLiteralKeywordToken;
-    public static readonly ReservedElseKeywordToken ReservedElse = SwiftTokens.ReservedElseKeywordToken;
-    public static readonly ReservedElseIfKeywordToken ReservedElseIf = SwiftTokens.ReservedElseIfKeywordToken;
-    public static readonly ReservedEndIfKeywordToken ReservedEndIf = SwiftTokens.ReservedEndIfKeywordToken;
+    public static readonly ElseDirectiveKeywordToken ElseDirectiveDirective = SwiftTokens.ElseDirectiveKeywordToken;
+    public static readonly ElseIfDirectiveKeywordToken ElseIfDirectiveDirective = SwiftTokens.ElseIfDirectiveKeywordToken;
+    public static readonly EndIfDirectiveKeywordToken EndIfDirectiveDirective = SwiftTokens.EndIfDirectiveKeywordToken;
     public static readonly ReservedFileLiteralKeywordToken ReservedFileLiteral = SwiftTokens.ReservedFileLiteralKeywordToken;
-    public static readonly ReservedIfKeywordToken ReservedIf = SwiftTokens.ReservedIfKeywordToken;
+    public static readonly IfDirectiveKeywordToken IfDirectiveDirective = SwiftTokens.IfDirectiveKeywordToken;
     public static readonly ReservedImageLiteralKeywordToken ReservedImageLiteral = SwiftTokens.ReservedImageLiteralKeywordToken;
     public static readonly ReservedKeyPathKeywordToken ReservedKeyPath = SwiftTokens.ReservedKeyPathKeywordToken;
     public static readonly ReservedSelectorKeywordToken ReservedSelector = SwiftTokens.ReservedSelectorKeywordToken;
@@ -236,6 +233,9 @@ public static class SwiftNodeTypes
     public static readonly UnownedKeywordToken Unowned = SwiftTokens.UnownedKeywordToken;
     public static readonly WeakKeywordToken Weak = SwiftTokens.WeakKeywordToken;
     public static readonly WillSetKeywordToken WillSet = SwiftTokens.WillSetKeywordToken;
+    public static readonly LowerThanKeywordToken LowerThan = SwiftTokens.LowerThanKeywordToken;
+    public static readonly HigherThanKeywordToken HigherThan = SwiftTokens.HigherThanKeywordToken;
+    public static readonly AssignmentKeywordToken Assignment = SwiftTokens.AssignmentKeywordToken;
 
     // Operators
     public static readonly InfixOperatorToken InfixOperator = SwiftTokens.InfixOperatorToken;

@@ -1,12 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.FunctionCallExpressions.Arguments;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
@@ -54,7 +53,7 @@ public class SelfSubscriptExpression : SwiftCompositeNode, ISelfSubscriptExpress
     public new IFunctionCallArgument this[int index]
     {
         get => ArgumentList[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyFunctionCallArgument IReadOnlyList<IReadOnlyFunctionCallArgument>.this[int index]
@@ -97,26 +96,26 @@ public class SelfSubscriptExpression : SwiftCompositeNode, ISelfSubscriptExpress
 
     public void Add(IFunctionCallArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IFunctionCallArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IFunctionCallArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

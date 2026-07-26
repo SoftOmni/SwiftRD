@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
 
-public class Right : SwiftLeafNode, ISwiftKeywordNode
+public class Right : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Right>
 {
     public const string Keyword = "right";
     
-    public PrecedenceGroupAssociativity? PrecedenceGroupAssociativity { get; internal set; }
-
-    internal Right(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Right)
+    public Right()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Right(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Right)
-    {
-        if (parent is PrecedenceGroupAssociativity precedenceGroupAssociativity)
-        {
-            PrecedenceGroupAssociativity = precedenceGroupAssociativity;
-        }
-    }
+    internal Right(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal Right(PrecedenceGroupAssociativity parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Right)
-    {
-        PrecedenceGroupAssociativity = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Right;
 
     public string KeywordValue => Keyword;
 
     public static Right Create()
     {
         return new Right(new EditableBuffer(Keyword));
-    }
-
-    public static Right Create(PrecedenceGroupAssociativity precedenceGroupAssociativity)
-    {
-        return new Right(precedenceGroupAssociativity, new EditableBuffer(Keyword));
-    }
-
-    public static Right CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Right(parent, new EditableBuffer(Keyword));
     }
 }

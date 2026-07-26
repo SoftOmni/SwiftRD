@@ -1,5 +1,5 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Semantics.Type;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
 

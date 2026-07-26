@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using
-    SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.ExplicitMemberExpressions.ArgumentNames;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.ExplicitMemberExpressions.ArgumentNames;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
@@ -56,16 +56,16 @@ public class ExplicitMemberExpressionFunctionMember
 
     public void ChangePostfixExpression(IPostfixExpression newPostfixExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeFunctionName(IIdentifier newFunctionName)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeArguments(IArgumentNames newArguments)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

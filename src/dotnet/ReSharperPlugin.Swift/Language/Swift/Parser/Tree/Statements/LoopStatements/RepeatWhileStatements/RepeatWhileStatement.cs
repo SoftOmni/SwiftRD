@@ -1,31 +1,49 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.WhileLoops;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
 
-public class RepeatWhileStatement : LoopStatement
+public class RepeatWhileStatement : SwiftCompositeNode, IRepeatWhileStatement
 {
-    public Repeat? Repeat { get; internal set; }
+    public Repeat Repeat { get; }
     
-    public While? While { get; internal set; }
+    public ICodeBlock CodeBlock { get; }
     
-    public Expression? Expression { get; internal set; }
+    public While While { get; }
+    
+    public IExpression ConditionExpression { get; }
+    
+    internal List<IControlTransferStatement> ControlTransferStatements { get; }
 
-    public RepeatWhileStatement(IEditableBuffer buffer, List<ISwiftNode> children)
+    internal RepeatWhileStatement(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, 
+        Repeat repeat, ICodeBlock codeBlock, While @while, IExpression conditionExpression)
         : base(buffer, children)
-    { }
+    {
+        Repeat = repeat;
+        CodeBlock = codeBlock;
+        While = @while;
+        ConditionExpression = conditionExpression;
 
-    public RepeatWhileStatement(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ControlTransferStatements = [];
+    }
 
-    public RepeatWhileStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyCodeBlock IReadOnlyLoopStatement.CodeBlock => CodeBlock;
 
-    public RepeatWhileStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyExpression IReadOnlyRepeatWhileStatement.ConditionExpression => ConditionExpression;
+
+    public IReadOnlyList<IControlTransferStatement> LoopControlTransferStatements => ControlTransferStatements;
+
+    IReadOnlyList<IReadOnlyControlTransferStatement> IReadOnlyLoopStatement.LoopControlTransferStatements => LoopControlTransferStatements;
+
+    public void ChangeCodeBlock(ICodeBlock newCodeBlock)
+    {
+        throw new NotImplementedException();
+    }
 }

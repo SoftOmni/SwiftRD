@@ -1,4 +1,4 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers.Inits;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.ExplicitMemberExpressions.ArgumentNames;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 

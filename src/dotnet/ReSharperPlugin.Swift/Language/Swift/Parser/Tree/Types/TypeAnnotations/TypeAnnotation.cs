@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
@@ -39,6 +40,6 @@ public class TypeAnnotation : SwiftCompositeNode, ITypeAnnotation
     
     public void ChangeType(IType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

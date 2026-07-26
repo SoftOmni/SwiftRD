@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class PostfixKeywordToken : ContextSensitiveKeywordToken
+public class PostfixKeywordToken : ContextSensitiveKeywordToken<Postfix>
 {
-    public PostfixKeywordToken()
-        : base("postfix", SwiftTokens.PostfixId, SwiftTokens.PostfixIndex)
+    internal PostfixKeywordToken()
+        : base(Postfix.Keyword, SwiftTokens.PostfixId, SwiftTokens.PostfixIndex)
     { }
 }

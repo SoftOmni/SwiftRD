@@ -1,6 +1,6 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions.TargetEnvironnment;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions.TargetEnvironment;
 
 public interface ITargetEnvironmentPlatformCondition :
     IReadOnlyTargetEnvironmentPlatformCondition,
@@ -15,8 +15,10 @@ public interface ITargetEnvironmentPlatformCondition :
     void MakeVirtualized();
 
     void MakeRepl();
-    
-    void Make
+
+    void MakePureInterpreted();
+
+    void MakeJustInTimeCompiled();
     
     void ChangeTargetEnvironment(IIdentifier newTargetEnvironment);
 }

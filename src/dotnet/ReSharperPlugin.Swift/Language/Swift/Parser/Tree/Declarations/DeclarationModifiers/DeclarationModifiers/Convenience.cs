@@ -1,29 +1,29 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Convenience : DeclarationModifierLeaf, ISwiftKeywordNode
+public class Convenience : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Convenience>
 {
     public const string Keyword = "convenience";
     
+    public Convenience()
+        : base(new EditableBuffer(Keyword))
+    { }
+    
     internal Convenience(IEditableBuffer buffer) 
-        : base(SwiftNodeTypes.Convenience, buffer)
+        : base(buffer)
     { }
 
-    internal Convenience(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.Convenience)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.Convenience;
 
     public string KeywordValue => Keyword;
 
     public static Convenience Create()
-    {
-        return new Convenience(new EditableBuffer(Keyword));
-    }
-
-    public static Convenience Create(SwiftInternalNode parent)
     {
         return new Convenience(new EditableBuffer(Keyword));
     }

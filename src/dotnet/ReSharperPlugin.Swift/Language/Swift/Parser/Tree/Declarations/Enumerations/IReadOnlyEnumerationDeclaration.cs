@@ -1,13 +1,43 @@
+using System.Collections.Generic;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.UnionStyle;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Declarations.Enumerations;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
 
-public interface IReadOnlyEnumeration : ISwiftInternalNode<SwiftCompositeNode>
+public interface IReadOnlyEnumerationDeclaration : ISwiftInternalNode<SwiftCompositeNode>,
+    IReadOnlyList<IReadOnlySwitchCaseMember>
 {
     IReadOnlyAttributeGroup? Attributes { get; }
     
-    IReadOnlyAccessLevelModifier? AccessLevelModifier { get; }
+    IReadOnlyAccessLevelModifier? AccessLevelModifier { get; }Indirect? IndirectKeyword { get; }
+
+    Enum EnumKeyword { get; }
+
+    IReadOnlyIdentifier Name { get; }
+
+    IReadOnlyGenericParameterClause? GenericParameterClause { get; }
+
+    IReadOnlyTypeInheritanceClause? TypeInheritanceClause { get; }
+
+    IReadOnlyGenericWhereClause? GenericWhereClause { get; }
+
+    LeftCurlyBrace MembersStartBrace { get; }
+
+    IReadOnlySwitchCaseMembers Members { get; }
+
+    RightCurlyBrace MembersEndBrace { get; }
+    
+    IReadOnlyList<IReadOnlySwitchCaseMember> MembersAsList { get; }
+    
+    new IReadOnlySwitchCaseMember this[int index] { get; }
 }

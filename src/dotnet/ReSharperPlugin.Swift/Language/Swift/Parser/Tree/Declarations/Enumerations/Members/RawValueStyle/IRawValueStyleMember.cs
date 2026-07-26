@@ -1,6 +1,3 @@
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.RawValueStyle;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.RawValueStyle;
 
-public interface IRawValueStyleMember
-{
-    
-}
+public interface IRawValueStyleMember : IReadOnlyRawValueStyleMember, ISwitchCaseMember;

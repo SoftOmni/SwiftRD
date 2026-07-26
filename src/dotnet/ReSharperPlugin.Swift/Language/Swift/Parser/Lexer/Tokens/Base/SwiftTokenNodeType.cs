@@ -2,7 +2,6 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 

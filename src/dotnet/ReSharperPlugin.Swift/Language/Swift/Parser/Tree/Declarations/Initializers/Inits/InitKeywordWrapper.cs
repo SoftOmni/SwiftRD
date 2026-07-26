@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers.Inits;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers.Inits;
 
 public class InitKeywordWrapper : SwiftCompositeNode, IInit
 {

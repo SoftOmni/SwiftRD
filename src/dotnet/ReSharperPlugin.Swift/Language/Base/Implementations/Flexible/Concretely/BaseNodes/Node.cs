@@ -7,8 +7,8 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Extensions;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.InternalNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 
 namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Concretely.BaseNodes;

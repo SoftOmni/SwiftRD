@@ -1,3 +1,4 @@
+using System;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Parsing;
@@ -24,22 +25,22 @@ public class SwiftFileLanguageService : IProjectFileLanguageService
     public IPsiSourceFileProperties? GetPsiProperties(IProjectFile projectFile, IPsiSourceFile sourceFile,
         IsCompileService isCompileService)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public PsiLanguageType GetPsiLanguageType(ProjectFileType languageType)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public ILexerFactory? GetMixedLexerFactory(ISolution solution, IBuffer buffer, IPsiSourceFile sourceFile = null)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public PreProcessingDirective[] GetPreprocessorDefines(IProject project, TargetFrameworkId targetFrameworkId)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public ProjectFileType LanguageType => SwiftProjectFileType.Instance;

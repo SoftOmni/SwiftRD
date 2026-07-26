@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -83,7 +84,7 @@ public class ArrayLiteral : SwiftCompositeNode, IArrayLiteral
     IExpression IList<IExpression>.this[int index]
     {
         get => _expressions[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IExpression IArrayLiteral.this[int index] => _expressions[index];
@@ -110,22 +111,22 @@ public class ArrayLiteral : SwiftCompositeNode, IArrayLiteral
 
     public IExpression[] GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IReadOnlyExpression[] IReadOnlyLiteral<IReadOnlyExpression[]>.GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IExpression[] IReadOnlyLiteral<IExpression[]>.GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetValue(IExpression[] newValue)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Contains(IExpression item)
@@ -145,31 +146,31 @@ public class ArrayLiteral : SwiftCompositeNode, IArrayLiteral
 
     public void Add(IExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

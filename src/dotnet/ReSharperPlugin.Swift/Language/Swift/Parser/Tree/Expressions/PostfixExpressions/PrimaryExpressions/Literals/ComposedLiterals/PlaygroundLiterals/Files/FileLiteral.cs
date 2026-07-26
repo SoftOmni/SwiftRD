@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -62,7 +63,7 @@ public class FileLiteral : SwiftCompositeNode, IFileLiteral
 
     public IExpression GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IReadOnlyExpression IReadOnlyLiteral<IReadOnlyExpression>.GetValueCopy()
@@ -72,16 +73,16 @@ public class FileLiteral : SwiftCompositeNode, IFileLiteral
 
     public void SetValue(IExpression newValue)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeRessourceNameArgumentValue(IExpression newExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

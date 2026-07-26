@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -29,11 +30,11 @@ public class DictionaryLiteralElement : SwiftCompositeNode, IDictionaryLiteralEl
 
     public void ChangeKeyExpression(IExpression newKeyExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeValueExpression(IExpression newValueExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -3,7 +3,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
 
-public interface IReadOnlyAssignmentPrecedenceGroup : IReadOnlyPrecedenceGroupAttribute
+public interface IReadOnlyPrecedenceAssignmentGroup : IReadOnlyPrecedenceGroupAttribute
 {
     Assignment AssignmentKeyword { get; }
     

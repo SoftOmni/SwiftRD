@@ -1,49 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Prefix : DeclarationModifierLeaf, ISwiftKeywordNode
+public class Prefix : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Prefix>
 {
     public const string Keyword = "prefix";
     
-    public PrefixOperatorDeclaration? PrefixOperatorDeclaration { get; internal set; }
+    public Prefix()
+        : base(new EditableBuffer(Keyword))
+    { }
     
     internal Prefix(IEditableBuffer buffer) 
-        : base(SwiftNodeTypes.Prefix, buffer)
+        : base(buffer)
     { }
 
-    internal Prefix(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Prefix)
-    {
-        if (parent is PrefixOperatorDeclaration prefixOperatorDeclaration)
-        {
-            PrefixOperatorDeclaration = prefixOperatorDeclaration;
-        }
-    }
-
-    internal Prefix(PrefixOperatorDeclaration parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Prefix)
-    {
-        PrefixOperatorDeclaration = parent;
-    }
-
+    public override NodeType NodeType => SwiftNodeTypes.Prefix;
 
     public string KeywordValue => Keyword;
 
     public static Prefix Create()
     {
         return new Prefix(new EditableBuffer(Keyword));
-    }
-
-    public static Prefix Create(PrefixOperatorDeclaration parent)
-    {
-        return new Prefix(parent, new EditableBuffer(Keyword));
-    }
-    
-    public static Prefix CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Prefix(parent, new EditableBuffer(Keyword));
     }
 }

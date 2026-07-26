@@ -1,29 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 
-public class Rethrows : TypeLeafNode, ISwiftKeywordNode
+public class Rethrows : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Rethrows>
 {
-    public const string Keyword = "Rethrows";
+    public const string Keyword = "rethrows";
     
-    internal Rethrows(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Rethrows)
+    public Rethrows()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Rethrows(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.Rethrows)
+    internal Rethrows(IEditableBuffer buffer)
+        : base(buffer)
     { }
+
+    public override NodeType NodeType => SwiftNodeTypes.Rethrows;
 
     public string KeywordValue => Keyword;
 
     public static Rethrows Create()
     {
         return new Rethrows(new EditableBuffer(Keyword));
-    }
-    
-    public static Rethrows Create(SwiftInternalNode parent)
-    {
-        return new Rethrows(parent, new EditableBuffer(Keyword));
     }
 }

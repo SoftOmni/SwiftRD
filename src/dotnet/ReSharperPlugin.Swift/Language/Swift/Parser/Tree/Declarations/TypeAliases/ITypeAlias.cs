@@ -1,34 +1,37 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ArgumentClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
 
-public interface ITypeAlias : ISwiftNode<SwiftCompositeNode>, IDeclaration<IType>, INamedDeclaration<ITypeAlias, IType>
+public interface ITypeAlias : IReadOnlyTypeAlias,
+    IDeclaration
 {
-    public AttributeGroup? Attributes { get; }
-
-    public IAccessLevelModifier? AccessLevelModifier { get; }
-
-    public TypeAliasKeyword? Keyword { get; }
+    new IAttributeGroup? Attributes { get; }
     
-    public GenericParameterClause? GenericParameterClause { get; }
+    new IAccessLevelModifier? AccessLevelModifier { get; }
+    
+    new IIdentifier Name { get; }
+    
+    new IGenericArgumentClause? GenericArgumentClause { get; }
+    
+    new IType Type { get; }
 
-    public Equal? Equal { get; }
+    void SetAttributesTo(IAttributeGroup? newAttributes);
 
-    public IType? Type { get; }
+    void RemoveAttributes();
 
-    public bool HasAttributes { get; }
+    void SetAccessLevelModifierTo(IAccessLevelModifier? newAccessLevelModifier);
 
-    public bool IsAttributeless { get; }
+    void RemoveAccessLevelModifier();
 
-    public bool AccessLevelModifierSpecified { get; }
+    void ChangeName(IIdentifier newName);
 
-    public bool IsDefaultAccessLevelModifier { get; }
+    void SetGenericArgumentClauseTo(IGenericArgumentClause? newGenericArgumentClause);
 
-    public IAccessLevelModifier ActiveAccessLevelModifier { get; }
+    void RemoveGenericArgumentClause();
+
+    void ChangeType(IType newType);
 }

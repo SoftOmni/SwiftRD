@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.UnionStyle;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.UnionValues;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.UnionStyle;
 
 public interface IReadOnlyUnionStyleEnumCaseClause :
     ISwiftInternalNode<SwiftCompositeNode>,

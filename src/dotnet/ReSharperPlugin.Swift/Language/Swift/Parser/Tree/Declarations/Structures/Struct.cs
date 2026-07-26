@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structs;
 
-public class Struct : SwiftLeafNode, ISwiftKeywordNode
+public class Struct : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Struct>
 {
     public const string Keyword = "struct";
     
-    public Structure? Structure { get; internal set; }
-
-    internal Struct(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Struct)
+    public Struct()
+        : base(new EditableBuffer())
     { }
 
-    internal Struct(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Struct)
-    {
-        if (parent is Structure structure)
-        {
-            Structure = structure;
-        }
-    }
+    internal Struct(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal Struct(Structure parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Struct)
-    {
-        Structure = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Struct;
 
     public string KeywordValue => Keyword;
 
     public static Struct Create()
     {
         return new Struct(new EditableBuffer(Keyword));
-    }
-
-    public static Struct Create(Structure structure)
-    {
-        return new Struct(structure, new EditableBuffer(Keyword));
-    }
-
-    public static Struct CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Struct(parent, new EditableBuffer(Keyword));
     }
 }

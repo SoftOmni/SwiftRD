@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -26,7 +27,7 @@ public class InfixExpressionGroup : SwiftCompositeNode, IInfixExpressionGroup
     public new IInfixExpression this[int index]
     {
         get => _expressions[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyInfixExpression IReadOnlyInfixExpressionGroup.this[int index] => _expressions[index];
@@ -75,26 +76,26 @@ public class InfixExpressionGroup : SwiftCompositeNode, IInfixExpressionGroup
 
     public void Add(IInfixExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IInfixExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IInfixExpression item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

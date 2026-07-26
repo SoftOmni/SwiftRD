@@ -10,8 +10,6 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationMo
 public class Unsafe : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Unsafe>
 {
     public const string Keyword = "unsafe";
-    
-    public UnownedUnsafe? UnownedUnsafe { get; internal set; }
 
     public Unsafe()
         : base(new EditableBuffer(Keyword))

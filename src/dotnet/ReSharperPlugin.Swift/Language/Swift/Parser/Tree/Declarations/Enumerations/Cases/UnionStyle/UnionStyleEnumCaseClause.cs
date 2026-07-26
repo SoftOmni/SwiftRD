@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -48,7 +49,7 @@ public class UnionStyleEnumCaseClause : SwiftCompositeNode, IUnionStyleEnumCaseC
     public new IUnionStyleEnumCase this[int index]
     {
         get => _cases[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyUnionStyleEnumCase IReadOnlyList<IReadOnlyUnionStyleEnumCase>.this[int index]
@@ -74,12 +75,12 @@ public class UnionStyleEnumCaseClause : SwiftCompositeNode, IUnionStyleEnumCaseC
 
     public void SetAttributesTo(IAttributeGroup? newAttributes)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributes()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Contains(IUnionStyleEnumCase item)
@@ -99,26 +100,26 @@ public class UnionStyleEnumCaseClause : SwiftCompositeNode, IUnionStyleEnumCaseC
 
     public void Add(IUnionStyleEnumCase item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IUnionStyleEnumCase item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IUnionStyleEnumCase item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

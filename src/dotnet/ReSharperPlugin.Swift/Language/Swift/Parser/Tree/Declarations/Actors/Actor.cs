@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actorures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
 public class Actor : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Actor>
 {

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.UnionStyle;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.UnionValues;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.UnionStyle;
 
 public interface IUnionStyleEnumCaseClause : IReadOnlyUnionStyleEnumCaseClause,
     IUnionStyleMember,

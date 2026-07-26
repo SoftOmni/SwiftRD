@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
@@ -40,21 +41,21 @@ public class SimpleFunctionTypeArgument : SwiftCompositeNode, ISimpleFunctionTyp
 
     public void SetAttributeGroupTo(IAttributeGroup? attributeGroup)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetParameterModifierTo(IParameterModifier? parameterModifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributes()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveParameterModifier()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

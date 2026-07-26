@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class DoKeywordToken : StatementUsableKeywordToken
+public class DoKeywordToken : StatementUsableKeywordToken<Do>
 {
-    public DoKeywordToken()
-        : base("do", SwiftTokens.DoId, SwiftTokens.DoIndex)
+    internal DoKeywordToken()
+        : base(Do.Keyword, SwiftTokens.DoId, SwiftTokens.DoIndex)
     { }
 }

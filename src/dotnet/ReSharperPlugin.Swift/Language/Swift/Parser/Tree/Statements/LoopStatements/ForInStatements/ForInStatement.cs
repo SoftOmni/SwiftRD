@@ -1,40 +1,102 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.WhereClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.ForInStatements;
 
-public class ForInStatement : LoopStatement
+public class ForInStatement : SwiftCompositeNode, IForInStatement
 {
-    public For? For { get; internal set; }
-    
-    public Case? Case { get; internal set; }
-    
-    public IPattern? Pattern { get; internal set; }
-    
-    public In? In { get; internal set; }
-    
-    public Expression? Expression { get; internal set; }
-    
-    public WhereClause? WhereClause { get; internal set; }
-    
-    public ForInStatement(IEditableBuffer buffer, List<ISwiftNode> children)
+    public For For { get; }
+
+    public Case? Case { get; }
+
+    public IPattern Pattern { get; }
+
+    public In In { get; }
+
+    public IExpression? Expression { get; }
+
+    public IWhereClause? WhereClause { get; }
+
+    public ICodeBlock CodeBlock { get; }
+
+    internal List<IControlTransferStatement> ControlTransferStatements { get; }
+
+    internal ForInStatement(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        For @for, Case? @case, IPattern pattern, In @in, IExpression? expression, IWhereClause? whereClause,
+        ICodeBlock codeBlock)
         : base(buffer, children)
-    { }
+    {
+        For = @for;
+        Case = @case;
+        Pattern = pattern;
+        In = @in;
+        Expression = expression;
+        WhereClause = whereClause;
+        CodeBlock = codeBlock;
 
-    public ForInStatement(IEditableBuffer buffer, IEnumerable<ISwiftNode> children)
-        : base(buffer, children)
-    { }
+        ControlTransferStatements = [];
+    }
 
-    public ForInStatement(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyPattern IReadOnlyForInStatement.Pattern => Pattern;
 
-    public ForInStatement(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes)
-        : base(parent, buffer, nodes)
-    { }
+    IReadOnlyExpression? IReadOnlyForInStatement.Expression => Expression;
+
+    IReadOnlyWhereClause? IReadOnlyForInStatement.WhereClause => WhereClause;
+
+    IReadOnlyCodeBlock IReadOnlyLoopStatement.CodeBlock => CodeBlock;
+
+    public IReadOnlyList<IControlTransferStatement> LoopControlTransferStatements => ControlTransferStatements;
+
+    IReadOnlyList<IReadOnlyControlTransferStatement> IReadOnlyLoopStatement.LoopControlTransferStatements =>
+        LoopControlTransferStatements;
+
+    public void ChangeCodeBlock(ICodeBlock newCodeBlock)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void AddExplicitCase()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveExplicitCase()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ChangePattern(IPattern newPattern)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetExpressionTo(IExpression newExpression)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveExpression()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetWhereClause(IWhereClause newWhereClause)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveWhereClause()
+    {
+        throw new NotImplementedException();
+    }
 }

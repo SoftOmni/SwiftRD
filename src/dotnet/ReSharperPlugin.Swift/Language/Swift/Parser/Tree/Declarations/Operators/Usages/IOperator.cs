@@ -1,3 +1,3 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages;
 
 public interface IOperator : IReadOnlyOperator;

@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class CatchKeywordToken : StatementUsableKeywordToken
+public class CatchKeywordToken : StatementUsableKeywordToken<Catch>
 {
-    public CatchKeywordToken()
-        : base("catch", SwiftTokens.CatchId, SwiftTokens.CatchIndex)
+    internal CatchKeywordToken()
+        : base(Catch.Keyword, SwiftTokens.CatchId, SwiftTokens.CatchIndex)
     { }
 }

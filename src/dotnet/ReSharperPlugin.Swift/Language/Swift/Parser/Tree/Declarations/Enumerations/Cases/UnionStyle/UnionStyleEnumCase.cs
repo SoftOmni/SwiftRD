@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -34,16 +35,16 @@ public class UnionStyleEnumCase : SwiftCompositeNode, IUnionStyleEnumCase
 
     public void ChangeIdentifier(IIdentifier newIdentifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetTupleTypeTo(ITupleType? tupleType)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveTupleType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

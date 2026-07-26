@@ -1,29 +1,29 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Lazy : DeclarationModifierLeaf, ISwiftKeywordNode
+public class Lazy : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Lazy>
 {
     public const string Keyword = "lazy";
     
+    public Lazy()
+        : base(new EditableBuffer(Keyword))
+    { }
+    
     internal Lazy(IEditableBuffer buffer) 
-        : base(SwiftNodeTypes.Lazy, buffer)
+        : base(buffer)
     { }
 
-    internal Lazy(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.Lazy)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.Lazy;
 
     public string KeywordValue => Keyword;
 
     public static Lazy Create()
-    {
-        return new Lazy(new EditableBuffer(Keyword));
-    }
-
-    public static Lazy Create(SwiftInternalNode parent)
     {
         return new Lazy(new EditableBuffer(Keyword));
     }

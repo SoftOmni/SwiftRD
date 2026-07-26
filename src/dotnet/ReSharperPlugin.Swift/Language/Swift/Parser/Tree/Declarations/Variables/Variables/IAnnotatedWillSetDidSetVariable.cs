@@ -1,20 +1,27 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Constants;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.Variables;
 
-public interface IUnannotatedWillSetDidSetVariable : IReadOnlyUnannotatedWillSetVariable, IVariable
+public interface IAnnotatedWillSetDidSetVariable : IReadOnlyAnnotatedWillSetVariable, IVariable
 {
     new IIdentifier Name { get; }
     
-    new IInitializer Initializer { get; }
+    new ITypeAnnotation TypeAnnotation { get; }
+    
+    new IInitializer? Initializer { get; }
     
     new IWillSetDidSetBlock WillSetDidSetBlock { get; }
 
     void ChangeName(IIdentifier newName);
 
-    void ChangeInitializer(IInitializer newInitializer);
+    void SetInitializerTo(IInitializer newInitializer);
+
+    void ChangeTypeAnnotation(ITypeAnnotation newTypeAnnotation);
+
+    void RemoveInitializer();
 
     void ChangeWillSetDidSetBlock(IWillSetDidSetBlock newWillSetDidSetBlock);
 }

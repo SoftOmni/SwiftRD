@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses;
 
 public class Catch : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Catch>
 {

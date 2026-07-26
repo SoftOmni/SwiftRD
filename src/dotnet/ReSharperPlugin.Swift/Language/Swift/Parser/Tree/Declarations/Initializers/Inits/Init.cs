@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers.Inits;
 
 public class Init : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Init>
 {

@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class FinalKeywordToken : ContextSensitiveKeywordToken
+public class FinalKeywordToken : ContextSensitiveKeywordToken<Final>
 {
-    public FinalKeywordToken()
-        : base("final", SwiftTokens.FinalId, SwiftTokens.FinalIndex)
+    internal FinalKeywordToken()
+        : base(Final.Keyword, SwiftTokens.FinalId, SwiftTokens.FinalIndex)
     { }
 }

@@ -13,7 +13,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 using SoftOmni.SwiftRd.Resources.Icons.Language;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actorures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
 public class ActorDeclaration : SwiftCompositeNode, IActorDeclaration
 {

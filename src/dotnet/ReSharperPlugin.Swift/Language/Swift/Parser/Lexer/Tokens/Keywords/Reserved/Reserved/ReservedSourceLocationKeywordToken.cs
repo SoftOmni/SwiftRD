@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.LineControlStatements;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class ReservedSourceLocationKeywordToken : ReservedKeywordToken
+public class ReservedSourceLocationKeywordToken : ReservedKeywordToken<ReservedSourceLocationKeyword>
 {
-    public ReservedSourceLocationKeywordToken()
-        : base("#sourceLocation", SwiftTokens.ReservedSourceLocationId, SwiftTokens.ReservedSourceLocationIndex)
+    internal ReservedSourceLocationKeywordToken()
+        : base(ReservedSourceLocationKeyword.Keyword, SwiftTokens.ReservedSourceLocationId, SwiftTokens.ReservedSourceLocationIndex)
     { }
 }

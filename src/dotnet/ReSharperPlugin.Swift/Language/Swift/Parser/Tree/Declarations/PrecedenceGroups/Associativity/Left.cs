@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
 
-public class Left : SwiftLeafNode, ISwiftKeywordNode
+public class Left : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Left>
 {
     public const string Keyword = "left";
     
-    public PrecedenceGroupAssociativity? PrecedenceGroupAssociativity { get; internal set; }
-
-    internal Left(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Left)
+    public Left()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Left(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Left)
-    {
-        if (parent is PrecedenceGroupAssociativity precedenceGroupAssociativity)
-        {
-            PrecedenceGroupAssociativity = precedenceGroupAssociativity;
-        }
-    }
+    internal Left(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal Left(PrecedenceGroupAssociativity parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Left)
-    {
-        PrecedenceGroupAssociativity = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Left;
 
     public string KeywordValue => Keyword;
 
     public static Left Create()
     {
         return new Left(new EditableBuffer(Keyword));
-    }
-
-    public static Left Create(PrecedenceGroupAssociativity precedenceGroupAssociativity)
-    {
-        return new Left(precedenceGroupAssociativity, new EditableBuffer(Keyword));
-    }
-
-    public static Left CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Left(parent, new EditableBuffer(Keyword));
     }
 }

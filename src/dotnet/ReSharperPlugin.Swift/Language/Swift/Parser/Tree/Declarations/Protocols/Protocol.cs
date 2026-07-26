@@ -19,7 +19,7 @@ public class Protocol : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Pro
         : base(buffer)
     { }
 
-    public override NodeType NodeType => SwiftNodeTypes.Protocol;
+    public override NodeType NodeType => SwiftNodeTypes.ProtocolLowercase;
 
     public string KeywordValue => Keyword;
 

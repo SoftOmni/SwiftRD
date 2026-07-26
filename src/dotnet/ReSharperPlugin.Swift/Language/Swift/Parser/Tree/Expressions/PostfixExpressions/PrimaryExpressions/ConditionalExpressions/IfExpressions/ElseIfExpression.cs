@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -53,7 +54,7 @@ public class ElseIfExpression : SwiftCompositeNode, IElseIfExpression
     IStatement IList<IStatement>.this[int index]
     {
         get => _statements[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -94,26 +95,26 @@ public class ElseIfExpression : SwiftCompositeNode, IElseIfExpression
 
     public void Add(IStatement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IStatement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IStatement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -7,5 +7,5 @@ public interface IReadOnlySingleParameter : IReadOnlyParameter
 {
     Equal? DefaultClausePresenter { get; }
     
-    IReadOnlyExpression DefaultExpression { get; }
+    IReadOnlyExpression? DefaultExpression { get; }
 }

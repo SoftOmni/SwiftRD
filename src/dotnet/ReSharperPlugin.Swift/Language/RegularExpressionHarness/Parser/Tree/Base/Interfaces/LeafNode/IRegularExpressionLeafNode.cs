@@ -1,7 +1,7 @@
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.LeafNodes;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Implementations.LeafNode;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.LeafNodes;
 
 namespace SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces.LeafNode;
 

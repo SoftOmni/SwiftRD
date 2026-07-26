@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.GenericWhereClauseClauses;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class WhereKeywordToken : StatementUsableKeywordToken
+public class WhereKeywordToken : StatementUsableKeywordToken<Where>
 {
-    public WhereKeywordToken()
-        : base("where", SwiftTokens.WhereId, SwiftTokens.WhereIndex)
+    internal WhereKeywordToken()
+        : base(Where.Keyword, SwiftTokens.WhereId, SwiftTokens.WhereIndex)
     { }
 }

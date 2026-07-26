@@ -1,11 +1,15 @@
+using System;
 using System.Numerics;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using SoftOmni.SwiftRd.Technology;
+using IOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IOperator;
+using IReadOnlyOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IReadOnlyOperator;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
@@ -116,12 +120,12 @@ public class SignedIntegerLiteral : SwiftCompositeNode, ISignedIntegerLiteral
         UnderlyingBuffer.Insert(0, "-");
         SubEditableBuffer subEditableBuffer = new(UnderlyingBuffer, 0, 1);
 
-        Operator = new Operator(subEditableBuffer);
+        Operator = new PostfixOperator(subEditableBuffer);
         CurrentSign = IReadOnlySignedIntegerLiteral.Sign.Negative;
     }
 
     public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

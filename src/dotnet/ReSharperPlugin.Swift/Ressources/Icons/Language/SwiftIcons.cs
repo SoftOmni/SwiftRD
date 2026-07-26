@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Application.UI.Icons.CompiledIcons;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
 
@@ -53,6 +54,10 @@ public static class SwiftIcons
     
     public static AnyCompiledIconClass TypeAliasWithAccessModifier(IAccessLevelModifier? accessLevelModifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
+
+    public static AnyCompiledIconClass VariableIcon;
+
+    public static AnyCompiledIconClass ConstantIcon;
 }

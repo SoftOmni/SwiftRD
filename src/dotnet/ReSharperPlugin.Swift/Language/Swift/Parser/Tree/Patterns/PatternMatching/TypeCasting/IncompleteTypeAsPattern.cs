@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.ErrorNodes;
@@ -23,12 +24,12 @@ public class IncompleteTypeAsPattern : SwiftErrorCompositeNode, ITypeAsPattern
 
     public void SetPattern(IPattern pattern)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetType(IType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     private static string GenerateMessage(IPattern? pattern, As? @as, IType? type)

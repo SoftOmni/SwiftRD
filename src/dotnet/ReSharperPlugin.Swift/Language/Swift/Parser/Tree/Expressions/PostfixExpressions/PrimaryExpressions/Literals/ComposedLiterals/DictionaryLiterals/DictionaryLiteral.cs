@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -95,13 +96,13 @@ public class DictionaryLiteral : SwiftCompositeNode, IDictionaryLiteral
 
     public void SetValue(IDictionary<IExpression, IExpression> newValue)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public new IDictionaryLiteralElement this[int index]
     {
         get => _elements[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyDictionaryLiteralElement IReadOnlyList<IReadOnlyDictionaryLiteralElement>.this[int index]
@@ -144,31 +145,31 @@ public class DictionaryLiteral : SwiftCompositeNode, IDictionaryLiteral
 
     public void Add(IDictionaryLiteralElement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IDictionaryLiteralElement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IDictionaryLiteralElement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

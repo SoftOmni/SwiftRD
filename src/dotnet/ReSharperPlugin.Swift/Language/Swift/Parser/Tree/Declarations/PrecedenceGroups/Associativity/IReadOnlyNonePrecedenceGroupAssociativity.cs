@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
 
-public class IReadOnlyNonePrecedenceGroupAssociativity
+public interface IReadOnlyNonePrecedenceGroupAssociativity : IReadOnlyPrecedenceGroupAssociativity
 {
-    
+    None NoneKeyword { get; }
 }

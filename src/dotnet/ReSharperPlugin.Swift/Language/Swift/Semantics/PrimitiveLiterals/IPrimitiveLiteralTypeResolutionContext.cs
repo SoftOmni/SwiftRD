@@ -1,4 +1,4 @@
-using JetBrains.Rd;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
@@ -21,21 +21,21 @@ public interface IPrimitiveLiteralTypeResolutionContext : IReadOnlyPrimitiveLite
 
     new (IType Type, bool IsFallback) DefaultGraphemeClusterLiteralType { get; }
 
-    new (IProtocol Type, bool IsFallback) IntegerPointLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) IntegerPointLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) FloatingPointLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) FloatingPointLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) StringLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) StringLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) RegularExpressionLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) RegularExpressionLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) BooleanLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) BooleanLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) NilLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) NilLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) UnicodeScalarLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) UnicodeScalarLiteralTypeProtocol { get; }
 
-    new (IProtocol Type, bool IsFallback) GraphemeClusterLiteralTypeProtocol { get; }
+    new (IProtocolDeclaration Type, bool IsFallback) GraphemeClusterLiteralTypeProtocol { get; }
 
     void SetDefaultIntegerLiteralType(IType type);
 

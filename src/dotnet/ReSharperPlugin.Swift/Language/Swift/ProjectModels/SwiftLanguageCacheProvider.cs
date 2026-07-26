@@ -1,3 +1,4 @@
+using System;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
 using JetBrains.ReSharper.Psi.Modules;
@@ -9,26 +10,26 @@ public class SwiftLanguageCacheProvider : ILanguageCacheProvider
 {
     public Part ReadPart(byte tag, IReader reader)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public ProjectFilePart LoadProjectFilePart(IPsiSourceFile? sourceFile, ProjectFilePartsTree tree, IReader reader)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool IsCaseSensitive(IPsiModule module)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void BuildCache(IFile file, ICacheBuilder builder)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void BuildCache(ISandBox sandBox, ICacheBuilder builder)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

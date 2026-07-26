@@ -4,7 +4,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 
-public interface ICodeBlock : IReadOnlyCodeBlock, IDeclaration<ICodeBlockUsage>, IList<IStatement>
+public interface ICodeBlock : IReadOnlyCodeBlock, IDeclaration, IList<IStatement>
 {
     new IStatementGroup StatementGroup { get; }
     

@@ -1,6 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
 
-public class IReadOnlyMutationModifier
-{
-    
-}
+public interface IReadOnlyMutationModifier : IReadOnlyDeclarationModifier;

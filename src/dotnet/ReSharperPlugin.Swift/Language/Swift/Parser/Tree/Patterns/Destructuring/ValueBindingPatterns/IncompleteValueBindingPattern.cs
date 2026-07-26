@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.ErrorNodes;
@@ -44,16 +45,16 @@ public class IncompleteValueBindingPattern : SwiftErrorCompositeNode, IValueBind
 
     public void MakeLet()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
     
     public void MakeVar()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetPattern(IPattern pattern)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

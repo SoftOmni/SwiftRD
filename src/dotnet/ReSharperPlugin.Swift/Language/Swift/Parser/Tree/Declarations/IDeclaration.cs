@@ -1,14 +1,6 @@
-using System.Collections.Generic;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.RawValueStyle;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.UnionStyle;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
 
-public interface IDeclaration<TUsage> : IReadOnlyDeclaration<TUsage>, IDictionary<TUsage, TopLevelDeclaration>
-{
-    new IAccessLevelModifier DefaultAccessLevelModifier();
-
-    void ChangeAccessLevelModifier(IAccessLevelModifier accessLevelModifier);
-    
-    
-}
+public interface IDeclaration : IReadOnlyDeclaration, IUnionStyleMember, IRawValueStyleMember;

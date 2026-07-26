@@ -38,12 +38,11 @@ public class TryExpression : SwiftCompositeNode, ITryExpression
     }
 
     internal TryExpression(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        Try @try, ExclamationMark exclamationMark, IExpression targetExpression)
+        Try @try, ExclamationMark exclamationMark)
         : base(buffer, children)
     {
         Try = @try;
         ExclamationMark = exclamationMark;
-        TargetExpression = targetExpression;
         Kind = IReadOnlyTryExpression.ExpressionKind.ForcedTryExpression;
     }
     

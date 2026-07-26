@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class WeakKeywordToken : ContextSensitiveKeywordToken
+public class WeakKeywordToken : ContextSensitiveKeywordToken<Weak>
 {
-    public WeakKeywordToken()
-        : base("weak", SwiftTokens.WeakId, SwiftTokens.WeakIndex)
+    internal WeakKeywordToken()
+        : base(Weak.Keyword, SwiftTokens.WeakId, SwiftTokens.WeakIndex)
     { }
 }

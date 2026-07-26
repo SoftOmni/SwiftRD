@@ -2,9 +2,9 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStat
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class ReservedIfKeywordToken : ReservedKeywordToken<IfDirective>
+public class IfDirectiveKeywordToken : ReservedKeywordToken<IfDirective>
 {
-    internal ReservedIfKeywordToken()
-        : base("#if", SwiftTokens.ReservedIfId, SwiftTokens.ReservedIfIndex)
+    internal IfDirectiveKeywordToken()
+        : base(IfDirective.Keyword, SwiftTokens.ReservedIfId, SwiftTokens.ReservedIfIndex)
     { }
 }

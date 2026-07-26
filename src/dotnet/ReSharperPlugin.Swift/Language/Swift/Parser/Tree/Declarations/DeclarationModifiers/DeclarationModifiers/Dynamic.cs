@@ -1,29 +1,29 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Dynamic : DeclarationModifierLeaf, ISwiftKeywordNode
+public class Dynamic : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Dynamic>
 {
     public const string Keyword = "dynamic";
     
+    public Dynamic()
+        : base(new EditableBuffer(Keyword))
+    { }
+    
     internal Dynamic(IEditableBuffer buffer) 
-        : base(SwiftNodeTypes.Dynamic, buffer)
+        : base(buffer)
     { }
 
-    internal Dynamic(SwiftInternalNode parent, IEditableBuffer buffer) 
-        : base(parent, buffer, SwiftNodeTypes.Dynamic)
-    { }
-
+    public override NodeType NodeType => SwiftNodeTypes.Dynamic;
 
     public string KeywordValue => Keyword;
 
     public static Dynamic Create()
-    {
-        return new Dynamic(new EditableBuffer(Keyword));
-    }
-
-    public static Dynamic Create(SwiftInternalNode parent)
     {
         return new Dynamic(new EditableBuffer(Keyword));
     }

@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Semantics.Context;
 
-public interface ILocalSwiftSemanticalContext
+public interface ILocalSwiftSemanticalContext : IReadOnlyLocalSwiftSemanticalContext
 {
     
 }

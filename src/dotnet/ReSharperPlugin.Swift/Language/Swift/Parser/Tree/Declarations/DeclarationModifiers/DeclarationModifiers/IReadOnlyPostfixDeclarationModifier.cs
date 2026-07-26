@@ -2,5 +2,5 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationMo
 
 public interface IReadOnlyPostfixDeclarationModifier
 {
-    
+    Postfix Keyword { get; }
 }

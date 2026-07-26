@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.BreakStatements;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class BreakKeywordToken : StatementUsableKeywordToken
+public class BreakKeywordToken : StatementUsableKeywordToken<Break>
 {
-    public BreakKeywordToken()
-        : base("operator", SwiftTokens.BreakId, SwiftTokens.BreakIndex)
+    internal BreakKeywordToken()
+        : base(Break.Keyword, SwiftTokens.BreakId, SwiftTokens.BreakIndex)
     { }
 }

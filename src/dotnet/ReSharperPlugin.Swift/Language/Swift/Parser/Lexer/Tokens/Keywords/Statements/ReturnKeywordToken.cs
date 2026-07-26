@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.ReturnStatements;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class ReturnKeywordToken : StatementUsableKeywordToken
+public class ReturnKeywordToken : StatementUsableKeywordToken<Return>
 {
-    public ReturnKeywordToken()
-        : base("return", SwiftTokens.ReturnId, SwiftTokens.ReturnIndex)
+    internal ReturnKeywordToken()
+        : base(Return.Keyword, SwiftTokens.ReturnId, SwiftTokens.ReturnIndex)
     { }
 }

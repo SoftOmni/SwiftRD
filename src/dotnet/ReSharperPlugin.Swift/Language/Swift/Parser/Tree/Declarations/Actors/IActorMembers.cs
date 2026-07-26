@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actorures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
 public interface IActorMembers : IReadOnlyActorMembers,
     IList<IActorMember>

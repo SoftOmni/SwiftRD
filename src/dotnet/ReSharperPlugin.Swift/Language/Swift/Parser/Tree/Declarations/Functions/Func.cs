@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
 
-public class Func : SwiftLeafNode, ISwiftKeywordNode
+public class Func : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Func>
 {
     public const string Keyword = "function";
-
-    public Function? FunctionClause { get; private set; }
-
-    internal Func(IEditableBuffer buffer)
-        : base(buffer, SwiftNodeTypes.Func)
+    
+    public Func()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Func(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Func)
-    {
-        if (parent is Function functionClause)
-        {
-            FunctionClause = functionClause;
-        }
-    }
+    internal Func(IEditableBuffer buffer)
+        : base(buffer)
+    { }
 
-    internal Func(Function functionClause, IEditableBuffer buffer)
-        : base(functionClause, buffer, SwiftNodeTypes.Func)
-    {
-        FunctionClause = functionClause;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Func;
 
     public string KeywordValue => Keyword;
 
     public static Func Create()
     {
         return new Func(new EditableBuffer(Keyword));
-    }
-
-    public static Func Create(Function functionClause)
-    {
-        return new Func(functionClause, new EditableBuffer(Keyword));
-    }
-
-    public static Func CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Func(parent, new EditableBuffer(Keyword));
     }
 }

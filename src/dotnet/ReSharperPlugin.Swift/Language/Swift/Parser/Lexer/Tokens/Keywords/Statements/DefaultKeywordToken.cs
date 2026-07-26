@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.DefaultSwitchCases;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class DefaultKeywordToken : StatementUsableKeywordToken
+public class DefaultKeywordToken : StatementUsableKeywordToken<Default>
 {
-    public DefaultKeywordToken()
-        : base("default", SwiftTokens.DefaultId, SwiftTokens.DefaultIndex)
+    internal DefaultKeywordToken()
+        : base(Default.Keyword, SwiftTokens.DefaultId, SwiftTokens.DefaultIndex)
     { }
 }

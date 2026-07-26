@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -118,53 +119,53 @@ public class PlaygroundColorLiteral : SwiftCompositeNode, IPlaygroundColorLitera
         IReadOnlyLiteral<(IReadOnlyExpression red, IReadOnlyExpression green, IReadOnlyExpression blue, IReadOnlyExpression alpha)>
         .GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     (IExpression red, IExpression green, IExpression blue, IExpression alpha)
         IReadOnlyLiteral<(IExpression red, IExpression green, IExpression blue, IExpression alpha)>.GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     (IExpression red, IExpression green, IExpression blue, IExpression alpha) IPlaygroundColorLiteral.GetValueCopy()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     void ILiteral<(IExpression red, IExpression green, IExpression blue, IExpression alpha)>.SetValue(
         (IExpression red, IExpression green, IExpression blue, IExpression alpha) newValue)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     void IPlaygroundColorLiteral.SetValue((IExpression red, IExpression green, IExpression blue, IExpression alpha) newValue)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public IExpression ChangeRedExpression()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public IExpression ChangeGreenExpression()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public IExpression ChangeBlueExpression()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public IExpression ChangeAlphaExpression()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeLiteralContext(IReadOnlyPrimitiveLiteralTypeResolutionContext newContext)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

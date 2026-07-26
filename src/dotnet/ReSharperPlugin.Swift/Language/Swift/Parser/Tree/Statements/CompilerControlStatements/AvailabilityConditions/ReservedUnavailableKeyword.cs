@@ -7,15 +7,15 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions;
 
-public class UnavailableKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<UnavailableKeyword>
+public class ReservedUnavailableKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<ReservedUnavailableKeyword>
 {
     public const string Keyword = "#unavailable";
     
-    public UnavailableKeyword()
+    public ReservedUnavailableKeyword()
         : base(new EditableBuffer(Keyword))
     { }
     
-    internal UnavailableKeyword(IEditableBuffer buffer)
+    internal ReservedUnavailableKeyword(IEditableBuffer buffer)
         : base(buffer)
     { }
 
@@ -23,8 +23,8 @@ public class UnavailableKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywo
 
     public string KeywordValue => Keyword;
 
-    public static UnavailableKeyword Create()
+    public static ReservedUnavailableKeyword Create()
     {
-        return new UnavailableKeyword();
+        return new ReservedUnavailableKeyword();
     }
 }

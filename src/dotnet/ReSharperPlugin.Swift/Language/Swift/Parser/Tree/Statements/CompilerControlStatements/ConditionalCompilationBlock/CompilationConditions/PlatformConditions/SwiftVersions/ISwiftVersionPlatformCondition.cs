@@ -1,9 +1,7 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions.SwiftVersions;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions.CompilerVersions;
-
-public interface ICompilerVersionPlatformCondition :
-    IReadOnlyCompilerVersionPlatformCondition,
+public interface ISwiftVersionPlatformCondition :
+    IReadOnlySwiftVersionPlatformCondition,
     IPlatformCondition
 {
     new ISwiftVersion SwiftVersion { get; }

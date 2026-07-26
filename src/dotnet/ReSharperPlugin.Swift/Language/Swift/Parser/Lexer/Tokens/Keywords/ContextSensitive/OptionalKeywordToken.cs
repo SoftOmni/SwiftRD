@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class OptionalKeywordToken : ContextSensitiveKeywordToken
+public class OptionalKeywordToken : ContextSensitiveKeywordToken<Optional>
 {
-    public OptionalKeywordToken()
-        : base("optional", SwiftTokens.OptionalId, SwiftTokens.OptionalIndex)
+    internal OptionalKeywordToken()
+        : base(Optional.Keyword, SwiftTokens.OptionalId, SwiftTokens.OptionalIndex)
     { }
 }

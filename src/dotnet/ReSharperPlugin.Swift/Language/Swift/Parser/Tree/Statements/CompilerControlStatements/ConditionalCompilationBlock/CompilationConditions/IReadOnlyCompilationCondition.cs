@@ -2,5 +2,7 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControl
 
 public interface IReadOnlyCompilationCondition
 {
-    
+    bool Evaluatable();
+
+    bool Evaluate();
 }

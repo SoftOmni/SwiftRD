@@ -1,4 +1,3 @@
-
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PrefixExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.TryOperators;
 

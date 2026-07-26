@@ -1,4 +1,4 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Leaves;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Keywords;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 

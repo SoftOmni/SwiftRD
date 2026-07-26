@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
@@ -37,57 +38,57 @@ public class FunctionType : SwiftCompositeNode, IFunctionType
 
     public bool AddIfNotAlreadyPresentAttributeGroup(IAttributeGroup attributeGroup)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeAttributeGroup(IAttributeGroup? attributeGroup)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributeGroup()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetToNotThrow()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetThrowsClauseToThrowGenerically()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetThrowsClauseToThrowError(IType errorType)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeReturnType(IType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeFunctionReturnVoid(VoidFormatting voidFormatting)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeFunctionNotReturn()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeFunctionVariadic()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeFunctionNonVariadic()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public IAttributeGroup? AttributeGroup { get; }

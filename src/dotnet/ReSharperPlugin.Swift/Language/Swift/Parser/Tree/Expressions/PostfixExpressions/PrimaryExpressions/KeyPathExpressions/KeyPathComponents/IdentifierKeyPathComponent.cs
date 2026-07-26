@@ -1,11 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
-using SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.
-    KeyPathExpressions.Components.KeyPathPostfixes;
+using SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions.Components.KeyPathPostfixes;
 
 namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.
     KeyPathExpressions.Components;
@@ -38,7 +38,7 @@ public class IdentifierKeyPathComponent : SwiftCompositeNode, IIdentifierKeyPath
     public new IKeyPathPostfix this[int index]
     {
         get => _keyPathPostfixes[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyKeyPathPostfix IReadOnlyIdentifierKeyPathComponent.this[int index] => _keyPathPostfixes[index];
@@ -47,7 +47,7 @@ public class IdentifierKeyPathComponent : SwiftCompositeNode, IIdentifierKeyPath
 
     public void ChangeIdentifier(IIdentifier newIdentifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public IEnumerator<IKeyPathPostfix> GetEnumerator()
@@ -82,26 +82,26 @@ public class IdentifierKeyPathComponent : SwiftCompositeNode, IIdentifierKeyPath
 
     public void Add(IKeyPathPostfix item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IKeyPathPostfix item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IKeyPathPostfix item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

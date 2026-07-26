@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
@@ -37,31 +38,31 @@ public class LabeledFunctionTypeArgument : SwiftCompositeNode, ILabeledFunctionT
 
     public void ChangeLabel(IIdentifier identifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeTypeAnnotation(ITypeAnnotation typeAnnotation)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetAttributeGroupTo(IAttributeGroup? attributeGroup)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetParameterModifierTo(IParameterModifier? parameterModifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributes()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveParameterModifier()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

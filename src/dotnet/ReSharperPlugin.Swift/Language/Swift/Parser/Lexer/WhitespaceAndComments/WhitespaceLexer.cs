@@ -30,13 +30,12 @@ public partial class SwiftLexer
         TokenStart = TokenEnd;
         TokenEnd++;
 
+        TokenType = SwiftTokens.NewlineToken;
         if (Buffer[TokenStart] == LineFeed)
         {
-            TokenType = SwiftTokens.NewlineToken;
             return;
         }
 
-        TokenType = SwiftTokens.NewlineToken;
         if (TokenEnd < EOFPos && Buffer[TokenEnd] == LineFeed)
         {
             TokenEnd++;

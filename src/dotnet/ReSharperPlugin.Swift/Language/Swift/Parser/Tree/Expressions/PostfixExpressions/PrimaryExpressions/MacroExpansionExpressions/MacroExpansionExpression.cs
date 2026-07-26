@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -53,36 +54,36 @@ public class MacroExpansionExpression : SwiftCompositeNode, IMacroExpansionExpre
 
     public void ChangeName(IIdentifier newName)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetGenericArgumentClause(IGenericArgumentClause? newGenericArgumentClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveGenericArgumentClause()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetParametersClause(IFunctionCallArgumentList? newParametersClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveParametersClause()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetTrailingClosureParameters(ITrailingClosuresGroup? newTrailingClosureParameters)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveTRailingClosuresGroup()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

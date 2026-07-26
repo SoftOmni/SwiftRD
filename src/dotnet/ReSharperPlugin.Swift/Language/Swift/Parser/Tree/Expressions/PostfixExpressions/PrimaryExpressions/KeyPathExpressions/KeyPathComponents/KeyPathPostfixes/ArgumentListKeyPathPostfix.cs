@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -41,7 +42,7 @@ public class ArgumentListKeyPathPostfix : SwiftCompositeNode, IArgumentListKeyPa
     public new IFunctionCallArgument this[int index]
     {
         get => _arguments[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyFunctionCallArgument IReadOnlyList<IReadOnlyFunctionCallArgument>.this[int index]
@@ -82,26 +83,26 @@ public class ArgumentListKeyPathPostfix : SwiftCompositeNode, IArgumentListKeyPa
 
     public void Add(IFunctionCallArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IFunctionCallArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IFunctionCallArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

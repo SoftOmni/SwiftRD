@@ -1,9 +1,15 @@
 using System;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.CompileTimeDiagnostics;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class PreviouslyReservedWarningKeywordToken()
-    : PreviouslyReservedKeywordToken("#warning", SwiftTokens.PreviouslyReservedWarningId, SwiftTokens.PreviouslyReservedWarningIndex)
+public class PreviouslyReservedWarningKeywordToken : PreviouslyReservedKeywordToken<WarningDirective>
 {
-    public override Version RemovalVersion => new(5, 9);
+    internal PreviouslyReservedWarningKeywordToken()
+        : base(WarningDirective.Keyword, SwiftTokens.PreviouslyReservedWarningId, SwiftTokens.PreviouslyReservedWarningIndex)
+    { }
+
+    public override ISwiftVersion RemovalVersion => SwiftVersion.FromVersion(new Version(5, 9));
 }

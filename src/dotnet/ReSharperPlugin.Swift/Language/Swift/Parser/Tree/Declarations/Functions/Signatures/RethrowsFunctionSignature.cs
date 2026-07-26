@@ -1,92 +1,91 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.Signatures;
 
-public class RethrowsClauseFunctionSignature : SwiftCompositeNode, IRethrowsClauseFunctionSignature
+public class RethrowsFunctionSignature : SwiftCompositeNode, IRethrowsFunctionSignature
 {
     public IParameterClause ParameterClause { get; }
 
     public Async? AsynchronousKeyword { get; }
 
-    public Arrow? ReturnTypePresenter { get; }
+    public Rethrows? Rethrows { get; }
 
-    public IAttributeGroup? ReturnTypeAttributes { get; }
+    public IFunctionResult? FunctionResult { get; }
 
-    public IType? ReturnType { get; }
-
-    internal RethrowsClauseFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        IParameterClause parameterClause)
+    internal RethrowsFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IParameterClause parameterClause, Rethrows? rethrows)
         : base(buffer, children)
     {
         ParameterClause = parameterClause;
+        Rethrows = rethrows;
     }
 
-    internal RethrowsClauseFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        IParameterClause parameterClause, Async? asynchronousKeyword)
+    internal RethrowsFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IParameterClause parameterClause, Async? asynchronousKeyword, Rethrows? rethrows)
         : base(buffer, children)
     {
         ParameterClause = parameterClause;
         AsynchronousKeyword = asynchronousKeyword;
+        Rethrows = rethrows;
     }
 
-    internal RethrowsClauseFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        IParameterClause parameterClause, Arrow returnTypePresenter,
-        IAttributeGroup? returnTypeAttributes, IType returnType)
+    internal RethrowsFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IParameterClause parameterClause, IFunctionResult? functionResult)
         : base(buffer, children)
     {
         ParameterClause = parameterClause;
-        ReturnTypePresenter = returnTypePresenter;
-        ReturnTypeAttributes = returnTypeAttributes;
-        ReturnType = returnType;
+        FunctionResult = functionResult;
     }
 
-    internal RethrowsClauseFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        IParameterClause parameterClause, Async? asynchronousKeyword, Arrow returnTypePresenter,
-        IAttributeGroup? returnTypeAttributes, IType returnType)
+    internal RethrowsFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IParameterClause parameterClause, Rethrows? rethrows, IFunctionResult? functionResult)
+        : base(buffer, children)
+    {
+        ParameterClause = parameterClause;
+        Rethrows = rethrows;
+        FunctionResult = functionResult;
+    }
+
+    internal RethrowsFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IParameterClause parameterClause, Async? asynchronousKeyword, IFunctionResult? functionResult)
         : base(buffer, children)
     {
         ParameterClause = parameterClause;
         AsynchronousKeyword = asynchronousKeyword;
-        ReturnTypePresenter = returnTypePresenter;
-        ReturnTypeAttributes = returnTypeAttributes;
-        ReturnType = returnType;
+        FunctionResult = functionResult;
+    }
+
+    internal RethrowsFunctionSignature(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IParameterClause parameterClause, Async? asynchronousKeyword, Rethrows? rethrows, IFunctionResult? functionResult)
+        : base(buffer, children)
+    {
+        ParameterClause = parameterClause;
+        AsynchronousKeyword = asynchronousKeyword;
+        Rethrows = rethrows;
+        FunctionResult = functionResult;
     }
 
     IReadOnlyParameterClause IReadOnlyFunctionSignature.ParameterClause => ParameterClause;
 
-    IReadOnlyAttributeGroup? IReadOnlyFunctionSignature.ReturnTypeAttributes => ReturnTypeAttributes;
-
-    IReadOnlyType? IReadOnlyFunctionSignature.ReturnType => ReturnType;
+    IReadOnlyFunctionResult? IReadOnlyFunctionSignature.FunctionResult => FunctionResult;
 
     public void ChangeParameterClause(IParameterClause newParameterClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public void SetReturnTypeAttributes(IAttributeGroup? newReturnTypeAttributes)
+    public void SetFunctionResultTo(IFunctionResult? newFunctionResult)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public void RemoveReturnTypeAttributes()
+    public void RemoveFunctionResult()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void SetReturnType(IType? newReturnType)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void RemoveReturnType()
-    {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

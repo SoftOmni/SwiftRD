@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 
-public class OperatorKeyword : SwiftLeafNode, ISwiftKeywordNode
+public class OperatorKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<OperatorKeyword>
 {
     public const string Keyword = "operator";
     
-    public OperatorDeclaration? OperatorDeclaration { get; internal set; }
-
-    internal OperatorKeyword(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Operator)
+    public OperatorKeyword()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal OperatorKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Operator)
-    {
-        if (parent is OperatorDeclaration operatorDeclaration)
-        {
-            OperatorDeclaration = operatorDeclaration;
-        }
-    }
+    internal OperatorKeyword(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal OperatorKeyword(OperatorDeclaration parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Operator)
-    {
-        OperatorDeclaration = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Operator;
 
     public string KeywordValue => Keyword;
 
     public static OperatorKeyword Create()
     {
         return new OperatorKeyword(new EditableBuffer(Keyword));
-    }
-
-    public static OperatorKeyword Create(OperatorDeclaration operatorDeclaration)
-    {
-        return new OperatorKeyword(operatorDeclaration, new EditableBuffer(Keyword));
-    }
-
-    public static OperatorKeyword CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new OperatorKeyword(parent, new EditableBuffer(Keyword));
     }
 }

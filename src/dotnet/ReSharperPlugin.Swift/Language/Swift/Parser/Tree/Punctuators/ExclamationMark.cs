@@ -7,7 +7,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
-public class ExclamationMark : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator, IKeyPathPostfix
+public class ExclamationMark : SwiftLeafNode<SwiftCompositeNode>, ISwiftPunctuator
 {
     public const string Value = "!";
     

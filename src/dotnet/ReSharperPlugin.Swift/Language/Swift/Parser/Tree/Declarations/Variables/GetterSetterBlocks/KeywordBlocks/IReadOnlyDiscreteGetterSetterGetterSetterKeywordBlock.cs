@@ -1,4 +1,4 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks.Clauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.KeywordBlocks.Clauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks;
@@ -7,9 +7,9 @@ public interface IReadOnlyDiscreteGetterSetterGetterSetterKeywordBlock : IReadOn
 {
     LeftCurlyBrace GetterSetterClauseStart { get; }
     
-    IReadOnlyGetterClause GetterClause { get; }
+    IReadOnlyGetterKeywordClause GetterClause { get; }
     
-    IReadOnlySetterClause? SetterClause { get; }
+    IReadOnlySetterKeywordClause? SetterClause { get; }
     
     RightCurlyBrace GetterSetterClauseEnd { get; }
 

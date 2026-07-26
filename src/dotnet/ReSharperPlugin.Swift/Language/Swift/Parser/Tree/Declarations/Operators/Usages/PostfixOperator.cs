@@ -6,11 +6,11 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages;
 
-public class Operator : SwiftLeafNode<SwiftCompositeNode>, IOperator
+public class PostfixOperator : SwiftLeafNode<SwiftCompositeNode>, IPostfixOperator
 {
-    internal Operator(IEditableBuffer buffer)
+    internal PostfixOperator(IEditableBuffer buffer)
         : base(buffer)
     { }
 
-    public override NodeType NodeType => SwiftNodeTypes.Operator;
+    public override NodeType NodeType => SwiftNodeTypes.PostfixOperator;
 }

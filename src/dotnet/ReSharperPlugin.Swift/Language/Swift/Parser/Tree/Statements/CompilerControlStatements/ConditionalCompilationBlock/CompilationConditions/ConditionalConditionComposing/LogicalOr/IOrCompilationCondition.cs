@@ -4,9 +4,9 @@ public interface IOrCompilationCondition : IReadOnlyOrCompilationCondition, ICom
 {
     new ICompilationCondition LeftOperand { get; }
 
-    void ChangeLeftOperand(ICompilationCondition compilationCondition);
+    void ChangeLeftOperand(ICompilationCondition newLeftOperand);
     
     new ICompilationCondition RightOperand { get; }
 
-    void ChangeRightOperand(ICompilationCondition compilationCondition);
+    void ChangeRightOperand(ICompilationCondition newRightOperand);
 }

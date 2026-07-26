@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;
@@ -8,6 +7,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
 using SoftOmni.SwiftRd.Technology;
 

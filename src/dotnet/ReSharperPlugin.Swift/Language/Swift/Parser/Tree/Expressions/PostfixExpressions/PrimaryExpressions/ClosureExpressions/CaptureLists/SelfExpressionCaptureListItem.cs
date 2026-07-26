@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions.
-    CaptureLists.CaptureSpecifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions.CaptureLists.CaptureSpecifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.
@@ -37,36 +37,36 @@ public class SelfExpressionCaptureListItem : SwiftCompositeNode, ISelfExpression
 
     public void SetCaptureSpecifier(ICaptureSpecifier? newCaptureSpecifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveCaptureSpecifier()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeSelfExpression(ISelfExpression newSelfExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeWeak()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeUnowned()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeUnownedSafe()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void MakeUnownedUnsafe()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

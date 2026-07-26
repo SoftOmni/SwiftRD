@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -8,6 +9,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 using SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions.Components;
+using IReadOnlyOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IReadOnlyOperator;
 
 namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathExpressions;
 
@@ -56,7 +58,7 @@ public class KeyPathExpression : SwiftCompositeNode, IKeyPathExpression
     public new IKeyPathComponent this[int index]
     {
         get => _keyPathComponents[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyKeyPathComponent IReadOnlyList<IReadOnlyKeyPathComponent>.this[int index]
@@ -94,26 +96,26 @@ public class KeyPathExpression : SwiftCompositeNode, IKeyPathExpression
 
     public void Add(IKeyPathComponent item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IKeyPathComponent item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IKeyPathComponent item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

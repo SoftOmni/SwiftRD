@@ -6,6 +6,16 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Keywords;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeInitializers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Imports;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers.Inits;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
@@ -145,18 +155,19 @@ public partial class SwiftLexer
     {
         Dictionary<string, SwiftTokenNodeType> dictionary = new()
         {
+            { Assignment.Keyword, SwiftTokens.AssignmentKeywordToken },
             { "associatedtype", SwiftTokens.AssociatedTypeKeywordToken },
-            { "borrowing", SwiftTokens.BorrowingKeywordToken },
-            { "class", SwiftTokens.ClassKeywordToken },
-            { "consuming", SwiftTokens.ConsumingKeywordToken },
-            { "deinit", SwiftTokens.DeinitKeywordToken },
-            { "enum", SwiftTokens.EnumKeywordToken },
-            { "extension", SwiftTokens.ExtensionKeywordToken },
-            { "fileprivate", SwiftTokens.FilePrivateKeywordToken },
-            { "func", SwiftTokens.FuncKeywordToken },
-            { "import", SwiftTokens.ImportKeywordToken },
-            { "init", SwiftTokens.InitKeywordToken },
-            { "inout", SwiftTokens.InoutKeywordToken },
+            { Borrowing.Keyword, SwiftTokens.BorrowingKeywordToken },
+            { Class.Keyword, SwiftTokens.ClassKeywordToken },
+            { Consuming.Keyword, SwiftTokens.ConsumingKeywordToken },
+            { DeInit.Keyword, SwiftTokens.DeinitKeywordToken },
+            { Enum.Keyword, SwiftTokens.EnumKeywordToken },
+            { Extension.Keyword, SwiftTokens.ExtensionKeywordToken },
+            { FilePrivate.Keyword, SwiftTokens.FilePrivateKeywordToken },
+            { Func.Keyword, SwiftTokens.FuncKeywordToken },
+            { Import.Keyword, SwiftTokens.ImportKeywordToken },
+            { Init.Keyword, SwiftTokens.InitKeywordToken },
+            { InOut.Keyword, SwiftTokens.InoutKeywordToken },
             { "internal", SwiftTokens.InternalKeywordToken },
             { "let", SwiftTokens.LetKeywordToken },
             { "nonisolated", SwiftTokens.NonIsolatedKeywordToken },
@@ -207,11 +218,11 @@ public partial class SwiftLexer
             { "_", SwiftTokens.UnderscoreKeywordToken },
             { "#available", SwiftTokens.ReservedAvailableKeywordToken },
             { "#colorLiteral", SwiftTokens.ReservedColorLiteralKeywordToken },
-            { "#else", SwiftTokens.ReservedElseKeywordToken },
-            { "#elseif", SwiftTokens.ReservedElseIfKeywordToken },
-            { "#endif", SwiftTokens.ReservedEndIfKeywordToken },
+            { "#else", SwiftTokens.ElseDirectiveKeywordToken },
+            { "#elseif", SwiftTokens.ElseIfDirectiveKeywordToken },
+            { "#endif", SwiftTokens.EndIfDirectiveKeywordToken },
             { "#fileLiteral", SwiftTokens.ReservedFileLiteralKeywordToken },
-            { "#if", SwiftTokens.ReservedIfKeywordToken },
+            { "#if", SwiftTokens.IfDirectiveKeywordToken },
             { "#imageLiteral", SwiftTokens.ReservedImageLiteralKeywordToken },
             { "#keyPath", SwiftTokens.ReservedKeyPathKeywordToken },
             { "#selector", SwiftTokens.ReservedSelectorKeywordToken },

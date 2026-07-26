@@ -2,7 +2,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterS
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
 
-public interface IReadOnlyGetterSetterKeywordSubscriptDeclaration : IReadOnlySubscriptDeclaration
+public interface IReadOnlyGetterSetterKeywordBlockSubscriptDeclaration : IReadOnlySubscriptDeclaration
 {
-    IReadOnlyGetterSetterKeywordBlock GetterSetterBlock { get; }
+    IReadOnlyGetterSetterKeywordBlock GetterSetterKeywordBlock { get; }
 }

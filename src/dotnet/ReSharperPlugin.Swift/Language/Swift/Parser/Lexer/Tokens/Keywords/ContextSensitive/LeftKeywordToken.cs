@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class LeftKeywordToken : ContextSensitiveKeywordToken
+public class LeftKeywordToken : ContextSensitiveKeywordToken<Left>
 {
-    public LeftKeywordToken()
-        : base("left", SwiftTokens.LeftId, SwiftTokens.LeftIndex)
+    internal LeftKeywordToken()
+        : base(Left.Keyword, SwiftTokens.LeftId, SwiftTokens.LeftIndex)
     { }
 }

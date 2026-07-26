@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class NonMutatingKeywordToken : ContextSensitiveKeywordToken
+public class NonMutatingKeywordToken : ContextSensitiveKeywordToken<NonMutating>
 {
-    public NonMutatingKeywordToken()
-        : base("nonmutating", SwiftTokens.NonMutatingId, SwiftTokens.NonMutatingIndex)
+    internal NonMutatingKeywordToken()
+        : base(NonMutating.Keyword, SwiftTokens.NonMutatingId, SwiftTokens.NonMutatingIndex)
     { }
 }
