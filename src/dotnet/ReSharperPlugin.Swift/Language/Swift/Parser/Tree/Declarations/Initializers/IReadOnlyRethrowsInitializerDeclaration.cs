@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers;
 
-public interface IReadOnlyRethrowsInitializeDeclaration : IReadOnlyInitializerDeclaration
+public interface IReadOnlyRethrowsInitializerDeclaration : IReadOnlyInitializerDeclaration
 {
     Rethrows RethrowsKeyword { get; }
 }

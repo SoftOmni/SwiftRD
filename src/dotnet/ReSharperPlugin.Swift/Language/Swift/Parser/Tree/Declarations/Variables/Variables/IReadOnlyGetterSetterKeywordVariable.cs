@@ -4,11 +4,11 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.Variables;
 
-public interface IReadOnlyGetterSetterVariable : IReadOnlyVariable
+public interface IReadOnlyGetterSetterKeywordVariable : IReadOnlyVariable
 {
     IReadOnlyIdentifier Name { get; }
     
     IReadOnlyTypeAnnotation TypeAnnotation { get; }
     
-    IReadOnlyGetterSetterBlock GetterSetterBlock { get; }
+    IReadOnlyGetterSetterKeywordBlock GetterSetterBlock { get; }
 }

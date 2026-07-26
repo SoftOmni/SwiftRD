@@ -15,10 +15,10 @@ public class VarOptionalBindingCondition : SwiftCompositeNode, IVarOptionalBindi
     
     public IPattern Pattern { get; }
     
-    public IInitializer? Initializer { get; }
+    public IInitializerDeclaration? Initializer { get; }
 
     internal VarOptionalBindingCondition(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children, 
-        Var var, IPattern pattern, IInitializer? initializer)
+        Var var, IPattern pattern, IInitializerDeclaration? initializer)
         : base(buffer, children)
     {
         Var = var;
@@ -28,14 +28,14 @@ public class VarOptionalBindingCondition : SwiftCompositeNode, IVarOptionalBindi
 
     IReadOnlyPattern IReadOnlyOptionalBindingCondition.Pattern => Pattern;
 
-    IReadOnlyInitializer? IReadOnlyOptionalBindingCondition.Initializer => Initializer;
+    IReadOnlyInitializerDeclaration? IReadOnlyOptionalBindingCondition.Initializer => Initializer;
 
     public void ChangePattern(IPattern newPattern)
     {
         throw new NotImplementedException();
     }
 
-    public void SetInitializer(IInitializer? initializer)
+    public void SetInitializer(IInitializerDeclaration? initializer)
     {
         throw new NotImplementedException();
     }

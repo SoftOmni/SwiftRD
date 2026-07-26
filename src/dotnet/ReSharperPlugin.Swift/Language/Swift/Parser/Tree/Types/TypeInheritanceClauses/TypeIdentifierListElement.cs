@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
@@ -5,6 +6,8 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
+using IOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IOperator;
+using IReadOnlyOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IReadOnlyOperator;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 
@@ -60,31 +63,31 @@ public class TypeIdentifierListElement : SwiftCompositeNode, ITypeInheritanceLis
 
     public bool AddIfNotPresentAttributeGroup(IAttributeGroup attributeGroup)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetAttributeGroupTo(IAttributeGroup? attributeGroup)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributeGroup()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void AddTildeIfNotPresent()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveTilde()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeTypeIdentifier(ITypeIdentifier typeIdentifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -57,16 +58,16 @@ public class DictionaryType : SwiftCompositeNode, IDictionaryType
 
     public void ChangeKeyType(IType keyType)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeValueType(IType valueType)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     private IReadOnlyType GenerateDictionaryUnderlyingType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

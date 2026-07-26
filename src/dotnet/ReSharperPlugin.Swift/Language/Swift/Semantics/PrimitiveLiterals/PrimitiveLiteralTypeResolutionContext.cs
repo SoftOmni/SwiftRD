@@ -1,5 +1,6 @@
-using JetBrains.Rd;
+using System;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
@@ -24,195 +25,266 @@ public class PrimitiveLiteralTypeResolutionContext : IPrimitiveLiteralTypeResolu
     
     public (IType Type, bool IsFallback) DefaultGraphemeClusterLiteralType { get; }
     
-    public (IProtocol Type, bool IsFallback) IntegerPointLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) IntegerPointLiteralTypeProtocol { get; }
     
-    public (IProtocol Type, bool IsFallback) FloatingPointLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) FloatingPointLiteralTypeProtocol { get; }
     
-    public (IProtocol Type, bool IsFallback) StringLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) StringLiteralTypeProtocol { get; }
     
-    public (IProtocol Type, bool IsFallback) RegularExpressionLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) RegularExpressionLiteralTypeProtocol { get; }
 
-    public (IProtocol Type, bool IsFallback) BooleanLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) BooleanLiteralTypeProtocol { get; }
     
-    public (IProtocol Type, bool IsFallback) NilLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) NilLiteralTypeProtocol { get; }
     
-    public (IProtocol Type, bool IsFallback) UnicodeScalarLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) UnicodeScalarLiteralTypeProtocol { get; }
     
-    public (IProtocol Type, bool IsFallback) GraphemeClusterLiteralTypeProtocol { get; }
+    public (IProtocolDeclaration Type, bool IsFallback) GraphemeClusterLiteralTypeProtocol { get; }
 
     
     
     public PrimitiveLiteralTypeResolutionContext()
     {
-        IntegerPointLiteralTypeProtocol = (GenerateDefaultIntegerLiteralTypeProtocol(), true);
-        FloatingPointLiteralTypeProtocol = (GenerateDefaultFloatingPointLiteralTypeProtocol(), true);
-        StringLiteralTypeProtocol = (GenerateDefaultStringLiteralTypeProtocol(), true);
-        RegularExpressionLiteralTypeProtocol = (GenerateDefaultRegularExpressionLiteralTypeProtocol(), true);
-        BooleanLiteralTypeProtocol = (GenerateDefaultBooleanLiteralTypeProtocol(), true);
-        NilLiteralTypeProtocol = (GenerateDefaultNilLiteralTypeProtocol(), true);
-        UnicodeScalarLiteralTypeProtocol = (GenerateDefaultUnicodeScalarLiteralTypeProtocol(), true);
-        GraphemeClusterLiteralTypeProtocol = (GenerateDefaultGraphemeClusterLiteralTypeProtocol(), true);
-        
-        
+        SwiftVersion placeholderVersion = SwiftVersion.FromVersion(new Version(1, 0));
+        IntegerPointLiteralTypeProtocol = (GenerateDefaultIntegerLiteralTypeProtocol(placeholderVersion), true);
+        FloatingPointLiteralTypeProtocol = (GenerateDefaultFloatingPointLiteralTypeProtocol(placeholderVersion), true);
+        StringLiteralTypeProtocol = (GenerateDefaultStringLiteralTypeProtocol(placeholderVersion), true);
+        RegularExpressionLiteralTypeProtocol = (GenerateDefaultRegularExpressionLiteralTypeProtocol(placeholderVersion), true);
+        BooleanLiteralTypeProtocol = (GenerateDefaultBooleanLiteralTypeProtocol(placeholderVersion), true);
+        NilLiteralTypeProtocol = (GenerateDefaultNilLiteralTypeProtocol(placeholderVersion), true);
+        UnicodeScalarLiteralTypeProtocol = (GenerateDefaultUnicodeScalarLiteralTypeProtocol(placeholderVersion), true);
+        GraphemeClusterLiteralTypeProtocol = (GenerateDefaultGraphemeClusterLiteralTypeProtocol(placeholderVersion), true);
     }
     
     public void SetDefaultIntegerLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultFloatingPointLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultStringLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultRegularExpressionLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultBooleanLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultNilLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultUnicodeEscapeLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDefaultGraphemeClusterLiteralType(IReadOnlyType type)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultIntegerLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultFloatingPointLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultStringLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultRegularExpressionLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultBooleanLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultNilLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultUnicodeEscapeLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ResetDefaultGraphemeClusterLiteralType()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
     
-    public IReadOnlyProtocol GenerateDefaultIntegerLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultIntegerLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultFloatingPointLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultFloatingPointLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultStringLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultStringLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultRegularExpressionLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultRegularExpressionLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultBooleanLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultBooleanLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultNilLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultNilLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public IReadOnlyProtocol GenerateDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
+    public IProtocolDeclaration GenerateDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlySwiftVersion swiftVersion)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultIntegerLiteralTypeProtocol(IReadOnlyProtocol integerLiteralProtocol)
+    public bool ConformsToDefaultIntegerLiteralTypeProtocol(IReadOnlyProtocolDeclaration integerLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultFloatingPointLiteralTypeProtocol(IReadOnlyProtocol floatingPointLiteralProtocol)
+    public bool ConformsToDefaultFloatingPointLiteralTypeProtocol(IReadOnlyProtocolDeclaration floatingPointLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultStringLiteralTypeProtocol(IReadOnlyProtocol stringLiteralProtocol)
+    public bool ConformsToDefaultStringLiteralTypeProtocol(IReadOnlyProtocolDeclaration stringLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultRegularExpressionLiteralTypeProtocol(IReadOnlyProtocol regularExpressionLiteralProtocol)
+    public bool ConformsToDefaultRegularExpressionLiteralTypeProtocol(IReadOnlyProtocolDeclaration regularExpressionLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultBooleanLiteralTypeProtocol(IReadOnlyProtocol booleanLiteralProtocol)
+    public bool ConformsToDefaultBooleanLiteralTypeProtocol(IReadOnlyProtocolDeclaration booleanLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultNilLiteralTypeProtocol(IReadOnlyProtocol nilLiteralProtocol)
+    public bool ConformsToDefaultNilLiteralTypeProtocol(IReadOnlyProtocolDeclaration nilLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlyProtocol unicodeScalarLiteralProtocol)
+    public bool ConformsToDefaultUnicodeScalarLiteralTypeProtocol(IReadOnlyProtocolDeclaration unicodeScalarLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public bool ConformsToDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlyProtocol graphemeClusterLiteralProtocol)
+    public bool ConformsToDefaultGraphemeClusterLiteralTypeProtocol(IReadOnlyProtocolDeclaration graphemeClusterLiteralProtocol)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
+    }
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultIntegerLiteralType => DefaultIntegerLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultFloatingPointLiteralType => DefaultFloatingPointLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultStringLiteralType => DefaultStringLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultRegularExpressionLiteralType => DefaultRegularExpressionLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultBooleanLiteralType => DefaultBooleanLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultNilLiteralType => DefaultNilLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultUnicodeScalarLiteralType => DefaultUnicodeScalarLiteralType;
+
+    (IReadOnlyType type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.DefaultGraphemeClusterLiteralType => DefaultGraphemeClusterLiteralType;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.IntegerPointLiteralTypeProtocol => IntegerPointLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.FloatingPointLiteralTypeProtocol => FloatingPointLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.StringLiteralTypeProtocol => StringLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.RegularExpressionLiteralTypeProtocol => RegularExpressionLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.BooleanLiteralTypeProtocol => BooleanLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.NilLiteralTypeProtocol => NilLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.UnicodeScalarLiteralTypeProtocol => UnicodeScalarLiteralTypeProtocol;
+
+    (IReadOnlyProtocolDeclaration type, bool isFallback) IReadOnlyPrimitiveLiteralTypeResolutionContext.GraphemeClusterLiteralTypeProtocol => GraphemeClusterLiteralTypeProtocol;
+
+    public void SetDefaultIntegerLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultFloatingPointLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultStringLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultRegularExpressionLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultBooleanLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultNilLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultUnicodeEscapeLiteralType(IType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultGraphemeClusterLiteralType(IType type)
+    {
+        throw new NotImplementedException();
     }
 }

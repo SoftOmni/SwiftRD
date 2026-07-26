@@ -1,8 +1,8 @@
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.Base;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Implementations.InternalNode;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Implementations.LeafNode;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces;
-using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.Base;
 
 namespace SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Implementations.Base;
 

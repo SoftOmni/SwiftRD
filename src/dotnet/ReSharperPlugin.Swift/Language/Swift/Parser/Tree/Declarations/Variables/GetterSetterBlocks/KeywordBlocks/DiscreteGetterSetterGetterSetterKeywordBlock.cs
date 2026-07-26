@@ -1,26 +1,27 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks.Clauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.KeywordBlocks.Clauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks;
 
 public class DiscreteGetterSetterGetterSetterKeywordBlock : SwiftCompositeNode,
-    IDiscreteGetterSetterGetterSetterBlock
+    IDiscreteGetterSetterGetterSetterKeywordBlock
 {
     public LeftCurlyBrace GetterSetterClauseStart { get; }
 
-    public IGetterClause GetterClause { get; }
+    public IGetterKeywordClause GetterClause { get; }
 
-    public ISetterClause? SetterClause { get; }
+    public ISetterKeywordClause? SetterClause { get; }
 
     public RightCurlyBrace GetterSetterClauseEnd { get; }
 
     internal DiscreteGetterSetterGetterSetterKeywordBlock(IEditableBuffer buffer,
         IEnumerable<ISwiftNode<SwiftCompositeNode>> children, LeftCurlyBrace getterSetterClauseStart,
-        IGetterClause getterClause, ISetterClause? setterClause, RightCurlyBrace getterSetterClauseEnd)
+        IGetterKeywordClause getterClause, ISetterKeywordClause? setterClause, RightCurlyBrace getterSetterClauseEnd)
         : base(buffer, children)
     {
         GetterSetterClauseStart = getterSetterClauseStart;
@@ -29,9 +30,9 @@ public class DiscreteGetterSetterGetterSetterKeywordBlock : SwiftCompositeNode,
         GetterSetterClauseEnd = getterSetterClauseEnd;
     }
 
-    IReadOnlyGetterClause IReadOnlyDiscreteGetterSetterGetterSetterBlock.GetterClause => GetterClause;
+    IReadOnlyGetterKeywordClause IReadOnlyDiscreteGetterSetterGetterSetterKeywordBlock.GetterClause => GetterClause;
 
-    IReadOnlySetterClause? IReadOnlyDiscreteGetterSetterGetterSetterBlock.SetterClause => SetterClause;
+    IReadOnlySetterKeywordClause? IReadOnlyDiscreteGetterSetterGetterSetterKeywordBlock.SetterClause => SetterClause;
 
     public bool IsGetterFirst()
     {
@@ -45,26 +46,26 @@ public class DiscreteGetterSetterGetterSetterKeywordBlock : SwiftCompositeNode,
 
     public bool CanSwapPositions()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SwapPositions()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public void ChangeGetterClause(IGetterClause newGetterClause)
+    public void ChangeGetterClause(IGetterKeywordClause newGetterClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public void SetSetterClauseTo(ISetterClause? setterClause)
+    public void SetSetterClauseTo(ISetterKeywordClause? setterClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveSetterClause()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -3,9 +3,8 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifi
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.
     SetModifiers.Modifiers;
 
-public interface IReadOnlyFilePrivateAccessLevelModifier
+public interface IReadOnlyFilePrivateSetAccessLevelModifier
     : IReadOnlySetAccessLevelModifier
 {
-    new IFilePrivateAccessLevelModifier AccessLevelModifier { get; }
+    new IReadOnlyFilePrivateAccessLevelModifier AccessLevelModifier { get; }
 }
-

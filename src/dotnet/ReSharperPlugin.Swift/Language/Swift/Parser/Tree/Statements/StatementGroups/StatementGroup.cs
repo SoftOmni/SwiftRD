@@ -3,19 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Comments;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
-using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
+
+//TODO: refactor
 public class StatementGroup : SwiftCompositeNode, IStatementGroup
 {
-    private readonly List<IReadOnlyStatement> _statements = [];
+    private readonly List<IStatement> _statements = [];
 
 
     // TODO: write the full API for statement group and then decide on the indexes data structure
@@ -23,12 +20,35 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
     private readonly Dictionary<IReadOnlyStatement, int> _statementsIndexes = [];
 
     internal StatementGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        List<IReadOnlyStatement> statements)
+        List<IStatement> statements)
         : base(buffer, children)
     {
         _statements = statements;
     }
 
+
+    IReadOnlyList<IStatement> IStatementGroup.Statements => _statements;
+
+    public bool IsEmpty => _statements.Count == 0;
+    
+    public bool HasStatements => _statements.Count > 0;
+
+    IStatement IList<IStatement>.this[int index]
+    {
+        get => _statements[index];
+        set => throw new NotImplementedException();
+    }
+
+    IStatement IStatementGroup.this[int index]
+    {
+        get => _statements[index];
+        set => throw new NotImplementedException();
+    }
+
+    IEnumerator<IStatement> IEnumerable<IStatement>.GetEnumerator()
+    {
+        return _statements.GetEnumerator();
+    }
 
     private void SetupChildren()
     {
@@ -37,7 +57,7 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
         {
             if (node is IReadOnlyStatement statement)
             {
-                _statements.Add(statement);
+                // _statements.Add(statement);
             }
         }
     }
@@ -56,9 +76,11 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
 
     public void InsertStatement(int index, IReadOnlyStatement statement)
     {
-        CheckStatementIndexInclusive(index);
-        InsertStatementCore(index, statement);
+        // CheckStatementIndexInclusive(index);
+        // InsertStatementCore(index, statement); TODO: address
     }
+    
+    /*
 
     public void InsertStatements(int index, IEnumerable<IReadOnlyStatement> statements)
     {
@@ -946,7 +968,7 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
         int childIndexToInsertAt = index == _statements.Count ? Children.Count : _statements[index].ParentIndex;
         _statements.Insert(index, statement);
         AttachChild(childIndexToInsertAt, statement);
-    }
+    }*/
 
     public void SetStatement(int index, IReadOnlyStatement statement)
     {
@@ -1116,11 +1138,6 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
         return false;
     }
 
-    public void CopyTo(IReadOnlyStatement[] array, int arrayIndex)
-    {
-        _statements.CopyTo(array, arrayIndex);
-    }
-
     public void RemoveWhere(Func<IReadOnlyStatement, bool> predicate)
     {
         int index = 0;
@@ -1224,6 +1241,7 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
         set => SetStatement(index, value);
     }
 
+    /*
     private void CheckStatementIndexInclusive(int index)
     {
         if (index < 0 || index >= Children.Count)
@@ -1296,7 +1314,7 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
             children.Add(statement);
             lexer.Advance();
         }
-    }
+    }*/
 
     private void AttachChildren(int index, IEnumerable<IStatement> statements, Action<ISwiftNode<SwiftCompositeNode>> onAttachment)
     {
@@ -1311,5 +1329,40 @@ public class StatementGroup : SwiftCompositeNode, IStatementGroup
     private void AppendChildren(IEnumerable<IStatement> statements, Action<ISwiftNode<SwiftCompositeNode>> onAttachment)
     {
         
+    }
+
+    public void Add(IStatement item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool Contains(IStatement item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void CopyTo(IStatement[] array, int arrayIndex)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool Remove(IStatement item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int IndexOf(IStatement item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Insert(int index, IStatement item)
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator<IStatement> IStatementGroup.GetEnumerator()
+    {
+        throw new NotImplementedException();
     }
 }

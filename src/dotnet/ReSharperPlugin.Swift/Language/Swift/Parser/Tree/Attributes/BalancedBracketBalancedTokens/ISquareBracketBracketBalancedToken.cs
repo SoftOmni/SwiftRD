@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes.BalancedBracketBalancedTokens;
 
-public interface ISquareBracketBracketBalancedToken
-{
+public interface ISquareBracketBracketBalancedToken :
+    IReadOnlySquareBracketBracketBalancedToken,
+    IBracketBalancedToken;
     
-}

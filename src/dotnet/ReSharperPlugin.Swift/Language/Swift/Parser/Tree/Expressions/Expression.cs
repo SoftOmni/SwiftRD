@@ -29,6 +29,11 @@ public class Expression : SwiftCompositeNode, IExpression
     {
         AccompanyingTryExpression = accompanyingTryExpression;
         AwaitExpression = awaitExpression;
+
+        PrefixExpression = prefixExpression;
+        InfixExpressionGroup = infixExpressionGroup;
+        
+        ReturnType = UnknownType.Instance;
     }
 
     public virtual bool CanHaveMultipleOnOneLineSeparatedBySemicolons => true;

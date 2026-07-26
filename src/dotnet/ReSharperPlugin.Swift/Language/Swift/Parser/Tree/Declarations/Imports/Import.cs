@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Imports;
 
-public class Import : SwiftLeafNode, ISwiftKeywordNode
+public class Import : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Import>
 {
     public const string Keyword = "import";
     
-    public ImportDeclaration? ImportDeclaration { get; internal set; }
+    public Import()
+        : base(new EditableBuffer(Keyword))
+    { }
     
     internal Import(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Import)
+        : base(buffer)
     { }
 
-    internal Import(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Import)
-    {
-        if (parent is ImportDeclaration importDeclaration)
-        {
-            ImportDeclaration = importDeclaration;
-        }
-    }
-
-    internal Import(ImportDeclaration importDeclaration, IEditableBuffer buffer)
-        : base(importDeclaration, buffer, SwiftNodeTypes.Import)
-    {
-        ImportDeclaration = importDeclaration;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Import;
 
     public string KeywordValue => Keyword;
 
     public static Import Create()
     {
         return new Import(new EditableBuffer(Keyword));
-    }
-    
-    public static Import Create(ImportDeclaration importDeclaration)
-    {
-        return new Import(importDeclaration, new EditableBuffer(Keyword));
-    }
-    
-    public static Import CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Import(parent, new EditableBuffer(Keyword));
     }
 }

@@ -2,7 +2,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.Destructuring.Identif
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.PatternMatching.Optionals;
 
-public interface IOptionalPattern : IReadOnlyOptionalPattern
+public interface IOptionalPattern : IReadOnlyOptionalPattern, IPatternMatchingPattern
 {
     new IIdentifierPattern IdentifierPattern { get; }
 

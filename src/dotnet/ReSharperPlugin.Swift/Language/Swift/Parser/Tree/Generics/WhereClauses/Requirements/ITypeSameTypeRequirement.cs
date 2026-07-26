@@ -1,6 +1,12 @@
-namespace ReSharperPlugin.Swift.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
-public interface ITypeSameTypeRequirement
+namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+
+public interface ITypeSameTypeRequirement :
+    IReadOnlyTypeSameTypeRequirement,
+    ISameTypeRequirement
 {
-    
+    new IType SameTypeTargetType { get; }
+
+    void ChangeSameTypeTargetType(IType newSameTypeTargetType);
 }

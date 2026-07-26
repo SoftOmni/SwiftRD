@@ -1,6 +1,4 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions;
 
-public interface IUnavailableAvailabilityCondition
-{
-    
-}
+public interface IUnavailableAvailabilityCondition : IReadOnlyUnavailableAvailabilityCondition,
+    IAvailabilityCondition;

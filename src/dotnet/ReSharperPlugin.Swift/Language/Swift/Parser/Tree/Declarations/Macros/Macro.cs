@@ -7,15 +7,15 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Macros;
 
-public class MacroKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<MacroKeyword>
+public class Macro : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Macro>
 {
     public const string Keyword = "macro";
     
-    public MacroKeyword()
+    public Macro()
         : base(new EditableBuffer(Keyword))
     { }
 
-    internal MacroKeyword(IEditableBuffer buffer) 
+    internal Macro(IEditableBuffer buffer) 
         : base(buffer)
     { }
 
@@ -23,8 +23,8 @@ public class MacroKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode
 
     public string KeywordValue => Keyword;
 
-    public static MacroKeyword Create()
+    public static Macro Create()
     {
-        return new MacroKeyword(new EditableBuffer(Keyword));
+        return new Macro(new EditableBuffer(Keyword));
     }
 }

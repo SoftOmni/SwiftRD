@@ -1,11 +1,13 @@
 using System.Numerics;
 using ExtendedNumerics;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.RawValue;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals.Formatting;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals;
 
-public interface IReadOnlyFloatingPointLiteral : IReadOnlyLiteral<BigDecimal>
+public interface IReadOnlyFloatingPointLiteral : IReadOnlyLiteral<BigDecimal>,
+    IReadOnlyRawValueStyleEnumCaseApprovedLiteral
 {
     enum Base
     {

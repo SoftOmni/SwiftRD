@@ -7,7 +7,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
 
-public class AssignmentPrecedenceGroup : SwiftCompositeNode, IAssignmentPrecedenceGroup
+public class PrecedenceAssignmentGroup : SwiftCompositeNode, IPrecedenceAssignmentGroup
 {
     public Assignment AssignmentKeyword { get; }
 
@@ -15,7 +15,7 @@ public class AssignmentPrecedenceGroup : SwiftCompositeNode, IAssignmentPreceden
 
     public ILiteral AssignmentValue { get; }
 
-    internal AssignmentPrecedenceGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+    internal PrecedenceAssignmentGroup(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
         Assignment assignmentKeyword, Colon assignmentValueIntroducer, ILiteral assignmentValue)
         : base(buffer, children)
     {
@@ -24,7 +24,7 @@ public class AssignmentPrecedenceGroup : SwiftCompositeNode, IAssignmentPreceden
         AssignmentValue = assignmentValue;
     }
 
-    IReadOnlyLiteral IReadOnlyAssignmentPrecedenceGroup.AssignmentValue => AssignmentValue;
+    IReadOnlyLiteral IReadOnlyPrecedenceAssignmentGroup.AssignmentValue => AssignmentValue;
 
     public void ChangeAssignmentValue(ILiteral newAssignmentValue)
     {

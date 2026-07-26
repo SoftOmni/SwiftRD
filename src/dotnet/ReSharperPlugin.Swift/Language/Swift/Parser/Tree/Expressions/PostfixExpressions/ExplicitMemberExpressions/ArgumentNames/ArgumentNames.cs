@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -33,7 +34,7 @@ public class ArgumentNames : SwiftCompositeNode, IArgumentNames
     public new IIdentifier this[int index]
     {
         get => _argumentNames[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyIdentifier IReadOnlyList<IReadOnlyIdentifier>.this[int index] => _argumentNames[index];
@@ -75,26 +76,26 @@ public class ArgumentNames : SwiftCompositeNode, IArgumentNames
 
     public void Add(IIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

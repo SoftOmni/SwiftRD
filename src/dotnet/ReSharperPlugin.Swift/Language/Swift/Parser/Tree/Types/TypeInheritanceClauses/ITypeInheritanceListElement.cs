@@ -1,6 +1,7 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
+using IOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IOperator;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 

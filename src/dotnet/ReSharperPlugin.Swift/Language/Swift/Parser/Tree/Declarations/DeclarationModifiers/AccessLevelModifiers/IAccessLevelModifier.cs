@@ -1,6 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
 
-public interface IAccessLevelModifier
-{
-    
-}
+public interface IAccessLevelModifier : IReadOnlyAccessLevelModifier, IDeclarationModifier;

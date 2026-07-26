@@ -1,6 +1,10 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
 
-public interface IReadOnlyGenericSwitchCase
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.GenericSwitchCases;
+
+public interface IReadOnlyGenericSwitchCase : IReadOnlySwitchCase
 {
-    IReadOnlyCaseLabel
+    IReadOnlyCaseLabel CaseLabel { get; }
+    
+    IReadOnlyStatementGroup Statements { get; }
 }

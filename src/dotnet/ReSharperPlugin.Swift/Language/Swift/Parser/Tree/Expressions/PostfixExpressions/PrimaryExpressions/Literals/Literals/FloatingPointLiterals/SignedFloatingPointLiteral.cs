@@ -2,13 +2,16 @@ using System;
 using System.Numerics;
 using ExtendedNumerics;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals.Formatting;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 using SoftOmni.SwiftRd.Language.Swift.Semantics.PrimitiveLiterals;
 using SoftOmni.SwiftRd.Technology;
+using IOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IOperator;
+using IReadOnlyOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IReadOnlyOperator;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals;
 
@@ -111,7 +114,7 @@ public class SignedFloatingPointLiteral : SwiftCompositeNode, ISignedFloatingPoi
         UnderlyingBuffer.Insert(0, "-");
         SubEditableBuffer subEditableBuffer = new(UnderlyingBuffer, 0, 1);
 
-        Operator = new Operator(subEditableBuffer);
+        Operator = new PostfixOperator(subEditableBuffer);
         CurrentSign = IReadOnlyFloatingPointLiteral.Sign.Negative;
     }
 

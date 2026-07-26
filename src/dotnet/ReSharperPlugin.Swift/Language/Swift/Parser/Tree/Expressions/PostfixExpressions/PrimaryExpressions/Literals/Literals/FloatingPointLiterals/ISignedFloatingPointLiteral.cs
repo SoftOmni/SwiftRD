@@ -1,4 +1,5 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using IOperator = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators.Usages.IOperator;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.FloatingPointLiterals;
 

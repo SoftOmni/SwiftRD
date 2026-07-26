@@ -1,20 +1,20 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks.Clauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.KeywordBlocks.Clauses;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks;
 
 public interface IDiscreteGetterSetterGetterSetterKeywordBlock : 
-    IReadOnlyDiscreteGetterSetterGetterSetterBlock,
+    IReadOnlyDiscreteGetterSetterGetterSetterKeywordBlock,
     IGetterSetterBlock
 {
-    new IGetterClause GetterClause { get; }
+    new IGetterKeywordClause GetterClause { get; }
     
-    new ISetterClause? SetterClause { get; }
+    new ISetterKeywordClause? SetterClause { get; }
 
     void SwapPositions();
 
-    void ChangeGetterClause(IGetterClause newGetterClause);
+    void ChangeGetterClause(IGetterKeywordClause newGetterClause);
 
-    void SetSetterClauseTo(ISetterClause? setterClause);
+    void SetSetterClauseTo(ISetterKeywordClause? setterClause);
 
     void RemoveSetterClause();
 }

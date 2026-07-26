@@ -1,7 +1,7 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.WhereClauses;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses.CatchPatterns;
 
 public interface ICatchPattern : IReadOnlyCatchPattern
 {

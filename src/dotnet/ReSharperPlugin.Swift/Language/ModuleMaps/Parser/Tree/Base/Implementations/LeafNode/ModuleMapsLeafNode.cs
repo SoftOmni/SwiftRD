@@ -1,3 +1,4 @@
+using System;
 using JetBrains.ReSharper.Psi;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.LeafNodes;
@@ -25,21 +26,21 @@ public abstract class ModuleMapsLeafNode<TSelf> :
 
     IModuleMapsNode<TSelf> IModuleMapsLeafNode<TSelf>.CloneAsAttachedTo(TSelf newParent, int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IModuleMapsNode<TSelf> IModuleMapsLeafNode<TSelf>.CloneAsDetached()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public TSelf CloneAsDetached()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public TSelf CloneAsAttachedTo(TSelf newParent, int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

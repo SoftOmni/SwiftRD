@@ -1,6 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases;
 
-public interface ISwitchCase
-{
-    
-}
+public interface ISwitchCase : IReadOnlySwitchCase;

@@ -1,66 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.GenericWhereClauseClauses;
 
-public class Where : SwiftLeafNode, ISwiftKeywordNode
+public class Where : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Where>
 {
     public const string Keyword = "where";
-    
-    public GenericWhereClause? GenericWhereClause { get; internal set; }
-    
-    public WhereClause? WhereClause { get; internal set; } 
 
-    internal Where(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Where)
+    public Where()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Where(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Where)
-    {
-        if (parent is GenericWhereClause genericWhereClause)
-        {
-            GenericWhereClause = genericWhereClause;
-        }
-        else if (parent is WhereClause whereClause)
-        {
-            WhereClause = whereClause;
-        }
-    }
+    internal Where(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal Where(GenericWhereClause parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Where)
-    {
-        GenericWhereClause = parent;
-    }
-    
-    internal Where(WhereClause parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Where)
-    {
-        WhereClause = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Where;
 
     public string KeywordValue => Keyword;
 
     public static Where Create()
     {
         return new Where(new EditableBuffer(Keyword));
-    }
-
-    public static Where Create(GenericWhereClause genericWhereClause)
-    {
-        return new Where(genericWhereClause, new EditableBuffer(Keyword));
-    }
-    
-    public static Where Create(WhereClause whereClause)
-    {
-        return new Where(whereClause, new EditableBuffer(Keyword));
-    }
-
-    public static Where CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Where(parent, new EditableBuffer(Keyword));
     }
 }

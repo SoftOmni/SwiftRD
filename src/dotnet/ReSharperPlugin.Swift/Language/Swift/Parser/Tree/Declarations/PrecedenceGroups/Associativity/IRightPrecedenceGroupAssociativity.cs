@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
 
-public interface IRightPrecedenceGroupAssociativity
-{
+public interface IRightPrecedenceGroupAssociativity :
+    IReadOnlyRightPrecedenceGroupAssociativity,
+    IPrecedenceGroupAssociativity;
     
-}

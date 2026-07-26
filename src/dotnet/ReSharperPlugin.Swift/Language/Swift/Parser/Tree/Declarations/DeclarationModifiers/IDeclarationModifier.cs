@@ -1,3 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers;
 
-public interface IDeclarationModifier;
+public interface IDeclarationModifier : IReadOnlyDeclarationModifier;

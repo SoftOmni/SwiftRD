@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -41,7 +42,7 @@ public class CaptureList : SwiftCompositeNode, ICaptureList
     public new ICaptureListItem this[int index]
     {
         get => _items[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyCaptureListItem IReadOnlyList<IReadOnlyCaptureListItem>.this[int index] => _items[index];
@@ -80,26 +81,26 @@ public class CaptureList : SwiftCompositeNode, ICaptureList
 
     public void Add(ICaptureListItem item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(ICaptureListItem item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, ICaptureListItem item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

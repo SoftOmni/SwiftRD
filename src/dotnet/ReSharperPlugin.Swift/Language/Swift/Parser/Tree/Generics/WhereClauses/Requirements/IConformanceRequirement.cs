@@ -1,6 +1,10 @@
-namespace ReSharperPlugin.Swift.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
-public interface IConformanceRequirement
+namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+
+public interface IConformanceRequirement : IReadOnlyConformanceRequirement, IRequirement
 {
-    
+    new ITypeIdentifier TargetType { get; }
+
+    void ChangeTargetType(ITypeIdentifier newTargetType);
 }

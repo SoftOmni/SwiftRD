@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
 
 public interface IClassMembers : IReadOnlyClassMembers,
     IList<IClassMember>

@@ -3,4 +3,4 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Whitespace;
 
-public interface IWhitespaceNode : ISwiftNode<SwiftCompositeNode>;
+public interface IWhitespaceNode : IReadOnlyWhitespaceNode;

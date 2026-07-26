@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -28,7 +29,7 @@ public class KeyPathPostfixesPathComponents : SwiftCompositeNode, IKeyPathPostfi
     public new IKeyPathPostfix this[int index]
     {
         get => _keyPathPostfixes[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyKeyPathPostfix IReadOnlyKeyPathPostfixesPathComponents.this[int index]
@@ -69,26 +70,26 @@ public class KeyPathPostfixesPathComponents : SwiftCompositeNode, IKeyPathPostfi
 
     public void Add(IKeyPathPostfix item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IKeyPathPostfix item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IKeyPathPostfix item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

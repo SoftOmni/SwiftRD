@@ -5,6 +5,6 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 public class ActorKeywordToken : DeclarationUsableKeywordToken<Actor>
 {
     internal ActorKeywordToken()
-        : base(ActorKeyword.Keyword, SwiftTokens.ActorId, SwiftTokens.ActorIndex)
+        : base(Actor.Keyword, SwiftTokens.ActorId, SwiftTokens.ActorIndex)
     { }
 }

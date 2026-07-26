@@ -6,7 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actorures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
 public interface IActorDeclaration : IReadOnlyActorDeclaration, 
     IDeclaration,

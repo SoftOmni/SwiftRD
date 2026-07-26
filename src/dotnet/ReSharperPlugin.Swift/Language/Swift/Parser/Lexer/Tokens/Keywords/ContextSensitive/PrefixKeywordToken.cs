@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class PrefixKeywordToken : ContextSensitiveKeywordToken
+public class PrefixKeywordToken : ContextSensitiveKeywordToken<Prefix>
 {
-    public PrefixKeywordToken()
-        : base("prefix", SwiftTokens.PrefixId, SwiftTokens.PrefixIndex)
+    internal PrefixKeywordToken()
+        : base(Prefix.Keyword, SwiftTokens.PrefixId, SwiftTokens.PrefixIndex)
     { }
 }

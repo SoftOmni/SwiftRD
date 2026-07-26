@@ -1,6 +1,9 @@
-namespace ReSharperPlugin.Swift.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.ProtocolCompositionType;
 
-public interface IReadOnlyProtocolCompositionTypeConformanceRequirement
+namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+
+public interface IReadOnlyProtocolCompositionTypeConformanceRequirement :
+    IReadOnlyConformanceRequirement
 {
-    
+    IReadOnlyProtocolCompositionType ProtocolCompositionType { get; }
 }

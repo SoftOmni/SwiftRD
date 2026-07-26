@@ -1,8 +1,6 @@
 using System;
-using System.IdentityModel.Protocols.WSTrust;
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
-using JetBrains.Lifetimes;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CodeStyle;

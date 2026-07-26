@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -24,6 +25,6 @@ public class SimpleClosureSignature : SwiftCompositeNode, ISimpleClosureSignatur
 
     public void ChangeCaptureList(ICaptureList newCaptureList)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

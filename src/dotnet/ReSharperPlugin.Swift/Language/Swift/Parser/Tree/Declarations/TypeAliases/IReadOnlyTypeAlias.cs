@@ -1,6 +1,4 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ArgumentClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
@@ -9,20 +7,19 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
 
-public interface IReadOnlyTypeAlias : ISwiftNode<SwiftCompositeNode>,
-    IReadOnlyDeclaration
+public interface IReadOnlyTypeAlias : IReadOnlyDeclaration
 {
-    IReadOnlyAttributeGroup? AttributeGroup { get; }
+    IReadOnlyAttributeGroup? Attributes { get; }
     
     IReadOnlyAccessLevelModifier? AccessLevelModifier { get; }
     
-    TypeAlias? TypeAlias { get; }
+    TypeAliasKeyword Keyword { get; }
     
-    IReadOnlyIdentifier? Name { get; }
+    IReadOnlyIdentifier Name { get; }
     
     IReadOnlyGenericArgumentClause? GenericArgumentClause { get; }
     
-    Equal? AssignmentOperator { get; }
+    Equal AssignmentOperator { get; }
     
-    IReadOnlyType? Type { get; }
+    IReadOnlyType Type { get; }
 }

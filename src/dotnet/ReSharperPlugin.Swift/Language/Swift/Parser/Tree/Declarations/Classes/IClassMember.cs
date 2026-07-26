@@ -1,3 +1,3 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
 
 public interface IClassMember : IReadOnlyClassMember;

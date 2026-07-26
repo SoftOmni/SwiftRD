@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class ReservedElseKeywordToken : ReservedKeywordToken
+public class ElseDirectiveKeywordToken : ReservedKeywordToken<ElseDirective>
 {
-    public ReservedElseKeywordToken()
-        : base("#else", SwiftTokens.ReservedElseId, SwiftTokens.ReservedElseIndex)
+    internal ElseDirectiveKeywordToken()
+        : base(ElseDirective.Keyword, SwiftTokens.ReservedElseId, SwiftTokens.ReservedElseIndex)
     { }
 }

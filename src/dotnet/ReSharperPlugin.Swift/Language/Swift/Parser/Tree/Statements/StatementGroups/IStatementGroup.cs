@@ -4,7 +4,9 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups
 
 public interface IStatementGroup : IReadOnlyStatementGroup, IStatement, IList<IStatement>
 {
-    new IStatement this[int index] { get; }
+    new IReadOnlyList<IStatement> Statements { get; }
+    
+    new IStatement this[int index] { get; set; }
     
     new int Count { get; }
 

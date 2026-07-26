@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -52,7 +53,7 @@ public class SwitchExpression : SwiftCompositeNode, ISwitchExpression
     public new ISwitchExpressionCase this[int index]
     {
         get => _cases[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlySwitchExpressionCase IReadOnlyList<IReadOnlySwitchExpressionCase>.this[int index]
@@ -90,26 +91,26 @@ public class SwitchExpression : SwiftCompositeNode, ISwitchExpression
 
     public void Add(ISwitchExpressionCase item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(ISwitchExpressionCase item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, ISwitchExpressionCase item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

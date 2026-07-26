@@ -2,6 +2,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Case
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.WhereClauses;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.ForInStatements;
 

@@ -4,7 +4,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.Variables;
 
-public interface IUnannotedWillSetDidSetVariable : IReadOnlyUnannotatedWillSetVariable, IVariable
+public interface IUnannotatedWillSetDidSetVariable : IReadOnlyUnannotatedWillSetVariable, IVariable
 {
     new IIdentifier Name { get; }
     

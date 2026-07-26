@@ -1,6 +1,6 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks;
 
-public interface IReadOnlyGetterSetterBlock
-{
-    
-}
+public interface IReadOnlyGetterSetterBlock : ISwiftNode<SwiftCompositeNode>;

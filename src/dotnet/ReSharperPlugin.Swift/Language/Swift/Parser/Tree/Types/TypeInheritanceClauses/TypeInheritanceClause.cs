@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -36,7 +37,7 @@ public class TypeInheritanceClause : SwiftCompositeNode, ITypeInheritanceClause
     public new ITypeInheritanceListElement this[int index]
     {
         get => _elements[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyTypeInheritanceListElement IReadOnlyTypeInheritanceClause.this[int index] => _elements[index];
@@ -66,12 +67,12 @@ public class TypeInheritanceClause : SwiftCompositeNode, ITypeInheritanceClause
 
     public void Add(ITypeInheritanceListElement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Contains(ITypeInheritanceListElement item)
@@ -86,7 +87,7 @@ public class TypeInheritanceClause : SwiftCompositeNode, ITypeInheritanceClause
 
     public bool Remove(ITypeInheritanceListElement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public int IndexOf(ITypeInheritanceListElement item)
@@ -96,11 +97,11 @@ public class TypeInheritanceClause : SwiftCompositeNode, ITypeInheritanceClause
 
     public void Insert(int index, ITypeInheritanceListElement item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

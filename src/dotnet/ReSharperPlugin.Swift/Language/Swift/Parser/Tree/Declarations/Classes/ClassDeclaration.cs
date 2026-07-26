@@ -6,6 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
@@ -13,13 +14,15 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 using SoftOmni.SwiftRd.Resources.Icons.Language;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Class;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
 
 public class ClassDeclaration : SwiftCompositeNode, IClassDeclaration
 {
     public IAttributeGroup? Attributes { get; }
 
     public IAccessLevelModifier? AccessLevelModifier { get; }
+
+    public Final? FinalKeyword { get; }
 
     public Class ClassKeyword { get; }
 
@@ -38,7 +41,8 @@ public class ClassDeclaration : SwiftCompositeNode, IClassDeclaration
     public RightCurlyBrace MembersEnd { get; }
 
     internal ClassDeclaration(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
-        IAttributeGroup? attributes, IAccessLevelModifier? accessLevelModifier, Class classKeyword, IIdentifier name,
+        IAttributeGroup? attributes, IAccessLevelModifier? accessLevelModifier, Class classKeyword, Final? finalKeyword,
+        IIdentifier name,
         IGenericParameterClause? genericParameterClause, ITypeInheritanceClause? typeInheritanceClause,
         IGenericWhereClause? genericConstraintsClause, LeftCurlyBrace membersStart, IClassMembers members,
         RightCurlyBrace membersEnd)
@@ -54,6 +58,7 @@ public class ClassDeclaration : SwiftCompositeNode, IClassDeclaration
         MembersStart = membersStart;
         Members = members;
         MembersEnd = membersEnd;
+        FinalKeyword = finalKeyword;
 
         Icon = SwiftIcons.ConstantIcon;
     }

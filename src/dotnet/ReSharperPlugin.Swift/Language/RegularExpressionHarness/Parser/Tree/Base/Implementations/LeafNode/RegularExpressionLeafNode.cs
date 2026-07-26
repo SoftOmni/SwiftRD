@@ -1,10 +1,11 @@
+using System;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.LeafNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces.LeafNode;
 using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Interfaces.Root;
-using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.LeafNodes;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 
 namespace SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Implementations.LeafNode;
 
@@ -23,21 +24,21 @@ public abstract class RegularExpressionLeafNode<TSelf> :
 
     TSelf INode<IRegularExpressionNodeFamily<TSelf>, TSelf, TSelf, RegularExpressionLeafNode<TSelf>>.CloneAsDetached()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     TSelf INode<IRegularExpressionNodeFamily<TSelf>, TSelf, TSelf, RegularExpressionLeafNode<TSelf>>.CloneAsAttachedTo(TSelf newParent, int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IRegularExpressionNode<TSelf> IRegularExpressionLeafNode<TSelf>.CloneAsAttachedTo(TSelf newParent, int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IRegularExpressionNode<TSelf> IRegularExpressionLeafNode<TSelf>.CloneAsDetached()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

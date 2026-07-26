@@ -1,8 +1,8 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ExpressionsAndTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.BuiltinOperators;
@@ -515,15 +515,15 @@ public static class SwiftTokens
     public const string ReservedColorLiteralId = "KEYWORD_RESERVED_COLOR_LITERAL";
     public const int ReservedColorLiteralIndex = 5002;
 
-    public static readonly ReservedElseKeywordToken ReservedElseKeywordToken = new();
+    public static readonly ElseDirectiveKeywordToken ElseDirectiveKeywordToken = new();
     public const string ReservedElseId = "KEYWORD_RESERVED_ELSE";
     public const int ReservedElseIndex = 5003;
 
-    public static readonly ReservedElseIfKeywordToken ReservedElseIfKeywordToken = new();
+    public static readonly ElseIfDirectiveKeywordToken ElseIfDirectiveKeywordToken = new();
     public const string ReservedElseIfId = "KEYWORD_RESERVED_ELSE_IF";
     public const int ReservedElseIfIndex = 5004;
 
-    public static readonly ReservedEndIfKeywordToken ReservedEndIfKeywordToken = new();
+    public static readonly EndIfDirectiveKeywordToken EndIfDirectiveKeywordToken = new();
     public const string ReservedEndIfId = "KEYWORD_RESERVED_END_IF";
     public const int ReservedEndIfIndex = 5005;
 
@@ -531,7 +531,7 @@ public static class SwiftTokens
     public const string ReservedFileLiteralId = "KEYWORD_RESERVED_FILE_LITERAL";
     public const int ReservedFileLiteralIndex = 5006;
 
-    public static readonly ReservedIfKeywordToken ReservedIfKeywordToken = new();
+    public static readonly IfDirectiveKeywordToken IfDirectiveKeywordToken = new();
     public const string ReservedIfId = "KEYWORD_RESERVED_IF";
     public const int ReservedIfIndex = 5007;
 
@@ -599,121 +599,133 @@ public static class SwiftTokens
 
     #region ContextSensitiveKeywords
 
+    public static readonly AssignmentKeywordToken AssignmentKeywordToken = new();
+    public const string AssignmentId = "KEYWORD_HIGHER_THAN";
+    public const int AssignmentIndex = 7001;
+
     public static readonly AssociativityKeywordToken AssociativityKeywordToken = new();
     public const string AssociativityId = "KEYWORD_ASSOCIATIVITY";
-    public const int AssociativityIndex = 7001;
+    public const int AssociativityIndex = 7002;
 
     public static readonly AsyncKeywordToken AsyncKeywordToken = new();
     public const string AsyncId = "KEYWORD_ASYNC";
-    public const int AsyncIndex = 7002;
+    public const int AsyncIndex = 7003;
 
     public static readonly ConvenienceKeywordToken ConvenienceKeywordToken = new();
     public const string ConvenienceId = "KEYWORD_CONVENIENCE";
-    public const int ConvenienceIndex = 7003;
+    public const int ConvenienceIndex = 7004;
 
     public static readonly DidSetKeywordToken DidSetKeywordToken = new();
     public const string DidSetId = "KEYWORD_DID_SET";
-    public const int DidSetIndex = 7004;
+    public const int DidSetIndex = 7005;
 
     public static readonly DynamicKeywordToken DynamicKeywordToken = new();
     public const string DynamicId = "KEYWORD_DYNAMIC";
-    public const int DynamicIndex = 7005;
+    public const int DynamicIndex = 7006;
 
     public static readonly FinalKeywordToken FinalKeywordToken = new();
     public const string FinalId = "KEYWORD_FINAL";
-    public const int FinalIndex = 7006;
+    public const int FinalIndex = 7007;
 
     public static readonly GetKeywordToken GetKeywordToken = new();
     public const string GetId = "KEYWORD_GET";
-    public const int GetIndex = 7007;
+    public const int GetIndex = 7008;
+
+    public static readonly HigherThanKeywordToken HigherThanKeywordToken = new();
+    public const string HigherThanId = "KEYWORD_HIGHER_THAN";
+    public const int HigherThanIndex = 7009;
 
     public static readonly IndirectKeywordToken IndirectKeywordToken = new();
     public const string IndirectId = "KEYWORD_INDIRECT";
-    public const int IndirectIndex = 7008;
+    public const int IndirectIndex = 7010;
 
     public static readonly InfixKeywordToken InfixKeywordToken = new();
     public const string InfixId = "KEYWORD_INFIX";
-    public const int InfixIndex = 7009;
+    public const int InfixIndex = 7011;
 
     public static readonly LazyKeywordToken LazyKeywordToken = new();
     public const string LazyId = "KEYWORD_LAZY";
-    public const int LazyIndex = 7010;
+    public const int LazyIndex = 7012;
 
     public static readonly LeftKeywordToken LeftKeywordToken = new();
     public const string LeftId = "KEYWORD_LEFT";
-    public const int LeftIndex = 7011;
+    public const int LeftIndex = 7013;
+
+    public static readonly LowerThanKeywordToken LowerThanKeywordToken = new();
+    public const string LowerThanId = "KEYWORD_LOWER_THAN";
+    public const int LowerThanIndex = 7014;
 
     public static readonly MutatingKeywordToken MutatingKeywordToken = new();
     public const string MutatingId = "KEYWORD_MUTATING";
-    public const int MutatingIndex = 7012;
+    public const int MutatingIndex = 7015;
 
     public static readonly NoneKeywordToken NoneKeywordToken = new();
     public const string NoneId = "KEYWORD_NONE";
-    public const int NoneIndex = 7013;
+    public const int NoneIndex = 7016;
 
     public static readonly NonMutatingKeywordToken NonMutatingKeywordToken = new();
     public const string NonMutatingId = "KEYWORD_NON_MUTATING";
-    public const int NonMutatingIndex = 7014;
+    public const int NonMutatingIndex = 7017;
 
     public static readonly OptionalKeywordToken OptionalKeywordToken = new();
     public const string OptionalId = "KEYWORD_OPTIONAL";
-    public const int OptionalIndex = 7015;
+    public const int OptionalIndex = 7018;
 
     public static readonly OverrideKeywordToken OverrideKeywordToken = new();
     public const string OverrideId = "KEYWORD_OVERRIDE";
-    public const int OverrideIndex = 7016;
+    public const int OverrideIndex = 7019;
 
     public static readonly PackageKeywordToken PackageKeywordToken = new();
     public const string PackageId = "KEYWORD_PACKAGE";
-    public const int PackageIndex = 7017;
+    public const int PackageIndex = 7020;
 
     public static readonly PostfixKeywordToken PostfixKeywordToken = new();
     public const string PostfixId = "KEYWORD_POSTFIX";
-    public const int PostfixIndex = 7018;
+    public const int PostfixIndex = 7021;
 
     public static readonly PrecedenceKeywordToken PrecedenceKeywordToken = new();
     public const string PrecedenceId = "KEYWORD_PRECEDENCE";
-    public const int PrecedenceIndex = 7019;
+    public const int PrecedenceIndex = 7022;
 
     public static readonly PrefixKeywordToken PrefixKeywordToken = new();
     public const string PrefixId = "KEYWORD_PREFIX";
-    public const int PrefixIndex = 7020;
+    public const int PrefixIndex = 7023;
 
     public static readonly ProtocolUppercaseKeywordToken ProtocolUppercaseKeywordToken = new();
     public const string ProtocolUppercaseId = "KEYWORD_PROTOCOL_UPPERCASE";
-    public const int ProtocolUppercaseIndex = 7021;
+    public const int ProtocolUppercaseIndex = 7024;
 
     public static readonly RequiredKeywordToken RequiredKeywordToken = new();
     public const string RequiredId = "KEYWORD_REQUIRED";
-    public const int RequiredIndex = 7022;
+    public const int RequiredIndex = 7025;
 
     public static readonly RightKeywordToken RightKeywordToken = new();
     public const string RightId = "KEYWORD_RIGHT";
-    public const int RightIndex = 7023;
+    public const int RightIndex = 7026;
 
     public static readonly SetKeywordToken SetKeywordToken = new();
     public const string SetId = "KEYWORD_SET";
-    public const int SetIndex = 7024;
+    public const int SetIndex = 7027;
 
     public static readonly SomeKeywordToken SomeKeywordToken = new();
     public const string SomeId = "KEYWORD_SOME";
-    public const int SomeIndex = 7025;
+    public const int SomeIndex = 7028;
 
     public static readonly TypeKeywordToken TypeKeywordToken = new();
     public const string TypeId = "KEYWORD_TYPE";
-    public const int TypeIndex = 7026;
+    public const int TypeIndex = 7029;
 
     public static readonly UnownedKeywordToken UnownedKeywordToken = new();
     public const string UnownedId = "KEYWORD_UNOWNED";
-    public const int UnownedIndex = 7027;
+    public const int UnownedIndex = 7030;
 
     public static readonly WeakKeywordToken WeakKeywordToken = new();
     public const string WeakId = "KEYWORD_WEAK";
-    public const int WeakIndex = 7028;
+    public const int WeakIndex = 7031;
 
     public static readonly WillSetKeywordToken WillSetKeywordToken = new();
     public const string WillSetId = "KEYWORD_WILL_SET";
-    public const int WillSetIndex = 7029;
+    public const int WillSetIndex = 7032;
     
     #endregion
 

@@ -6,7 +6,7 @@ using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
 namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
 
-public interface INode<TFamily, TSelf, TInternalNode, TLeafNode> : INode
+public interface INode<TFamily, out TSelf, TInternalNode, TLeafNode> : INode
     where TFamily : INodeFamily<TFamily, TInternalNode, TLeafNode>
     where TSelf : INode<TFamily, TSelf, TInternalNode, TLeafNode>
     where TInternalNode : IInternalNode<TFamily, TInternalNode, TLeafNode>

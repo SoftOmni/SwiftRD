@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using JetBrains.DocumentModel.Impl;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;

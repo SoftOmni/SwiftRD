@@ -3,8 +3,8 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.LeafNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.Root;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.LeafNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;

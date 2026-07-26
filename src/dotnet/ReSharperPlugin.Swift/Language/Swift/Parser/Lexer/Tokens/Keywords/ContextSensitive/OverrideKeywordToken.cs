@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class OverrideKeywordToken : ContextSensitiveKeywordToken
+public class OverrideKeywordToken : ContextSensitiveKeywordToken<Override>
 {
-    public OverrideKeywordToken()
-        : base("override", SwiftTokens.OverrideId, SwiftTokens.OverrideIndex)
+    internal OverrideKeywordToken()
+        : base(Override.Keyword, SwiftTokens.OverrideId, SwiftTokens.OverrideIndex)
     { }
 }

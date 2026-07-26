@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeInitializers;
 
-public class DeInit : SwiftLeafNode, ISwiftKeywordNode
+public class DeInit : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<DeInit>
 {
     public const string Keyword = "deinit";
     
-    public DeInitializer? DeInitializer { get; internal set; }
-
-    internal DeInit(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Deinit)
+    public DeInit()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal DeInit(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Deinit)
-    {
-        if (parent is DeInitializer deInitializer)
-        {
-            DeInitializer = deInitializer;
-        }
-    }
+    internal DeInit(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal DeInit(DeInitializer parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Deinit)
-    {
-        DeInitializer = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Deinit;
 
     public string KeywordValue => Keyword;
 
     public static DeInit Create()
     {
         return new DeInit(new EditableBuffer(Keyword));
-    }
-
-    public static DeInit Create(DeInitializer deInitializer)
-    {
-        return new DeInit(deInitializer, new EditableBuffer(Keyword));
-    }
-
-    public static DeInit CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new DeInit(parent, new EditableBuffer(Keyword));
     }
 }

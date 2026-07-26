@@ -1,6 +1,12 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions.CompilerVersions;
 
-public interface ICompilerVersionPlatformCondition
+public interface ICompilerVersionPlatformCondition :
+    IReadOnlyCompilerVersionPlatformCondition,
+    IPlatformCondition
 {
-    
+    new ISwiftVersion SwiftVersion { get; }
+
+    void MakeLessThan();
+
+    void MakeGreaterThanOrEqual();
 }

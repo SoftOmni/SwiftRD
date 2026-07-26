@@ -1,7 +1,7 @@
+using System;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
 using SoftOmni.SwiftRd.Language.Swift.ProjectModels;
 using SoftOmni.SwiftRd.Language.Swift.ProjectModels.Modules;
 
@@ -22,7 +22,6 @@ public partial class SwiftParser : IParser
     
     public IFile ParseFile()
     {
-        TopLevelDeclaration topLevelDeclaration = TopLevelDeclaration.Parse(CoreLexer);
-        return topLevelDeclaration;
+        throw new NotImplementedException();
     }
 }

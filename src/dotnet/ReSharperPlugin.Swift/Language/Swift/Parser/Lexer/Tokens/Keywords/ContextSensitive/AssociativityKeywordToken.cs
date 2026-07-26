@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class AssociativityKeywordToken : ContextSensitiveKeywordToken
+public class AssociativityKeywordToken : ContextSensitiveKeywordToken<Associativity>
 {
-    public AssociativityKeywordToken()
-        : base("associativity", SwiftTokens.AssociativityId, SwiftTokens.AssociativityIndex)
+    internal AssociativityKeywordToken()
+        : base(Associativity.Keyword, SwiftTokens.AssociativityId, SwiftTokens.AssociativityIndex)
     { }
 }

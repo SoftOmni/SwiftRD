@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.DeferStatements;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DeferStatements;
 
 public class Defer : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Defer>
 {

@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.ThrowStatements;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class ThrowKeywordToken : StatementUsableKeywordToken
+public class ThrowKeywordToken : StatementUsableKeywordToken<Throw>
 {
-    public ThrowKeywordToken()
-        : base("throw", SwiftTokens.ThrowId, SwiftTokens.ThrowIndex)
+    internal ThrowKeywordToken()
+        : base(Throw.Keyword, SwiftTokens.ThrowId, SwiftTokens.ThrowIndex)
     { }
 }

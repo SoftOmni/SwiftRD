@@ -1,48 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class Class : DeclarationModifierLeaf, ISwiftKeywordNode
+public class Class : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Class>
 {
     public const string Keyword = "class";
     
-    public Classes.Class? ClassDeclaration { get; internal set; } 
+    public Class()
+        : base(new EditableBuffer(Keyword))
+    { }
     
     internal Class(IEditableBuffer buffer) 
-        : base(SwiftNodeTypes.Class, buffer)
+        : base(buffer)
     { }
 
-    internal Class(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Class)
-    {
-        if (parent is Classes.Class @class)
-        {
-            ClassDeclaration = @class;
-        }
-    }
-
-    internal Class(Classes.Class @class, IEditableBuffer buffer)
-        : base(@class, buffer, SwiftNodeTypes.Class)
-    {
-        ClassDeclaration = @class;
-    }
-
+    public override NodeType NodeType => SwiftNodeTypes.Class;
 
     public string KeywordValue => Keyword;
 
     public static Class Create()
     {
         return new Class(new EditableBuffer(Keyword));
-    }
-
-    public static Class Create(SwiftInternalNode parent)
-    {
-        return new Class(parent, new EditableBuffer(Keyword));
-    }
-
-    public static Class Create(Classes.Class parent)
-    {
-        return new Class(parent, new EditableBuffer(Keyword));
     }
 }

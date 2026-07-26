@@ -2,7 +2,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
 
-public interface IAssignmentPrecedenceGroup : IReadOnlyAssignmentPrecedenceGroup,
+public interface IPrecedenceAssignmentGroup : IReadOnlyPrecedenceAssignmentGroup,
     IPrecedenceGroupAttribute
 {
     new ILiteral AssignmentValue { get; }

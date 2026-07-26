@@ -7,7 +7,7 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 
 public interface ICodeBlockUsage;
 
-public interface IReadOnlyCodeBlock : IReadOnlyDeclaration<ICodeBlockUsage>, IReadOnlyList<IReadOnlyStatement>
+public interface IReadOnlyCodeBlock : IReadOnlyDeclaration, IReadOnlyList<IReadOnlyStatement>
 {
     LeftCurlyBrace LeftCurlyBrace { get; }
     

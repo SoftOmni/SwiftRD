@@ -2,13 +2,13 @@ using System.Collections.Generic;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
 
-public interface IAttributeGroup : IReadOnlyAttributeGroup, IList<IAttributeGroup>
+public interface IAttributeGroup : IReadOnlyAttributeGroup, IList<IAttribute>
 {
-    new IList<IAttributeGroup> Attributes { get; }
+    new IReadOnlyList<IAttribute> Attributes { get; }
     
     new int Count { get; }
 
-    new IEnumerator<IAttributeGroup> GetEnumerator();
+    new IEnumerator<IAttribute> GetEnumerator();
     
-    new IAttributeGroup this[int index] { get; set; }
+    new IAttribute this[int index] { get; set; }
 }

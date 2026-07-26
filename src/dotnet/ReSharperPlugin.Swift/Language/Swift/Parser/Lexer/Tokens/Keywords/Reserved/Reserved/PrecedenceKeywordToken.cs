@@ -1,8 +1,10 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups;
 
-public class PrecedenceKeywordToken : ContextSensitiveKeywordToken<Precedence>
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
+
+public class PrecedenceKeywordToken : ReservedKeywordToken<Precedence>
 {
     internal PrecedenceKeywordToken()
-        : base("precedence", SwiftTokens.PrecedenceId, SwiftTokens.PrecedenceIndex)
+        : base(Precedence.Keyword, SwiftTokens.PrecedenceId, SwiftTokens.PrecedenceIndex)
     { }
 }

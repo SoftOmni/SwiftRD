@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.RawValueStyle;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members;
 
-public interface IRawValueStyleMembers : IReadOnlyRawValueStyleMembers, IList<IMember>
+public interface ISwitchCaseMembers : IReadOnlySwitchCaseMembers, IList<ISwitchCaseMember>
 {
-    new IReadOnlyList<IMember> Members { get; }
+    new IReadOnlyList<ISwitchCaseMember> Members { get; }
     
     new int Count { get; }
 
-    new IEnumerator<IMember> GetEnumerator();
+    new IEnumerator<ISwitchCaseMember> GetEnumerator();
     
-    new IMember this[int index] { get; set; }
+    new ISwitchCaseMember this[int index] { get; set; }
 }

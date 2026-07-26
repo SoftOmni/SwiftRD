@@ -7,9 +7,9 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeInheritanceClauses;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actorures;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
 
-public interface IReadOnlyActorureDeclaration : IReadOnlyDeclaration, 
+public interface IReadOnlyActorDeclaration : IReadOnlyDeclaration, 
     IReadOnlyList<IReadOnlyActorMember>
 {
     IReadOnlyAttributeGroup? Attributes { get; }

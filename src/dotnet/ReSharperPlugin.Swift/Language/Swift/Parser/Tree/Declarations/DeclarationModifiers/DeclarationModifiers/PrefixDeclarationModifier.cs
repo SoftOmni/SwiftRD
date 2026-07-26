@@ -1,6 +1,18 @@
+using System.Collections.Generic;
+using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
 
-public class PrefixDeclarationModifier
+public class PrefixDeclarationModifier : SwiftCompositeNode, IPrefixDeclarationModifier
 {
-    
+    public Prefix Keyword { get; }
+
+    internal PrefixDeclarationModifier(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        Prefix keyword)
+        : base(buffer, children)
+    {
+        Keyword = keyword;
+    }
 }

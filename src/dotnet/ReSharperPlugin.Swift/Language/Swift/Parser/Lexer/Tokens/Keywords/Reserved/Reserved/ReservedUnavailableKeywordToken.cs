@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class ReservedUnavailableKeywordToken : ReservedKeywordToken
+public class ReservedUnavailableKeywordToken : ReservedKeywordToken<ReservedUnavailableKeyword>
 {
-    public ReservedUnavailableKeywordToken()
-        : base("#unavailable", SwiftTokens.ReservedUnavailableId, SwiftTokens.ReservedUnavailableIndex)
+    internal ReservedUnavailableKeywordToken()
+        : base(ReservedUnavailableKeyword.Keyword, SwiftTokens.ReservedUnavailableId, SwiftTokens.ReservedUnavailableIndex)
     { }
 }

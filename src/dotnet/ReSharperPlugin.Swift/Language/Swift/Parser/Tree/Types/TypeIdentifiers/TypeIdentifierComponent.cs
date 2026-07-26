@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -27,11 +28,11 @@ public class TypeIdentifierComponent : SwiftCompositeNode, ITypeIdentifierCompon
     
     public void ChangeName(IIdentifier name)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeGenericArgumentClause(IGenericArgumentClause? genericArgumentClause)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

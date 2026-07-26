@@ -1,6 +1,6 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structures;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
 
-public interface IReadOnlyStructMember
-{
-    
-}
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structs;
+
+public interface IReadOnlyStructMember : ISwiftNode<SwiftCompositeNode>;

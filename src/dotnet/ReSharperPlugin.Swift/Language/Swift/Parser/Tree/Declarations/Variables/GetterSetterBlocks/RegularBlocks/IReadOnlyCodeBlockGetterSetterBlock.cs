@@ -1,6 +1,8 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks.RegularBlocks;
 
-public interface IReadOnlyCodeBlockGetterSetterBlock
+public interface IReadOnlyCodeBlockGetterSetterBlock : IReadOnlyGetterSetterBlock
 {
-    
+    IReadOnlyCodeBlock CodeBlock { get; }
 }

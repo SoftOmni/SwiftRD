@@ -1,72 +1,156 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Application.UI.Icons.CompiledIcons;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.Root;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.StatementGroups;
+using SoftOmni.SwiftRd.Language.Swift.ProjectModels.SwiftPackageManager.Packages.Products;
+using SoftOmni.SwiftRd.Language.Swift.Semantics.Context;
+using SoftOmni.SwiftRd.Resources.Icons.Language;
+using IStatement = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.IStatement;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TopLevel;
 
-public class TopLevelDeclaration : SwiftInternalNode, IFile
+public class TopLevelDeclaration : SwiftCompositeNode, IFile, ITopLevelDeclaration
 {
     public bool HasExecutableCode { get; private set; }
-    
+
     public bool IsAllowedExecutableCode { get; internal set; }
-    
-    public StatementGroup? StatementGroup { get; private set; }
-    
-    private List<StatementInternalNode> _statements = [];
 
-    private List<Declaration> _declarations = [];
-    
-    internal TopLevelDeclaration(IEditableBuffer buffer, List<ISwiftNode> children) : base(buffer, children)
-    { }
+    public IStatementGroup Statements { get; }
 
-    internal TopLevelDeclaration(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) : base(buffer, children)
-    { }
+    internal readonly List<IExecutableProduct> UnderlyingExecutableProductsWhichAllowExecutableCode;
 
-    public override NodeType NodeType { get; }
+    internal readonly LocalSwiftSemanticalContext UnderlyingLocalFileSemanticalContext;
 
-    public IReadOnlyList<StatementInternalNode> Statements => _statements;
-
-    public IReadOnlyList<Declaration> Declarations => _declarations;
-    
-    public IFile? ReParse(TreeTextRange modifiedRange, string text)
+    internal TopLevelDeclaration(IEditableBuffer buffer, IEnumerable<ISwiftNode<SwiftCompositeNode>> children,
+        IStatementGroup statements)
+        : base(buffer, children)
     {
-        throw new System.NotImplementedException();
+        Statements = statements;
+
+        CachingLexer = null!;
+        ModificationCounter = 0;
+
+        Icon = SwiftIcons.ConstantIcon;
+        UnderlyingExecutableProductsWhichAllowExecutableCode = [];
+
+        UnderlyingLocalFileSemanticalContext = new LocalSwiftSemanticalContext();
     }
+
+    public AnyCompiledIconClass Icon { get; }
+
+    IReadOnlyStatementGroup IReadOnlyTopLevelDeclaration.Statements => Statements;
+
+    public IReadOnlyList<IStatement> StatementsAsList => Statements.Statements;
+
+    public IReadOnlyList<IExecutableProduct> ExecutableProductsWhichAllowExecutableCode =>
+        UnderlyingExecutableProductsWhichAllowExecutableCode;
+
+    IReadOnlyList<IReadOnlyStatement> IReadOnlyTopLevelDeclaration.StatementsAsList => StatementsAsList;
+
+    public ILocalSwiftSemanticalContext LocalFileSemanticalContext => UnderlyingLocalFileSemanticalContext;
+
+    IReadOnlyLocalSwiftSemanticalContext IReadOnlyTopLevelDeclaration.LocalFileSemanticalContext =>
+        LocalFileSemanticalContext;
+
+    public int Count => Statements.Count;
+
+    public bool IsReadOnly => false;
 
     public PsiFileModificationInfo? GetReParseResult(TreeTextRange modifiedRange, string text)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
+    }
+
+    public IFile? ReParse(TreeTextRange modifiedRange, string text)
+    {
+        throw new NotImplementedException();
     }
 
     public bool IsInjected()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
-    
+
     public CachingLexer CachingLexer { get; }
-    
+
     public int ModificationCounter { get; }
-    
-    public bool CanContainCaseInsensitiveReferences { get; }
 
-    protected override SwiftInternalNode Duplicate()
+    public bool CanContainCaseInsensitiveReferences => false;
+
+    public new IStatement this[int index]
     {
-        throw new System.NotImplementedException();
+        get => Statements[index];
+        set => Statements[index] = value;
     }
 
-    protected override SwiftInternalNode DuplicateWithoutChildren()
+    IReadOnlyStatement IReadOnlyList<IReadOnlyStatement>.this[int index]
+        => Statements[index];
+
+    public IEnumerator<IStatement> GetEnumerator()
     {
-        throw new System.NotImplementedException();
+        return Statements.GetEnumerator();
     }
 
-    public static TopLevelDeclaration Parse(SwiftLexer lexer)
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    IEnumerator<IReadOnlyStatement> IEnumerable<IReadOnlyStatement>.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public bool Contains(IStatement item)
+    {
+        return Statements.Contains(item);
+    }
+
+    public int IndexOf(IStatement item)
+    {
+        return Statements.IndexOf(item);
+    }
+
+    public void CopyTo(IStatement[] array, int arrayIndex)
+    {
+        Statements.CopyTo(array, arrayIndex);
+    }
+
+    public void Add(IStatement item)
+    {
+        Statements.Add(item);
+    }
+
+    public void Clear()
+    {
+        Statements.Clear();
+    }
+
+    public bool Remove(IStatement item)
+    {
+        return Statements.Remove(item);
+    }
+
+    public void Insert(int index, IStatement item)
+    {
+        Statements.Insert(index, item);
+    }
+
+    public void RemoveAt(int index)
+    {
+        Statements.RemoveAt(index);
+    }
+
+    public void ChangeStatements(IStatementGroup newStatements)
     {
         throw new NotImplementedException();
     }

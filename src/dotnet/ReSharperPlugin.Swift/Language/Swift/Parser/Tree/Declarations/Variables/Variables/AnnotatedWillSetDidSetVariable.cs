@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Application.UI.Icons.CompiledIcons;
 using JetBrains.Text;
@@ -9,11 +10,12 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifi
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeAnnotations;
 using SoftOmni.SwiftRd.Resources.Icons.Language;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.Variables;
 
-public class UnannotatedWillSetDidSetVariable : SwiftCompositeNode, IUnannotatedWillSetDidSetVariable
+public class AnnotatedWillSetDidSetVariable : SwiftCompositeNode, IAnnotatedWillSetDidSetVariable
 {
     public IAttributeGroup? Attributes { get; }
 
@@ -23,21 +25,38 @@ public class UnannotatedWillSetDidSetVariable : SwiftCompositeNode, IUnannotated
 
     public IIdentifier Name { get; }
 
-    public IInitializer Initializer { get; }
+    public ITypeAnnotation TypeAnnotation { get; }
+
+    public IInitializer? Initializer { get; }
 
     public IWillSetDidSetBlock WillSetDidSetBlock { get; }
 
-    internal UnannotatedWillSetDidSetVariable(IEditableBuffer buffer,
+    internal AnnotatedWillSetDidSetVariable(IEditableBuffer buffer,
         IEnumerable<ISwiftNode<SwiftCompositeNode>> children, IAttributeGroup? attributes,
-        IDeclarationModifierGroup? declarationModifiers, Var keyword, IIdentifier name, IInitializer initializer,
-        IWillSetDidSetBlock willSetDidSetBlock)
+        IDeclarationModifierGroup? declarationModifiers, Var keyword, IIdentifier name, 
+        ITypeAnnotation typeAnnotation, IInitializer initializer, IWillSetDidSetBlock willSetDidSetBlock)
         : base(buffer, children)
     {
         Attributes = attributes;
         DeclarationModifiers = declarationModifiers;
         Keyword = keyword;
         Name = name;
+        TypeAnnotation = typeAnnotation;
         Initializer = initializer;
+        WillSetDidSetBlock = willSetDidSetBlock;
+    }
+
+    internal AnnotatedWillSetDidSetVariable(IEditableBuffer buffer,
+        IEnumerable<ISwiftNode<SwiftCompositeNode>> children, IAttributeGroup? attributes,
+        IDeclarationModifierGroup? declarationModifiers, Var keyword, IIdentifier name, 
+        ITypeAnnotation typeAnnotation, IWillSetDidSetBlock willSetDidSetBlock)
+        : base(buffer, children)
+    {
+        Attributes = attributes;
+        DeclarationModifiers = declarationModifiers;
+        Keyword = keyword;
+        Name = name;
+        TypeAnnotation = typeAnnotation;
         WillSetDidSetBlock = willSetDidSetBlock;
     }
 
@@ -47,59 +66,61 @@ public class UnannotatedWillSetDidSetVariable : SwiftCompositeNode, IUnannotated
 
     IReadOnlyDeclarationModifierGroup? IReadOnlyVariable.DeclarationModifiers => DeclarationModifiers;
 
-    IReadOnlyIdentifier IReadOnlyUnannotatedWillSetVariable.Name => Name;
+    IReadOnlyIdentifier IReadOnlyAnnotatedWillSetVariable.Name => Name;
 
-    IReadOnlyInitializer IReadOnlyUnannotatedWillSetVariable.Initializer => Initializer;
+    IReadOnlyTypeAnnotation IReadOnlyAnnotatedWillSetVariable.TypeAnnotation => TypeAnnotation;
 
-    IReadOnlyWillSetDidSetBlock IReadOnlyUnannotatedWillSetVariable.WillSetDidSetBlock => WillSetDidSetBlock;
+    IReadOnlyInitializer? IReadOnlyAnnotatedWillSetVariable.Initializer => Initializer;
 
-    IReadOnlyDeclarationModifierGroup IReadOnlyDeclaration.DefaultAccessLevelModifier()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    IAccessLevelModifier IDeclaration.DefaultAccessLevelModifier()
-    {
-        throw new System.NotImplementedException();
-    }
+    IReadOnlyWillSetDidSetBlock IReadOnlyAnnotatedWillSetVariable.WillSetDidSetBlock => WillSetDidSetBlock;
 
     public void ChangeAccessLevelModifier(IAccessLevelModifier accessLevelModifier)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetAttributesTo(IAttributeGroup? attributes)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAttributes()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetDeclarationModifiers()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveDeclarationModifiers()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ChangeName(IIdentifier newName)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public void ChangeInitializer(IInitializer newInitializer)
+    public void ChangeTypeAnnotation(ITypeAnnotation newTypeAnnotation)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
+    }
+
+    public void SetInitializerTo(IInitializer newInitializer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveInitializer()
+    {
+        throw new NotImplementedException();
     }
 
     public void ChangeWillSetDidSetBlock(IWillSetDidSetBlock newWillSetDidSetBlock)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

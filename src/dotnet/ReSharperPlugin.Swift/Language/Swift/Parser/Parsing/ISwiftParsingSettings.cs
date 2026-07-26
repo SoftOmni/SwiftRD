@@ -21,10 +21,19 @@ public interface ISwiftParsingSettings
         IncludeAsChildOfElement,
         IncludeAsSiblingOfElement
     }
-    
+
+    enum ConsiderDisjointedThroughWhitespaceElementsTheSameIfCannotMatchConceptForSecondElement
+    {
+        ConsiderSameWrongElement,
+        ConsiderTwoDifferentConcepts
+    }
+
     GenericsClauseUnendedBehavior GetGenericsClauseUnendedBehavior { get; }
-    
+
     GenericsClauseDoubleTypesWithoutComma GetGenericsClauseDoubleTypesWithoutComma { get; }
-    
+
     TrailingWhitespaceAfterElementPolicy GetTrailingWhitespaceAfterElementPolicy { get; }
+
+    ConsiderDisjointedThroughWhitespaceElementsTheSameIfCannotMatchConceptForSecondElement
+        GetConsiderDisjointedThroughWhitespaceElementsPolicy { get; }
 }

@@ -1,4 +1,4 @@
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structures;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structs;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 

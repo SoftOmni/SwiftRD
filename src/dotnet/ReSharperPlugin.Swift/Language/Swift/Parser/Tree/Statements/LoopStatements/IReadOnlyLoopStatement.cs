@@ -3,12 +3,13 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalN
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.CodeBlocks;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LabeledStatements;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements;
 
-public interface IReadOnlyLoopStatement : IReadOnlyStatement, ISwiftInternalNode<SwiftCompositeNode>
+public interface IReadOnlyLoopStatement : IReadOnlyLabelableStatement, ISwiftInternalNode<SwiftCompositeNode>
 {
     IReadOnlyCodeBlock CodeBlock { get; }
     
-    IReadOnlyList<IReadOnlyLoopControlTransferStatements> LoopControlTransferStatements { get; }
+    IReadOnlyList<IReadOnlyControlTransferStatement> LoopControlTransferStatements { get; }
 }

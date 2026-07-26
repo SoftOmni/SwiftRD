@@ -1,6 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups;
 
-public interface IPrecedenceGroupAttribute
-{
-    
-}
+public interface IPrecedenceGroupAttribute : IReadOnlyPrecedenceGroupAttribute;

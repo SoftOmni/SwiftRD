@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
 
-namespace ReSharperPlugin.Swift.Language.Swift.Parser.Tree.Declarations.Enumerations.Members.RawValueStyle;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Members;
 
-public interface IReadOnlyRawValueStyleMembers : ISwiftInternalNode<SwiftCompositeNode>,
+public interface IReadOnlySwitchCaseMembers : ISwiftInternalNode<SwiftCompositeNode>,
     IReadOnlyList<IReadOnlySwitchCaseMember>
 {
     IReadOnlyList<IReadOnlySwitchCaseMember> Members { get; }

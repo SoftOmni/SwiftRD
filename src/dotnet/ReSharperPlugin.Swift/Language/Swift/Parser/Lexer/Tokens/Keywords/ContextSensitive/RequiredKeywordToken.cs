@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class RequiredKeywordToken : ContextSensitiveKeywordToken
+public class RequiredKeywordToken : ContextSensitiveKeywordToken<Required>
 {
-    public RequiredKeywordToken()
-        : base("required", SwiftTokens.RequiredId, SwiftTokens.RequiredIndex)
+    internal RequiredKeywordToken()
+        : base(Required.Keyword, SwiftTokens.RequiredId, SwiftTokens.RequiredIndex)
     { }
 }

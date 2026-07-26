@@ -5,7 +5,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.LineControlStatements;
 
-public interface IReadOnlyLineControlStatementSpecifics : IReadOnlyLineControlStatement
+public interface IReadOnlyLineControlStatementWithSpecifics : IReadOnlyLineControlStatement
 {
     IReadOnlyIdentifier FileArgumentLabel { get; }
     

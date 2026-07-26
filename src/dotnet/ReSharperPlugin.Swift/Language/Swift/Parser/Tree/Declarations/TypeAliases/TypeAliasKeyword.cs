@@ -11,8 +11,6 @@ public class TypeAliasKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeyword
 {
     public const string Keyword = "typealias";
     
-    public TypeAlias? TypeAlias { get; internal set; }
-    
     public TypeAliasKeyword()
         : base(new EditableBuffer(Keyword))
     { }
@@ -20,12 +18,6 @@ public class TypeAliasKeyword : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeyword
     internal TypeAliasKeyword(IEditableBuffer buffer) 
         : base(buffer)
     { }
-
-    internal TypeAliasKeyword(TypeAlias parent, int parentIndex, int parentTextIndex, IEditableBuffer buffer)
-        : base(buffer, parent, parentIndex, parentTextIndex)
-    {
-        TypeAlias = parent;
-    }
 
     public override NodeType NodeType => SwiftNodeTypes.Typealias;
 

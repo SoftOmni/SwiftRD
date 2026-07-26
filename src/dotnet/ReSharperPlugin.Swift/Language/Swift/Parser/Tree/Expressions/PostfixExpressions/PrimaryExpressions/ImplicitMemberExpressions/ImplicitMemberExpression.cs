@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -40,16 +41,16 @@ public class ImplicitMemberExpression : SwiftCompositeNode, IImplicitMemberExpre
 
     public void ChangeMember(IIdentifier newMember)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void SetFollowupPostfixExpressionTo(IPostfixExpression? postfixExpression)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveFollowupPostfixExpression()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

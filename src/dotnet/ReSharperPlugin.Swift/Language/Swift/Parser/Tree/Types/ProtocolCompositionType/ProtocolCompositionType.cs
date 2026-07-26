@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -50,7 +51,7 @@ public class ProtocolCompositionType : SwiftCompositeNode, IProtocolCompositionT
     ITypeIdentifier IProtocolCompositionType.this[int index]
     {
         get => _typeIdentifiers[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IEnumerator<IReadOnlyTypeIdentifier> IEnumerable<IReadOnlyTypeIdentifier>.GetEnumerator()
@@ -65,12 +66,12 @@ public class ProtocolCompositionType : SwiftCompositeNode, IProtocolCompositionT
 
     public void Add(ITypeIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Contains(ITypeIdentifier item)
@@ -85,7 +86,7 @@ public class ProtocolCompositionType : SwiftCompositeNode, IProtocolCompositionT
 
     public bool Remove(ITypeIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     int IProtocolCompositionType.Count => _typeIdentifiers.Count;
@@ -103,12 +104,12 @@ public class ProtocolCompositionType : SwiftCompositeNode, IProtocolCompositionT
 
     public void Insert(int index, ITypeIdentifier item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void RemoveAt(int index)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     IEnumerator<ITypeIdentifier> IProtocolCompositionType.GetEnumerator()
@@ -119,7 +120,7 @@ public class ProtocolCompositionType : SwiftCompositeNode, IProtocolCompositionT
     ITypeIdentifier IList<ITypeIdentifier>.this[int index]
     {
         get => _typeIdentifiers[index];
-        set => throw new System.NotImplementedException();
+        set => throw new NotImplementedException();
     }
 
     IReadOnlyTypeIdentifier IReadOnlyList<IReadOnlyTypeIdentifier>.this[int index] => _typeIdentifiers[index];

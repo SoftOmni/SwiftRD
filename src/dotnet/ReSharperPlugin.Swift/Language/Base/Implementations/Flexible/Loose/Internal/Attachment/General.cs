@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.Base;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Technology;
 
 namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.InternalNodes;

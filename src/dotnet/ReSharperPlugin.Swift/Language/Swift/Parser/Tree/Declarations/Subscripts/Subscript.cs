@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
 
-public class SubscriptKeyword : SwiftLeafNode, ISwiftKeywordNode
+public class Subscript : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Subscript>
 {
     public const string Keyword = "subscriptKeyword";
-    
-    public Subscript? Subscript { get; internal set; }
 
-    internal SubscriptKeyword(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Subscript)
+    public Subscript()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal SubscriptKeyword(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Subscript)
-    {
-        if (parent is Subscript subscript)
-        {
-            Subscript = subscript;
-        }
-    }
+    internal Subscript(IEditableBuffer buffer)
+        : base(buffer)
+    { }
 
-    internal SubscriptKeyword(Subscript parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Subscript)
-    {
-        Subscript = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Subscript;
 
     public string KeywordValue => Keyword;
 
-    public static SubscriptKeyword Create()
+    public static Subscript Create()
     {
-        return new SubscriptKeyword(new EditableBuffer(Keyword));
-    }
-
-    public static SubscriptKeyword Create(Subscript subscript)
-    {
-        return new SubscriptKeyword(subscript, new EditableBuffer(Keyword));
-    }
-
-    public static SubscriptKeyword CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new SubscriptKeyword(parent, new EditableBuffer(Keyword));
+        return new Subscript(new EditableBuffer(Keyword));
     }
 }

@@ -1,6 +1,6 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers.Composite;
 
-public interface IUnownedSafeDeclarationModifier
-{
+public interface IUnownedSafeDeclarationModifier : 
+    IReadOnlyUnownedSafeDeclarationModifier,
+    IUnownedDeclarationModifier;
     
-}

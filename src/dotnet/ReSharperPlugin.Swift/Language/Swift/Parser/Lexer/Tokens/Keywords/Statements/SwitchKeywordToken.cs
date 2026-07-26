@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Statements;
 
-public class SwitchKeywordToken : StatementUsableKeywordToken
+public class SwitchKeywordToken : StatementUsableKeywordToken<Switch>
 {
-    public SwitchKeywordToken()
-        : base("switch", SwiftTokens.SwitchId, SwiftTokens.SwitchIndex)
+    internal SwitchKeywordToken()
+        : base(Switch.Keyword, SwiftTokens.SwitchId, SwiftTokens.SwitchIndex)
     { }
 }

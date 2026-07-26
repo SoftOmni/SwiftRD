@@ -4,9 +4,9 @@ using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Extensions;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
 
 namespace SoftOmni.SwiftRd.Language.Base.Implementations.Flexible.Loose.Leaf;
 

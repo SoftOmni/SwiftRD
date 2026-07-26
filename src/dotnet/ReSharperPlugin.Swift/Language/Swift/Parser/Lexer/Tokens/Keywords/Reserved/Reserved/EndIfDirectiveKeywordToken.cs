@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class ReservedEndIfKeywordToken : ReservedKeywordToken
+public class EndIfDirectiveKeywordToken : ReservedKeywordToken<EndIfDirective>
 {
-    public ReservedEndIfKeywordToken()
-        : base("#endif", SwiftTokens.ReservedEndIfId, SwiftTokens.ReservedEndIfIndex)
+    internal EndIfDirectiveKeywordToken()
+        : base(EndIfDirective.Keyword, SwiftTokens.ReservedEndIfId, SwiftTokens.ReservedEndIfIndex)
     { }
 }

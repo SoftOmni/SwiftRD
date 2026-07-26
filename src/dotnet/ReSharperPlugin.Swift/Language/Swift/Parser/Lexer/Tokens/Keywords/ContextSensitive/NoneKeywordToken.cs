@@ -1,8 +1,10 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
+
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 
-public class NoneKeywordToken : ContextSensitiveKeywordToken
+public class NoneKeywordToken : ContextSensitiveKeywordToken<None>
 {
-    public NoneKeywordToken()
-        : base("none", SwiftTokens.NoneId, SwiftTokens.NoneIndex)
+    internal NoneKeywordToken()
+        : base(None.Keyword, SwiftTokens.NoneId, SwiftTokens.NoneIndex)
     { }
 }

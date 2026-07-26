@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
@@ -39,7 +40,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public void Add(IGenericArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Clear()
@@ -54,7 +55,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public bool Contains(IGenericArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void CopyTo(IType[] array, int arrayIndex)
@@ -64,7 +65,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public void CopyTo(IGenericArgument[] array, int arrayIndex)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool Remove(IType item)
@@ -74,7 +75,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public bool Remove(IGenericArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool IsReadOnly => ((IList<IType>)GenericArgumentGroup).IsReadOnly;
@@ -86,7 +87,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public int IndexOf(IGenericArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Insert(int index, IType item)
@@ -96,7 +97,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public void Insert(int index, IGenericArgument item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     void IList<IType>.RemoveAt(int index)
@@ -119,7 +120,7 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 
     public new IGenericArgument this[int index]
     {
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
     }
 }

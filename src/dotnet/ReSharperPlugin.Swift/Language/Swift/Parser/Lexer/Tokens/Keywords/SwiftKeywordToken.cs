@@ -4,6 +4,7 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
 
@@ -34,5 +35,5 @@ public abstract class SwiftKeywordToken<AstLeafNode>(string value, string tokenI
     
     public virtual Version? Availability => null;
     
-    public virtual Version? RemovalVersion => null;
+    public virtual ISwiftVersion? RemovalVersion => null;
 }

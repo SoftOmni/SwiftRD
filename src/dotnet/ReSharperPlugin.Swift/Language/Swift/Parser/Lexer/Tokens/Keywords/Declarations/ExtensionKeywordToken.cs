@@ -2,9 +2,9 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Declarations;
 
-public class ExtensionKeywordToken : DeclarationUsableKeywordToken<ExtensionKeyword>
+public class ExtensionKeywordToken : DeclarationUsableKeywordToken<Extension>
 {
     internal ExtensionKeywordToken()
-        : base(ExtensionKeyword.Keyword, SwiftTokens.ExtensionId, SwiftTokens.ExtensionIndex)
+        : base(Extension.Keyword, SwiftTokens.ExtensionId, SwiftTokens.ExtensionIndex)
     { }
 }

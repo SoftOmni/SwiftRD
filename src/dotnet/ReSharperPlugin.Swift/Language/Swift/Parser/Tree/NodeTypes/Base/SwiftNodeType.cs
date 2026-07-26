@@ -3,6 +3,7 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using JetBrains.Util;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Exceptions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
@@ -52,14 +53,14 @@ public abstract class SwiftNodeType : NodeType // TODO: fix later (composite nod
     {
         if (buffer.Length != keywordValue.Length)
         {
-            throw new InvalidLexicalBaseForElement(tokenId, buffer);
+            throw new InvalidLexicalBaseForElementException(tokenId, buffer, keywordValue);
         }
 
         for (int i = 0; i < keywordValue.Length; i++)
         {
             if (buffer[i] != keywordValue[i])
             {
-                throw new InvalidLexicalBaseForElement(tokenId, buffer);
+                throw new InvalidLexicalBaseForElementException(tokenId, buffer, keywordValue);
             }
         }
     }

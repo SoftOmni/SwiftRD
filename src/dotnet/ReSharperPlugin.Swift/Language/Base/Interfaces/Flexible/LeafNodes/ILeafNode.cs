@@ -1,8 +1,7 @@
-
 using System;
 using JetBrains.ReSharper.Psi.Tree;
-using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.BaseNodes;
+using SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.InternalNodes;
 
 namespace SoftOmni.SwiftRd.Language.Base.Interfaces.Flexible.LeafNodes;
 

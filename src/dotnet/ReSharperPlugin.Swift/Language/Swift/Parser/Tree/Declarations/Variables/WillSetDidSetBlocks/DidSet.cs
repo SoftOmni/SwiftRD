@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
 
-public class DidSet : SwiftLeafNode, ISwiftKeywordNode
+public class DidSet : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<DidSet>
 {
     public const string Keyword = "didSet";
     
-    public DidSetClause? DidSetClause { get; private set; }
+    public DidSet()
+        : base(new EditableBuffer(Keyword))
+    { }
     
     internal DidSet(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.DidSet)
+        : base(buffer)
     { }
 
-    internal DidSet(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.DidSet)
-    {
-        if (parent is DidSetClause didSetClause)
-        {
-            DidSetClause = didSetClause;
-        }
-    }
-
-    internal DidSet(DidSetClause didSetClause, IEditableBuffer buffer)
-        : base(didSetClause, buffer, SwiftNodeTypes.DidSet)
-    {
-        DidSetClause = didSetClause;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.DidSet;
 
     public string KeywordValue => Keyword;
 
     public static DidSet Create()
     {
         return new DidSet(new EditableBuffer(Keyword));
-    }
-
-    public static DidSet Create(DidSetClause didSetClause)
-    {
-        return new DidSet(didSetClause, new EditableBuffer(Keyword));
-    }
-
-    public static DidSet CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new DidSet(parent, new EditableBuffer(Keyword));
     }
 }

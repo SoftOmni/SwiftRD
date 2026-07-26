@@ -1,47 +1,30 @@
 using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
 
-public class Assignment : SwiftLeafNode, ISwiftKeywordNode
+public class Assignment : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Assignment>
 {
     public const string Keyword = "assignment";
     
-    public PrecedenceGroupAssignment? PrecedenceGroupAssignment { get; internal set; }
-
-    internal Assignment(IEditableBuffer buffer) 
-        : base(buffer, SwiftNodeTypes.Assignment)
+    public Assignment()
+        : base(new EditableBuffer(Keyword))
     { }
 
-    internal Assignment(SwiftInternalNode parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Assignment)
-    {
-        if (parent is PrecedenceGroupAssignment precedenceGroupAssignment)
-        {
-            PrecedenceGroupAssignment = precedenceGroupAssignment;
-        }
-    }
+    internal Assignment(IEditableBuffer buffer) 
+        : base(buffer)
+    { }
 
-    internal Assignment(PrecedenceGroupAssignment parent, IEditableBuffer buffer)
-        : base(parent, buffer, SwiftNodeTypes.Assignment)
-    {
-        PrecedenceGroupAssignment = parent;
-    }
+    public override NodeType NodeType => SwiftNodeTypes.Assignment;
 
     public string KeywordValue => Keyword;
 
     public static Assignment Create()
     {
         return new Assignment(new EditableBuffer(Keyword));
-    }
-
-    public static Assignment Create(PrecedenceGroupAssignment precedenceGroupAssignment)
-    {
-        return new Assignment(precedenceGroupAssignment, new EditableBuffer(Keyword));
-    }
-
-    public static Assignment CreateUnchecked(SwiftInternalNode parent)
-    {
-        return new Assignment(parent, new EditableBuffer(Keyword));
     }
 }

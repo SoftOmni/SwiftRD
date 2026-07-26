@@ -1,15 +1,17 @@
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.Destructuring.TupleBased;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.PatternMatching.EnumerationCases;
 
-public interface IReadOnlyEnumCasePattern : IPatternMatchingPattern 
+public interface IReadOnlyEnumCasePattern : IReadOnlyPatternMatchingPattern 
 {
-    IReadOnlyTypeIdentifier? TypeIdentifier { get; }
+    IReadOnlyIdentifier? TypeIdentifier { get; }
     
-    Period? Period { get; }
+    Period Period { get; }
     
-    IReadOnlyEnumCaseName? EnumCaseName { get; }
+    IReadOnlyIdentifier EnumCaseName { get; }
     
-    IReadOnlyTypePattern? TypePattern { get; }
+    IReadOnlyTuplePattern? TuplePattern { get; }
 } // TODO: finish me

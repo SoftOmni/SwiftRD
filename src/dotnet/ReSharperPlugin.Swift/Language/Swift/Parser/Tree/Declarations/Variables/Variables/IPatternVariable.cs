@@ -1,6 +1,6 @@
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Constants;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.Variables;
 
 public interface IPatternVariable : IReadOnlyPatternVariable, IVariable
 {

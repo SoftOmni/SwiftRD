@@ -1,10 +1,12 @@
 using System;
 using System.Numerics;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases.RawValue;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals.Formatting;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.IntegerLiterals;
 
-public interface IReadOnlyIntegerLiteral : IReadOnlyLiteral<BigInteger>
+public interface IReadOnlyIntegerLiteral : IReadOnlyLiteral<BigInteger>,
+    IReadOnlyRawValueStyleEnumCaseApprovedLiteral
 {
     public enum Base
     {

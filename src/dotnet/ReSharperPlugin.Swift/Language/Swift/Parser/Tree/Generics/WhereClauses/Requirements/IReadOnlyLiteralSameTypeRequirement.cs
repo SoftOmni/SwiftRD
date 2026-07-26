@@ -1,6 +1,9 @@
-namespace ReSharperPlugin.Swift.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals;
 
-public interface IReadOnlyLiteralSameTypeRequirement
+namespace SoftOmni.SwiftRd.Rider.Language.Swift.Parser.Tree.Generics.WhereClauses.Requirements;
+
+public interface IReadOnlyLiteralSameTypeRequirement :
+    IReadOnlySameTypeRequirement
 {
-    
+    IReadOnlyLiteral Literal { get; }
 }
