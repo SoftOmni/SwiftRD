@@ -1,44 +1,30 @@
-using System.Collections.Generic;
+using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classures;
 
-public class Class : Declaration
+public class Class : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Class>
 {
-    public AttributeGroup? AttributeGroup { get; internal set; }
+    public const string Keyword = "class";
     
-    public IAccessLevelModifier? AccessLevelModifier { get; internal set; }
-    
-    public Final? Final { get; internal set; }
-    
-    public DeclarationModifiers.DeclarationModifiers.Class? ClassKeyword { get; internal set; }
-    
-    public Identifier? Identifier { get; internal set; }
-    
-    public LeftCurlyBrace? LeftCurlyBrace { get; internal set; }
-    
-    public RightCurlyBrace? RightCurlyBrace { get; internal set; }
-    
-    public ClassMemberGroup? ClassMemberGroup { get; internal set; }
-    
-    public Class(IEditableBuffer buffer, List<ISwiftNode> children) 
-        : base(buffer, children)
+    public Class()
+        : base(new EditableBuffer())
     { }
 
-    public Class(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
+    internal Class(IEditableBuffer buffer) 
+        : base(buffer)
     { }
 
-    public Class(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public override NodeType NodeType => SwiftNodeTypes.Class;
 
-    public Class(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public string KeywordValue => Keyword;
+
+    public static Class Create()
+    {
+        return new Class(new EditableBuffer(Keyword));
+    }
 }

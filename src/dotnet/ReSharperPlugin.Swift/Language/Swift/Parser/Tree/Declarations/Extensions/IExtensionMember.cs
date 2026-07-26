@@ -1,3 +1,3 @@
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 
-public interface IExtensionMember : ISwiftNode;
+public interface IExtensionMember : IReadOnlyExtensionMember;

@@ -1,44 +1,30 @@
-using System.Collections.Generic;
+using JetBrains.DocumentModel.Impl;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Attributes;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.WhereClauses;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.TypeIdentifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 
-public class Extension : Declaration
+public class Extension : SwiftLeafNode<SwiftCompositeNode>, ISwiftKeywordNode<Extension>
 {
-    public AttributeGroup? AttributeGroup { get; internal set; }
+    public const string Keyword = "extension";
     
-    public IAccessLevelModifier? AccessLevelModifier { get; internal set; }
-    
-    public ExtensionKeyword? ExtensionKeyword { get; internal set; }
-    
-    public TypeIdentifier? TypeIdentifier { get; internal set; }
-    
-    public GenericWhereClause? GenericWhereClause { get; internal set; }
-    
-    public LeftCurlyBrace? LeftCurlyBrace { get; internal set; }
-    
-    public ExtensionMemberGroup? ExtensionMemberGroup { get; internal set; }
-    
-    public RightCurlyBrace? RightCurlyBrace { get; internal set; }
-
-    public Extension(IEditableBuffer buffer, List<ISwiftNode> children) 
-        : base(buffer, children)
+    public Extension()
+        : base(new EditableBuffer())
     { }
 
-    public Extension(IEditableBuffer buffer, IEnumerable<ISwiftNode> children) 
-        : base(buffer, children)
+    internal Extension(IEditableBuffer buffer) 
+        : base(buffer)
     { }
 
-    public Extension(SwiftInternalNode parent, IEditableBuffer buffer, List<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public override NodeType NodeType => SwiftNodeTypes.Extension;
 
-    public Extension(SwiftInternalNode parent, IEditableBuffer buffer, IEnumerable<ISwiftNode> nodes) 
-        : base(parent, buffer, nodes)
-    { }
+    public string KeywordValue => Keyword;
+
+    public static Extension Create()
+    {
+        return new Extension(new EditableBuffer(Keyword));
+    }
 }
