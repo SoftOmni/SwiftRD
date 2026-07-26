@@ -1,3 +1,3 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actors;
+namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Actorures;
 
-public interface IActorMember : ISwiftNode;
+public interface IActorMember : IReadOnlyActorMember;
