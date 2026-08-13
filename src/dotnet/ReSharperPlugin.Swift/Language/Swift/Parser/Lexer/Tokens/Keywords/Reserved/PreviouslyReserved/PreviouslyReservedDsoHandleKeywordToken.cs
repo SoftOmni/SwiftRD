@@ -1,12 +1,17 @@
 using System;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.PreviouslyReservedElements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.
+    CompilationConditions.PlatformConditions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class PreviouslyReservedDsoHandleKeywordToken : PreviouslyReservedKeywordToken
+public class PreviouslyReservedDsoHandleKeywordToken : PreviouslyReservedKeywordToken<LegacyDsoHandle>
 {
-    public PreviouslyReservedDsoHandleKeywordToken()
-        : base("#dsohandle", SwiftTokens.PreviouslyReservedDsoHandleId, SwiftTokens.PreviouslyReservedDsoHandleIndex)
+    internal PreviouslyReservedDsoHandleKeywordToken()
+        : base(LegacyDsoHandle.Keyword, SwiftTokens.PreviouslyReservedDsoHandleId,
+            SwiftTokens.PreviouslyReservedDsoHandleIndex)
     { }
 
-    public override Version RemovalVersion => new(5, 9);
+    public override ISwiftVersion RemovalVersion => SwiftVersion.FromVersion(new Version(5, 9));
 }

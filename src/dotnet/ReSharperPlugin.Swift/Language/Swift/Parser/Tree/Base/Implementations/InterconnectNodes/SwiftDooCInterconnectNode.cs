@@ -10,19 +10,19 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InterconnectNodes;
 
-public class SwiftDooCInterconnectNode : 
-    InterconnectNode<ISwiftNodeFamily<SwiftCompositeNode>, SwiftCompositeNode, SwiftLeafNode<SwiftCompositeNode>, DooCCompositeNode>,
-    ISwiftDooCInterconnectNode<SwiftCompositeNode, DooCCompositeNode>
+public class SwiftDocCInterconnectNode : 
+    InterconnectNode<ISwiftNodeFamily<SwiftCompositeNode>, SwiftCompositeNode, SwiftLeafNode<SwiftCompositeNode>, DocCCompositeNode>,
+    ISwiftDocCInterconnectNode<SwiftCompositeNode, DocCCompositeNode>
 {
-    public SwiftDooCInterconnectNode(DooCCompositeNode equivalentNode)
+    public SwiftDocCInterconnectNode(DocCCompositeNode equivalentNode)
         : base(equivalentNode)
     { }
 
-    public SwiftDooCInterconnectNode(DooCCompositeNode equivalentNode, SwiftCompositeNode parent, int index)
+    public SwiftDocCInterconnectNode(DocCCompositeNode equivalentNode, SwiftCompositeNode parent, int index)
         : base(equivalentNode, parent, index)
     { }
 
-    public SwiftDooCInterconnectNode(DooCCompositeNode equivalentNode, SwiftCompositeNode parent, int index, int textIndex, int lengthInParent)
+    public SwiftDocCInterconnectNode(DocCCompositeNode equivalentNode, SwiftCompositeNode parent, int index, int textIndex, int lengthInParent)
         : base(equivalentNode, parent, index, textIndex, lengthInParent)
     { }
 

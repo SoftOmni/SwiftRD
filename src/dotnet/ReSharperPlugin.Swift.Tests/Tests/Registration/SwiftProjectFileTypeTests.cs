@@ -2,9 +2,10 @@ using System;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Resources.Shell;
 using JetBrains.TestFramework;
+using NUnit.Framework;
 using SoftOmni.SwiftRd.Language.File;
 
-namespace SoftOmni.SwiftRd.Tests.test.Registration;
+namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
 
 [TestFixture]
 public class SwiftProjectFileTypeTests : BaseTest

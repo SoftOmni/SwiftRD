@@ -1,8 +1,8 @@
 using DefaultNamespace;
 using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained;
 
-namespace SoftOmni.SwiftRd.Language.DooC.Parser.Tree.Base.Interfaces;
+namespace SoftOmni.SwiftRd.Language.DocC.Parser.Tree.Base.Interfaces;
 
-public interface IDooCNodeFamily<TSelf> : INodeFamily<IDooCNodeFamily<TSelf>, TSelf, DooCLeafNode<TSelf>>
-    where TSelf : DooCInternalNode<TSelf>
+public interface IDocCNodeFamily<TSelf> : INodeFamily<IDocCNodeFamily<TSelf>, TSelf, DocCLeafNode<TSelf>>
+    where TSelf : DocCInternalNode<TSelf>
 { }

@@ -18,91 +18,36 @@ public partial class SwiftParser
 {
     private static class GenericArgumentClauseParser
     {
-        public static IGenericArgumentClause ParseGenericArgumentClauseWithStart(SwiftLexer lexer, IEditableBuffer buffer, int currentOffset,
-            List<ISwiftNode<SwiftCompositeNode>> children, LeftAngleBracket? leftAngleBracket, ISwiftParsingSettings parsingSettings)
+        public static IGenericArgumentClause ParseGenericArgumentClauseWithStart(SwiftLexer lexer,
+            IEditableBuffer buffer, ref int currentOffset,
+            List<ISwiftNode<SwiftCompositeNode>> children, LeftAngleBracket? leftAngleBracket,
+            ISwiftParsingSettings parsingSettings)
         {
             currentOffset = AdvanceAndAddCommentsWhitespace(buffer, currentOffset, children, lexer);
             if (lexer.TokenType is EndOfFileToken)
             {
-                return new IncompleteGenericArgumentClause(buffer, "Missing closing > with generic arguments", leftAngleBracket);
+                return new IncompleteGenericArgumentClause(buffer, "Missing closing > with generic arguments",
+                    leftAngleBracket);
             }
 
             if (lexer.TokenType is RightAngleBracketToken)
             {
-                RightAngleBracket rightAngleBracket = new(new SubEditableBuffer(buffer, currentOffset, lexer.TokenLength));
+                RightAngleBracket rightAngleBracket =
+                    new(new SubEditableBuffer(buffer, currentOffset, lexer.TokenLength));
                 return new IncompleteGenericArgumentClause(buffer, "Missing generic arguments", leftAngleBracket,
                     rightAngleBracket: rightAngleBracket);
             }
 
-            bool canBeReasonablyInterpretedAsType = TypeExtensions.CanBeReasonablyInterpretedAsType(lexer);
-            if (!canBeReasonablyInterpretedAsType)
-            {
-                return new IncompleteGenericArgumentClause(buffer, "Missing closing > with generic arguments", leftAngleBracket);
-            }
-
-            return ParseGenericArguments(lexer, buffer, currentOffset, children, leftAngleBracket, parsingSettings);
+            throw new NotImplementedException();
         }
 
-        private static IGenericArgumentClause ParseGenericArguments(SwiftLexer lexer, IEditableBuffer buffer, int currentOffset,
-            List<ISwiftNode<SwiftCompositeNode>> children, LeftAngleBracket? leftAngleBracket, ISwiftParsingSettings parsingSettings)
-        {
-            bool canBeReasonablyInterpretedAsType = true;
-            int initialOffset = currentOffset;
-
-            List<IType> types = [];
-            List<IGenericArgument> genericArguments = [];
-            List<Comma> commas = [];
-
-            while (canBeReasonablyInterpretedAsType && lexer.TokenType is not RightAngleBracketToken)
-            {
-                IType type = ParseType();
-                IGenericArgument genericArgument;
-
-                currentOffset = AdvanceAndAddCommentsWhitespace(buffer, currentOffset, children, lexer);
-                // TODO: Finish me
-                if (lexer.TokenType is not CommaToken)
-                {
-                    canBeReasonablyInterpretedAsType = TypeExtensions.CanBeReasonablyInterpretedAsType(lexer);
-                    if (parsingSettings.GetGenericsClauseUnendedBehavior is ISwiftParsingSettings.GenericsClauseUnendedBehavior.ConsiderTypeWithoutCommaBePart)
-                    {
-                        genericArgument = new GenericArgument(type);
-                        
-                        types.Add(type);
-                        genericArguments.Add(genericArgument);
-                        
-                        children.Add(type);
-                    }
-                    
-                    IncompleteGenericArgumentGroup incompleteGenericArgumentGroup =
-                        new(new SubEditableBuffer(buffer, initialOffset, currentOffset - initialOffset),
-                            children, genericArguments, types, commas, "Missing closing > of generic arguments clause");
-
-                    return new IncompleteGenericArgumentClause(buffer, "Missing closing > of generic arguments clause",
-                        leftAngleBracket, incompleteGenericArgumentGroup);
-                }
-                
-                genericArgument = new GenericArgument(type);
-                
-                types.Add(type);
-                genericArguments.Add(genericArgument);
-                
-                currentOffset = AdvanceAndAddCommentsWhitespace(buffer, currentOffset, children, lexer);
-                if (lexer.TokenType is CommaToken)
-                {
-                    Comma comma = new(new SubEditableBuffer(buffer, currentOffset, lexer.TokenLength));
-                    commas.Add(comma);
-                }
-            }
-            
-            
-        }
     }
-    
+
     private static IGenericArgumentClause ParseGenericArgumentClauseWithStart(SwiftLexer lexer, IEditableBuffer buffer,
-        int currentOffset,
+        ref int currentOffset,
         List<ISwiftNode<SwiftCompositeNode>> children, LeftAngleBracket? leftAngleBracket, ISwiftParsingSettings swiftParsingSettings)
     {
-        return GenericArgumentClauseParser.ParseGenericArgumentClauseWithStart(lexer, buffer, currentOffset, children, leftAngleBracket);
+        return GenericArgumentClauseParser.ParseGenericArgumentClauseWithStart(lexer, buffer, ref currentOffset, children, leftAngleBracket, swiftParsingSettings);
     }
 
     public static IGenericArgumentClause ParseGenericArgumentClause(string code)

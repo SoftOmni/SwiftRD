@@ -11,9 +11,6 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Identifiers;
 
 public class Identifier : SwiftLeafNode<SwiftCompositeNode>, IIdentifier
 {
-    private int _count;
-    private int _count1;
-    private int _count2;
     public bool IsOnlyAscii { get; private set; }
 
     internal Identifier(IEditableBuffer buffer)
@@ -59,7 +56,7 @@ public class Identifier : SwiftLeafNode<SwiftCompositeNode>, IIdentifier
         throw new NotImplementedException();
     }
 
-    int IReadOnlyCollection<char>.Count => _count;
+    int IReadOnlyCollection<char>.Count => Buffer.Length;
 
     public char this[int index]
     {
@@ -92,7 +89,7 @@ public class Identifier : SwiftLeafNode<SwiftCompositeNode>, IIdentifier
         throw new NotImplementedException();
     }
 
-    int ICollection<char>.Count => _count1;
+    int ICollection<char>.Count => Buffer.Length;
 
     public bool IsReadOnly { get; }
     public int IndexOf(char item)
@@ -110,9 +107,14 @@ public class Identifier : SwiftLeafNode<SwiftCompositeNode>, IIdentifier
         throw new NotImplementedException();
     }
 
-    int IIdentifier.Count => _count2;
+    int IIdentifier.Count => Buffer.Length;
 
     // TODO: Add creation API with lexer based checking
     // TODO: Add changing API similar to comments
     // TODO: Add integration into renaming refactoring
+
+    public bool IsEmpty()
+    {
+        return Buffer.Length == 0;
+    }
 }

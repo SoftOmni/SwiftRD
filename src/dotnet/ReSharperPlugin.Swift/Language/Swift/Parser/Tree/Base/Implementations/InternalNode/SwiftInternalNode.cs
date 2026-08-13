@@ -41,10 +41,10 @@ public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<T
 
     public override NodeType NodeType => SwiftNodeTypes.Internal;
 
-    protected void CheckChildren(Type expectedChildType, HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
+    /*protected void CheckChildren(Type expectedChildType, HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
     {
         CheckChildren(GetType(), ChildNodes, expectedChildType, alwaysAllowedTypes, allowMultiples);
-    }
+    }*/
 
     protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childrenToCheck, Type expectedChildType,
         HashSet<Type> alwaysAllowedTypes, bool allowMultiples = false)
@@ -96,10 +96,10 @@ public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<T
         }
     }
 
-    protected void CheckChildren(IEnumerable<Type> expectedChildTypes, HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
+    /*protected void CheckChildren(IEnumerable<Type> expectedChildTypes, HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
         CheckChildren(GetType(), ChildNodes, expectedChildTypes, alwaysAllowedTypes, allowIncomplete);
-    }
+    }*/
 
 
     protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> childrenToCheck, IEnumerable<Type> expectedChildTypes,
@@ -194,10 +194,10 @@ public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<T
         }
     }
 
-    protected void CheckChildren(List<Type> expectedChildTypes, HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
+    /*protected void CheckChildren(List<Type> expectedChildTypes, HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
     {
         CheckChildren(GetType(), ChildNodes, expectedChildTypes, alwaysAllowedTypes, allowIncomplete);
-    }
+    }*/
 
     protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> newChildren, List<Type> expectedChildTypes,
         HashSet<Type> alwaysAllowedTypes, bool allowIncomplete = false)
@@ -243,10 +243,10 @@ public abstract class SwiftInternalNode<TSelf> : InternalNode<ISwiftNodeFamily<T
         }
     }
 
-    protected void CheckChildren(ReadOnlyStateMachine<Type> expectedTypesStateMachine, HashSet<Type> alwaysAllowedTypes)
+    /*protected void CheckChildren(ReadOnlyStateMachine<Type> expectedTypesStateMachine, HashSet<Type> alwaysAllowedTypes)
     {
         CheckChildren(GetType(), ChildNodes, expectedTypesStateMachine, alwaysAllowedTypes);
-    }
+    }*/
 
     protected static void CheckChildren(Type currentType, IEnumerable<INode<ISwiftNodeFamily<TSelf>, TSelf, TSelf, SwiftLeafNode<TSelf>>> newChildren, ReadOnlyStateMachine<Type> expectedTypesStateMachine,
         HashSet<Type> alwaysAllowedTypes)

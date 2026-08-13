@@ -1,8 +1,8 @@
 using SoftOmni.SwiftRd.Language.Base.Implementations.Constrained.InternalNodes;
-using SoftOmni.SwiftRd.Language.DooC.Parser.Tree.Base.Interfaces;
+using SoftOmni.SwiftRd.Language.DocC.Parser.Tree.Base.Interfaces;
 
 namespace DefaultNamespace;
 
-public abstract class DooCInternalNode<TSelf> : InternalNode<IDooCNodeFamily<TSelf>, TSelf, DooCLeafNode<TSelf>>, IDooCInternalNode<TSelf>
-    where TSelf : DooCInternalNode<TSelf>
+public abstract class DocCInternalNode<TSelf> : InternalNode<IDocCNodeFamily<TSelf>, TSelf, DocCLeafNode<TSelf>>, IDocCInternalNode<TSelf>
+    where TSelf : DocCInternalNode<TSelf>
 { }

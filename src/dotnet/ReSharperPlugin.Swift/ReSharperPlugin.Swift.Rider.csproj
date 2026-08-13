@@ -17,6 +17,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
+    <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Language\RegularExpressionHarness\Parser\" />
+    <Folder Include="Language\Swift\Parser\Parsing\Generics\ParameterClauses\" />
     <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\MacroExpansionExpressions\" />
     <Folder Include="Language\Swift\Parser\Tree\NodeTypes\InternalNodeTypes\" />
     <Folder Include="Technology\Ranges\" />

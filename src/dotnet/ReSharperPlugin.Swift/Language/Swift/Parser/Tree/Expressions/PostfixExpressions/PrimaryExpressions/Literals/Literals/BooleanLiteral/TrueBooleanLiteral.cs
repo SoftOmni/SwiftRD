@@ -9,6 +9,8 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpress
 
 public class TrueBooleanLiteral : BooleanLiteral
 {
+    public const string Keyword = "true";
+    
     public TrueBooleanLiteral()
         : base(new EditableBuffer("true"), true, new PrimitiveLiteralTypeResolutionContext())
     { }

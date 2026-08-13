@@ -6,7 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InterconnectNodes;
 
-public interface ISwiftDooCInterconnectNode<TSelf, TDooCInternalNode> : 
-    IInterconnectNode<ISwiftNodeFamily<TSelf>, TSelf, SwiftLeafNode<TSelf>, TDooCInternalNode>,
+public interface ISwiftDocCInterconnectNode<TSelf, TDocCInternalNode> : 
+    IInterconnectNode<ISwiftNodeFamily<TSelf>, TSelf, SwiftLeafNode<TSelf>, TDocCInternalNode>,
     ISwiftInternalNode<TSelf>
-    where TSelf : SwiftInternalNode<TSelf> where TDooCInternalNode : DooCCompositeNode;
+    where TSelf : SwiftInternalNode<TSelf> where TDocCInternalNode : DocCCompositeNode;

@@ -6,6 +6,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ContextSensitive;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.ExpressionsAndTypes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Identifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Markers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Operators.BuiltinOperators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Parsing;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -66,11 +67,13 @@ public partial class SwiftParser
             public IType? Type { get; private set; }
 
             public TypeKind Kind { get; }
+            
+            public TypeIdentifierData? TypeIdentifierExtraData { get; }
 
             public TypeParserData(IEditableBuffer buffer, int currentOffset,
                 List<ISwiftNode<SwiftCompositeNode>> children,
                 List<(ISwiftNode<SwiftCompositeNode> node, int significantPositioning)> significantChildren,
-                TypeKind kind, IType type)
+                TypeKind kind, IType type, TypeIdentifierData? typeIdentifierExtraData = null)
             {
                 Buffer = buffer;
                 CurrentOffset = currentOffset;
@@ -78,18 +81,20 @@ public partial class SwiftParser
                 SignificantChildren = significantChildren;
                 Kind = kind;
                 Type = type;
+                TypeIdentifierExtraData = typeIdentifierExtraData;
             }
 
             public TypeParserData(IEditableBuffer buffer, int currentOffset,
                 List<ISwiftNode<SwiftCompositeNode>> children,
                 List<(ISwiftNode<SwiftCompositeNode> node, int significantPositioning)> significantChildren,
-                TypeKind kind)
+                TypeKind kind, TypeIdentifierData? typeIdentifierExtraData = null)
             {
                 Buffer = buffer;
                 CurrentOffset = currentOffset;
                 Children = children;
                 SignificantChildren = significantChildren;
                 Kind = kind;
+                TypeIdentifierExtraData = typeIdentifierExtraData;
                 Type = null;
             }
 
@@ -147,7 +152,11 @@ public partial class SwiftParser
                 case SelfUppercaseKeywordToken:
                     ProcessSelfType(buffer, currentOffset, children, typesStack);
                     break;
-                case ColonToken:
+                case PeriodToken:
+                    break;
+                case QuestionMarkPrefixOperatorToken:
+                    break;
+                case ExclamationMarkPrefixOperatorToken:
                     break;
             }
         }

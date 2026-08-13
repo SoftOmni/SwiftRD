@@ -10,6 +10,8 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpress
 
 public class FalseBooleanLiteral : BooleanLiteral
 {
+    public const string Keyword = "false";
+    
     public FalseBooleanLiteral()
         : base(new EditableBuffer("false"), false, new PrimitiveLiteralTypeResolutionContext())
     { }

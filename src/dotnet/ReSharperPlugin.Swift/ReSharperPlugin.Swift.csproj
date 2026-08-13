@@ -28,6 +28,8 @@
     <Folder Include="Language\Base\Implementations\Flexible\Concretely\" />
     <Folder Include="Language\Base\Implementations\Flexible\Concretely\InternalNodes\Replacement\" />
     <Folder Include="Language\Base\Implementations\Flexible\Loose\Internal\Replacement\" />
+    <Folder Include="Language\Carbon\" />
+    <Folder Include="Language\Jank\" />
     <Folder Include="Language\Leaf\Parser\Tree\Base\" />
     <Folder Include="Language\ObjectiveCXX\Parser\Tree\Base\" />
     <Folder Include="Language\ObjectiveC\Parser\Tree\Base\" />
@@ -40,6 +42,7 @@
     <Folder Include="Language\Swift\ProjectModels\CMake\" />
     <Folder Include="Language\Swift\ProjectModels\Makefile\" />
     <Folder Include="Language\Swift\ProjectModels\Meson\" />
+    <Folder Include="Language\Swift\ProjectModels\MSBuild\" />
     <Folder Include="Language\Swift\ProjectModels\Xcode\" />
     <Folder Include="Ressources\Icons\Language\Raw\Declarations\Swift\" />
   </ItemGroup>

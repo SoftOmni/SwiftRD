@@ -1,4 +1,7 @@
 using ExtendedNumerics;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Semantics.Type;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
@@ -9,6 +12,11 @@ public class FloatingPointLiteralToken()
     public override bool IsConstantLiteral => true;
 
     public override string TokenRepresentation { get; } = SwiftTokens.FloatingPointLiteralId;
+
+    public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class FloatingPointLiteralTokenBaker<TType>(

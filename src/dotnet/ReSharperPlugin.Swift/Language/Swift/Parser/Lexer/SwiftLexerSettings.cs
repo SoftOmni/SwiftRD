@@ -16,7 +16,7 @@ public class SwiftLexerSettings
         SimpleStringAndStartOfOtherSimpleStringLineIfNoPair,
         MultilineStringLiteralStartToEndImmediateIfNoPair,
         MultilineStringLiteralStartToEndLineIfNoPair,
-        MultilineStringLiteralStart
+        MultilineStringLiteralStartToEndOfFileIfNoPair
     }
 
     public enum FourQuotesSetting
@@ -49,7 +49,7 @@ public static class SwiftLexerSettingsExtensions
 {
     public static bool IsMultiLineStart(this SwiftLexerSettings.ThreeQuotesSetting threeQuotesSetting)
     {
-        return threeQuotesSetting is SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStart
+        return threeQuotesSetting is SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndOfFileIfNoPair
             or SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndImmediateIfNoPair
             or SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndLineIfNoPair;
     }
