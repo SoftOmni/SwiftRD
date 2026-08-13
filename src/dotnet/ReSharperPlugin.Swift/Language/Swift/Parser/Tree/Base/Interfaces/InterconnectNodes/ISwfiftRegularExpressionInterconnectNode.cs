@@ -2,6 +2,7 @@ using SoftOmni.SwiftRd.Language.Base.Interfaces.Constrained.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.LeafNodes;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InternalNode;
+using SoftOmni.SwiftRd.Rider.Language.RegularExpressionHarness.Parser.Tree.Base.Implementations.InternalNode;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Interfaces.InterconnectNodes;
 

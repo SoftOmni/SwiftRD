@@ -6,6 +6,7 @@ using JetBrains.Text;
 using JetBrains.UI.Icons;
 using JetBrains.Util.Dotnet.TargetFrameworkIds;
 using SoftOmni.SwiftRd.Language.File;
+using SoftOmni.SwiftRd.Language.Swift;
 using SoftOmni.SwiftRd.Language.Ui.Icons;
 
 namespace SoftOmni.SwiftRd;

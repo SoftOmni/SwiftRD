@@ -1,3 +1,6 @@
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.WhitespaceAndComments;
@@ -7,4 +10,9 @@ public class NewLineToken() : SwiftTokenNodeType(SwiftTokens.NewlineId, SwiftTok
     public override bool IsWhitespace => true;
 
     public override string TokenRepresentation { get; } = SwiftTokens.NewlineId;
+
+    public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -1,21 +1,81 @@
 using System.Collections.Generic;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Util.dataStructures;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.Destructuring.Wildcards;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Keywords;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree;
-using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Constants;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Keywords;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.ActorIsolationModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.DeclarationModifiers;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.MutationModifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeInitializers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Enumerations.Cases;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Extensions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Functions.ParameterClauses.ParameterModifiers;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Imports;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Indirecterations;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Initializers.Inits;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Operators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Assignment;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.PrecedenceGroups.Associativity;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Protocols.Members;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Structs;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Subscripts;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.TypeAliases;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.GetterSetterBlocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Variables.WillSetDidSetBlocks;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.InfixExpressions.TypeCastingOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ClosureExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISelfExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ISuperClassExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.KeyPathStringExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.PlaygroundLiterals.Colors;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.PlaygroundLiterals.Files;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.ComposedLiterals.PlaygroundLiterals.Images;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.Literals.Literals.NilLiterals;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelectorExpressions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.TryOperators;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.GenericWhereClauseClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.PreviouslyReservedElements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Guard;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Ifs;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.BranchStatements.Switches.SwitchCases.DefaultSwitchCases;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.AvailabilityConditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.CompileTimeDiagnostics;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.Directives;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.LineControlStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.BreakStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.ContinueStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.FallthroughStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.ReturnStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.ThrowStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DeferStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.DoStatements.CatchClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.ForInStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.RepeatWhileStatements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.LoopStatements.WhileLoops;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.AnyTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.BoxedProtocolTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.FunctionTypes.ThrowClauses;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.MetaTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.OpaqueTypes;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types.SelfTypes;
+using Class = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.Classes.Class;
+using Internal = SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Declarations.DeclarationModifiers.AccessLevelModifiers.Keywords.Internal;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
@@ -56,9 +116,9 @@ public partial class SwiftLexer
         }
 
         string value = GetCurrentText();
-        if (ReservedKeywords.ContainsKey(value))
+        if (ReservedKeywords.TryGetValue(value, out SwiftTokenNodeType? reservedKeyword))
         {
-            TokenType = ReservedKeywords[value];
+            TokenType = reservedKeyword;
             return;
         }
 
@@ -156,7 +216,7 @@ public partial class SwiftLexer
         Dictionary<string, SwiftTokenNodeType> dictionary = new()
         {
             { Assignment.Keyword, SwiftTokens.AssignmentKeywordToken },
-            { "associatedtype", SwiftTokens.AssociatedTypeKeywordToken },
+            { AssociatedType.Keyword, SwiftTokens.AssociatedTypeKeywordToken },
             { Borrowing.Keyword, SwiftTokens.BorrowingKeywordToken },
             { Class.Keyword, SwiftTokens.ClassKeywordToken },
             { Consuming.Keyword, SwiftTokens.ConsumingKeywordToken },
@@ -168,104 +228,104 @@ public partial class SwiftLexer
             { Import.Keyword, SwiftTokens.ImportKeywordToken },
             { Init.Keyword, SwiftTokens.InitKeywordToken },
             { InOut.Keyword, SwiftTokens.InoutKeywordToken },
-            { "internal", SwiftTokens.InternalKeywordToken },
-            { "let", SwiftTokens.LetKeywordToken },
-            { "nonisolated", SwiftTokens.NonIsolatedKeywordToken },
-            { "open", SwiftTokens.OpenKeywordToken },
-            { "operator", SwiftTokens.OperatorKeywordToken },
-            { "precedencegroup", SwiftTokens.PrecedenceGroupKeywordToken },
-            { "private", SwiftTokens.PrivateKeywordToken },
-            { "protocol", SwiftTokens.ProtocolLowercaseKeywordToken },
-            { "public", SwiftTokens.PublicKeywordToken },
-            { "rethrows", SwiftTokens.RethrowsKeywordToken },
-            { "static", SwiftTokens.StaticKeywordToken },
-            { "struct", SwiftTokens.StructKeywordToken },
-            { "subscript", SwiftTokens.SubscriptKeywordToken },
-            { "typealias", SwiftTokens.TypealiasKeywordToken },
-            { "var", SwiftTokens.VarKeywordToken },
-            { "break", SwiftTokens.BreakKeywordToken },
-            { "case", SwiftTokens.CaseKeywordToken },
-            { "catch", SwiftTokens.CatchKeywordToken },
-            { "continue", SwiftTokens.ContinueKeywordToken },
-            { "default", SwiftTokens.DefaultKeywordToken },
-            { "defer", SwiftTokens.DeferKeywordToken },
-            { "do", SwiftTokens.DoKeywordToken },
-            { "else", SwiftTokens.ElseKeywordToken },
-            { "fallthrough", SwiftTokens.FallthroughKeywordToken },
-            { "for", SwiftTokens.ForKeywordToken },
-            { "guard", SwiftTokens.GuardKeywordToken },
-            { "if", SwiftTokens.IfKeywordToken },
-            { "in", SwiftTokens.InKeywordToken },
-            { "repeat", SwiftTokens.RepeatKeywordToken },
-            { "return", SwiftTokens.ReturnKeywordToken },
-            { "switch", SwiftTokens.SwitchKeywordToken },
-            { "throw", SwiftTokens.ThrowKeywordToken },
-            { "where", SwiftTokens.WhereKeywordToken },
-            { "while", SwiftTokens.WhileKeywordToken },
-            { "Any", SwiftTokens.AnyLowercaseKeywordToken },
-            { "any", SwiftTokens.AnyUppercaseKeywordToken },
-            { "as", SwiftTokens.AsKeywordToken },
-            { "await", SwiftTokens.AwaitKeywordToken },
-            { "false", SwiftTokens.FalseLiteralToken },
-            { "is", SwiftTokens.IsKeywordToken },
-            { "nil", SwiftTokens.NilLiteralToken },
-            { "self", SwiftTokens.SelfLowercaseKeywordToken },
-            { "Self", SwiftTokens.SelfUppercaseKeywordToken },
-            { "super", SwiftTokens.SuperKeywordToken },
-            { "throws", SwiftTokens.ThrowsKeywordToken },
-            { "true", SwiftTokens.TrueLiteralToken },
-            { "try", SwiftTokens.TryKeywordToken },
-            { "_", SwiftTokens.UnderscoreKeywordToken },
-            { "#available", SwiftTokens.ReservedAvailableKeywordToken },
-            { "#colorLiteral", SwiftTokens.ReservedColorLiteralKeywordToken },
-            { "#else", SwiftTokens.ElseDirectiveKeywordToken },
-            { "#elseif", SwiftTokens.ElseIfDirectiveKeywordToken },
-            { "#endif", SwiftTokens.EndIfDirectiveKeywordToken },
-            { "#fileLiteral", SwiftTokens.ReservedFileLiteralKeywordToken },
-            { "#if", SwiftTokens.IfDirectiveKeywordToken },
-            { "#imageLiteral", SwiftTokens.ReservedImageLiteralKeywordToken },
-            { "#keyPath", SwiftTokens.ReservedKeyPathKeywordToken },
-            { "#selector", SwiftTokens.ReservedSelectorKeywordToken },
-            { "#sourceLocation", SwiftTokens.ReservedSourceLocationKeywordToken },
-            { "#unavailable", SwiftTokens.ReservedUnavailableKeywordToken },
-            { "#column", SwiftTokens.PreviouslyReservedColumnKeywordToken },
-            { "#dsohandle", SwiftTokens.PreviouslyReservedDsoHandleKeywordToken },
-            { "#error", SwiftTokens.PreviouslyReservedErrorKeywordToken },
-            { "#fileID", SwiftTokens.PreviouslyReservedFileIdKeywordToken },
-            { "#filePath", SwiftTokens.PreviouslyReservedFilePathKeywordToken },
-            { "#file", SwiftTokens.PreviouslyReservedFileKeywordToken },
-            { "#function", SwiftTokens.PreviouslyReservedFunctionKeywordToken },
-            { "#line", SwiftTokens.PreviouslyReservedLineKeywordToken },
-            { "#warning", SwiftTokens.PreviouslyReservedWarningKeywordToken },
-            { "associativity", SwiftTokens.AssociativityKeywordToken },
-            { "async", SwiftTokens.AsyncKeywordToken },
-            { "convenience", SwiftTokens.ConvenienceKeywordToken },
-            { "didSet", SwiftTokens.DidSetKeywordToken },
-            { "dynamic", SwiftTokens.DynamicKeywordToken },
-            { "final", SwiftTokens.FinalKeywordToken },
-            { "get", SwiftTokens.GetKeywordToken },
-            { "indirect", SwiftTokens.IndirectKeywordToken },
-            { "infix", SwiftTokens.InfixKeywordToken },
-            { "lazy", SwiftTokens.LazyKeywordToken },
-            { "left", SwiftTokens.LeftKeywordToken },
-            { "mutating", SwiftTokens.MutatingKeywordToken },
-            { "none", SwiftTokens.NoneKeywordToken },
-            { "nonmutating", SwiftTokens.NonMutatingKeywordToken },
-            { "optional", SwiftTokens.OptionalKeywordToken },
-            { "override", SwiftTokens.OverrideKeywordToken },
-            { "package", SwiftTokens.PackageKeywordToken },
-            { "postfix", SwiftTokens.PostfixKeywordToken },
-            { "precedence", SwiftTokens.PrecedenceKeywordToken },
-            { "prefix", SwiftTokens.PrefixKeywordToken },
-            { "Protocol", SwiftTokens.ProtocolUppercaseKeywordToken },
-            { "required", SwiftTokens.RequiredKeywordToken },
-            { "right", SwiftTokens.RightKeywordToken },
-            { "set", SwiftTokens.SetKeywordToken },
-            { "some", SwiftTokens.SomeKeywordToken },
-            { "Type", SwiftTokens.TypeKeywordToken },
-            { "unowned", SwiftTokens.UnownedKeywordToken },
-            { "weak", SwiftTokens.WeakKeywordToken },
-            { "willSet", SwiftTokens.WillSetKeywordToken }
+            { Internal.Keyword, SwiftTokens.InternalKeywordToken },
+            { Let.Keyword, SwiftTokens.LetKeywordToken },
+            { NonIsolated.Keyword, SwiftTokens.NonIsolatedKeywordToken },
+            { Open.Keyword, SwiftTokens.OpenKeywordToken },
+            { OperatorKeyword.Keyword, SwiftTokens.OperatorKeywordToken },
+            { PrecedenceGroupKeyword.Keyword, SwiftTokens.PrecedenceGroupKeywordToken },
+            { Private.Keyword, SwiftTokens.PrivateKeywordToken },
+            { Protocol.Keyword, SwiftTokens.ProtocolLowercaseKeywordToken },
+            { Public.Keyword, SwiftTokens.PublicKeywordToken },
+            { Rethrows.Keyword, SwiftTokens.RethrowsKeywordToken },
+            { Static.Keyword, SwiftTokens.StaticKeywordToken },
+            { Struct.Keyword, SwiftTokens.StructKeywordToken },
+            { Subscript.Keyword, SwiftTokens.SubscriptKeywordToken },
+            { TypeAliasKeyword.Keyword, SwiftTokens.TypealiasKeywordToken },
+            { Var.Keyword, SwiftTokens.VarKeywordToken },
+            { Break.Keyword, SwiftTokens.BreakKeywordToken },
+            { Case.Keyword, SwiftTokens.CaseKeywordToken },
+            { Catch.Keyword, SwiftTokens.CatchKeywordToken },
+            { Continue.Keyword, SwiftTokens.ContinueKeywordToken },
+            { Default.Keyword, SwiftTokens.DefaultKeywordToken },
+            { Defer.Keyword, SwiftTokens.DeferKeywordToken },
+            { Do.Keyword, SwiftTokens.DoKeywordToken },
+            { Else.Keyword, SwiftTokens.ElseKeywordToken },
+            { Fallthrough.Keyword, SwiftTokens.FallthroughKeywordToken },
+            { For.Keyword, SwiftTokens.ForKeywordToken },
+            { Guard.Keyword, SwiftTokens.GuardKeywordToken },
+            { If.Keyword, SwiftTokens.IfKeywordToken },
+            { In.Keyword, SwiftTokens.InKeywordToken },
+            { Repeat.Keyword, SwiftTokens.RepeatKeywordToken },
+            { Return.Keyword, SwiftTokens.ReturnKeywordToken },
+            { Switch.Keyword, SwiftTokens.SwitchKeywordToken },
+            { Throw.Keyword, SwiftTokens.ThrowKeywordToken },
+            { Where.Keyword, SwiftTokens.WhereKeywordToken },
+            { While.Keyword, SwiftTokens.WhileKeywordToken },
+            { AnyLowercase.Keyword, SwiftTokens.AnyLowercaseKeywordToken },
+            { AnyUppercase.Keyword, SwiftTokens.AnyUppercaseKeywordToken },
+            { As.Keyword, SwiftTokens.AsKeywordToken },
+            { Await.Keyword, SwiftTokens.AwaitKeywordToken },
+            { FalseBooleanLiteral.Keyword, SwiftTokens.FalseLiteralToken },
+            { Is.Keyword, SwiftTokens.IsKeywordToken },
+            { NilLiteral.Keyword, SwiftTokens.NilLiteralToken },
+            { SelfLowercase.Keyword, SwiftTokens.SelfLowercaseKeywordToken },
+            { Self.Keyword, SwiftTokens.SelfUppercaseKeywordToken },
+            { Super.Keyword, SwiftTokens.SuperKeywordToken },
+            { Throws.Keyword, SwiftTokens.ThrowsKeywordToken },
+            { TrueBooleanLiteral.Keyword, SwiftTokens.TrueLiteralToken },
+            { Try.Keyword, SwiftTokens.TryKeywordToken },
+            { SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.Destructuring.Wildcards.Underscore.Value, SwiftTokens.UnderscoreKeywordToken },
+            { ReservedAvailableKeyword.Keyword, SwiftTokens.ReservedAvailableKeywordToken },
+            { ReservedColorLiteralKeyword.Keyword, SwiftTokens.ReservedColorLiteralKeywordToken },
+            { ElseDirective.Keyword, SwiftTokens.ElseDirectiveKeywordToken },
+            { ElseIfDirective.Keyword, SwiftTokens.ElseIfDirectiveKeywordToken },
+            { EndIfDirective.Keyword, SwiftTokens.EndIfDirectiveKeywordToken },
+            { ReservedFileLiteralKeyword.Keyword, SwiftTokens.ReservedFileLiteralKeywordToken },
+            { IfDirective.Keyword, SwiftTokens.IfDirectiveKeywordToken },
+            { ReservedImageLiteralKeyword.Keyword, SwiftTokens.ReservedImageLiteralKeywordToken },
+            { KeyPathKeyword.Keyword, SwiftTokens.ReservedKeyPathKeywordToken },
+            { SelectorKeyword.Keyword, SwiftTokens.ReservedSelectorKeywordToken },
+            { ReservedSourceLocationKeyword.Keyword, SwiftTokens.ReservedSourceLocationKeywordToken },
+            { ReservedUnavailableKeyword.Keyword, SwiftTokens.ReservedUnavailableKeywordToken },
+            { LegacyColumn.Keyword, SwiftTokens.PreviouslyReservedColumnKeywordToken },
+            { LegacyDsoHandle.Keyword, SwiftTokens.PreviouslyReservedDsoHandleKeywordToken },
+            { ErrorDirective.Keyword, SwiftTokens.PreviouslyReservedErrorKeywordToken },
+            { LegacyFileId.Keyword, SwiftTokens.PreviouslyReservedFileIdKeywordToken },
+            { LegacyFilePath.Keyword, SwiftTokens.PreviouslyReservedFilePathKeywordToken },
+            { LegacyFile.Keyword, SwiftTokens.PreviouslyReservedFileKeywordToken },
+            { LegacyFunction.Keyword, SwiftTokens.PreviouslyReservedFunctionKeywordToken },
+            { LegacyLine.Keyword, SwiftTokens.PreviouslyReservedLineKeywordToken },
+            { WarningDirective.Keyword, SwiftTokens.PreviouslyReservedWarningKeywordToken },
+            { Associativity.Keyword, SwiftTokens.AssociativityKeywordToken },
+            { Async.Keyword, SwiftTokens.AsyncKeywordToken },
+            { Convenience.Keyword, SwiftTokens.ConvenienceKeywordToken },
+            { DidSet.Keyword, SwiftTokens.DidSetKeywordToken },
+            { Dynamic.Keyword, SwiftTokens.DynamicKeywordToken },
+            { Final.Keyword, SwiftTokens.FinalKeywordToken },
+            { Get.Keyword, SwiftTokens.GetKeywordToken },
+            { Indirect.Keyword, SwiftTokens.IndirectKeywordToken },
+            { Infix.Keyword, SwiftTokens.InfixKeywordToken },
+            { Lazy.Keyword, SwiftTokens.LazyKeywordToken },
+            { Left.Keyword, SwiftTokens.LeftKeywordToken },
+            { Mutating.Keyword, SwiftTokens.MutatingKeywordToken },
+            { None.Keyword, SwiftTokens.NoneKeywordToken },
+            { NonMutating.Keyword, SwiftTokens.NonMutatingKeywordToken },
+            { Optional.Keyword, SwiftTokens.OptionalKeywordToken },
+            { Override.Keyword, SwiftTokens.OverrideKeywordToken },
+            { Package.Keyword, SwiftTokens.PackageKeywordToken },
+            { Postfix.Keyword, SwiftTokens.PostfixKeywordToken },
+            { Precedence.Keyword, SwiftTokens.PrecedenceKeywordToken },
+            { Prefix.Keyword, SwiftTokens.PrefixKeywordToken },
+            { ProtocolUppercase.Keyword, SwiftTokens.ProtocolUppercaseKeywordToken },
+            { Required.Keyword, SwiftTokens.RequiredKeywordToken },
+            { Right.Keyword, SwiftTokens.RightKeywordToken },
+            { Set.Keyword, SwiftTokens.SetKeywordToken },
+            { Some.Keyword, SwiftTokens.SomeKeywordToken },
+            { Type.Keyword, SwiftTokens.TypeKeywordToken },
+            { Unowned.Keyword, SwiftTokens.UnownedKeywordToken },
+            { Weak.Keyword, SwiftTokens.WeakKeywordToken },
+            { WillSet.Keyword, SwiftTokens.WillSetKeywordToken }
         };
 
         return dictionary;

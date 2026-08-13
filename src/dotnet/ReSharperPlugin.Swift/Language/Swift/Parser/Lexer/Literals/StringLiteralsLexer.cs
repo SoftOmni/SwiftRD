@@ -80,15 +80,12 @@ public partial class SwiftLexer
 
         if (Buffer[TokenEnd] != DoubleQuote)
         {
-            TokenType = SwiftTokens.ErroneousStringLiteralToken;
+            // This is the start of a string literal
+            TokenType = numberOfHashtags > 1
+                ? SwiftTokens.SurroundedStringLiteralStartToken
+                : SwiftTokens.StringLiteralStartToken;
 
-            BackingErroneousStringLiteralToken backingErroneousStringLiteralToken = numberOfHashtags > 1
-                ? new BackingErroneousStringLiteralToken(BackingErroneousStringLiteralToken.ErrorCase
-                    .UnclosedStringLiteralWithHashtags, string.Empty, GetCurrentText())
-                : new BackingErroneousStringLiteralToken(
-                    BackingErroneousStringLiteralToken.ErrorCase.UnclosedStringLiteral,
-                    string.Empty, GetCurrentText());
-            BackPutBackingToken(backingErroneousStringLiteralToken);
+            StringLiteralsTypesStacks.Push((SwiftTokens.StringLiteralStartIndex, TokenStart, TokenEnd));
             return;
         }
 
@@ -98,7 +95,6 @@ public partial class SwiftLexer
         if (TokenEnd == EOFPos || Buffer[TokenEnd] != DoubleQuote)
         {
             TokenEnd--; // We go back to the first double quote
-            TokenEnd--;
 
             TokenType = numberOfHashtags > 1
                 ? SwiftTokens.SurroundedStringLiteralStartToken
@@ -155,7 +151,7 @@ public partial class SwiftLexer
 
         // We have four double quotes
         TokenEnd++;
-        if (TokenEnd == EOFPos || Buffer[TokenEnd] == DoubleQuote)
+        if (TokenEnd == EOFPos || Buffer[TokenEnd] != DoubleQuote)
         {
             if (SwiftLexerSettings.FourQuotesSettings is SwiftLexerSettings.FourQuotesSetting.DoubleSimpleStringLiteral)
             {
@@ -193,7 +189,7 @@ public partial class SwiftLexer
 
         // We have five double quotes
         TokenEnd++;
-        if (TokenEnd == EOFPos || Buffer[TokenEnd] == DoubleQuote)
+        if (TokenEnd == EOFPos || Buffer[TokenEnd] != DoubleQuote)
         {
             if (SwiftLexerSettings.FiveQuotesSettings is SwiftLexerSettings.FiveQuotesSetting
                     .DoubleSimpleStringLiteralAndStringLiteralStart ||
@@ -245,31 +241,31 @@ public partial class SwiftLexer
             : StringLiteralPosition.InMultiLineStringLiteral;
     }
 
-    private bool LexContinuationOfThreeQuotesSystem()
+    private void LexContinuationOfThreeQuotesSystem()
     {
-        if (ThreeQuotesSettingInEffect is SwiftLexerSettings.ThreeQuotesSetting
-                .SimpleStringAndStartOfOtherSimpleStringLineIfNoPair or SwiftLexerSettings.ThreeQuotesSetting
-                .SimpleStringAndStartOfOtherSimpleStringImmediateIfNoPair)
+        if (ThreeQuotesSettingInEffect is 
+            SwiftLexerSettings.ThreeQuotesSetting.SimpleStringAndStartOfOtherSimpleStringLineIfNoPair or 
+            SwiftLexerSettings.ThreeQuotesSetting.SimpleStringAndStartOfOtherSimpleStringImmediateIfNoPair)
         {
             TokenStart = TokenEnd;
             TokenEnd++;
 
             if (TokenStart >= EOFPos)
             {
-                return false;
+                return;
             }
 
             if (Buffer[TokenStart] !=
                 DoubleQuote) // What we expect otherwise the buffer has changed but this itself should not happen
             {
                 LexStringLiteralContent();
-                return true;
+                return;
             }
 
             ThreeQuotesSettingInEffect = null;
 
             LexStringLiteralEnd();
-            return true;
+            return;
         }
 
         IsInMultilinePairSearch.Push(TokenEnd);
@@ -279,14 +275,14 @@ public partial class SwiftLexer
             ThreeQuotesSettingInEffect = null;
 
             Advance(); // We are at the end so we return to regular lexing
-            return false;
+            return;
         }
 
-        if (ThreeQuotesSettingInEffect is SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStart)
+        if (ThreeQuotesSettingInEffect is SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndOfFileIfNoPair)
         {
             ThreeQuotesSettingInEffect = null;
             LexMultiLineStringLiteralContent();
-            return true;
+            return;
         }
 
         ThreeQuotesSettingInEffect = null;
@@ -294,11 +290,10 @@ public partial class SwiftLexer
         MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
 
         LexStringLiteralContent(true);
-        return true;
     }
 
     // ReSharper disable once CognitiveComplexity
-    private bool LexContinuationOfFourQuotesSystem()
+    private void LexContinuationOfFourQuotesSystem()
     {
         if (FourQuotesSettingInEffect is SwiftLexerSettings.FourQuotesSetting.DoubleSimpleStringLiteral)
         {
@@ -307,37 +302,39 @@ public partial class SwiftLexer
 
             if (TokenStart >= EOFPos)
             {
-                return false;
+                return;
             }
 
             if (Buffer[TokenStart] !=
-                DoubleQuote) // What we expect otherwise the buffer has changed but this itself should not happen
+                DoubleQuote) // We don't expect this.
+                             // If this is true, the buffer has changed
+                             // but this itself should not happen
             {
                 LexStringLiteralContent();
-                return true;
+                return;
             }
 
             FourQuotesSettingInEffect = null;
 
             LexStringLiteralEnd();
-            return true;
+            return;
         }
 
         TokenStart = TokenEnd;
 
         if (TokenEnd >= EOFPos)
         {
-            return false;
+            return;
         }
 
         if (Buffer[TokenEnd] != DoubleQuote) // We thought it was going to be a simple string literal
         {
             if (SwiftLexerSettings.ThreeQuotesSettings.IsMultiLineStart())
             {
-                return LexContinuationOfThreeQuotesSystem();
+                LexContinuationOfThreeQuotesSystem();
             }
 
-            if (StringLiteralsTypesStacks.Count > 0 && StringLiteralsTypesStacks.Peek().token ==
+            if (StringLiteralsTypesStacks.Count > 0 && StringLiteralsTypesStacks.Peek().token is
                 SwiftTokens.SurroundedMultiLineStringLiteralStartIndex)
             {
                 LexSurroundedMultiLineStringLiteralContent();
@@ -347,7 +344,7 @@ public partial class SwiftLexer
                 LexMultiLineStringLiteralContent();
             }
 
-            return true;
+            return;
         }
 
         TokenEnd++;
@@ -361,7 +358,7 @@ public partial class SwiftLexer
             StringLiteralsTypesStacks.Push((TokenType.Index, TokenStart, TokenEnd));
             IsInSimplePairSearch.Push(TokenEnd - 1);
 
-            return false;
+            return;
         }
 
         if (FourQuotesSettingInEffect is SwiftLexerSettings.FourQuotesSetting
@@ -370,18 +367,17 @@ public partial class SwiftLexer
             IsInMultilinePairSearch.Push(TokenEnd - 4);
 
             LexMultiLineStringLiteralContent();
-            return true;
+            return;
         }
 
         FourQuotesSettingInEffect = null;
         MultilineStringLiteralTypesStacks.Push(StringLiteralsTypesStacks.Peek());
 
         LexStringLiteralContent(true);
-        return true;
     }
 
     // ReSharper disable once CognitiveComplexity
-    private bool LexContinuationOfFiveQuotesSystem()
+    private void LexContinuationOfFiveQuotesSystem()
     {
         if (Buffer[TokenEnd] != DoubleQuote)
         {
@@ -394,7 +390,7 @@ public partial class SwiftLexer
                 LexStringLiteralContent();
             }
 
-            return true;
+            return;
         }
 
         if (!SwiftLexerSettings.FiveQuotesSettings.IsMultiLineStart())
@@ -412,7 +408,7 @@ public partial class SwiftLexer
             if (TokenEnd + 2 < Buffer[TokenEnd] || Buffer[TokenEnd] != DoubleQuote)
             {
                 FiveQuotesSettingInEffect = null;
-                return true;
+                return;
             }
 
             ThreeQuotesSettingInEffect = FiveQuotesSettingInEffect switch
@@ -423,12 +419,12 @@ public partial class SwiftLexer
                 SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartLineIfNoPair
                     => SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndLineIfNoPair,
                 SwiftLexerSettings.FiveQuotesSetting.SimpleStringMultilineStringLiteralStartToEndIfNoPair
-                    => SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStart,
+                    => SwiftLexerSettings.ThreeQuotesSetting.MultilineStringLiteralStartToEndOfFileIfNoPair,
                 _ => throw new ArgumentException("It should be impossible to reach this point")
             };
 
             FiveQuotesSettingInEffect = null;
-            return true;
+            return;
         }
 
         TokenEnd++;
@@ -439,7 +435,7 @@ public partial class SwiftLexer
             FiveQuotesSettingInEffect = null;
             IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
             Advance();
-            return false;
+            return;
         }
 
         if (FiveQuotesSettingInEffect is SwiftLexerSettings.FiveQuotesSetting
@@ -450,7 +446,7 @@ public partial class SwiftLexer
             {
                 LexSurroundedStringLiteralContent(true);
                 IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
-                return true;
+                return;
             }
 
             LexStringLiteralContent(true);
@@ -463,7 +459,7 @@ public partial class SwiftLexer
                 IsInStringLiteral = StringLiteralPosition.OutOfStringLiteral;
             }
 
-            return true;
+            return;
         }
 
         if (PreviousTokenType is SurroundedMultiLineStringLiteralStartToken)
@@ -474,8 +470,6 @@ public partial class SwiftLexer
         {
             LexMultiLineStringLiteralContent();
         }
-
-        return true;
     }
 
     private void LexStringLiteralContent(bool isPartOfMultiLineActually = false)

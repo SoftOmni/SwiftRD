@@ -10,10 +10,12 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpress
 
 public class NilLiteral : Literal<object?>, INilLiteral
 {
+    public const string Keyword = "nil";
+    
     private readonly IPrimitiveLiteralTypeResolutionContext _primitiveLiteralTypeResolutionContext;
 
     public NilLiteral(IPrimitiveLiteralTypeResolutionContext primitiveLiteralTypeResolutionContext1, IPrimitiveLiteralTypeResolutionContext? primitiveLiteralTypeResolutionContext = null)
-        : this(new EditableBuffer("null"), primitiveLiteralTypeResolutionContext1)
+        : this(new EditableBuffer("nil"), primitiveLiteralTypeResolutionContext1)
     {
         _primitiveLiteralTypeResolutionContext =
             primitiveLiteralTypeResolutionContext ?? new PrimitiveLiteralTypeResolutionContext();

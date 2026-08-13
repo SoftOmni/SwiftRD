@@ -2,6 +2,7 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Exceptions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Base;
 
@@ -32,18 +33,18 @@ public abstract class SwiftTokenNodeType : TokenNodeType
 
     public virtual bool ExpressionAndTypeUsable => false;
 
-    protected static void CheckAgainstValue(string keywordValue, IBuffer buffer, string tokenId)
+    protected static void CheckAgainstValue(string expectedTokenValue, IBuffer buffer, string tokenId)
     {
-        if (buffer.Length != keywordValue.Length)
+        if (buffer.Length != expectedTokenValue.Length)
         {
-            throw new InvalidLexicalBaseForElement(tokenId, buffer);
+            throw new InvalidLexicalBaseForElementException(tokenId, buffer, expectedTokenValue);
         }
 
-        for (int i = 0; i < keywordValue.Length; i++)
+        for (int i = 0; i < expectedTokenValue.Length; i++)
         {
-            if (buffer[i] != keywordValue[i])
+            if (buffer[i] != expectedTokenValue[i])
             {
-                throw new InvalidLexicalBaseForElement(tokenId, buffer);
+                throw new InvalidLexicalBaseForElementException(tokenId, buffer, expectedTokenValue);
             }
         }
     }

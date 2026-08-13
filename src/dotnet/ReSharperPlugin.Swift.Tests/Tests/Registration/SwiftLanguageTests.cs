@@ -1,8 +1,10 @@
 using System;
 using JetBrains.ReSharper.Psi;
+using NUnit.Framework;
+using SoftOmni.SwiftRd.Language.Swift;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-namespace SoftOmni.SwiftRd.Tests.test.Registration;
+namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
 
 [TestFixture]
 public class SwiftLanguageTests

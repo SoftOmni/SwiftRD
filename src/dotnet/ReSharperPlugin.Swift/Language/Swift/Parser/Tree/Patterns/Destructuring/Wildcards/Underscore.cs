@@ -1,3 +1,4 @@
+using JetBrains.DocumentModel.Impl;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Base.Implementations.InternalNodes;
@@ -8,6 +9,12 @@ namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Patterns.Destructuring.Wil
 
 public class Underscore : SwiftLeafNode<SwiftCompositeNode>
 {
+    public const string Value = "_";
+    
+    public Underscore()
+        : base(new EditableBuffer(Value))
+    { }
+    
     protected Underscore(IEditableBuffer underlyingBuffer) : base(underlyingBuffer)
     { }
 

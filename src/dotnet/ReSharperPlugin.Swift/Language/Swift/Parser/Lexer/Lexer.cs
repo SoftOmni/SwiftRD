@@ -10,7 +10,7 @@ using SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Errors;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer;
 
-public partial class SwiftLexer: IIncrementalLexer
+public partial class SwiftLexer : IIncrementalLexer
 {
     public SwiftLexer(IBuffer buffer)
         : this(buffer, buffer.Length)
@@ -24,7 +24,7 @@ public partial class SwiftLexer: IIncrementalLexer
         {
             BackerTokens[i] = null;
         }
-        
+
         CurrentPosition = 0;
 
         TokenType = null;
@@ -61,40 +61,24 @@ public partial class SwiftLexer: IIncrementalLexer
         if (IsInBlockComment)
         {
             AdvanceMultLineComment();
-            AdvanceTokenTape();
             return;
         }
 
         if (ThreeQuotesSettingInEffect is not null)
         {
-            bool advanceTokenTape = LexContinuationOfThreeQuotesSystem();
-            if (advanceTokenTape)
-            {
-                AdvanceTokenTape();
-            }
-
+            LexContinuationOfThreeQuotesSystem();
             return;
         }
 
         if (FourQuotesSettingInEffect is not null)
         {
-            bool advanceTokenTape = LexContinuationOfFourQuotesSystem();
-            if (advanceTokenTape)
-            {
-                AdvanceTokenTape();
-            }
-
+            LexContinuationOfFourQuotesSystem();
             return;
         }
 
         if (FiveQuotesSettingInEffect is not null)
         {
-            bool advanceTokenTape = LexContinuationOfFiveQuotesSystem();
-            if (advanceTokenTape)
-            {
-                AdvanceTokenTape();
-            }
-
+            LexContinuationOfFiveQuotesSystem();
             return;
         }
 
@@ -103,7 +87,6 @@ public partial class SwiftLexer: IIncrementalLexer
         if (firstChar == Dot)
         {
             LexDot();
-            AdvanceTokenTape();
             return;
         }
 
@@ -112,7 +95,6 @@ public partial class SwiftLexer: IIncrementalLexer
             && firstChar == Backslash)
         {
             LexEscape();
-            AdvanceTokenTape();
             return;
         }
 
@@ -123,16 +105,13 @@ public partial class SwiftLexer: IIncrementalLexer
             case '\u0009': // \t (tab)
             case '\u0020': // \u0020 (space)
                 LexWhitespace();
-                AdvanceTokenTape();
                 return;
             case '\u000A': // \n (line feed)
             case '\u000D': // \r (carriage return)
                 LexLineBreak();
-                AdvanceTokenTape();
                 return;
             case '/': // / (forward slash)
                 LexSlash();
-                AdvanceTokenTape();
                 return;
             case '=': // = (equal)
             case '+': // + (plus)
@@ -145,38 +124,45 @@ public partial class SwiftLexer: IIncrementalLexer
             case '^': // ^ (xor)
             case '~': // ~ (bitwise not)
                 LexOperator();
-                AdvanceTokenTape();
                 return;
             case '#': // # (hash)
             case '"': // " (double quote)
                 LexStringLiteralStart();
-                AdvanceTokenTape();
                 return;
             case '-': // - (dash)
                 LexDash();
-                AdvanceTokenTape();
                 return;
             case '?':
                 LexQuestionMark();
-                AdvanceTokenTape();
                 return;
             case '!':
                 LexExclamationMark();
-                AdvanceTokenTape();
+                return;
+            case '@':
+            case '`':
+            case ':':
+            case ',':
+            case '.':
+            case '{':
+            case '(':
+            case '[':
+            case '}':
+            case ')':
+            case ']':
+            case ';':
+                LexPunctuators();
                 return;
         }
 
         if (firstChar.IsOperatorHead())
         {
             LexOperator();
-            AdvanceTokenTape();
             return;
         }
 
         if (firstChar.IsIdentifierHead())
         {
             LexIdentifierOrKeyword();
-            AdvanceTokenTape();
             return;
         }
 
@@ -195,7 +181,7 @@ public partial class SwiftLexer: IIncrementalLexer
     public int TokenStart { get; private set; }
 
     public int TokenEnd { get; private set; }
-    
+
     public int TokenLength => TokenEnd - TokenStart;
 
     public IBuffer Buffer { get; private set; }
@@ -291,13 +277,6 @@ public partial class SwiftLexer: IIncrementalLexer
         {
             BackerTokens[index--] = backerToken;
         }
-    }
-
-    private void AdvanceTokenTape()
-    {
-        TokenType ??= SwiftTokens.EmptyToken;
-
-        _tokens.Add((TokenStart, TokenEnd, TokenType));
     }
 
     public enum StringLiteralPosition

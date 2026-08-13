@@ -12,3 +12,4 @@ internal static class TypeExtensions
         throw new NotImplementedException();
     }
 }
+

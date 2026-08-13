@@ -1,3 +1,6 @@
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.Text;
 using SoftOmni.SwiftRd.Language.Semantics.Type.BuiltinTypes;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Literals;
@@ -8,6 +11,11 @@ public class RegexLiteral()
     public override string TokenRepresentation { get; } = SwiftTokens.RegularExpressionLiteralId;
     
     public override bool IsConstantLiteral => true;
+
+    public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class RegexBackingLiteralToken(RegularExpression valueOfContents, string value)

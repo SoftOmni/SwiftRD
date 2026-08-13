@@ -1,12 +1,15 @@
 using System;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.PreviouslyReservedElements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class PreviouslyReservedFileKeywordToken : PreviouslyReservedKeywordToken
+public class PreviouslyReservedFileKeywordToken : PreviouslyReservedKeywordToken<LegacyFile>
 {
-    public PreviouslyReservedFileKeywordToken()
-        : base("#file", SwiftTokens.PreviouslyReservedFileId, SwiftTokens.PreviouslyReservedFileIndex)
+    internal PreviouslyReservedFileKeywordToken()
+        : base(LegacyFile.Keyword, SwiftTokens.PreviouslyReservedFileId, SwiftTokens.PreviouslyReservedFileIndex)
     { }
 
-    public override Version RemovalVersion => new(5, 9);
+    public override ISwiftVersion RemovalVersion => SwiftVersion.FromVersion(new Version(5, 9));
 }

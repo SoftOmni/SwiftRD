@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Text;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Generics.ParameterClauses.Parameters;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Punctuators;
 using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Types;
 
@@ -11,12 +12,18 @@ public class GenericArgumentClause : ReadOnlyGenericArgumentClause, IGenericArgu
 {
     public new IGenericArgumentGroup GenericArgumentGroup { get; }
 
+    private readonly List<IGenericParameter> _undesiredGenericParameters;
+
     internal GenericArgumentClause(IEditableBuffer buffer, LeftAngleBracket leftAngleBracket,
-        GenericArgumentGroup genericArgumentGroup, RightAngleBracket rightAngleBracket)
+        GenericArgumentGroup genericArgumentGroup, RightAngleBracket rightAngleBracket,
+        List<IGenericParameter> undesiredGenericParameters)
         : base(buffer, leftAngleBracket, genericArgumentGroup, rightAngleBracket)
     {
         GenericArgumentGroup = genericArgumentGroup;
+        _undesiredGenericParameters = undesiredGenericParameters;
     }
+
+    public IReadOnlyList<IGenericParameter> UndesiredGenericParameters => _undesiredGenericParameters;
 
     IEnumerator<IType> IEnumerable<IType>.GetEnumerator()
     {

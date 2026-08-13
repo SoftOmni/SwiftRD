@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <IsPackable>false</IsPackable>
+    <RootNamespace>SoftOmni.SwiftRd.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
+    <PackageReference Include="NUnit" Version="4.6.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
     <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
   </ItemGroup>
@@ -25,19 +27,19 @@
 
   <ItemGroup>
     <Compile Remove="test/**/*" />
-    <Compile Include="test\Parser\Lexer\Individual\Comments\MultiLineComment.cs" />
-    <Compile Include="test\Parser\Lexer\Individual\Comments\SingleLineComment.cs" />
-    <Compile Include="test\Parser\Lexer\Individual\NewLine\NewLine.cs" />
-    <Compile Include="test\Parser\Lexer\Individual\Whitespace\Whitespace.cs" />
-    <Compile Include="test\Parser\Lexer\LexerBaseCase.cs" />
-    <Compile Include="test\Registration\SwiftLanguageTests.cs" />
-    <Compile Include="test\Registration\SwiftProjectFileTypeTests.cs" />
+    <Compile Include="Tests\Parser\Lexer\Individual\Comments\MultiLineComment.cs" />
+    <Compile Include="Tests\Parser\Lexer\Individual\Comments\SingleLineComment.cs" />
+    <Compile Include="Tests\Parser\Lexer\Individual\NewLine\NewLine.cs" />
+    <Compile Include="Tests\Parser\Lexer\Individual\Whitespace\Whitespace.cs" />
+    <Compile Include="Tests\Parser\Lexer\LexerBaseCase.cs" />
+    <Compile Include="Tests\Registration\SwiftLanguageTests.cs" />
+    <Compile Include="Tests\Registration\SwiftProjectFileTypeTests.cs" />
     <None Include="test/**/*" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="test\data\scratch_testing\" />
-    <Folder Include="test\Technology\" />
+    <Folder Include="Tests\data\scratch_testing\" />
+    <Folder Include="Tests\Technology\" />
   </ItemGroup>
 
 </Project>

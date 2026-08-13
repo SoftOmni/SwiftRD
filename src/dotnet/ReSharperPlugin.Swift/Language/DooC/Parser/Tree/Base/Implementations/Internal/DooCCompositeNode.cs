@@ -1,9 +1,9 @@
 using JetBrains.ReSharper.Psi;
-using SoftOmni.SwiftRd.Language.DooC;
+using SoftOmni.SwiftRd.Language.DocC;
 
 namespace DefaultNamespace;
 
-public abstract class DooCCompositeNode : DooCInternalNode<DooCCompositeNode>
+public abstract class DocCCompositeNode : DocCInternalNode<DocCCompositeNode>
 {
-    public override PsiLanguageType Language => DooCLanguage.Instance!;
+    public override PsiLanguageType Language => DocCLanguage.Instance!;
 }

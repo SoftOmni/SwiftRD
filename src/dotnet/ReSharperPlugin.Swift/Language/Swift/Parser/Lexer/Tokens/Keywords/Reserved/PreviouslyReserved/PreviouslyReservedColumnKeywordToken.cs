@@ -1,12 +1,15 @@
 using System;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.PreviouslyReservedElements;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions;
+using SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.CompilerControlStatements.ConditionalCompilationBlock.CompilationConditions.PlatformConditions;
 
 namespace SoftOmni.SwiftRd.Language.Swift.Parser.Lexer.Tokens.Reserved;
 
-public class PreviouslyReservedColumnKeywordToken : PreviouslyReservedKeywordToken
+public class PreviouslyReservedColumnKeywordToken : PreviouslyReservedKeywordToken<LegacyColumn>
 {
-    public PreviouslyReservedColumnKeywordToken()
-        : base("#column", SwiftTokens.PreviouslyReservedColumnId, SwiftTokens.PreviouslyReservedColumnIndex)
+    internal PreviouslyReservedColumnKeywordToken()
+        : base(LegacyColumn.Keyword, SwiftTokens.PreviouslyReservedColumnId, SwiftTokens.PreviouslyReservedColumnIndex)
     { }
 
-    public override Version RemovalVersion => new(5, 9);
+    public override ISwiftVersion RemovalVersion => SwiftVersion.FromVersion(new Version(5, 9));
 }
