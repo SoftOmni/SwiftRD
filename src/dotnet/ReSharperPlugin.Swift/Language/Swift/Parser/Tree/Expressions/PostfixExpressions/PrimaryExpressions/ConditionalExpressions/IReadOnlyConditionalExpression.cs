@@ -1,3 +1,0 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.ConditionalExpressions;
-
-public interface IReadOnlyConditionalExpression : IReadOnlyPrimaryExpression;

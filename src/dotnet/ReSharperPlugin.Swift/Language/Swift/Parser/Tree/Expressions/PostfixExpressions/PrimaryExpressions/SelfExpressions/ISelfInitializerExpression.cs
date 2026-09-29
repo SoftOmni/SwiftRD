@@ -1,3 +1,0 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Expressions.PostfixExpressions.PrimaryExpressions.SelfExpressions;
-
-public interface ISelfInitializerExpression : IReadOnlySelfInitializerExpression, ISelfExpression;

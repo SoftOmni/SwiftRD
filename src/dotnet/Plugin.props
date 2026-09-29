@@ -5,8 +5,8 @@
     <!-- Keep in sync with ProductVersion in gradle.properties -->
     <SdkVersion>2026.2.0</SdkVersion>
 
-    <Title>Swift</Title>
-    <Description>Description</Description>
+    <Title>SO++</Title>
+    <Description>SoftOmni's RD-based support package for the Swift ecosystem</Description>
 
     <Authors>Author</Authors>
     <Copyright>Copyright $([System.DateTime]::Now.Year) Maintainers of Swift</Copyright>
