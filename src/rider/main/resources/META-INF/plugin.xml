@@ -1,4 +1,5 @@
 <idea-plugin require-restart="true">
+
   <id>com.jetbrains.rider.plugins.swift</id>
   <name>SwiftSwan</name>
   <version>0.0.1</version>

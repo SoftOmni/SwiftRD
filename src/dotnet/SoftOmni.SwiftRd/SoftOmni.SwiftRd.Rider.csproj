@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>ReSharperPlugin.Swift.Rider</AssemblyName>
+    <RootNamespace>$(AssemblyName)</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <DefineConstants>$(DefineConstants);RIDER</DefineConstants>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3003.2.0.161" />
+    <PackageReference Include="IndexRange" Version="1.1.1" />
+    <PackageReference Include="JetBrains.Lifetimes" Version="2026.2.5" />
+    <PackageReference Include="JetBrains.Rider.SDK" Version="2026.2.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
+    <PackageReference Include="System.Collections.Immutable" Version="11.0.0-preview.7.26381.103" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="SoftOmni.SwiftRd.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Technology\Ranges\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="JetBrains.ReSharper.Cpp">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\home\jaschamerle\.nuget\packages\jetbrains.psi.features.cpp.src.core\253.0.20251112.231206\DotFiles\JetBrains.ReSharper.Cpp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\home\jaschamerle\.nuget\packages\system.collections.immutable\8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Language\Swift\ProjectModel\SwiftPackageManager\**" />
+  </ItemGroup>
+
+</Project>

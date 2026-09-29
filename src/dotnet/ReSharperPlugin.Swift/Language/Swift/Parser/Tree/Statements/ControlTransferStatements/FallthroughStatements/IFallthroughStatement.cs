@@ -1,3 +1,0 @@
-namespace SoftOmni.SwiftRd.Language.Swift.Parser.Tree.Statements.ControlTransferStatements.FallthroughStatements;
-
-public interface IFallthroughStatement : IReadOnlyFallthroughStatement, IControlTransferStatement;

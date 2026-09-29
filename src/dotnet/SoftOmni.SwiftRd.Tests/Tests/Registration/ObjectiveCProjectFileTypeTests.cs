@@ -1,0 +1,38 @@
+using System;
+using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Resources.Shell;
+using JetBrains.TestFramework;
+using NUnit.Framework;
+using SoftOmni.SwiftRd.Language.ObjectiveC.File;
+
+namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
+
+[TestFixture]
+public class ObjectiveCProjectFileTypeTests : BaseTest
+{
+    [Test]
+    public void ObjectiveCFileTypeIsRegistered()
+    {
+        Assert.NotNull(ObjectiveCProjectFileType.Instance);
+
+        IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
+        Assert.NotNull(projectFileTypes.GetFileType(ObjectiveCProjectFileType.Name));
+    }
+
+    [Test]
+    public void ObjectiveCFileTypeFromExtension()
+    {
+        IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
+        Assert.AreSame(ObjectiveCProjectFileType.Instance, projectFileTypes.GetFileType(ObjectiveCProjectFileType.Name));
+    }
+
+    [Test, Explicit]
+    public void DumpProjectFileTypes()
+    {
+        IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
+        foreach (ProjectFileType projectFileType in projectFileTypes.All)
+        {
+            Console.WriteLine(projectFileType.PresentableName);
+        }
+    }
+}
