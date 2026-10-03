@@ -3,7 +3,9 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Keywords.C;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Keywords.ObjectiveC;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Literals;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Markers;
+using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Preprocessors;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Punctuators;
+using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Trigraphs;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Whitespace;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens;
@@ -627,6 +629,46 @@ public static class ObjectiveCTokens
     public const int AvailableObjCKeywordIndex = 3027;
 
     #endregion
+
+    #endregion
+
+    #region Trigraphs
+
+    public static readonly HashTrigraphToken HashTrigraphToken = new();
+    public const string HashTrigraphId = "??=";
+    public const int HashTrigraphIndex = 5001;
+
+    public static readonly OpeningSquareBracketTrigraphToken OpeningSquareBracketTrigraphToken = new();
+    public const string OpeningSquareBracketTrigraphId = "??(";
+    public const int OpeningSquareBracketTrigraphIndex = 5002;
+
+    public static readonly BackslashTrigraphToken BackslashTrigraphToken = new();
+    public const string BackslashTrigraphId = "??/";
+    public const int BackslashTrigraphIndex = 5003;
+
+    public static readonly ClosingSquareBracketTrigraphToken ClosingSquareBracketTrigraphToken = new();
+    public const string ClosingSquareBracketTrigraphId = "??)";
+    public const int ClosingSquareBracketTrigraphIndex = 5004;
+
+    public static readonly CaretTrigraphToken CaretTrigraphToken = new();
+    public const string CaretTrigraphId = "??'";
+    public const int CaretTrigraphIndex = 5005;
+
+    public static readonly OpeningCurlyBraceTrigraphToken OpeningCurlyBraceTrigraphToken = new();
+    public const string OpeningCurlyBraceTrigraphId = "??<";
+    public const int OpeningCurlyBraceTrigraphIndex = 5006;
+
+    public static readonly VerticalSlashTrigraphToken VerticalSlashTrigraphToken = new();
+    public const string VerticalSlashTrigraphId = "??!";
+    public const int VerticalSlashTrigraphIndex = 5007;
+
+    public static readonly ClosingCurlyBraceTrigraphToken ClosingCurlyBraceTrigraphToken = new();
+    public const string ClosingCurlyBraceTrigraphId = "??>";
+    public const int ClosingCurlyBraceTrigraphIndex = 5008;
+
+    public static readonly TildeTrigraphToken TildeTrigraphToken = new();
+    public const string TildeTrigraphId = "??-";
+    public const int TildeTrigraphIndex = 5009;
 
     #endregion
 }

@@ -4,6 +4,7 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Keywords.C;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Keywords.ObjectiveC;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Markers;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Punctuators;
+using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Trigraphs;
 using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Whitespace;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.NodeTypes;
@@ -198,6 +199,20 @@ public static class ObjectiveCNodeTypes
     public static readonly AvailableObjCKeywordToken AvailableObjCKeyword = ObjectiveCTokens.AvailableObjCKeywordToken;
     
     #endregion
+
+    #endregion
+
+    #region Trigraphs
+
+    public static readonly HashTrigraphToken HashTrigraph = ObjectiveCTokens.HashTrigraphToken;
+    public static readonly OpeningSquareBracketTrigraphToken OpeningSquareBracketTrigraph = ObjectiveCTokens.OpeningSquareBracketTrigraphToken;
+    public static readonly BackslashTrigraphToken BackslashTrigraph = ObjectiveCTokens.BackslashTrigraphToken;
+    public static readonly ClosingSquareBracketTrigraphToken ClosingSquareBracketTrigraph = ObjectiveCTokens.ClosingSquareBracketTrigraphToken;
+    public static readonly CaretTrigraphToken CaretTrigraph = ObjectiveCTokens.CaretTrigraphToken;
+    public static readonly OpeningCurlyBraceTrigraphToken OpeningCurlyBraceTrigraph = ObjectiveCTokens.OpeningCurlyBraceTrigraphToken;
+    public static readonly VerticalSlashTrigraphToken VerticalSlashTrigraph = ObjectiveCTokens.VerticalSlashTrigraphToken;
+    public static readonly ClosingCurlyBraceTrigraphToken ClosingCurlyBraceTrigraph = ObjectiveCTokens.ClosingCurlyBraceTrigraphToken;
+    public static readonly TildeTrigraphToken TildeTrigraph = ObjectiveCTokens.TildeTrigraphToken;
 
     #endregion
 
