@@ -28,7 +28,7 @@
   <ItemGroup>
     <Compile Remove="test/**/*" />
     <Compile Include="Tests\Registration\ObjectiveCLanguageTests.cs" />
-    <Compile Include="Tests\Registration\ObjectiveCProjectFileTypeTests.cs" />
+    <Compile Include="Tests\Registration\ObjectiveCFileTypeTests.cs" />
     <None Include="test/**/*" />
   </ItemGroup>
 

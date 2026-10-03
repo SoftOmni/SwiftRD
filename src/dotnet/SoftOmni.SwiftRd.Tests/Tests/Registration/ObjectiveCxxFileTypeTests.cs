@@ -3,27 +3,27 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Resources.Shell;
 using JetBrains.TestFramework;
 using NUnit.Framework;
-using SoftOmni.SwiftRd.Language.ObjectiveC.File;
+using SoftOmni.SwiftRd.Language.ObjectiveCXX.File;
 
 namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
 
 [TestFixture]
-public class ObjectiveCProjectFileTypeTests : BaseTest
+public class ObjectiveCxxFileTypeTests : BaseTest
 {
     [Test]
     public void ObjectiveCFileTypeIsRegistered()
     {
-        Assert.NotNull(ObjectiveCProjectFileType.Instance);
+        Assert.NotNull(ObjectiveCxxFileType.Instance);
 
         IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
-        Assert.NotNull(projectFileTypes.GetFileType(ObjectiveCProjectFileType.Name));
+        Assert.NotNull(projectFileTypes.GetFileType(ObjectiveCxxFileType.Name));
     }
 
     [Test]
     public void ObjectiveCFileTypeFromExtension()
     {
         IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
-        Assert.AreSame(ObjectiveCProjectFileType.Instance, projectFileTypes.GetFileType(ObjectiveCProjectFileType.Name));
+        Assert.AreSame(ObjectiveCxxFileType.Instance, projectFileTypes.GetFileType(ObjectiveCxxFileType.Name));
     }
 
     [Test, Explicit]
