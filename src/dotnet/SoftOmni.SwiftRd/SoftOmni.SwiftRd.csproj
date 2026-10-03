@@ -31,7 +31,7 @@
     <Folder Include="Language\Base\Implementations\Flexible\Loose\Internal\Replacement\" />
     <Folder Include="Language\Leaf\Parser\Tree\Base\" />
     <Folder Include="Language\ObjectiveCXX\Parser\Tree\Base\" />
-    <Folder Include="Language\ObjectiveC\Parser\Tree\Base\" />
+    <Folder Include="Language\ObjectiveC\Parser\Tree\Base\Interfaces\InterconnectNodes\" />
     <Folder Include="Language\Swift\Parser\Tree\Attributes\DeclarationAttributes\AttachedAttribute\" />
     <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\Literals\Literals\StringLiteral\InterpolatableStringLiterals\MultiLine\" />
     <Folder Include="Language\Swift\Parser\Tree\Expressions\PostfixExpressions\PrimaryExpressions\Literals\Literals\StringLiteral\RawValueStringLiterals\MultiLine\" />

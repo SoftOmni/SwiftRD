@@ -7,10 +7,14 @@ public class Tests
     public static void Main()
     {
         string testCode = """
-                          import Foundation
+                          #include <stdio.h>
                           
-                          func main() {
-                              println("Hello, world!")
+                          int main() {
+                              @autoreleasepool {
+                              
+                              }
+                              puts("Hello World!");
+                              return 0;
                           }
                           """;
         IBuffer buffer = new StringBuffer(testCode);

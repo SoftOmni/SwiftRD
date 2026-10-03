@@ -1,6 +1,8 @@
 using System;
 using JetBrains.ReSharper.Psi;
 using NUnit.Framework;
+using SoftOmni.SwiftRd.Language.ObjectiveC;
+using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer;
 
 namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
 
@@ -17,10 +19,10 @@ public class ObjectiveCLanguageTests
     [Test]
     public void ObjectiveCLanguageServiceIsRegistered()
     {
-        ObjectiveCLanguageService ObjectiveCLanguageService = LanguageManager.Instance.GetService<ObjectiveCLanguageService>(ObjectiveCLanguage.Instance!);
-        Assert.IsInstanceOf<ObjectiveCLanguageService>(ObjectiveCLanguageService);
+        ObjectiveCLanguageService objectiveCLanguageService = LanguageManager.Instance.GetService<ObjectiveCLanguageService>(ObjectiveCLanguage.Instance!);
+        Assert.IsInstanceOf<ObjectiveCLanguageService>(objectiveCLanguageService);
         
-        Assert.IsInstanceOf<ObjectiveCLexerFactory>(ObjectiveCLanguageService.GetPrimaryLexerFactory());
+        Assert.IsInstanceOf<ObjectiveCLexerFactory>(objectiveCLanguageService.GetPrimaryLexerFactory());
     }
 
     [Test, Explicit]
