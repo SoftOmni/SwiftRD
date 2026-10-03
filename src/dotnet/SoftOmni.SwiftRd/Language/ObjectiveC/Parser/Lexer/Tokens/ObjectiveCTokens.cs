@@ -632,6 +632,14 @@ public static class ObjectiveCTokens
 
     #endregion
 
+    #region PreProcessorNumber
+
+    public static readonly PreProcessorNumberToken PreProcessorNumberToken = new();
+    public const string PreProcessorNumberTokenId = "PREPROCESSOR_NUMBER";
+    public const int PreProcessorNumberTokenIndex = 4001;
+
+    #endregion
+
     #region Trigraphs
 
     public static readonly HashTrigraphToken HashTrigraphToken = new();
