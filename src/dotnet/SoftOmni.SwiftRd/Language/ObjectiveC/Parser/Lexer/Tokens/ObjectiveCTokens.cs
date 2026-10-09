@@ -104,105 +104,105 @@ public static class ObjectiveCTokens
     public const string ClosingCurlyBraceId = "}";
     public const int ClosingCurlyBraceIndex = 906;
 
-    public static readonly PeriodToken PeriodToken = new();
-    public const string PeriodId = ".";
-    public const int PeriodIndex = 907;
+    public static readonly DotOperatorToken DotOperatorToken = new();
+    public const string DotOperatorId = ".";
+    public const int DotOperatorIndex = 907;
 
-    public static readonly ArrowToken ArrowToken = new();
-    public const string ArrowId = "->";
-    public const int ArrowIndex = 908;
+    public static readonly ArrowOperatorToken ArrowOperatorToken = new();
+    public const string ArrowOperatorId = "->";
+    public const int ArrowOperatorIndex = 908;
 
-    public static readonly PlusPlusToken PlusPlusToken = new();
-    public const string PlusPlusId = "++";
-    public const int PlusPlusIndex = 909;
+    public static readonly IncrementOperatorToken IncrementOperatorToken = new();
+    public const string IncrementOperatorId = "++";
+    public const int IncrementOperatorIndex = 909;
 
-    public static readonly MinusMinusToken MinusMinusToken = new();
-    public const string MinusMinusId = "--";
-    public const int MinusMinusIndex = 910;
+    public static readonly DecrementOperatorToken DecrementOperatorToken = new();
+    public const string DecrementOperatorId = "--";
+    public const int DecrementOperatorIndex = 910;
 
-    public static readonly AmpersandToken AmpersandToken = new();
-    public const string AmpersandId = "&";
-    public const int AmpersandIndex = 911;
+    public static readonly BitwiseAndOperatorToken BitwiseAndOperatorToken = new();
+    public const string BitwiseAndOperatorId = "&";
+    public const int BitwiseAndOperatorIndex = 911;
 
-    public static readonly AsteriskToken AsteriskToken = new();
-    public const string AsteriskId = "*";
-    public const int AsteriskIndex = 912;
+    public static readonly MultiplyOrPointerOperatorToken MultiplyOrPointerOperatorToken = new();
+    public const string MultiplyOrPointerOperatorId = "*";
+    public const int MultiplyOrPointerOperatorIndex = 912;
 
-    public static readonly PlusToken PlusToken = new();
-    public const string PlusId = "+";
-    public const int PlusIndex = 913;
+    public static readonly AddOrIdentityOperatorToken AddOrIdentityOperatorToken = new();
+    public const string AddOrIdentityOperatorId = "+";
+    public const int AddOrIdentityOperatorIndex = 913;
 
-    public static readonly MinusToken MinusToken = new();
-    public const string MinusId = "-";
-    public const int MinusIndex = 914;
+    public static readonly SubtractOrInverseOperatorToken SubtractOrInverseOperatorToken = new();
+    public const string SubtractOrInverseOperatorId = "-";
+    public const int SubtractOrInverseOperatorIndex = 914;
 
-    public static readonly TildeToken TildeToken = new();
-    public const string TildeId = "~";
-    public const int TildeIndex = 915;
+    public static readonly BitwiseNotOperatorToken BitwiseNotOperatorToken = new();
+    public const string BitwiseNotOperatorId = "~";
+    public const int BitwiseNotOperatorIndex = 915;
 
-    public static readonly ExclamationMarkToken ExclamationMarkToken = new();
-    public const string ExclamationMarkId = "!";
-    public const int ExclamationMarkIndex = 916;
+    public static readonly LogicalNotOperatorToken LogicalNotOperatorToken = new();
+    public const string LogicalNotOperatorId = "!";
+    public const int LogicalNotOperatorIndex = 916;
 
-    public static readonly SlashToken SlashToken = new();
-    public const string SlashId = "/";
-    public const int SlashIndex = 917;
+    public static readonly DivideOperatorToken DivideOperatorToken = new();
+    public const string DivideOperatorId = "/";
+    public const int DivideOperatorIndex = 917;
 
-    public static readonly PercentageSignToken PercentageSignToken = new();
-    public const string PercentageSignId = "%";
-    public const int PercentageSignIndex = 918;
+    public static readonly ModulusOperatorToken ModulusOperatorToken = new();
+    public const string ModulusOperatorId = "%";
+    public const int ModulusOperatorIndex = 918;
 
-    public static readonly DoubleOpeningAngleBracketToken DoubleOpeningAngleBracketToken = new();
-    public const string DoubleOpeningAngleBracketId = "<<";
-    public const int DoubleOpeningAngleBracketIndex = 919;
+    public static readonly RightShiftOperatorToken RightShiftOperatorToken = new();
+    public const string RightShiftOperatorId = "<<";
+    public const int RightShiftOperatorIndex = 919;
 
-    public static readonly DoubleClosingAngleBracketToken DoubleClosingAngleBracketToken = new();
-    public const string DoubleClosingAngleBracketId = ">>";
-    public const int DoubleClosingAngleBracketIndex = 920;
+    public static readonly LeftShiftOperatorToken LeftShiftOperatorToken = new();
+    public const string LeftShiftOperatorId = ">>";
+    public const int LeftShiftOperatorIndex = 920;
 
-    public static readonly OpeningAngleBracketToken OpeningAngleBracketToken = new();
-    public const string OpeningAngleBracketId = "<";
-    public const int OpeningAngleBracketIndex = 921;
+    public static readonly LesserThanOperatorToken LesserThanOperatorToken = new();
+    public const string LesserThanOperatorId = "<";
+    public const int LesserThanOperatorIndex = 921;
 
-    public static readonly ClosingAngleBracketToken ClosingAngleBracketToken = new();
-    public const string ClosingAngleBracketId = ">";
-    public const int ClosingAngleBracketIndex = 922;
+    public static readonly GreaterThanOperatorToken GreaterThanOperatorToken = new();
+    public const string GreaterThanOperatorId = ">";
+    public const int GreaterThanOperatorIndex = 922;
 
-    public static readonly OpeningAngleBracketEqualsSignToken OpeningAngleBracketEqualsSignToken = new();
-    public const string OpeningAngleBracketEqualsSignId = "<=";
-    public const int OpeningAngleBracketEqualsSignIndex = 923;
+    public static readonly LesserThanOrEqualsOperatorToken LesserThanOrEqualsOperatorToken = new();
+    public const string LesserThanOrEqualsOperatorId = "<=";
+    public const int LesserThanOrEqualsOperatorIndex = 923;
 
-    public static readonly ClosingAngleBracketEqualsSignToken ClosingAngleBracketEqualsSignToken = new();
-    public const string ClosingAngleBracketEqualsSignId = ">=";
-    public const int ClosingAngleBracketEqualsSignIndex = 924;
+    public static readonly GreaterThanOrEqualsOperatorToken GreaterThanOrEqualsOperatorToken = new();
+    public const string GreaterThanOrEqualsOperatorId = ">=";
+    public const int GreaterThanOrEqualsOperatorIndex = 924;
 
-    public static readonly DoubleEqualsSignToken DoubleEqualsSignToken = new();
-    public const string DoubleEqualsSignId = "==";
-    public const int DoubleEqualsSignIndex = 925;
+    public static readonly EqualityOperatorToken EqualityOperatorToken = new();
+    public const string EqualityOperatorId = "==";
+    public const int EqualityOperatorIndex = 925;
 
-    public static readonly ExclamationMarkEqualsSignToken ExclamationMarkEqualsSignToken = new();
-    public const string ExclamationMarkEqualsSignId = "!=";
-    public const int ExclamationMarkEqualsSignIndex = 926;
+    public static readonly NotEqualsOperatorToken NotEqualsOperatorToken = new();
+    public const string NotEqualsOperatorId = "!=";
+    public const int NotEqualsOperatorIndex = 926;
 
-    public static readonly CaretToken CaretToken = new();
-    public const string CaretId = "^";
-    public const int CaretIndex = 927;
+    public static readonly BitwiseXorOperatorToken BitwiseXorOperatorToken = new();
+    public const string BitwiseXorOperatorId = "^";
+    public const int BitwiseXorOperatorIndex = 927;
 
-    public static readonly VerticalSlashToken VerticalSlashToken = new();
-    public const string VerticalSlashId = "|";
-    public const int VerticalSlashIndex = 928;
+    public static readonly BitwiseOrOperatorToken BitwiseOrOperatorToken = new();
+    public const string BitwiseOrOperatorId = "|";
+    public const int BitwiseOrOperatorIndex = 928;
 
-    public static readonly DoubleAmpersandToken DoubleAmpersandToken = new();
-    public const string DoubleAmpersandId = "&&";
-    public const int DoubleAmpersandIndex = 929;
+    public static readonly LogicalAndOperatorToken LogicalAndOperatorToken = new();
+    public const string LogicalAndOperatorId = "&&";
+    public const int LogicalAndOperatorIndex = 929;
 
-    public static readonly DoubleVerticalSlashToken DoubleVerticalSlashToken = new();
-    public const string DoubleVerticalSlashId = "||";
-    public const int DoubleVerticalSlashIndex = 930;
+    public static readonly LogicalOrOperatorToken LogicalOrOperatorToken = new();
+    public const string LogicalOrOperatorId = "||";
+    public const int LogicalOrOperatorIndex = 930;
 
-    public static readonly QuestionMarkToken QuestionMarkToken = new();
-    public const string QuestionMarkId = "?";
-    public const int QuestionMarkIndex = 931;
+    public static readonly TernaryOperatorQuestionResponseSeparatorToken TernaryOperatorQuestionResponseSeparatorToken = new();
+    public const string TernaryOperatorQuestionResponseSeparatorId = "?";
+    public const int TernaryOperatorQuestionResponseSeparatorIndex = 931;
 
     public static readonly ColonToken ColonToken = new();
     public const string ColonId = ":";
@@ -216,49 +216,49 @@ public static class ObjectiveCTokens
     public const string TriplePeriodId = "...";
     public const int TriplePeriodIndex = 934;
 
-    public static readonly EqualsSignToken EqualsSignToken = new();
-    public const string EqualsSignId = "=";
-    public const int EqualsSignIndex = 935;
+    public static readonly AssignmentOperatorToken AssignmentOperatorToken = new();
+    public const string AssignmentOperatorId = "=";
+    public const int AssignmentOperatorIndex = 935;
 
-    public static readonly AsteriskEqualsSignToken AsteriskEqualsSignToken = new();
-    public const string AsteriskEqualsSignId = "*=";
-    public const int AsteriskEqualsSignIndex = 936;
+    public static readonly CompoundMultiplyOperatorToken CompoundMultiplyOperatorToken = new();
+    public const string CompoundMultiplyOperatorId = "*=";
+    public const int CompoundMultiplyOperatorIndex = 936;
 
-    public static readonly SlashEqualsSignToken SlashEqualsSignToken = new();
-    public const string SlashEqualsSignId = "/=";
-    public const int SlashEqualsSignIndex = 937;
+    public static readonly CompoundDivideOperatorToken CompoundDivideOperatorToken = new();
+    public const string CompoundDivideOperatorId = "/=";
+    public const int CompoundDivideOperatorIndex = 937;
 
-    public static readonly PercentageSignEqualsSignToken PercentageSignEqualsSignToken = new();
-    public const string PercentageSignEqualsSignId = "%=";
-    public const int PercentageSignEqualsSignIndex = 938;
+    public static readonly CompoundModulusOperatorToken CompoundModulusOperatorToken = new();
+    public const string CompoundModulusOperatorId = "%=";
+    public const int CompoundModulusOperatorIndex = 938;
 
-    public static readonly PlusEqualsSignToken PlusEqualsSignToken = new();
-    public const string PlusEqualsSignId = "+=";
-    public const int PlusEqualsSignIndex = 939;
+    public static readonly CompoundAddOperatorToken CompoundAddOperatorToken = new();
+    public const string CompoundAddOperatorId = "+=";
+    public const int CompoundAddOperatorIndex = 939;
 
-    public static readonly MinusEqualsSignToken MinusEqualsSignToken = new();
-    public const string MinusEqualsSignId = "-=";
-    public const int MinusEqualsSignIndex = 940;
+    public static readonly CompoundSubtractOperatorToken CompoundSubtractOperatorToken = new();
+    public const string CompoundSubtractOperatorId = "-=";
+    public const int CompoundSubtractOperatorIndex = 940;
 
-    public static readonly DoubleOpeningAngleBracketEqualsSignToken DoubleOpeningAngleBracketEqualsSignToken = new();
-    public const string DoubleOpeningAngleBracketEqualsSignId = "<<=";
-    public const int DoubleOpeningAngleBracketEqualsSignIndex = 941;
+    public static readonly CompoundRightShiftOperatorToken CompoundRightShiftOperatorToken = new();
+    public const string CompoundRightShiftOperatorId = "<<=";
+    public const int CompoundRightShiftOperatorIndex = 941;
 
-    public static readonly DoubleClosingAngleBracketEqualsSignToken DoubleClosingAngleBracketEqualsSignToken = new();
-    public const string DoubleClosingAngleBracketEqualsSignId = ">>=";
-    public const int DoubleClosingAngleBracketEqualsSignIndex = 942;
+    public static readonly CompoundLeftShiftOperatorToken CompoundLeftShiftOperatorToken = new();
+    public const string CompoundLeftShiftOperatorId = ">>=";
+    public const int CompoundLeftShiftOperatorIndex = 942;
 
-    public static readonly AmpersandEqualsSignToken AmpersandEqualsSignToken = new();
-    public const string AmpersandEqualsSignId = "&=";
-    public const int AmpersandEqualsSignIndex = 943;
+    public static readonly CompoundBitwiseAndOperatorToken CompoundBitwiseAndOperatorToken = new();
+    public const string CompoundBitwiseAndOperatorId = "&=";
+    public const int CompoundBitwiseAndOperatorIndex = 943;
 
-    public static readonly CaretEqualsSignToken CaretEqualsSignToken = new();
-    public const string CaretEqualsSignId = "^=";
-    public const int CaretEqualsSignIndex = 944;
+    public static readonly CompoundBitwiseXorOperatorToken CompoundBitwiseXorOperatorToken = new();
+    public const string CompoundBitwiseXorOperatorId = "^=";
+    public const int CompoundBitwiseXorOperatorIndex = 944;
 
-    public static readonly VerticalSlashEqualsSignToken VerticalSlashEqualsSignToken = new();
-    public const string VerticalSlashEqualsSignId = "|=";
-    public const int VerticalSlashEqualsSignIndex = 945;
+    public static readonly CompoundBitwiseOrOperatorToken CompoundBitwiseOrOperatorToken = new();
+    public const string CompoundBitwiseOrOperatorId = "|=";
+    public const int CompoundBitwiseOrOperatorIndex = 945;
 
     public static readonly CommaToken CommaToken = new();
     public const string CommaId = ",";
@@ -272,29 +272,29 @@ public static class ObjectiveCTokens
     public const string DoubleHashtagId = "##";
     public const int DoubleHashtagIndex = 948;
 
-    public static readonly OpeningAngleBracketColonToken OpeningAngleBracketColonToken = new();
-    public const string OpeningAngleBracketColonId = "<:";
-    public const int OpeningAngleBracketColonIndex = 949;
+    public static readonly OpeningSquareBracketDigraphToken OpeningSquareBracketDigraphToken = new();
+    public const string OpeningSquareBracketDigraphId = "<:";
+    public const int OpeningSquareBracketDigraphIndex = 949;
 
-    public static readonly ColonClosingAngleBracketToken ColonClosingAngleBracketToken = new();
-    public const string ColonClosingAngleBracketId = ":>";
-    public const int ColonClosingAngleBracketIndex = 950;
+    public static readonly ClosingSquareBracketDigraphToken ClosingSquareBracketDigraphToken = new();
+    public const string ClosingSquareBracketDigraphId = ":>";
+    public const int ClosingSquareBracketDigraphIndex = 950;
 
-    public static readonly OpeningAngleBracketPercentageSignToken OpeningAngleBracketPercentageSignToken = new();
-    public const string OpeningAngleBracketPercentageSignId = "<%";
-    public const int OpeningAngleBracketPercentageSignIndex = 951;
+    public static readonly OpeningCurlyBraceDigraphToken OpeningCurlyBraceDigraphToken = new();
+    public const string OpeningCurlyBraceDigraphId = "<%";
+    public const int OpeningCurlyBraceDigraphIndex = 951;
 
-    public static readonly PercentageSignClosingAngleBracketToken PercentageSignClosingAngleBracketToken = new();
-    public const string PercentageSignClosingAngleBracketId = "%>";
-    public const int PercentageSignClosingAngleBracketIndex = 952;
+    public static readonly ClosingCurlyBraceDigraphToken ClosingCurlyBraceDigraphToken = new();
+    public const string ClosingCurlyBraceDigraphId = "%>";
+    public const int ClosingCurlyBraceDigraphIndex = 952;
 
-    public static readonly PercentageSignColonToken PercentageSignColonToken = new();
-    public const string PercentageSignColonId = "%:";
-    public const int PercentageSignColonIndex = 953;
+    public static readonly PreprocessorFunctionArgumentValueDigraphToken PreprocessorFunctionArgumentValueDigraphToken = new();
+    public const string PreprocessorFunctionArgumentValueDigraphId = "%:";
+    public const int PreprocessorFunctionArgumentValueDigraphIndex = 953;
 
-    public static readonly PercentageSignColonPercentageSignColonToken PercentageSignColonPercentageSignColonToken = new();
-    public const string PercentageSignColonPercentageSignColonId = "%:%:";
-    public const int PercentageSignColonPercentageSignColonIndex = 954;
+    public static readonly PreprocessorConcatenateOperatorDigraphToken PreprocessorConcatenateOperatorDigraphToken = new();
+    public const string PreprocessorConcatenateOperatorDigraphId = "%:%:";
+    public const int PreprocessorConcatenateOperatorDigraphIndex = 954;
     
     #endregion
     

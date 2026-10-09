@@ -7,24 +7,24 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.Punctuators;
 
-public class QuestionMark : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
+public class TernaryOperatorQuestionResponseSeparator : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
 {
     public const string Value = "?";
 
-    public QuestionMark()
+    public TernaryOperatorQuestionResponseSeparator()
         : base(new EditableBuffer(Value))
     { }
 
-    internal QuestionMark(IEditableBuffer buffer)
+    internal TernaryOperatorQuestionResponseSeparator(IEditableBuffer buffer)
         : base(buffer)
     { }
 
-    public override NodeType NodeType => ObjectiveCNodeTypes.QuestionMark;
+    public override NodeType NodeType => ObjectiveCNodeTypes.TernaryOperatorQuestionResponseSeparator;
 
     public string AsString => Value;
 
-    public static QuestionMark Create()
+    public static TernaryOperatorQuestionResponseSeparator Create()
     {
-        return new QuestionMark(new EditableBuffer(Value));
+        return new TernaryOperatorQuestionResponseSeparator(new EditableBuffer(Value));
     }
 }

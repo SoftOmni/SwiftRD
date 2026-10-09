@@ -7,24 +7,24 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.Punctuators;
 
-public class ColonClosingAngleBracket : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
+public class ClosingSquareBracketDigraph : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
 {
     public const string Value = ":>";
 
-    public ColonClosingAngleBracket()
+    public ClosingSquareBracketDigraph()
         : base(new EditableBuffer(Value))
     { }
 
-    internal ColonClosingAngleBracket(IEditableBuffer buffer)
+    internal ClosingSquareBracketDigraph(IEditableBuffer buffer)
         : base(buffer)
     { }
 
-    public override NodeType NodeType => ObjectiveCNodeTypes.ColonClosingAngleBracket;
+    public override NodeType NodeType => ObjectiveCNodeTypes.ClosingSquareBracketDigraph;
 
     public string AsString => Value;
 
-    public static ColonClosingAngleBracket Create()
+    public static ClosingSquareBracketDigraph Create()
     {
-        return new ColonClosingAngleBracket(new EditableBuffer(Value));
+        return new ClosingSquareBracketDigraph(new EditableBuffer(Value));
     }
 }

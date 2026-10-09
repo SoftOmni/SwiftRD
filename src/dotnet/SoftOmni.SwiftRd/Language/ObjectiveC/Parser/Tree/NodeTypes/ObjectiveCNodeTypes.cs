@@ -46,59 +46,59 @@ public static class ObjectiveCNodeTypes
     public static readonly ClosingParenthesisToken ClosingParenthesis = ObjectiveCTokens.ClosingParenthesisToken;
     public static readonly OpeningCurlyBraceToken OpeningCurlyBrace = ObjectiveCTokens.OpeningCurlyBraceToken;
     public static readonly ClosingCurlyBraceToken ClosingCurlyBrace = ObjectiveCTokens.ClosingCurlyBraceToken;
-    public static readonly PeriodToken Period = ObjectiveCTokens.PeriodToken;
-    public static readonly ArrowToken Arrow = ObjectiveCTokens.ArrowToken;
-    public static readonly PlusPlusToken PlusPlus = ObjectiveCTokens.PlusPlusToken;
-    public static readonly MinusMinusToken MinusMinus = ObjectiveCTokens.MinusMinusToken;
-    public static readonly AmpersandToken Ampersand = ObjectiveCTokens.AmpersandToken;
-    public static readonly AsteriskToken Asterisk = ObjectiveCTokens.AsteriskToken;
-    public static readonly PlusToken Plus = ObjectiveCTokens.PlusToken;
-    public static readonly MinusToken Minus = ObjectiveCTokens.MinusToken;
-    public static readonly TildeToken Tilde = ObjectiveCTokens.TildeToken;
-    public static readonly ExclamationMarkToken ExclamationMark = ObjectiveCTokens.ExclamationMarkToken;
-    public static readonly SlashToken Slash = ObjectiveCTokens.SlashToken;
-    public static readonly PercentageSignToken PercentageSign = ObjectiveCTokens.PercentageSignToken;
-    public static readonly DoubleOpeningAngleBracketToken DoubleOpeningAngleBracket = ObjectiveCTokens.DoubleOpeningAngleBracketToken;
-    public static readonly DoubleClosingAngleBracketToken DoubleClosingAngleBracket = ObjectiveCTokens.DoubleClosingAngleBracketToken;
-    public static readonly OpeningAngleBracketToken OpeningAngleBracket = ObjectiveCTokens.OpeningAngleBracketToken;
-    public static readonly ClosingAngleBracketToken ClosingAngleBracket = ObjectiveCTokens.ClosingAngleBracketToken;
-    public static readonly OpeningAngleBracketEqualsSignToken OpeningAngleBracketEqualsSign = ObjectiveCTokens.OpeningAngleBracketEqualsSignToken;
-    public static readonly ClosingAngleBracketEqualsSignToken ClosingAngleBracketEqualsSign = ObjectiveCTokens.ClosingAngleBracketEqualsSignToken;
-    public static readonly DoubleEqualsSignToken DoubleEqualsSign = ObjectiveCTokens.DoubleEqualsSignToken;
-    public static readonly ExclamationMarkEqualsSignToken ExclamationMarkEqualsSign = ObjectiveCTokens.ExclamationMarkEqualsSignToken;
-    public static readonly CaretToken Caret = ObjectiveCTokens.CaretToken;
-    public static readonly VerticalSlashToken VerticalSlash = ObjectiveCTokens.VerticalSlashToken;
-    public static readonly DoubleAmpersandToken DoubleAmpersand = ObjectiveCTokens.DoubleAmpersandToken;
-    public static readonly DoubleVerticalSlashToken DoubleVerticalSlash = ObjectiveCTokens.DoubleVerticalSlashToken;
-    public static readonly QuestionMarkToken QuestionMark = ObjectiveCTokens.QuestionMarkToken;
+    public static readonly DotOperatorToken DotOperator = ObjectiveCTokens.DotOperatorToken;
+    public static readonly ArrowOperatorToken ArrowOperator = ObjectiveCTokens.ArrowOperatorToken;
+    public static readonly IncrementOperatorToken IncrementOperator = ObjectiveCTokens.IncrementOperatorToken;
+    public static readonly DecrementOperatorToken DecrementOperator = ObjectiveCTokens.DecrementOperatorToken;
+    public static readonly BitwiseAndOperatorToken BitwiseAndOperator = ObjectiveCTokens.BitwiseAndOperatorToken;
+    public static readonly MultiplyOrPointerOperatorToken MultiplyOrPointerOperator = ObjectiveCTokens.MultiplyOrPointerOperatorToken;
+    public static readonly AddOrIdentityOperatorToken AddOrIdentityOperator = ObjectiveCTokens.AddOrIdentityOperatorToken;
+    public static readonly SubtractOrInverseOperatorToken SubtractOrInverseOperator = ObjectiveCTokens.SubtractOrInverseOperatorToken;
+    public static readonly BitwiseNotOperatorToken BitwiseNotOperator = ObjectiveCTokens.BitwiseNotOperatorToken;
+    public static readonly LogicalNotOperatorToken LogicalNotOperator = ObjectiveCTokens.LogicalNotOperatorToken;
+    public static readonly DivideOperatorToken DivideOperator = ObjectiveCTokens.DivideOperatorToken;
+    public static readonly ModulusOperatorToken ModulusOperator = ObjectiveCTokens.ModulusOperatorToken;
+    public static readonly RightShiftOperatorToken RightShiftOperator = ObjectiveCTokens.RightShiftOperatorToken;
+    public static readonly LeftShiftOperatorToken LeftShiftOperator = ObjectiveCTokens.LeftShiftOperatorToken;
+    public static readonly LesserThanOperatorToken LesserThanOperator = ObjectiveCTokens.LesserThanOperatorToken;
+    public static readonly GreaterThanOperatorToken GreaterThanOperator = ObjectiveCTokens.GreaterThanOperatorToken;
+    public static readonly LesserThanOrEqualsOperatorToken LesserThanOrEqualsOperator = ObjectiveCTokens.LesserThanOrEqualsOperatorToken;
+    public static readonly GreaterThanOrEqualsOperatorToken GreaterThanOrEqualsOperator = ObjectiveCTokens.GreaterThanOrEqualsOperatorToken;
+    public static readonly EqualityOperatorToken EqualityOperator = ObjectiveCTokens.EqualityOperatorToken;
+    public static readonly NotEqualsOperatorToken NotEqualsOperator = ObjectiveCTokens.NotEqualsOperatorToken;
+    public static readonly BitwiseXorOperatorToken BitwiseXorOperator = ObjectiveCTokens.BitwiseXorOperatorToken;
+    public static readonly BitwiseOrOperatorToken BitwiseOrOperator = ObjectiveCTokens.BitwiseOrOperatorToken;
+    public static readonly LogicalAndOperatorToken LogicalAndOperator = ObjectiveCTokens.LogicalAndOperatorToken;
+    public static readonly LogicalOrOperatorToken LogicalOrOperator = ObjectiveCTokens.LogicalOrOperatorToken;
+    public static readonly TernaryOperatorQuestionResponseSeparatorToken TernaryOperatorQuestionResponseSeparator = ObjectiveCTokens.TernaryOperatorQuestionResponseSeparatorToken;
     public static readonly ColonToken Colon = ObjectiveCTokens.ColonToken;
     public static readonly SemicolonToken Semicolon = ObjectiveCTokens.SemicolonToken;
     public static readonly TriplePeriodToken TriplePeriod = ObjectiveCTokens.TriplePeriodToken;
-    public static readonly EqualsSignToken EqualsSign = ObjectiveCTokens.EqualsSignToken;
-    public static readonly AsteriskEqualsSignToken AsteriskEqualsSign = ObjectiveCTokens.AsteriskEqualsSignToken;
-    public static readonly SlashEqualsSignToken SlashEqualsSign = ObjectiveCTokens.SlashEqualsSignToken;
-    public static readonly PercentageSignEqualsSignToken PercentageSignEqualsSign = ObjectiveCTokens.PercentageSignEqualsSignToken;
-    public static readonly PlusEqualsSignToken PlusEqualsSign = ObjectiveCTokens.PlusEqualsSignToken;
-    public static readonly MinusEqualsSignToken MinusEqualsSign = ObjectiveCTokens.MinusEqualsSignToken;
-    public static readonly DoubleOpeningAngleBracketEqualsSignToken DoubleOpeningAngleBracketEqualsSign =
-        ObjectiveCTokens.DoubleOpeningAngleBracketEqualsSignToken;
-    public static readonly DoubleClosingAngleBracketEqualsSignToken DoubleClosingAngleBracketEqualsSign =
-        ObjectiveCTokens.DoubleClosingAngleBracketEqualsSignToken;
-    public static readonly AmpersandEqualsSignToken AmpersandEqualsSign = ObjectiveCTokens.AmpersandEqualsSignToken;
-    public static readonly CaretEqualsSignToken CaretEqualsSign = ObjectiveCTokens.CaretEqualsSignToken;
-    public static readonly VerticalSlashEqualsSignToken VerticalSlashEqualsSign = ObjectiveCTokens.VerticalSlashEqualsSignToken;
+    public static readonly AssignmentOperatorToken AssignmentOperator = ObjectiveCTokens.AssignmentOperatorToken;
+    public static readonly CompoundMultiplyOperatorToken CompoundMultiplyOperator = ObjectiveCTokens.CompoundMultiplyOperatorToken;
+    public static readonly CompoundDivideOperatorToken CompoundDivideOperator = ObjectiveCTokens.CompoundDivideOperatorToken;
+    public static readonly CompoundModulusOperatorToken CompoundModulusOperator = ObjectiveCTokens.CompoundModulusOperatorToken;
+    public static readonly CompoundAddOperatorToken CompoundAddOperator = ObjectiveCTokens.CompoundAddOperatorToken;
+    public static readonly CompoundSubtractOperatorToken CompoundSubtractOperator = ObjectiveCTokens.CompoundSubtractOperatorToken;
+    public static readonly CompoundRightShiftOperatorToken CompoundRightShiftOperator =
+        ObjectiveCTokens.CompoundRightShiftOperatorToken;
+    public static readonly CompoundLeftShiftOperatorToken CompoundLeftShiftOperator =
+        ObjectiveCTokens.CompoundLeftShiftOperatorToken;
+    public static readonly CompoundBitwiseAndOperatorToken CompoundBitwiseAndOperator = ObjectiveCTokens.CompoundBitwiseAndOperatorToken;
+    public static readonly CompoundBitwiseXorOperatorToken CompoundBitwiseXorOperator = ObjectiveCTokens.CompoundBitwiseXorOperatorToken;
+    public static readonly CompoundBitwiseOrOperatorToken CompoundBitwiseOrOperator = ObjectiveCTokens.CompoundBitwiseOrOperatorToken;
     public static readonly CommaToken Comma = ObjectiveCTokens.CommaToken;
     public static readonly HashtagToken Hashtag = ObjectiveCTokens.HashtagToken;
     public static readonly DoubleHashtagToken DoubleHashtag = ObjectiveCTokens.DoubleHashtagToken;
-    public static readonly OpeningAngleBracketColonToken OpeningAngleBracketColon = ObjectiveCTokens.OpeningAngleBracketColonToken;
-    public static readonly ColonClosingAngleBracketToken ColonClosingAngleBracket = ObjectiveCTokens.ColonClosingAngleBracketToken;
-    public static readonly OpeningAngleBracketPercentageSignToken OpeningAngleBracketPercentageSign =
-        ObjectiveCTokens.OpeningAngleBracketPercentageSignToken;
-    public static readonly PercentageSignClosingAngleBracketToken PercentageSignClosingAngleBracket =
-        ObjectiveCTokens.PercentageSignClosingAngleBracketToken;
-    public static readonly PercentageSignColonToken PercentageSignColon = ObjectiveCTokens.PercentageSignColonToken;
-    public static readonly PercentageSignColonPercentageSignColonToken PercentageSignColonPercentageSignColon =
-        ObjectiveCTokens.PercentageSignColonPercentageSignColonToken;
+    public static readonly OpeningSquareBracketDigraphToken OpeningSquareBracketDigraph = ObjectiveCTokens.OpeningSquareBracketDigraphToken;
+    public static readonly ClosingSquareBracketDigraphToken ClosingSquareBracketDigraph = ObjectiveCTokens.ClosingSquareBracketDigraphToken;
+    public static readonly OpeningCurlyBraceDigraphToken OpeningCurlyBraceDigraph =
+        ObjectiveCTokens.OpeningCurlyBraceDigraphToken;
+    public static readonly ClosingCurlyBraceDigraphToken ClosingCurlyBraceDigraph =
+        ObjectiveCTokens.ClosingCurlyBraceDigraphToken;
+    public static readonly PreprocessorFunctionArgumentValueDigraphToken PreprocessorFunctionArgumentValueDigraph = ObjectiveCTokens.PreprocessorFunctionArgumentValueDigraphToken;
+    public static readonly PreprocessorConcatenateOperatorDigraphToken PreprocessorConcatenateOperatorDigraph =
+        ObjectiveCTokens.PreprocessorConcatenateOperatorDigraphToken;
 
     #endregion
 
