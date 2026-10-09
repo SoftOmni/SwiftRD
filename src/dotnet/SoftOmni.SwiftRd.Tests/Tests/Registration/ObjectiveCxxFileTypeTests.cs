@@ -8,22 +8,22 @@ using SoftOmni.SwiftRd.Language.ObjectiveCXX.File;
 namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
 
 [TestFixture]
-public class ObjectiveCxxFileTypeTests : BaseTest
+public class ObjectiveCXXFileTypeTests : BaseTest
 {
     [Test]
     public void ObjectiveCFileTypeIsRegistered()
     {
-        Assert.NotNull(ObjectiveCxxFileType.Instance);
+        Assert.NotNull(ObjectiveCXXFileType.Instance);
 
         IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
-        Assert.NotNull(projectFileTypes.GetFileType(ObjectiveCxxFileType.Name));
+        Assert.NotNull(projectFileTypes.GetFileType(ObjectiveCXXFileType.Name));
     }
 
     [Test]
     public void ObjectiveCFileTypeFromExtension()
     {
         IProjectFileTypes projectFileTypes = Shell.Instance.GetComponent<IProjectFileTypes>();
-        Assert.AreSame(ObjectiveCxxFileType.Instance, projectFileTypes.GetFileType(ObjectiveCxxFileType.Name));
+        Assert.AreSame(ObjectiveCXXFileType.Instance, projectFileTypes.GetFileType(ObjectiveCXXFileType.Name));
     }
 
     [Test, Explicit]

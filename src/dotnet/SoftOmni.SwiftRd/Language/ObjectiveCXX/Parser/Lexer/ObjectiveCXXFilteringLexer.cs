@@ -6,54 +6,54 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Base;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer;
 
-public class ObjectiveCxxFilteringLexer : FilteringLexer, ICollection<int>
+public class ObjectiveCXXFilteringLexer : FilteringLexer, ICollection<int>
 {
-    public ObjectiveCxxLexer CoreLexer { get; }
+    public ObjectiveCXXLexer CoreLexer { get; }
 
     public ISet<int> SkippedIndexes { get; }
 
-    public ObjectiveCxxFilteringLexer(IBuffer buffer) : this(new ObjectiveCxxLexer(buffer))
+    public ObjectiveCXXFilteringLexer(IBuffer buffer) : this(new ObjectiveCXXLexer(buffer))
     { }
 
-    public ObjectiveCxxFilteringLexer(IBuffer buffer, ISet<ObjectiveCxxTokenNodeType> skippedIndexes) : this(new ObjectiveCxxLexer(buffer),
+    public ObjectiveCXXFilteringLexer(IBuffer buffer, ISet<ObjectiveCXXTokenNodeType> skippedIndexes) : this(new ObjectiveCXXLexer(buffer),
         skippedIndexes)
     { }
 
-    public ObjectiveCxxFilteringLexer(IBuffer buffer, int eofPosition) : this(buffer, eofPosition,
-        new HashSet<ObjectiveCxxTokenNodeType>())
+    public ObjectiveCXXFilteringLexer(IBuffer buffer, int eofPosition) : this(buffer, eofPosition,
+        new HashSet<ObjectiveCXXTokenNodeType>())
     { }
 
-    public ObjectiveCxxFilteringLexer(IBuffer buffer, int eofPosition, ISet<ObjectiveCxxTokenNodeType> skippedIndexes) : this(
-        new ObjectiveCxxLexer(buffer, eofPosition), skippedIndexes)
+    public ObjectiveCXXFilteringLexer(IBuffer buffer, int eofPosition, ISet<ObjectiveCXXTokenNodeType> skippedIndexes) : this(
+        new ObjectiveCXXLexer(buffer, eofPosition), skippedIndexes)
     { }
 
-    public ObjectiveCxxFilteringLexer(ObjectiveCxxLexer lexer)
-        : this(lexer, new HashSet<ObjectiveCxxTokenNodeType>())
+    public ObjectiveCXXFilteringLexer(ObjectiveCXXLexer lexer)
+        : this(lexer, new HashSet<ObjectiveCXXTokenNodeType>())
     { }
 
-    public ObjectiveCxxFilteringLexer(ObjectiveCxxLexer lexer, ISet<ObjectiveCxxTokenNodeType> skippedIndexes) : base(lexer)
+    public ObjectiveCXXFilteringLexer(ObjectiveCXXLexer lexer, ISet<ObjectiveCXXTokenNodeType> skippedIndexes) : base(lexer)
     {
         CoreLexer = lexer;
         SkippedIndexes = new HashSet<int>();
-        foreach (ObjectiveCxxTokenNodeType objectiveCToken in skippedIndexes)
+        foreach (ObjectiveCXXTokenNodeType objectiveCToken in skippedIndexes)
         {
             SkippedIndexes.Add(objectiveCToken.Index);
         }
     }
 
-    public static explicit operator ObjectiveCxxLexer(ObjectiveCxxFilteringLexer filteringLexer)
+    public static explicit operator ObjectiveCXXLexer(ObjectiveCXXFilteringLexer filteringLexer)
     {
         return filteringLexer.CoreLexer;
     }
 
-    public ObjectiveCxxLexer AsObjectiveCLexer()
+    public ObjectiveCXXLexer AsObjectiveCLexer()
     {
         return CoreLexer;
     }
 
     protected override bool Skip(TokenNodeType tokenType)
     {
-        if (tokenType is not ObjectiveCxxTokenNodeType objectiveCTokenNodeType)
+        if (tokenType is not ObjectiveCXXTokenNodeType objectiveCTokenNodeType)
         {
             return false;
         }

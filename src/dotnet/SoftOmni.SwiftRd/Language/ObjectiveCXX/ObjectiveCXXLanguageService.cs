@@ -8,9 +8,9 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC;
 
-[Language(typeof(ObjectiveCxxLanguage))]
-public class ObjectiveCxxLanguageService(ObjectiveCxxLanguage objectiveCxxLanguage, ILazy<IConstantValueService> constantValueService)
-    : LanguageService(objectiveCxxLanguage, constantValueService)
+[Language(typeof(ObjectiveCXXLanguage))]
+public class ObjectiveCXXLanguageService(ObjectiveCXXLanguage objectiveCXXLanguage, ILazy<IConstantValueService> constantValueService)
+    : LanguageService(objectiveCXXLanguage, constantValueService)
 {
     public override ILexerFactory GetPrimaryLexerFactory()
     {
