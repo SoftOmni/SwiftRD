@@ -7,24 +7,24 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.Punctuators;
 
-public class ClosingSquareBracketDigraph : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
+public class BitwiseXorOperator : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
 {
-    public const string Value = ":>";
+    public const string Value = "^";
 
-    public ClosingSquareBracketDigraph()
+    public BitwiseXorOperator()
         : base(new EditableBuffer(Value))
     { }
 
-    internal ClosingSquareBracketDigraph(IEditableBuffer buffer)
+    internal BitwiseXorOperator(IEditableBuffer buffer)
         : base(buffer)
     { }
 
-    public override NodeType NodeType => ObjectiveCNodeTypes.ClosingSquareBracketDigraph;
+    public override NodeType NodeType => ObjectiveCNodeTypes.BitwiseXorOperator;
 
     public string AsString => Value;
 
-    public static ClosingSquareBracketDigraph Create()
+    public static BitwiseXorOperator Create()
     {
-        return new ClosingSquareBracketDigraph(new EditableBuffer(Value));
+        return new BitwiseXorOperator(new EditableBuffer(Value));
     }
 }

@@ -7,24 +7,24 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.NodeTypes;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.Punctuators;
 
-public class ClosingSquareBracketDigraph : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
+public class GreaterThanOperator : ObjectiveCLeafNode<ObjectiveCCompositeNode>, IObjectiveCPunctuator
 {
-    public const string Value = ":>";
+    public const string Value = ">";
 
-    public ClosingSquareBracketDigraph()
+    public GreaterThanOperator()
         : base(new EditableBuffer(Value))
     { }
 
-    internal ClosingSquareBracketDigraph(IEditableBuffer buffer)
+    internal GreaterThanOperator(IEditableBuffer buffer)
         : base(buffer)
     { }
 
-    public override NodeType NodeType => ObjectiveCNodeTypes.ClosingSquareBracketDigraph;
+    public override NodeType NodeType => ObjectiveCNodeTypes.GreaterThanOperator;
 
     public string AsString => Value;
 
-    public static ClosingSquareBracketDigraph Create()
+    public static GreaterThanOperator Create()
     {
-        return new ClosingSquareBracketDigraph(new EditableBuffer(Value));
+        return new GreaterThanOperator(new EditableBuffer(Value));
     }
 }

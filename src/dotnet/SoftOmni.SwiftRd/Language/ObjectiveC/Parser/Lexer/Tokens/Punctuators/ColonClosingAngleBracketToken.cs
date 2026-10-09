@@ -2,9 +2,9 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.Punctuators;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Punctuators;
 
-public sealed class ColonClosingAngleBracketToken : PunctuatorToken<ColonClosingAngleBracket>
+public sealed class ClosingSquareBracketDigraphToken : PunctuatorToken<ClosingSquareBracketDigraph>
 {
-    internal ColonClosingAngleBracketToken()
-        : base(ObjectiveCTokens.ColonClosingAngleBracketId, ObjectiveCTokens.ColonClosingAngleBracketIndex)
+    internal ClosingSquareBracketDigraphToken()
+        : base(ObjectiveCTokens.ClosingSquareBracketDigraphId, ObjectiveCTokens.ClosingSquareBracketDigraphIndex)
     { }
 }

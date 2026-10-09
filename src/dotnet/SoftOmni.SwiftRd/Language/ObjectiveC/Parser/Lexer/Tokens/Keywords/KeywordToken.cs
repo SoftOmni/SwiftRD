@@ -20,14 +20,3 @@ public abstract class KeywordToken : ObjectiveCTokenNodeType
 
     public override string TokenRepresentation { get; }
 }
-
-public abstract class KeywordToken<TAstLeafNode>(string keywordValue, int index)
-    : KeywordToken(keywordValue, index)
-    where TAstLeafNode : LeafElementBase, IObjectiveCKeyword, new()
-{
-    public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
-    {
-        CheckAgainstValue(TokenRepresentation, buffer, Name);
-        return new TAstLeafNode();
-    }
-}
