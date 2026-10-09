@@ -6,15 +6,15 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Tree.Exceptions;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Base;
 
-public abstract class ObjectiveCxxTokenNodeType : TokenNodeType
+public abstract class ObjectiveCXXTokenNodeType : TokenNodeType
 {
     public string Name { get; }
     
-    protected ObjectiveCxxTokenNodeType(string name, int index)
+    protected ObjectiveCXXTokenNodeType(string name, int index)
         : base(name, index)
     {
         Name = name;
-        ObjectiveCxxNodeTypeIndexer.Instance.Add(this, index);
+        ObjectiveCXXNodeTypeIndexer.Instance.Add(this, index);
     }
 
     public abstract override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset);

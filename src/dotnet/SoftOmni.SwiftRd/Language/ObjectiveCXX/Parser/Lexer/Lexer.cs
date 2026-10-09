@@ -3,13 +3,13 @@ using JetBrains.Text;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer;
 
-public partial class ObjectiveCxxLexer : IIncrementalLexer
+public partial class ObjectiveCXXLexer : IIncrementalLexer
 {
-    public ObjectiveCxxLexer(IBuffer buffer)
+    public ObjectiveCXXLexer(IBuffer buffer)
         : this(buffer, buffer.Length)
     { }
     
-    public ObjectiveCxxLexer(IBuffer buffer, int eofPos)
+    public ObjectiveCXXLexer(IBuffer buffer, int eofPos)
     {
         
     }

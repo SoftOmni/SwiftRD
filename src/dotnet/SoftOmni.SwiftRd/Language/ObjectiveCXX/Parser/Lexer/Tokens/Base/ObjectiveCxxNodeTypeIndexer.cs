@@ -2,10 +2,10 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer.Tokens.Base;
 
-public class ObjectiveCxxNodeTypeIndexer : NodeTypesRegistry
+public class ObjectiveCXXNodeTypeIndexer : NodeTypesRegistry
 {
-    public static readonly ObjectiveCxxNodeTypeIndexer Instance = new();
+    public static readonly ObjectiveCXXNodeTypeIndexer Instance = new();
     
-    private ObjectiveCxxNodeTypeIndexer()
+    private ObjectiveCXXNodeTypeIndexer()
     { }
 }

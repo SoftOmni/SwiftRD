@@ -7,22 +7,22 @@ using SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer;
 namespace SoftOmni.SwiftRd.Tests.Tests.Registration;
 
 [TestFixture]
-public class ObjectiveCxxLanguageTests
+public class ObjectiveCXXLanguageTests
 {
     [Test]
-    public void ObjectiveCxxIsRegistered()
+    public void ObjectiveCXXIsRegistered()
     {
-        Assert.NotNull(ObjectiveCxxLanguage.Instance);
-        Assert.NotNull(Languages.Instance.GetLanguageByName(ObjectiveCxxLanguage.Name));
+        Assert.NotNull(ObjectiveCXXLanguage.Instance);
+        Assert.NotNull(Languages.Instance.GetLanguageByName(ObjectiveCXXLanguage.Name));
     }
 
     [Test]
-    public void ObjectiveCxxLanguageServiceIsRegistered()
+    public void ObjectiveCXXLanguageServiceIsRegistered()
     {
-        ObjectiveCxxLanguageService objectiveCxxLanguageService = LanguageManager.Instance.GetService<ObjectiveCxxLanguageService>(ObjectiveCxxLanguage.Instance!);
-        Assert.IsInstanceOf<ObjectiveCxxLanguageService>(objectiveCxxLanguageService);
+        ObjectiveCXXLanguageService objectiveCXXLanguageService = LanguageManager.Instance.GetService<ObjectiveCXXLanguageService>(ObjectiveCXXLanguage.Instance!);
+        Assert.IsInstanceOf<ObjectiveCXXLanguageService>(objectiveCXXLanguageService);
         
-        Assert.IsInstanceOf<ObjectiveCxxLexerFactory>(objectiveCxxLanguageService.GetPrimaryLexerFactory());
+        Assert.IsInstanceOf<ObjectiveCXXLexerFactory>(objectiveCXXLanguageService.GetPrimaryLexerFactory());
     }
 
     [Test, Explicit]

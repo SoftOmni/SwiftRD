@@ -3,10 +3,10 @@ using JetBrains.Text;
 
 namespace SoftOmni.SwiftRd.Language.ObjectiveC.Parser.Lexer;
 
-public class ObjectiveCxxLexerFactory : ILexerFactory
+public class ObjectiveCXXLexerFactory : ILexerFactory
 {
     public ILexer CreateLexer(IBuffer buffer)
     {
-        return new ObjectiveCxxFilteringLexer(new ObjectiveCxxLexer(buffer));
+        return new ObjectiveCXXFilteringLexer(new ObjectiveCXXLexer(buffer));
     }
 }
