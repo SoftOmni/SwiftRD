@@ -352,8 +352,4 @@ public static class ObjectiveCNodeTypes
     #endregion
 
     #endregion
-
-    #region InternalNodes
-
-    #endregion
 }
